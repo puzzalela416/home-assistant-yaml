@@ -1,0 +1,5 @@
+# File di prova del caricamento su GitHub.
+# Non includere questo file nella configurazione di Home Assistant.
+test_caricamento:
+  progetto: home-assistant-yaml
+  esito: ok
