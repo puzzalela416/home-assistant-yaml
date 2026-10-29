@@ -1,0 +1,29 @@
+id: '1790704217806'
+alias: 'Luci parcheggio al tramonto '
+description: 'Parcheggio al tramonto +15 minuti. Torre ingresso gestita dalla propria
+  fotocellula.
+
+  STORICO: sostituita dal programma notturno luci esterno v1; definizione conservata.'
+triggers:
+- trigger: sun.sunset
+  options:
+    offset:
+      hours: 0
+      minutes: 0
+      seconds: 0
+      days: 0
+    offset_type: before
+conditions: []
+actions:
+- delay:
+    hours: 0
+    minutes: 15
+    seconds: 0
+    milliseconds: 0
+- action: switch.turn_on
+  metadata: {}
+  target:
+    entity_id: switch.10001119b3_power
+  data: {}
+mode: single
+initial_state: false

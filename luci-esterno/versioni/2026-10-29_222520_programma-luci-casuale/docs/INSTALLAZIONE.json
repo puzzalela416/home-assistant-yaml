@@ -1,0 +1,11 @@
+{
+  "data": "2026-10-29T22:22:45.265161+01:00",
+  "esito": "installato e attivato",
+  "entity_id": "automation.luci_esterno_programma_notturno_e_coppie_casuali",
+  "stato_programma": "Coppia casuale: orto,giardino",
+  "memoria": "2026-10-29#1|orto,giardino",
+  "estrazione": true,
+  "allarme_non_attivato": true,
+  "faretti_non_comandati": true,
+  "nessun_file_eliminato": true
+}

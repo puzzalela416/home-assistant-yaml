@@ -1,0 +1,1429 @@
+# Una sensibilità adattiva, quattro fotocellule. Faretti nativi; alba generale invariata.
+input_number:
+  camera_eventi_cancello:
+    name: Camera eventi Cancello
+    min: 0
+    max: 1000000
+    step: 1
+    mode: box
+  camera_eventi_ingresso:
+    name: Camera eventi Ingresso
+    min: 0
+    max: 1000000
+    step: 1
+    mode: box
+  camera_eventi_piazzale:
+    name: Camera eventi Piazzale
+    min: 0
+    max: 1000000
+    step: 1
+    mode: box
+  camera_eventi_tracking:
+    name: Camera eventi Tracking / Giardino
+    min: 0
+    max: 1000000
+    step: 1
+    mode: box
+  camera_eventi_loggiato:
+    name: Camera eventi Loggiato
+    min: 0
+    max: 1000000
+    step: 1
+    mode: box
+  camera_eventi_piscine:
+    name: Camera eventi Piscine
+    min: 0
+    max: 1000000
+    step: 1
+    mode: box
+  camera_eventi_orto:
+    name: Camera eventi Orto
+    min: 0
+    max: 1000000
+    step: 1
+    mode: box
+  camera_eventi_officina:
+    name: Camera eventi Officina
+    min: 0
+    max: 1000000
+    step: 1
+    mode: box
+  camera_eventi_auto:
+    name: Camera eventi Auto
+    min: 0
+    max: 1000000
+    step: 1
+    mode: box
+  camera_eventi_cucina:
+    name: Camera eventi Cucina / posteriore
+    min: 0
+    max: 1000000
+    step: 1
+    mode: box
+  camera_eventi_sala:
+    name: Camera eventi Sala
+    min: 0
+    max: 1000000
+    step: 1
+    mode: box
+timer:
+  camera_finestra_cancello:
+    name: Camera finestra Cancello
+    duration: 00:05:00
+    restore: true
+  camera_finestra_ingresso:
+    name: Camera finestra Ingresso
+    duration: 00:05:00
+    restore: true
+  camera_finestra_piazzale:
+    name: Camera finestra Piazzale
+    duration: 00:05:00
+    restore: true
+  camera_finestra_tracking:
+    name: Camera finestra Tracking / Giardino
+    duration: 00:05:00
+    restore: true
+  camera_finestra_loggiato:
+    name: Camera finestra Loggiato
+    duration: 00:05:00
+    restore: true
+  camera_finestra_piscine:
+    name: Camera finestra Piscine
+    duration: 00:05:00
+    restore: true
+  camera_finestra_orto:
+    name: Camera finestra Orto
+    duration: 00:05:00
+    restore: true
+  camera_finestra_officina:
+    name: Camera finestra Officina
+    duration: 00:05:00
+    restore: true
+  camera_finestra_auto:
+    name: Camera finestra Auto
+    duration: 00:05:00
+    restore: true
+  camera_finestra_cucina:
+    name: Camera finestra Cucina / posteriore
+    duration: 00:05:00
+    restore: true
+  camera_finestra_sala:
+    name: Camera finestra Sala
+    duration: 00:05:00
+    restore: true
+  fotocellula_cancello_giardino:
+    name: Fotocellula Cancello → Giardino
+    duration: 00:02:00
+    restore: true
+  fotocellula_ingresso_torre:
+    name: Fotocellula Ingresso → Torre ingresso
+    duration: 00:02:00
+    restore: true
+  fotocellula_piscine_capanno:
+    name: Fotocellula Piscine → Capanno
+    duration: 00:02:00
+    restore: true
+  fotocellula_orto_torre:
+    name: Fotocellula Orto → Torre Orto
+    duration: 00:02:00
+    restore: true
+input_boolean:
+  fotocellula_cancello_giardino_gestisce:
+    name: Fotocellula gestisce Cancello → Giardino
+  fotocellula_ingresso_torre_gestisce:
+    name: Fotocellula gestisce Ingresso → Torre ingresso
+  fotocellula_piscine_capanno_gestisce:
+    name: Fotocellula gestisce Piscine → Capanno
+  fotocellula_orto_torre_gestisce:
+    name: Fotocellula gestisce Orto → Torre Orto
+automation:
+- id: telecamere_sensibilita_adattiva_v1
+  alias: Telecamere - Sensibilità adattiva e profili giorno notte
+  description: Una sola automazione, 11 camere indipendenti. Ogni finestra conta solo la propria camera; >=10 cambi/5min
+    riduce di 2 al minimo hardware. Profili 42/5 e AI conservati. Nessun comando ai faretti.
+  mode: queued
+  max: 200
+  max_exceeded: warning
+  variables:
+    telecamere:
+      cancello:
+        nome: Cancello
+        movimento: binary_sensor.cancello_movimento
+        sensibilita: number.cancello_cancello_sensibilita_al_movimento
+        contatore: input_number.camera_eventi_cancello
+        timer: timer.camera_finestra_cancello
+      ingresso:
+        nome: Ingresso
+        movimento: binary_sensor.esterno_ingresso_movimento
+        sensibilita: number.esterno_ingresso_sensibilita_al_movimento
+        contatore: input_number.camera_eventi_ingresso
+        timer: timer.camera_finestra_ingresso
+        ai_persona: number.esterno_ingresso_ai_person_sensitivity
+        ai_animale: number.esterno_ingresso_ai_animal_sensitivity
+        ai_veicolo: number.esterno_ingresso_ai_vehicle_sensitivity
+      piazzale:
+        nome: Piazzale
+        movimento: binary_sensor.piazzale_movimento
+        sensibilita: number.piazzale_sensibilita_al_movimento
+        contatore: input_number.camera_eventi_piazzale
+        timer: timer.camera_finestra_piazzale
+        ai_persona: number.piazzale_ai_person_sensitivity
+        ai_animale: number.piazzale_ai_animal_sensitivity
+        ai_veicolo: number.piazzale_ai_vehicle_sensitivity
+      tracking:
+        nome: Tracking / Giardino
+        movimento: binary_sensor.tracking_movimento
+        sensibilita: number.tracking_sensibilita_al_movimento
+        contatore: input_number.camera_eventi_tracking
+        timer: timer.camera_finestra_tracking
+        ai_persona: number.tracking_ai_person_sensitivity
+        ai_animale: number.tracking_ai_animal_sensitivity
+        ai_veicolo: number.tracking_ai_vehicle_sensitivity
+      loggiato:
+        nome: Loggiato
+        movimento: binary_sensor.loggiato_movimento
+        sensibilita: number.loggiato_sensibilita_al_movimento
+        contatore: input_number.camera_eventi_loggiato
+        timer: timer.camera_finestra_loggiato
+      piscine:
+        nome: Piscine
+        movimento: binary_sensor.piscine_movimento
+        sensibilita: number.piscine_sensibilita_al_movimento
+        contatore: input_number.camera_eventi_piscine
+        timer: timer.camera_finestra_piscine
+      orto:
+        nome: Orto
+        movimento: binary_sensor.piscina_orto_movimento
+        sensibilita: number.piscina_orto_sensibilita_al_movimento
+        contatore: input_number.camera_eventi_orto
+        timer: timer.camera_finestra_orto
+      officina:
+        nome: Officina
+        movimento: binary_sensor.parco_movimento
+        sensibilita: number.parco_sensibilita_al_movimento
+        contatore: input_number.camera_eventi_officina
+        timer: timer.camera_finestra_officina
+      auto:
+        nome: Auto
+        movimento: binary_sensor.cucina_movimento_2
+        sensibilita: number.cucina_sensibilita_al_movimento_2
+        contatore: input_number.camera_eventi_auto
+        timer: timer.camera_finestra_auto
+      cucina:
+        nome: Cucina / posteriore
+        movimento: binary_sensor.cucina_movimento
+        sensibilita: number.cucina_sensibilita_al_movimento
+        contatore: input_number.camera_eventi_cucina
+        timer: timer.camera_finestra_cucina
+      sala:
+        nome: Sala
+        movimento: binary_sensor.sala_movimento
+        sensibilita: number.sala_sensibilita_al_movimento
+        contatore: input_number.camera_eventi_sala
+        timer: timer.camera_finestra_sala
+        ai_persona: number.sala_ai_person_sensitivity
+        ai_animale: number.sala_ai_animal_sensitivity
+  triggers:
+  - trigger: state
+    entity_id:
+    - binary_sensor.cancello_movimento
+    - binary_sensor.esterno_ingresso_movimento
+    - binary_sensor.piazzale_movimento
+    - binary_sensor.tracking_movimento
+    - binary_sensor.loggiato_movimento
+    - binary_sensor.piscine_movimento
+    - binary_sensor.piscina_orto_movimento
+    - binary_sensor.parco_movimento
+    - binary_sensor.cucina_movimento_2
+    - binary_sensor.cucina_movimento
+    - binary_sensor.sala_movimento
+    from: 'off'
+    to: 'on'
+    id: movimento
+  - trigger: state
+    entity_id:
+    - binary_sensor.cancello_movimento
+    - binary_sensor.esterno_ingresso_movimento
+    - binary_sensor.piazzale_movimento
+    - binary_sensor.tracking_movimento
+    - binary_sensor.loggiato_movimento
+    - binary_sensor.piscine_movimento
+    - binary_sensor.piscina_orto_movimento
+    - binary_sensor.parco_movimento
+    - binary_sensor.cucina_movimento_2
+    - binary_sensor.cucina_movimento
+    - binary_sensor.sala_movimento
+    from: 'on'
+    to: 'off'
+    id: movimento
+  - trigger: event
+    event_type: timer.finished
+    event_data:
+      entity_id: timer.camera_finestra_cancello
+    id: fine_finestra
+  - trigger: event
+    event_type: timer.finished
+    event_data:
+      entity_id: timer.camera_finestra_ingresso
+    id: fine_finestra
+  - trigger: event
+    event_type: timer.finished
+    event_data:
+      entity_id: timer.camera_finestra_piazzale
+    id: fine_finestra
+  - trigger: event
+    event_type: timer.finished
+    event_data:
+      entity_id: timer.camera_finestra_tracking
+    id: fine_finestra
+  - trigger: event
+    event_type: timer.finished
+    event_data:
+      entity_id: timer.camera_finestra_loggiato
+    id: fine_finestra
+  - trigger: event
+    event_type: timer.finished
+    event_data:
+      entity_id: timer.camera_finestra_piscine
+    id: fine_finestra
+  - trigger: event
+    event_type: timer.finished
+    event_data:
+      entity_id: timer.camera_finestra_orto
+    id: fine_finestra
+  - trigger: event
+    event_type: timer.finished
+    event_data:
+      entity_id: timer.camera_finestra_officina
+    id: fine_finestra
+  - trigger: event
+    event_type: timer.finished
+    event_data:
+      entity_id: timer.camera_finestra_auto
+    id: fine_finestra
+  - trigger: event
+    event_type: timer.finished
+    event_data:
+      entity_id: timer.camera_finestra_cucina
+    id: fine_finestra
+  - trigger: event
+    event_type: timer.finished
+    event_data:
+      entity_id: timer.camera_finestra_sala
+    id: fine_finestra
+  - trigger: sun
+    event: sunrise
+    id: giorno
+  - trigger: sun
+    event: sunset
+    id: notte
+  - trigger: homeassistant
+    event: start
+    id: avvio
+  conditions: []
+  actions:
+  - variables:
+      chiave: '{% set ns=namespace(key='''') %}{% for k,c in telecamere.items() %}{% if trigger.id == ''movimento''
+        and trigger.entity_id == c.movimento %}{% set ns.key=k %}{% elif trigger.id == ''fine_finestra'' and trigger.event.data.entity_id
+        == c.timer %}{% set ns.key=k %}{% endif %}{% endfor %}{{ ns.key }}'
+  - choose:
+    - conditions:
+      - condition: trigger
+        id:
+        - giorno
+        - notte
+      sequence:
+      - repeat:
+          for_each: '{{ telecamere.values()|list }}'
+          sequence:
+          - action: input_number.set_value
+            continue_on_error: true
+            target:
+              entity_id: '{{ repeat.item.contatore }}'
+            data:
+              value: 0
+          - action: timer.cancel
+            continue_on_error: true
+            target:
+              entity_id: '{{ repeat.item.timer }}'
+          - if:
+            - condition: template
+              value_template: '{{ has_value(repeat.item.sensibilita) }}'
+            then:
+            - action: number.set_value
+              continue_on_error: true
+              target:
+                entity_id: '{{ repeat.item.sensibilita }}'
+              data:
+                value: '{% set base=42 if trigger.id==''giorno'' else 5 %}{{ [[base,state_attr(repeat.item.sensibilita,''min'')|float(1)]|max,state_attr(repeat.item.sensibilita,''max'')|float(50)]|min
+                  }}'
+          - repeat:
+              for_each: '{{ [{''entita'':repeat.item.get(''ai_persona'',''''),''valore'':100},{''entita'':repeat.item.get(''ai_veicolo'',''''),''valore'':20
+                if trigger.id==''giorno'' else 10},{''entita'':repeat.item.get(''ai_animale'',''''),''valore'':10}]
+                }}'
+              sequence:
+              - if:
+                - condition: template
+                  value_template: '{{ repeat.item.entita != '''' and has_value(repeat.item.entita) }}'
+                then:
+                - action: number.set_value
+                  continue_on_error: true
+                  target:
+                    entity_id: '{{ repeat.item.entita }}'
+                  data:
+                    value: '{{ repeat.item.valore }}'
+    - conditions:
+      - condition: trigger
+        id: avvio
+      sequence:
+      - repeat:
+          for_each: '{{ telecamere.values()|list }}'
+          sequence:
+          - action: input_number.set_value
+            continue_on_error: true
+            target:
+              entity_id: '{{ repeat.item.contatore }}'
+            data:
+              value: 0
+          - action: timer.cancel
+            continue_on_error: true
+            target:
+              entity_id: '{{ repeat.item.timer }}'
+    - conditions:
+      - condition: trigger
+        id: movimento
+      sequence:
+      - condition: template
+        value_template: '{{ chiave in telecamere }}'
+      - variables:
+          camera: '{{ telecamere[chiave] }}'
+      - if:
+        - condition: template
+          value_template: '{{ not is_state(camera.timer,''active'') }}'
+        then:
+        - action: input_number.set_value
+          target:
+            entity_id: '{{ camera.contatore }}'
+          data:
+            value: 0
+        - action: timer.start
+          target:
+            entity_id: '{{ camera.timer }}'
+          data:
+            duration: 00:05:00
+      - action: input_number.set_value
+        target:
+          entity_id: '{{ camera.contatore }}'
+        data:
+          value: '{{ [states(camera.contatore)|int(0)+1,1000000]|min }}'
+    - conditions:
+      - condition: trigger
+        id: fine_finestra
+      sequence:
+      - condition: template
+        value_template: '{{ chiave in telecamere }}'
+      - variables:
+          camera: '{{ telecamere[chiave] }}'
+      - variables:
+          conteggio: '{{ states(camera.contatore)|int(0) }}'
+      - if:
+        - condition: template
+          value_template: '{{ conteggio >= 10 and has_value(camera.sensibilita) }}'
+        then:
+        - variables:
+            attuale: '{{ states(camera.sensibilita)|float(0) }}'
+            minimo: '{{ state_attr(camera.sensibilita,''min'')|float(1) }}'
+        - variables:
+            nuova: '{{ [attuale-2,minimo]|max }}'
+        - if:
+          - condition: template
+            value_template: '{{ nuova < attuale }}'
+          then:
+          - action: number.set_value
+            continue_on_error: true
+            target:
+              entity_id: '{{ camera.sensibilita }}'
+            data:
+              value: '{{ nuova }}'
+          - action: logbook.log
+            data:
+              name: Sensibilità telecamere
+              message: '{{ camera.nome }}: {{ conteggio }} cambi in 5 minuti, sensibilità {{ attuale }} → {{ nuova
+                }}.'
+              entity_id: '{{ camera.sensibilita }}'
+        - action: persistent_notification.create
+          data:
+            notification_id: camera_sensibilita_{{ chiave }}
+            title: Sensibilità {{ camera.nome }}
+            message: '{{ conteggio }} cambi in 5 minuti. {% if attuale > minimo %}Richiesta riduzione {{ attuale
+              }} → {{ nuova }}.{% else %}Sensibilità già al minimo {{ minimo }}: controllare zona/inquadratura e
+              condizioni ambientali; non sono possibili ulteriori riduzioni.{% endif %}'
+      - action: input_number.set_value
+        target:
+          entity_id: '{{ camera.contatore }}'
+        data:
+          value: 0
+- id: fotocellula_cancello_giardino_v1
+  alias: Fotocellula - Cancello → Giardino - 2 minuti
+  description: Solo notte; due minuti dalla fine dell’ultimo movimento. Non spegne luci già accese da altri comandi;
+    cede controllo all’allarme. Nessun comando ai faretti.
+  mode: queued
+  max: 100
+  triggers:
+  - trigger: state
+    entity_id: binary_sensor.cancello_movimento
+    from: 'off'
+    to: 'on'
+    id: movimento
+  - trigger: state
+    entity_id: binary_sensor.cancello_movimento
+    from: 'on'
+    to:
+    - 'off'
+    - unknown
+    - unavailable
+    id: fine_movimento
+  - trigger: event
+    event_type: timer.finished
+    event_data:
+      entity_id: timer.fotocellula_cancello_giardino
+    id: scadenza
+  - trigger: state
+    entity_id: switch.1000111b06_power
+    to: 'off'
+    id: luce_spenta
+  - trigger: sun
+    event: sunrise
+    id: alba
+  - trigger: homeassistant
+    event: start
+    id: avvio
+  - trigger: state
+    entity_id:
+    - alarm_control_panel.allarme_casa
+    - alarm_control_panel.aqara_hub_09ab_security_system_2
+    - automation.allarme_innescato_esterno_acceso
+    id: allarme
+  conditions: []
+  actions:
+  - choose:
+    - conditions:
+      - condition: trigger
+        id: luce_spenta
+      sequence:
+      - action: timer.cancel
+        target:
+          entity_id: timer.fotocellula_cancello_giardino
+      - action: input_boolean.turn_off
+        target:
+          entity_id: input_boolean.fotocellula_cancello_giardino_gestisce
+    - conditions:
+      - condition: trigger
+        id: allarme
+      - condition: template
+        value_template: '{{ is_state(''alarm_control_panel.allarme_casa'',''triggered'') or is_state(''alarm_control_panel.aqara_hub_09ab_security_system_2'',''triggered'')
+          or state_attr(''automation.allarme_innescato_esterno_acceso'',''current'')|int(0)>0 }}'
+      sequence:
+      - action: timer.cancel
+        target:
+          entity_id: timer.fotocellula_cancello_giardino
+      - action: input_boolean.turn_off
+        target:
+          entity_id: input_boolean.fotocellula_cancello_giardino_gestisce
+    - conditions:
+      - condition: trigger
+        id: alba
+      - condition: state
+        entity_id: input_boolean.fotocellula_cancello_giardino_gestisce
+        state: 'on'
+      sequence:
+      - condition: template
+        value_template: '{{ not (is_state(''alarm_control_panel.allarme_casa'',''triggered'') or is_state(''alarm_control_panel.aqara_hub_09ab_security_system_2'',''triggered'')
+          or state_attr(''automation.allarme_innescato_esterno_acceso'',''current'')|int(0)>0) }}'
+      - action: switch.turn_off
+        target:
+          entity_id: switch.1000111b06_power
+      - action: timer.cancel
+        target:
+          entity_id: timer.fotocellula_cancello_giardino
+      - action: input_boolean.turn_off
+        target:
+          entity_id: input_boolean.fotocellula_cancello_giardino_gestisce
+    - conditions:
+      - condition: trigger
+        id: avvio
+      sequence:
+      - choose:
+        - conditions:
+          - condition: state
+            entity_id: switch.1000111b06_power
+            state: 'off'
+          sequence:
+          - action: timer.cancel
+            target:
+              entity_id: timer.fotocellula_cancello_giardino
+          - action: input_boolean.turn_off
+            target:
+              entity_id: input_boolean.fotocellula_cancello_giardino_gestisce
+        - conditions:
+          - condition: state
+            entity_id: input_boolean.fotocellula_cancello_giardino_gestisce
+            state: 'on'
+          - condition: template
+            value_template: '{{ is_state(''alarm_control_panel.allarme_casa'',''triggered'') or is_state(''alarm_control_panel.aqara_hub_09ab_security_system_2'',''triggered'')
+              or state_attr(''automation.allarme_innescato_esterno_acceso'',''current'')|int(0)>0 }}'
+          sequence:
+          - action: timer.cancel
+            target:
+              entity_id: timer.fotocellula_cancello_giardino
+          - action: input_boolean.turn_off
+            target:
+              entity_id: input_boolean.fotocellula_cancello_giardino_gestisce
+        - conditions:
+          - condition: state
+            entity_id: input_boolean.fotocellula_cancello_giardino_gestisce
+            state: 'on'
+          - condition: state
+            entity_id: sun.sun
+            state: above_horizon
+          sequence:
+          - condition: template
+            value_template: '{{ not (is_state(''alarm_control_panel.allarme_casa'',''triggered'') or is_state(''alarm_control_panel.aqara_hub_09ab_security_system_2'',''triggered'')
+              or state_attr(''automation.allarme_innescato_esterno_acceso'',''current'')|int(0)>0) }}'
+          - action: switch.turn_off
+            target:
+              entity_id: switch.1000111b06_power
+          - action: timer.cancel
+            target:
+              entity_id: timer.fotocellula_cancello_giardino
+          - action: input_boolean.turn_off
+            target:
+              entity_id: input_boolean.fotocellula_cancello_giardino_gestisce
+        - conditions:
+          - condition: state
+            entity_id: input_boolean.fotocellula_cancello_giardino_gestisce
+            state: 'on'
+          - condition: state
+            entity_id: binary_sensor.cancello_movimento
+            state: 'on'
+          sequence:
+          - action: timer.cancel
+            target:
+              entity_id: timer.fotocellula_cancello_giardino
+        - conditions:
+          - condition: state
+            entity_id: input_boolean.fotocellula_cancello_giardino_gestisce
+            state: 'on'
+          - condition: template
+            value_template: '{{ not is_state(''timer.fotocellula_cancello_giardino'',''active'') }}'
+          sequence:
+          - condition: template
+            value_template: '{{ not (is_state(''alarm_control_panel.allarme_casa'',''triggered'') or is_state(''alarm_control_panel.aqara_hub_09ab_security_system_2'',''triggered'')
+              or state_attr(''automation.allarme_innescato_esterno_acceso'',''current'')|int(0)>0) }}'
+          - action: switch.turn_off
+            target:
+              entity_id: switch.1000111b06_power
+          - action: timer.cancel
+            target:
+              entity_id: timer.fotocellula_cancello_giardino
+          - action: input_boolean.turn_off
+            target:
+              entity_id: input_boolean.fotocellula_cancello_giardino_gestisce
+    - conditions:
+      - condition: trigger
+        id: movimento
+      sequence:
+      - condition: state
+        entity_id: sun.sun
+        state: below_horizon
+      - condition: template
+        value_template: '{{ not (is_state(''alarm_control_panel.allarme_casa'',''triggered'') or is_state(''alarm_control_panel.aqara_hub_09ab_security_system_2'',''triggered'')
+          or state_attr(''automation.allarme_innescato_esterno_acceso'',''current'')|int(0)>0) }}'
+      - choose:
+        - conditions:
+          - condition: state
+            entity_id: switch.1000111b06_power
+            state: 'off'
+          sequence:
+          - action: input_boolean.turn_on
+            target:
+              entity_id: input_boolean.fotocellula_cancello_giardino_gestisce
+          - action: switch.turn_on
+            target:
+              entity_id: switch.1000111b06_power
+          - action: timer.cancel
+            target:
+              entity_id: timer.fotocellula_cancello_giardino
+        - conditions:
+          - condition: state
+            entity_id: input_boolean.fotocellula_cancello_giardino_gestisce
+            state: 'on'
+          - condition: state
+            entity_id: switch.1000111b06_power
+            state: 'on'
+          sequence:
+          - action: timer.cancel
+            target:
+              entity_id: timer.fotocellula_cancello_giardino
+    - conditions:
+      - condition: trigger
+        id: fine_movimento
+      sequence:
+      - condition: state
+        entity_id: input_boolean.fotocellula_cancello_giardino_gestisce
+        state: 'on'
+      - condition: state
+        entity_id: switch.1000111b06_power
+        state: 'on'
+      - condition: template
+        value_template: '{{ not (is_state(''alarm_control_panel.allarme_casa'',''triggered'') or is_state(''alarm_control_panel.aqara_hub_09ab_security_system_2'',''triggered'')
+          or state_attr(''automation.allarme_innescato_esterno_acceso'',''current'')|int(0)>0) }}'
+      - action: timer.start
+        target:
+          entity_id: timer.fotocellula_cancello_giardino
+        data:
+          duration: 00:02:00
+    - conditions:
+      - condition: trigger
+        id: scadenza
+      sequence:
+      - condition: state
+        entity_id: input_boolean.fotocellula_cancello_giardino_gestisce
+        state: 'on'
+      - condition: template
+        value_template: '{{ not is_state(''binary_sensor.cancello_movimento'',''on'') }}'
+      - condition: template
+        value_template: '{{ not (is_state(''alarm_control_panel.allarme_casa'',''triggered'') or is_state(''alarm_control_panel.aqara_hub_09ab_security_system_2'',''triggered'')
+          or state_attr(''automation.allarme_innescato_esterno_acceso'',''current'')|int(0)>0) }}'
+      - action: switch.turn_off
+        target:
+          entity_id: switch.1000111b06_power
+      - action: timer.cancel
+        target:
+          entity_id: timer.fotocellula_cancello_giardino
+      - action: input_boolean.turn_off
+        target:
+          entity_id: input_boolean.fotocellula_cancello_giardino_gestisce
+- id: fotocellula_ingresso_torre_v1
+  alias: Fotocellula - Ingresso → Torre ingresso - 2 minuti
+  description: Solo notte; due minuti dalla fine dell’ultimo movimento. Non spegne luci già accese da altri comandi;
+    cede controllo all’allarme. Nessun comando ai faretti.
+  mode: queued
+  max: 100
+  triggers:
+  - trigger: state
+    entity_id: binary_sensor.esterno_ingresso_movimento
+    from: 'off'
+    to: 'on'
+    id: movimento
+  - trigger: state
+    entity_id: binary_sensor.esterno_ingresso_movimento
+    from: 'on'
+    to:
+    - 'off'
+    - unknown
+    - unavailable
+    id: fine_movimento
+  - trigger: event
+    event_type: timer.finished
+    event_data:
+      entity_id: timer.fotocellula_ingresso_torre
+    id: scadenza
+  - trigger: state
+    entity_id: switch.100184e599_power
+    to: 'off'
+    id: luce_spenta
+  - trigger: sun
+    event: sunrise
+    id: alba
+  - trigger: homeassistant
+    event: start
+    id: avvio
+  - trigger: state
+    entity_id:
+    - alarm_control_panel.allarme_casa
+    - alarm_control_panel.aqara_hub_09ab_security_system_2
+    - automation.allarme_innescato_esterno_acceso
+    id: allarme
+  conditions: []
+  actions:
+  - choose:
+    - conditions:
+      - condition: trigger
+        id: luce_spenta
+      sequence:
+      - action: timer.cancel
+        target:
+          entity_id: timer.fotocellula_ingresso_torre
+      - action: input_boolean.turn_off
+        target:
+          entity_id: input_boolean.fotocellula_ingresso_torre_gestisce
+    - conditions:
+      - condition: trigger
+        id: allarme
+      - condition: template
+        value_template: '{{ is_state(''alarm_control_panel.allarme_casa'',''triggered'') or is_state(''alarm_control_panel.aqara_hub_09ab_security_system_2'',''triggered'')
+          or state_attr(''automation.allarme_innescato_esterno_acceso'',''current'')|int(0)>0 }}'
+      sequence:
+      - action: timer.cancel
+        target:
+          entity_id: timer.fotocellula_ingresso_torre
+      - action: input_boolean.turn_off
+        target:
+          entity_id: input_boolean.fotocellula_ingresso_torre_gestisce
+    - conditions:
+      - condition: trigger
+        id: alba
+      - condition: state
+        entity_id: input_boolean.fotocellula_ingresso_torre_gestisce
+        state: 'on'
+      sequence:
+      - condition: template
+        value_template: '{{ not (is_state(''alarm_control_panel.allarme_casa'',''triggered'') or is_state(''alarm_control_panel.aqara_hub_09ab_security_system_2'',''triggered'')
+          or state_attr(''automation.allarme_innescato_esterno_acceso'',''current'')|int(0)>0) }}'
+      - action: switch.turn_off
+        target:
+          entity_id: switch.100184e599_power
+      - action: timer.cancel
+        target:
+          entity_id: timer.fotocellula_ingresso_torre
+      - action: input_boolean.turn_off
+        target:
+          entity_id: input_boolean.fotocellula_ingresso_torre_gestisce
+    - conditions:
+      - condition: trigger
+        id: avvio
+      sequence:
+      - choose:
+        - conditions:
+          - condition: state
+            entity_id: switch.100184e599_power
+            state: 'off'
+          sequence:
+          - action: timer.cancel
+            target:
+              entity_id: timer.fotocellula_ingresso_torre
+          - action: input_boolean.turn_off
+            target:
+              entity_id: input_boolean.fotocellula_ingresso_torre_gestisce
+        - conditions:
+          - condition: state
+            entity_id: input_boolean.fotocellula_ingresso_torre_gestisce
+            state: 'on'
+          - condition: template
+            value_template: '{{ is_state(''alarm_control_panel.allarme_casa'',''triggered'') or is_state(''alarm_control_panel.aqara_hub_09ab_security_system_2'',''triggered'')
+              or state_attr(''automation.allarme_innescato_esterno_acceso'',''current'')|int(0)>0 }}'
+          sequence:
+          - action: timer.cancel
+            target:
+              entity_id: timer.fotocellula_ingresso_torre
+          - action: input_boolean.turn_off
+            target:
+              entity_id: input_boolean.fotocellula_ingresso_torre_gestisce
+        - conditions:
+          - condition: state
+            entity_id: input_boolean.fotocellula_ingresso_torre_gestisce
+            state: 'on'
+          - condition: state
+            entity_id: sun.sun
+            state: above_horizon
+          sequence:
+          - condition: template
+            value_template: '{{ not (is_state(''alarm_control_panel.allarme_casa'',''triggered'') or is_state(''alarm_control_panel.aqara_hub_09ab_security_system_2'',''triggered'')
+              or state_attr(''automation.allarme_innescato_esterno_acceso'',''current'')|int(0)>0) }}'
+          - action: switch.turn_off
+            target:
+              entity_id: switch.100184e599_power
+          - action: timer.cancel
+            target:
+              entity_id: timer.fotocellula_ingresso_torre
+          - action: input_boolean.turn_off
+            target:
+              entity_id: input_boolean.fotocellula_ingresso_torre_gestisce
+        - conditions:
+          - condition: state
+            entity_id: input_boolean.fotocellula_ingresso_torre_gestisce
+            state: 'on'
+          - condition: state
+            entity_id: binary_sensor.esterno_ingresso_movimento
+            state: 'on'
+          sequence:
+          - action: timer.cancel
+            target:
+              entity_id: timer.fotocellula_ingresso_torre
+        - conditions:
+          - condition: state
+            entity_id: input_boolean.fotocellula_ingresso_torre_gestisce
+            state: 'on'
+          - condition: template
+            value_template: '{{ not is_state(''timer.fotocellula_ingresso_torre'',''active'') }}'
+          sequence:
+          - condition: template
+            value_template: '{{ not (is_state(''alarm_control_panel.allarme_casa'',''triggered'') or is_state(''alarm_control_panel.aqara_hub_09ab_security_system_2'',''triggered'')
+              or state_attr(''automation.allarme_innescato_esterno_acceso'',''current'')|int(0)>0) }}'
+          - action: switch.turn_off
+            target:
+              entity_id: switch.100184e599_power
+          - action: timer.cancel
+            target:
+              entity_id: timer.fotocellula_ingresso_torre
+          - action: input_boolean.turn_off
+            target:
+              entity_id: input_boolean.fotocellula_ingresso_torre_gestisce
+    - conditions:
+      - condition: trigger
+        id: movimento
+      sequence:
+      - condition: state
+        entity_id: sun.sun
+        state: below_horizon
+      - condition: template
+        value_template: '{{ not (is_state(''alarm_control_panel.allarme_casa'',''triggered'') or is_state(''alarm_control_panel.aqara_hub_09ab_security_system_2'',''triggered'')
+          or state_attr(''automation.allarme_innescato_esterno_acceso'',''current'')|int(0)>0) }}'
+      - choose:
+        - conditions:
+          - condition: state
+            entity_id: switch.100184e599_power
+            state: 'off'
+          sequence:
+          - action: input_boolean.turn_on
+            target:
+              entity_id: input_boolean.fotocellula_ingresso_torre_gestisce
+          - action: switch.turn_on
+            target:
+              entity_id: switch.100184e599_power
+          - action: timer.cancel
+            target:
+              entity_id: timer.fotocellula_ingresso_torre
+        - conditions:
+          - condition: state
+            entity_id: input_boolean.fotocellula_ingresso_torre_gestisce
+            state: 'on'
+          - condition: state
+            entity_id: switch.100184e599_power
+            state: 'on'
+          sequence:
+          - action: timer.cancel
+            target:
+              entity_id: timer.fotocellula_ingresso_torre
+    - conditions:
+      - condition: trigger
+        id: fine_movimento
+      sequence:
+      - condition: state
+        entity_id: input_boolean.fotocellula_ingresso_torre_gestisce
+        state: 'on'
+      - condition: state
+        entity_id: switch.100184e599_power
+        state: 'on'
+      - condition: template
+        value_template: '{{ not (is_state(''alarm_control_panel.allarme_casa'',''triggered'') or is_state(''alarm_control_panel.aqara_hub_09ab_security_system_2'',''triggered'')
+          or state_attr(''automation.allarme_innescato_esterno_acceso'',''current'')|int(0)>0) }}'
+      - action: timer.start
+        target:
+          entity_id: timer.fotocellula_ingresso_torre
+        data:
+          duration: 00:02:00
+    - conditions:
+      - condition: trigger
+        id: scadenza
+      sequence:
+      - condition: state
+        entity_id: input_boolean.fotocellula_ingresso_torre_gestisce
+        state: 'on'
+      - condition: template
+        value_template: '{{ not is_state(''binary_sensor.esterno_ingresso_movimento'',''on'') }}'
+      - condition: template
+        value_template: '{{ not (is_state(''alarm_control_panel.allarme_casa'',''triggered'') or is_state(''alarm_control_panel.aqara_hub_09ab_security_system_2'',''triggered'')
+          or state_attr(''automation.allarme_innescato_esterno_acceso'',''current'')|int(0)>0) }}'
+      - action: switch.turn_off
+        target:
+          entity_id: switch.100184e599_power
+      - action: timer.cancel
+        target:
+          entity_id: timer.fotocellula_ingresso_torre
+      - action: input_boolean.turn_off
+        target:
+          entity_id: input_boolean.fotocellula_ingresso_torre_gestisce
+- id: fotocellula_piscine_capanno_v1
+  alias: Fotocellula - Piscine → Capanno - 2 minuti
+  description: Solo notte; due minuti dalla fine dell’ultimo movimento. Non spegne luci già accese da altri comandi;
+    cede controllo all’allarme. Nessun comando ai faretti.
+  mode: queued
+  max: 100
+  triggers:
+  - trigger: state
+    entity_id: binary_sensor.piscine_movimento
+    from: 'off'
+    to: 'on'
+    id: movimento
+  - trigger: state
+    entity_id: binary_sensor.piscine_movimento
+    from: 'on'
+    to:
+    - 'off'
+    - unknown
+    - unavailable
+    id: fine_movimento
+  - trigger: event
+    event_type: timer.finished
+    event_data:
+      entity_id: timer.fotocellula_piscine_capanno
+    id: scadenza
+  - trigger: state
+    entity_id: switch.100184e742_power
+    to: 'off'
+    id: luce_spenta
+  - trigger: sun
+    event: sunrise
+    id: alba
+  - trigger: homeassistant
+    event: start
+    id: avvio
+  - trigger: state
+    entity_id:
+    - alarm_control_panel.allarme_casa
+    - alarm_control_panel.aqara_hub_09ab_security_system_2
+    - automation.allarme_innescato_esterno_acceso
+    id: allarme
+  conditions: []
+  actions:
+  - choose:
+    - conditions:
+      - condition: trigger
+        id: luce_spenta
+      sequence:
+      - action: timer.cancel
+        target:
+          entity_id: timer.fotocellula_piscine_capanno
+      - action: input_boolean.turn_off
+        target:
+          entity_id: input_boolean.fotocellula_piscine_capanno_gestisce
+    - conditions:
+      - condition: trigger
+        id: allarme
+      - condition: template
+        value_template: '{{ is_state(''alarm_control_panel.allarme_casa'',''triggered'') or is_state(''alarm_control_panel.aqara_hub_09ab_security_system_2'',''triggered'')
+          or state_attr(''automation.allarme_innescato_esterno_acceso'',''current'')|int(0)>0 }}'
+      sequence:
+      - action: timer.cancel
+        target:
+          entity_id: timer.fotocellula_piscine_capanno
+      - action: input_boolean.turn_off
+        target:
+          entity_id: input_boolean.fotocellula_piscine_capanno_gestisce
+    - conditions:
+      - condition: trigger
+        id: alba
+      - condition: state
+        entity_id: input_boolean.fotocellula_piscine_capanno_gestisce
+        state: 'on'
+      sequence:
+      - condition: template
+        value_template: '{{ not (is_state(''alarm_control_panel.allarme_casa'',''triggered'') or is_state(''alarm_control_panel.aqara_hub_09ab_security_system_2'',''triggered'')
+          or state_attr(''automation.allarme_innescato_esterno_acceso'',''current'')|int(0)>0) }}'
+      - action: switch.turn_off
+        target:
+          entity_id: switch.100184e742_power
+      - action: timer.cancel
+        target:
+          entity_id: timer.fotocellula_piscine_capanno
+      - action: input_boolean.turn_off
+        target:
+          entity_id: input_boolean.fotocellula_piscine_capanno_gestisce
+    - conditions:
+      - condition: trigger
+        id: avvio
+      sequence:
+      - choose:
+        - conditions:
+          - condition: state
+            entity_id: switch.100184e742_power
+            state: 'off'
+          sequence:
+          - action: timer.cancel
+            target:
+              entity_id: timer.fotocellula_piscine_capanno
+          - action: input_boolean.turn_off
+            target:
+              entity_id: input_boolean.fotocellula_piscine_capanno_gestisce
+        - conditions:
+          - condition: state
+            entity_id: input_boolean.fotocellula_piscine_capanno_gestisce
+            state: 'on'
+          - condition: template
+            value_template: '{{ is_state(''alarm_control_panel.allarme_casa'',''triggered'') or is_state(''alarm_control_panel.aqara_hub_09ab_security_system_2'',''triggered'')
+              or state_attr(''automation.allarme_innescato_esterno_acceso'',''current'')|int(0)>0 }}'
+          sequence:
+          - action: timer.cancel
+            target:
+              entity_id: timer.fotocellula_piscine_capanno
+          - action: input_boolean.turn_off
+            target:
+              entity_id: input_boolean.fotocellula_piscine_capanno_gestisce
+        - conditions:
+          - condition: state
+            entity_id: input_boolean.fotocellula_piscine_capanno_gestisce
+            state: 'on'
+          - condition: state
+            entity_id: sun.sun
+            state: above_horizon
+          sequence:
+          - condition: template
+            value_template: '{{ not (is_state(''alarm_control_panel.allarme_casa'',''triggered'') or is_state(''alarm_control_panel.aqara_hub_09ab_security_system_2'',''triggered'')
+              or state_attr(''automation.allarme_innescato_esterno_acceso'',''current'')|int(0)>0) }}'
+          - action: switch.turn_off
+            target:
+              entity_id: switch.100184e742_power
+          - action: timer.cancel
+            target:
+              entity_id: timer.fotocellula_piscine_capanno
+          - action: input_boolean.turn_off
+            target:
+              entity_id: input_boolean.fotocellula_piscine_capanno_gestisce
+        - conditions:
+          - condition: state
+            entity_id: input_boolean.fotocellula_piscine_capanno_gestisce
+            state: 'on'
+          - condition: state
+            entity_id: binary_sensor.piscine_movimento
+            state: 'on'
+          sequence:
+          - action: timer.cancel
+            target:
+              entity_id: timer.fotocellula_piscine_capanno
+        - conditions:
+          - condition: state
+            entity_id: input_boolean.fotocellula_piscine_capanno_gestisce
+            state: 'on'
+          - condition: template
+            value_template: '{{ not is_state(''timer.fotocellula_piscine_capanno'',''active'') }}'
+          sequence:
+          - condition: template
+            value_template: '{{ not (is_state(''alarm_control_panel.allarme_casa'',''triggered'') or is_state(''alarm_control_panel.aqara_hub_09ab_security_system_2'',''triggered'')
+              or state_attr(''automation.allarme_innescato_esterno_acceso'',''current'')|int(0)>0) }}'
+          - action: switch.turn_off
+            target:
+              entity_id: switch.100184e742_power
+          - action: timer.cancel
+            target:
+              entity_id: timer.fotocellula_piscine_capanno
+          - action: input_boolean.turn_off
+            target:
+              entity_id: input_boolean.fotocellula_piscine_capanno_gestisce
+    - conditions:
+      - condition: trigger
+        id: movimento
+      sequence:
+      - condition: state
+        entity_id: sun.sun
+        state: below_horizon
+      - condition: template
+        value_template: '{{ not (is_state(''alarm_control_panel.allarme_casa'',''triggered'') or is_state(''alarm_control_panel.aqara_hub_09ab_security_system_2'',''triggered'')
+          or state_attr(''automation.allarme_innescato_esterno_acceso'',''current'')|int(0)>0) }}'
+      - choose:
+        - conditions:
+          - condition: state
+            entity_id: switch.100184e742_power
+            state: 'off'
+          sequence:
+          - action: input_boolean.turn_on
+            target:
+              entity_id: input_boolean.fotocellula_piscine_capanno_gestisce
+          - action: switch.turn_on
+            target:
+              entity_id: switch.100184e742_power
+          - action: timer.cancel
+            target:
+              entity_id: timer.fotocellula_piscine_capanno
+        - conditions:
+          - condition: state
+            entity_id: input_boolean.fotocellula_piscine_capanno_gestisce
+            state: 'on'
+          - condition: state
+            entity_id: switch.100184e742_power
+            state: 'on'
+          sequence:
+          - action: timer.cancel
+            target:
+              entity_id: timer.fotocellula_piscine_capanno
+    - conditions:
+      - condition: trigger
+        id: fine_movimento
+      sequence:
+      - condition: state
+        entity_id: input_boolean.fotocellula_piscine_capanno_gestisce
+        state: 'on'
+      - condition: state
+        entity_id: switch.100184e742_power
+        state: 'on'
+      - condition: template
+        value_template: '{{ not (is_state(''alarm_control_panel.allarme_casa'',''triggered'') or is_state(''alarm_control_panel.aqara_hub_09ab_security_system_2'',''triggered'')
+          or state_attr(''automation.allarme_innescato_esterno_acceso'',''current'')|int(0)>0) }}'
+      - action: timer.start
+        target:
+          entity_id: timer.fotocellula_piscine_capanno
+        data:
+          duration: 00:02:00
+    - conditions:
+      - condition: trigger
+        id: scadenza
+      sequence:
+      - condition: state
+        entity_id: input_boolean.fotocellula_piscine_capanno_gestisce
+        state: 'on'
+      - condition: template
+        value_template: '{{ not is_state(''binary_sensor.piscine_movimento'',''on'') }}'
+      - condition: template
+        value_template: '{{ not (is_state(''alarm_control_panel.allarme_casa'',''triggered'') or is_state(''alarm_control_panel.aqara_hub_09ab_security_system_2'',''triggered'')
+          or state_attr(''automation.allarme_innescato_esterno_acceso'',''current'')|int(0)>0) }}'
+      - action: switch.turn_off
+        target:
+          entity_id: switch.100184e742_power
+      - action: timer.cancel
+        target:
+          entity_id: timer.fotocellula_piscine_capanno
+      - action: input_boolean.turn_off
+        target:
+          entity_id: input_boolean.fotocellula_piscine_capanno_gestisce
+- id: fotocellula_orto_torre_v1
+  alias: Fotocellula - Orto → Torre Orto - 2 minuti
+  description: Solo notte; due minuti dalla fine dell’ultimo movimento. Non spegne luci già accese da altri comandi;
+    cede controllo all’allarme. Nessun comando ai faretti.
+  mode: queued
+  max: 100
+  triggers:
+  - trigger: state
+    entity_id: binary_sensor.piscina_orto_movimento
+    from: 'off'
+    to: 'on'
+    id: movimento
+  - trigger: state
+    entity_id: binary_sensor.piscina_orto_movimento
+    from: 'on'
+    to:
+    - 'off'
+    - unknown
+    - unavailable
+    id: fine_movimento
+  - trigger: event
+    event_type: timer.finished
+    event_data:
+      entity_id: timer.fotocellula_orto_torre
+    id: scadenza
+  - trigger: state
+    entity_id: switch.1002963641_power
+    to: 'off'
+    id: luce_spenta
+  - trigger: sun
+    event: sunrise
+    id: alba
+  - trigger: homeassistant
+    event: start
+    id: avvio
+  - trigger: state
+    entity_id:
+    - alarm_control_panel.allarme_casa
+    - alarm_control_panel.aqara_hub_09ab_security_system_2
+    - automation.allarme_innescato_esterno_acceso
+    id: allarme
+  conditions: []
+  actions:
+  - choose:
+    - conditions:
+      - condition: trigger
+        id: luce_spenta
+      sequence:
+      - action: timer.cancel
+        target:
+          entity_id: timer.fotocellula_orto_torre
+      - action: input_boolean.turn_off
+        target:
+          entity_id: input_boolean.fotocellula_orto_torre_gestisce
+    - conditions:
+      - condition: trigger
+        id: allarme
+      - condition: template
+        value_template: '{{ is_state(''alarm_control_panel.allarme_casa'',''triggered'') or is_state(''alarm_control_panel.aqara_hub_09ab_security_system_2'',''triggered'')
+          or state_attr(''automation.allarme_innescato_esterno_acceso'',''current'')|int(0)>0 }}'
+      sequence:
+      - action: timer.cancel
+        target:
+          entity_id: timer.fotocellula_orto_torre
+      - action: input_boolean.turn_off
+        target:
+          entity_id: input_boolean.fotocellula_orto_torre_gestisce
+    - conditions:
+      - condition: trigger
+        id: alba
+      - condition: state
+        entity_id: input_boolean.fotocellula_orto_torre_gestisce
+        state: 'on'
+      sequence:
+      - condition: template
+        value_template: '{{ not (is_state(''alarm_control_panel.allarme_casa'',''triggered'') or is_state(''alarm_control_panel.aqara_hub_09ab_security_system_2'',''triggered'')
+          or state_attr(''automation.allarme_innescato_esterno_acceso'',''current'')|int(0)>0) }}'
+      - action: switch.turn_off
+        target:
+          entity_id: switch.1002963641_power
+      - action: timer.cancel
+        target:
+          entity_id: timer.fotocellula_orto_torre
+      - action: input_boolean.turn_off
+        target:
+          entity_id: input_boolean.fotocellula_orto_torre_gestisce
+    - conditions:
+      - condition: trigger
+        id: avvio
+      sequence:
+      - choose:
+        - conditions:
+          - condition: state
+            entity_id: switch.1002963641_power
+            state: 'off'
+          sequence:
+          - action: timer.cancel
+            target:
+              entity_id: timer.fotocellula_orto_torre
+          - action: input_boolean.turn_off
+            target:
+              entity_id: input_boolean.fotocellula_orto_torre_gestisce
+        - conditions:
+          - condition: state
+            entity_id: input_boolean.fotocellula_orto_torre_gestisce
+            state: 'on'
+          - condition: template
+            value_template: '{{ is_state(''alarm_control_panel.allarme_casa'',''triggered'') or is_state(''alarm_control_panel.aqara_hub_09ab_security_system_2'',''triggered'')
+              or state_attr(''automation.allarme_innescato_esterno_acceso'',''current'')|int(0)>0 }}'
+          sequence:
+          - action: timer.cancel
+            target:
+              entity_id: timer.fotocellula_orto_torre
+          - action: input_boolean.turn_off
+            target:
+              entity_id: input_boolean.fotocellula_orto_torre_gestisce
+        - conditions:
+          - condition: state
+            entity_id: input_boolean.fotocellula_orto_torre_gestisce
+            state: 'on'
+          - condition: state
+            entity_id: sun.sun
+            state: above_horizon
+          sequence:
+          - condition: template
+            value_template: '{{ not (is_state(''alarm_control_panel.allarme_casa'',''triggered'') or is_state(''alarm_control_panel.aqara_hub_09ab_security_system_2'',''triggered'')
+              or state_attr(''automation.allarme_innescato_esterno_acceso'',''current'')|int(0)>0) }}'
+          - action: switch.turn_off
+            target:
+              entity_id: switch.1002963641_power
+          - action: timer.cancel
+            target:
+              entity_id: timer.fotocellula_orto_torre
+          - action: input_boolean.turn_off
+            target:
+              entity_id: input_boolean.fotocellula_orto_torre_gestisce
+        - conditions:
+          - condition: state
+            entity_id: input_boolean.fotocellula_orto_torre_gestisce
+            state: 'on'
+          - condition: state
+            entity_id: binary_sensor.piscina_orto_movimento
+            state: 'on'
+          sequence:
+          - action: timer.cancel
+            target:
+              entity_id: timer.fotocellula_orto_torre
+        - conditions:
+          - condition: state
+            entity_id: input_boolean.fotocellula_orto_torre_gestisce
+            state: 'on'
+          - condition: template
+            value_template: '{{ not is_state(''timer.fotocellula_orto_torre'',''active'') }}'
+          sequence:
+          - condition: template
+            value_template: '{{ not (is_state(''alarm_control_panel.allarme_casa'',''triggered'') or is_state(''alarm_control_panel.aqara_hub_09ab_security_system_2'',''triggered'')
+              or state_attr(''automation.allarme_innescato_esterno_acceso'',''current'')|int(0)>0) }}'
+          - action: switch.turn_off
+            target:
+              entity_id: switch.1002963641_power
+          - action: timer.cancel
+            target:
+              entity_id: timer.fotocellula_orto_torre
+          - action: input_boolean.turn_off
+            target:
+              entity_id: input_boolean.fotocellula_orto_torre_gestisce
+    - conditions:
+      - condition: trigger
+        id: movimento
+      sequence:
+      - condition: state
+        entity_id: sun.sun
+        state: below_horizon
+      - condition: template
+        value_template: '{{ not (is_state(''alarm_control_panel.allarme_casa'',''triggered'') or is_state(''alarm_control_panel.aqara_hub_09ab_security_system_2'',''triggered'')
+          or state_attr(''automation.allarme_innescato_esterno_acceso'',''current'')|int(0)>0) }}'
+      - choose:
+        - conditions:
+          - condition: state
+            entity_id: switch.1002963641_power
+            state: 'off'
+          sequence:
+          - action: input_boolean.turn_on
+            target:
+              entity_id: input_boolean.fotocellula_orto_torre_gestisce
+          - action: switch.turn_on
+            target:
+              entity_id: switch.1002963641_power
+          - action: timer.cancel
+            target:
+              entity_id: timer.fotocellula_orto_torre
+        - conditions:
+          - condition: state
+            entity_id: input_boolean.fotocellula_orto_torre_gestisce
+            state: 'on'
+          - condition: state
+            entity_id: switch.1002963641_power
+            state: 'on'
+          sequence:
+          - action: timer.cancel
+            target:
+              entity_id: timer.fotocellula_orto_torre
+    - conditions:
+      - condition: trigger
+        id: fine_movimento
+      sequence:
+      - condition: state
+        entity_id: input_boolean.fotocellula_orto_torre_gestisce
+        state: 'on'
+      - condition: state
+        entity_id: switch.1002963641_power
+        state: 'on'
+      - condition: template
+        value_template: '{{ not (is_state(''alarm_control_panel.allarme_casa'',''triggered'') or is_state(''alarm_control_panel.aqara_hub_09ab_security_system_2'',''triggered'')
+          or state_attr(''automation.allarme_innescato_esterno_acceso'',''current'')|int(0)>0) }}'
+      - action: timer.start
+        target:
+          entity_id: timer.fotocellula_orto_torre
+        data:
+          duration: 00:02:00
+    - conditions:
+      - condition: trigger
+        id: scadenza
+      sequence:
+      - condition: state
+        entity_id: input_boolean.fotocellula_orto_torre_gestisce
+        state: 'on'
+      - condition: template
+        value_template: '{{ not is_state(''binary_sensor.piscina_orto_movimento'',''on'') }}'
+      - condition: template
+        value_template: '{{ not (is_state(''alarm_control_panel.allarme_casa'',''triggered'') or is_state(''alarm_control_panel.aqara_hub_09ab_security_system_2'',''triggered'')
+          or state_attr(''automation.allarme_innescato_esterno_acceso'',''current'')|int(0)>0) }}'
+      - action: switch.turn_off
+        target:
+          entity_id: switch.1002963641_power
+      - action: timer.cancel
+        target:
+          entity_id: timer.fotocellula_orto_torre
+      - action: input_boolean.turn_off
+        target:
+          entity_id: input_boolean.fotocellula_orto_torre_gestisce

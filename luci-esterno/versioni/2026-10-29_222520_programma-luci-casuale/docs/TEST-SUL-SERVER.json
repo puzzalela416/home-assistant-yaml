@@ -1,0 +1,66 @@
+{
+  "data": "2026-10-29T22:23:54.450041+01:00",
+  "esito": "PASS",
+  "entity_id": "automation.luci_esterno_programma_notturno_e_coppie_casuali",
+  "stato_programma": "Coppia casuale: orto,giardino",
+  "desiderati": [
+    "parcheggio",
+    "ciabatta",
+    "orto",
+    "giardino"
+  ],
+  "uscite_verificate": [
+    {
+      "luce": "Parcheggio",
+      "programmata": true,
+      "stato": "on",
+      "fotocellula_proprietaria": null
+    },
+    {
+      "luce": "Ciabatta volante",
+      "programmata": true,
+      "stato": "on",
+      "fotocellula_proprietaria": null
+    },
+    {
+      "luce": "Torre Orto",
+      "programmata": true,
+      "stato": "on",
+      "fotocellula_proprietaria": "off"
+    },
+    {
+      "luce": "Giardino",
+      "programmata": true,
+      "stato": "on",
+      "fotocellula_proprietaria": "off"
+    },
+    {
+      "luce": "Torre ingresso",
+      "programmata": false,
+      "stato": "off",
+      "fotocellula_proprietaria": "off"
+    },
+    {
+      "luce": "Capanno",
+      "programmata": false,
+      "stato": "off",
+      "fotocellula_proprietaria": "off"
+    }
+  ],
+  "memoria": "2026-10-29#1|orto,giardino",
+  "ripetizioni_senza_riestrazione": [
+    {
+      "riconciliazione": 1,
+      "memoria": "2026-10-29#1|orto,giardino",
+      "stato": "PASS"
+    },
+    {
+      "riconciliazione": 2,
+      "memoria": "2026-10-29#1|orto,giardino",
+      "stato": "PASS"
+    }
+  ],
+  "lucicomandate": "secondo il programma autorizzato, nessuna sequenza artificiale di test",
+  "allarme_forzato": false,
+  "sensibilita_telecamere_modificate": false
+}

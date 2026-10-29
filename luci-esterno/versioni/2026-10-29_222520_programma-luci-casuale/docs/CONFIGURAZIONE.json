@@ -1,0 +1,92 @@
+{
+  "luci": [
+    {
+      "chiave": "parcheggio",
+      "nome": "Parcheggio",
+      "entity_id": "switch.10001119b3_power",
+      "programma": "input_boolean.programma_luci_parcheggio",
+      "proprietario_fotocellula": "",
+      "timer_fotocellula": "",
+      "movimento": ""
+    },
+    {
+      "chiave": "ciabatta",
+      "nome": "Ciabatta volante",
+      "entity_id": "switch.100185132f_power",
+      "programma": "input_boolean.programma_luci_ciabatta",
+      "proprietario_fotocellula": "",
+      "timer_fotocellula": "",
+      "movimento": ""
+    },
+    {
+      "chiave": "orto",
+      "nome": "Torre Orto",
+      "entity_id": "switch.1002963641_power",
+      "programma": "input_boolean.programma_luci_orto",
+      "proprietario_fotocellula": "input_boolean.fotocellula_orto_torre_gestisce",
+      "timer_fotocellula": "timer.fotocellula_orto_torre",
+      "movimento": "binary_sensor.piscina_orto_movimento"
+    },
+    {
+      "chiave": "giardino",
+      "nome": "Giardino",
+      "entity_id": "switch.1000111b06_power",
+      "programma": "input_boolean.programma_luci_giardino",
+      "proprietario_fotocellula": "input_boolean.fotocellula_cancello_giardino_gestisce",
+      "timer_fotocellula": "timer.fotocellula_cancello_giardino",
+      "movimento": "binary_sensor.cancello_movimento"
+    },
+    {
+      "chiave": "ingresso",
+      "nome": "Torre ingresso",
+      "entity_id": "switch.100184e599_power",
+      "programma": "input_boolean.programma_luci_ingresso",
+      "proprietario_fotocellula": "input_boolean.fotocellula_ingresso_torre_gestisce",
+      "timer_fotocellula": "timer.fotocellula_ingresso_torre",
+      "movimento": "binary_sensor.esterno_ingresso_movimento"
+    },
+    {
+      "chiave": "capanno",
+      "nome": "Capanno",
+      "entity_id": "switch.100184e742_power",
+      "programma": "input_boolean.programma_luci_capanno",
+      "proprietario_fotocellula": "input_boolean.fotocellula_piscine_capanno_gestisce",
+      "timer_fotocellula": "timer.fotocellula_piscine_capanno",
+      "movimento": "binary_sensor.piscine_movimento"
+    }
+  ],
+  "coppie": [
+    [
+      "orto",
+      "giardino"
+    ],
+    [
+      "orto",
+      "ingresso"
+    ],
+    [
+      "orto",
+      "capanno"
+    ],
+    [
+      "giardino",
+      "ingresso"
+    ],
+    [
+      "giardino",
+      "capanno"
+    ],
+    [
+      "ingresso",
+      "capanno"
+    ]
+  ],
+  "variabili": [
+    "orto",
+    "giardino",
+    "ingresso",
+    "capanno"
+  ],
+  "priorita": "allarme > programma sulle luci selezionate > fotocellule sulle altre",
+  "creazione_gruppi": "due luci estratte fra quattro a ogni fascia di 30 minuti; coppia precedente esclusa"
+}

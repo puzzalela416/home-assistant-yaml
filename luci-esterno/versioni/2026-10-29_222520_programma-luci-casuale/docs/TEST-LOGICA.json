@@ -1,0 +1,146 @@
+{
+  "esito": "PASS",
+  "scenari_fase_estrazione_memoria": 232,
+  "motore": "Template reali HA con date isolate; nessun comando ai dispositivi",
+  "copertura": [
+    "tramonto e alba",
+    "21:30",
+    "mezzanotte e data notte precedente",
+    "02:00",
+    "9 fasce da 30 min",
+    "sei coppie",
+    "coppia precedente esclusa",
+    "stessa fascia senza riestrazione",
+    "memoria corrotta",
+    "programma spento",
+    "fotocellule protette",
+    "camera e allarme invariati"
+  ],
+  "esempi": [
+    {
+      "fase": "giorno",
+      "coppia": [],
+      "desiderati": [],
+      "fascia": "2026-10-29#29",
+      "data_notte": "2026-10-29"
+    },
+    {
+      "fase": "sera",
+      "coppia": [],
+      "desiderati": [
+        "parcheggio",
+        "ciabatta",
+        "giardino",
+        "ingresso"
+      ],
+      "fascia": "2026-10-29#38",
+      "data_notte": "2026-10-29"
+    },
+    {
+      "fase": "sera",
+      "coppia": [],
+      "desiderati": [
+        "parcheggio",
+        "ciabatta",
+        "giardino",
+        "ingresso"
+      ],
+      "fascia": "2026-10-29#47",
+      "data_notte": "2026-10-29"
+    },
+    {
+      "fase": "casuale",
+      "coppia": [
+        "giardino",
+        "capanno"
+      ],
+      "desiderati": [
+        "parcheggio",
+        "ciabatta",
+        "giardino",
+        "capanno"
+      ],
+      "fascia": "2026-10-29#0",
+      "data_notte": "2026-10-29"
+    },
+    {
+      "fase": "casuale",
+      "coppia": [
+        "orto",
+        "ingresso"
+      ],
+      "desiderati": [
+        "parcheggio",
+        "ciabatta",
+        "orto",
+        "ingresso"
+      ],
+      "fascia": "2026-10-29#4",
+      "data_notte": "2026-10-29"
+    },
+    {
+      "fase": "casuale",
+      "coppia": [
+        "ingresso",
+        "capanno"
+      ],
+      "desiderati": [
+        "parcheggio",
+        "ciabatta",
+        "ingresso",
+        "capanno"
+      ],
+      "fascia": "2026-10-28#5",
+      "data_notte": "2026-10-28"
+    },
+    {
+      "fase": "casuale",
+      "coppia": [
+        "orto",
+        "giardino"
+      ],
+      "desiderati": [
+        "parcheggio",
+        "ciabatta",
+        "orto",
+        "giardino"
+      ],
+      "fascia": "2026-10-28#8",
+      "data_notte": "2026-10-28"
+    },
+    {
+      "fase": "notte_finale",
+      "coppia": [],
+      "desiderati": [
+        "parcheggio",
+        "ciabatta"
+      ],
+      "fascia": "2026-10-28#9",
+      "data_notte": "2026-10-28"
+    },
+    {
+      "fase": "notte_finale",
+      "coppia": [],
+      "desiderati": [
+        "parcheggio",
+        "ciabatta"
+      ],
+      "fascia": "2026-10-28#15",
+      "data_notte": "2026-10-28"
+    },
+    {
+      "fase": "giorno",
+      "coppia": [],
+      "desiderati": [],
+      "fascia": "2026-10-28#19",
+      "data_notte": "2026-10-28"
+    },
+    {
+      "fase": "spento",
+      "coppia": [],
+      "desiderati": [],
+      "fascia": "2026-10-29#3",
+      "data_notte": "2026-10-29"
+    }
+  ]
+}

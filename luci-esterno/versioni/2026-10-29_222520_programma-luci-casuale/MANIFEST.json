@@ -1,0 +1,20 @@
+{
+  "versione": "2026-10-29_222520_programma-luci-casuale",
+  "politica": "solo aggiunte",
+  "sha256": {
+    "luci-esterno/STORICO-VERSIONI-2026-10-29.md": "78a4d5b5e3aa2d356376ccb4cbe6aa4c03cb0a3b4c8cead4dcaf28aad730a2f2",
+    "luci-esterno/versioni/2026-10-29_222520_programma-luci-casuale/CENSIMENTO.json": "d38510fc879859aff7cc56bb119a6dd393d9abd2c4434a3f8f4184feb6612f36",
+    "luci-esterno/versioni/2026-10-29_222520_programma-luci-casuale/CENSIMENTO.md": "6c5f5ded2516cab616fbdeb33260541112a8cd0f22200a6ef18ecd657acddfc3",
+    "luci-esterno/versioni/2026-10-29_222520_programma-luci-casuale/README.md": "3ff6708cf241d1d665e6b9db9103d7fe2cc566df81f52a0352342fbdad754e12",
+    "luci-esterno/versioni/2026-10-29_222520_programma-luci-casuale/docs/CONFIGURAZIONE.json": "694f70e6152b7b72dcc49b551b7886f74262152a5fabef518057a6deab93f32a",
+    "luci-esterno/versioni/2026-10-29_222520_programma-luci-casuale/docs/INSTALLAZIONE.json": "a019380eefab659cb76f7e6fadb6418294e726f7f8d05bd7dc0276f6d4e8e631",
+    "luci-esterno/versioni/2026-10-29_222520_programma-luci-casuale/docs/TEST-COORDINAMENTO-FOTOCELLULE.json": "4497586f6dfe4919caba59b6dfddbbe90863e7705882246181248b6d4ee1e956",
+    "luci-esterno/versioni/2026-10-29_222520_programma-luci-casuale/docs/TEST-LOGICA.json": "e2ea61ae947f131565f3fb92d6b55e6dbc2ab51f2e36091e5d33d51de6025f33",
+    "luci-esterno/versioni/2026-10-29_222520_programma-luci-casuale/docs/TEST-SUL-SERVER.json": "71a044cb1d73d55adff53706e6fadd66696cad80f8ae888ac7e09e482f7ff4e8",
+    "luci-esterno/versioni/2026-10-29_222520_programma-luci-casuale/packages/programma_luci_esterno_v1.yaml": "9b86aca30ac916f5c8cac5c65797d8ba4880dbaf9ef5fcf8c2e1a17fd466d0b2",
+    "luci-esterno/versioni/2026-10-29_222520_programma-luci-casuale/packages/telecamere_fotocellule_v1.yaml": "8ad6d04b870b56331b279175328cf1ea47fd2310ea0d6d45c9be84e279010acf",
+    "luci-esterno/versioni/2026-10-29_222520_programma-luci-casuale/parcheggio-DOPO.yaml": "49f4e11c82ce1f36f10bf7866f4849be862dea46ef9cbf2c736aea1d67ce9b7e",
+    "luci-esterno/versioni/2026-10-29_222520_programma-luci-casuale/parcheggio-PRIMA.yaml": "c93272ef32d06daad429136553935ce783deb6818cea73f13dd91e5d9ab53170",
+    "luci-esterno/versioni/2026-10-29_222520_programma-luci-casuale/prima/telecamere_fotocellule_v1.yaml": "eae439be73bd82117a5048305c0344e6e4574efeec21997cd1b5729383db3ffa"
+  }
+}
