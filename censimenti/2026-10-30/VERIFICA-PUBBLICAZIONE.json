@@ -1,0 +1,594 @@
+{
+  "data": "2026-10-30T00:22:00.769611+01:00",
+  "esito": "PASS",
+  "file_verificati": 83,
+  "file_precedenti_invariati": true,
+  "nota_csv": "Il CSV locale usa CRLF, quello pubblicato LF. I dati sono identici. I manifesti iniziali conservano gli hash dei sorgenti locali; questo verbale contiene gli hash dei byte effettivamente pubblicati.",
+  "commits_sorgenti": {
+    "puzzalela416/home-assistant-yaml": "2b73a7844fdd9af2881f42ed457f28738f6d1e31",
+    "puzzalela416/test": "f3a5e6f75670b82b2032e2bb875e76b652586e41"
+  },
+  "files": [
+    {
+      "repository": "puzzalela416/home-assistant-yaml",
+      "path": "CENSIMENTO-GENERALE-2026-10-30.md",
+      "git_sha1_pubblicato": "44b1f7ec760f2642060cc1382ac9c0265c909b45",
+      "sha256_pubblicato": "f3ae51dcf8f0c8ce32f37e62ec083de6ab870fc948b050d077acdf34e50f4066",
+      "normalizzazione_eol": false
+    },
+    {
+      "repository": "puzzalela416/home-assistant-yaml",
+      "path": "censimenti/2026-10-30/AUTOMAZIONI-ORIGINALI-57.csv",
+      "git_sha1_pubblicato": "002091ec48febbf1aeded7081bb12554a01bbe08",
+      "sha256_pubblicato": "09e9c6972e09ddb99f9629d23b35d6b84271a8f78ce8e1a263b146f8cf2e356e",
+      "normalizzazione_eol": true
+    },
+    {
+      "repository": "puzzalela416/home-assistant-yaml",
+      "path": "censimenti/2026-10-30/CENSIMENTO-GENERALE.html",
+      "git_sha1_pubblicato": "71e3e785be0873f7b81868930ceae31e025f131e",
+      "sha256_pubblicato": "8471cc622b775a1f807131e940e63d5fc44ae5d64b2748a9f9708981c9329d13",
+      "normalizzazione_eol": false
+    },
+    {
+      "repository": "puzzalela416/home-assistant-yaml",
+      "path": "censimenti/2026-10-30/CENSIMENTO.json",
+      "git_sha1_pubblicato": "e199cbccf84015d37d88b1e914f9b79dc7c5cf84",
+      "sha256_pubblicato": "875c9dca1c4a5672ea79ff2b9ff61f402d6d2662991133db8276369108e36bd2",
+      "normalizzazione_eol": false
+    },
+    {
+      "repository": "puzzalela416/home-assistant-yaml",
+      "path": "censimenti/2026-10-30/CONFRONTO-FILE.json",
+      "git_sha1_pubblicato": "f5f7abcf43e4d9003867d802d1b2c67ca2eb770a",
+      "sha256_pubblicato": "2aad27509d8e79de9c8b4356ec064e2fc8bf7a08989fb7acba58294824282f90",
+      "normalizzazione_eol": false
+    },
+    {
+      "repository": "puzzalela416/home-assistant-yaml",
+      "path": "censimenti/2026-10-30/CRONOLOGIA.md",
+      "git_sha1_pubblicato": "54ece659e9678924781cf1983d069f5ea9f3e870",
+      "sha256_pubblicato": "3b78a8a3b818da80ef43825d7ca9c0115f44533ae652fb398f12410138c30cde",
+      "normalizzazione_eol": false
+    },
+    {
+      "repository": "puzzalela416/home-assistant-yaml",
+      "path": "censimenti/2026-10-30/FILE-INSTALLATI.md",
+      "git_sha1_pubblicato": "7e1f1dbca977ae844583bbdcaee1374569e23663",
+      "sha256_pubblicato": "0851700feb5a01c00bb69d57005e09423396b471c9af0725d649b6007825e504",
+      "normalizzazione_eol": false
+    },
+    {
+      "repository": "puzzalela416/home-assistant-yaml",
+      "path": "censimenti/2026-10-30/MANIFEST.json",
+      "git_sha1_pubblicato": "67d8c4e6035f920337e281697e025f1ee666d439",
+      "sha256_pubblicato": "782ad3c43febc9b5b1aa27912a43c8c468f7db8d1b736af1caebf76555a43929",
+      "normalizzazione_eol": false
+    },
+    {
+      "repository": "puzzalela416/home-assistant-yaml",
+      "path": "censimenti/2026-10-30/README.md",
+      "git_sha1_pubblicato": "f12db8e70a0fec8c7d4463fa3027e3c14de33b81",
+      "sha256_pubblicato": "d16947ffa94f81e91ab3abbbfefafa2290636fe4cf3b38bde535e9f1b834590e",
+      "normalizzazione_eol": false
+    },
+    {
+      "repository": "puzzalela416/home-assistant-yaml",
+      "path": "censimenti/2026-10-30/STATO-AUTOMAZIONI-HA.json",
+      "git_sha1_pubblicato": "5d4719297840380ea7f2100b059a33f7ad106c50",
+      "sha256_pubblicato": "d512eae77dcc788f91dae682a16adbaa8db6d449216b05acd002ed5a15ff5c52",
+      "normalizzazione_eol": false
+    },
+    {
+      "repository": "puzzalela416/home-assistant-yaml",
+      "path": "censimenti/2026-10-30/report-iniziale/INVENTARIO-AUTOMAZIONI.md",
+      "git_sha1_pubblicato": "07a27c3cfc5a2a459668b8b6365c0eae448ceaec",
+      "sha256_pubblicato": "7dec7262eaa36f48d08469a1ff2bfe21e8ab0a9539cd751ed4b12f689e436be0",
+      "normalizzazione_eol": false
+    },
+    {
+      "repository": "puzzalela416/home-assistant-yaml",
+      "path": "censimenti/2026-10-30/report-iniziale/config-backup/automations.yaml",
+      "git_sha1_pubblicato": "3974b4ba9e3a77b3970527e8bd12be6dd682a6ec",
+      "sha256_pubblicato": "bffc0338db939f8d5d771e452bd256c170e059ccc096c85127690cfbeff36cab",
+      "normalizzazione_eol": false
+    },
+    {
+      "repository": "puzzalela416/home-assistant-yaml",
+      "path": "censimenti/2026-10-30/report-iniziale/config-backup/packages/pr205_diagnostica.yaml",
+      "git_sha1_pubblicato": "7af52d74769a7fbc43e778d6889190e78ea8f216",
+      "sha256_pubblicato": "2f49232ac243673531319ff6a7d1251b52930f6dbe957fe7d12ff6598ac1b1d2",
+      "normalizzazione_eol": false
+    },
+    {
+      "repository": "puzzalela416/home-assistant-yaml",
+      "path": "censimenti/2026-10-30/report-iniziale/schede-yaml/01-allarme_casa_contatti_perimetrali.yaml",
+      "git_sha1_pubblicato": "2d3cd2537b442dc35771437880a81d2d60de0be8",
+      "sha256_pubblicato": "3c4d66394402386d4ccd00fbf88b459ea75991d8ae504ac9a5c54ff023da4262",
+      "normalizzazione_eol": false
+    },
+    {
+      "repository": "puzzalela416/home-assistant-yaml",
+      "path": "censimenti/2026-10-30/report-iniziale/schede-yaml/02-allarme_innescato_scatta_foto.yaml",
+      "git_sha1_pubblicato": "60b5527cb75dd0ba98a7bf7c85dd3dd8a3b93bb4",
+      "sha256_pubblicato": "8fd6109184a85bdcb0d10c6dcab8d6ea699f1f980624125f3508da6974d2931d",
+      "normalizzazione_eol": false
+    },
+    {
+      "repository": "puzzalela416/home-assistant-yaml",
+      "path": "censimenti/2026-10-30/report-iniziale/schede-yaml/03-allarme_innescato_strobo_letto.yaml",
+      "git_sha1_pubblicato": "e533302c8b8dae1684f0940de4d454393395add5",
+      "sha256_pubblicato": "c6ad5083f672263a98b0b6385f8ead5d4fa6630dda76b604fe5c0fe156953ffb",
+      "normalizzazione_eol": false
+    },
+    {
+      "repository": "puzzalela416/home-assistant-yaml",
+      "path": "censimenti/2026-10-30/report-iniziale/schede-yaml/04-allarme_innescato_esterno_acceso.yaml",
+      "git_sha1_pubblicato": "1373bdee855857315ce06c281a363a785023a5e8",
+      "sha256_pubblicato": "9996c95249b4e6dcc8db8142b50a347c00157c345aae898226725d9162a7fa88",
+      "normalizzazione_eol": false
+    },
+    {
+      "repository": "puzzalela416/home-assistant-yaml",
+      "path": "censimenti/2026-10-30/report-iniziale/schede-yaml/05-allarme_notte_inserimento_automatico_e_controllo_aperture.yaml",
+      "git_sha1_pubblicato": "2e02c2727fe95783790259a9fe33b5702008aa1a",
+      "sha256_pubblicato": "d3acb0dd96e5df293db9bf49b8b084adb4cfc05fdad0ead28eb4d54f66c09191",
+      "normalizzazione_eol": false
+    },
+    {
+      "repository": "puzzalela416/home-assistant-yaml",
+      "path": "censimenti/2026-10-30/report-iniziale/schede-yaml/06-allarme_suona_sirena.yaml",
+      "git_sha1_pubblicato": "8accd3573d5e851b6d7451036d4b20291984f193",
+      "sha256_pubblicato": "51be79ffa842bf24f2a16bdcbc65a96843b13b970b5793a15760c1841f488143",
+      "normalizzazione_eol": false
+    },
+    {
+      "repository": "puzzalela416/home-assistant-yaml",
+      "path": "censimenti/2026-10-30/report-iniziale/schede-yaml/07-areazione_con_velux_tutti_i_giorni.yaml",
+      "git_sha1_pubblicato": "49587ac946294a06a182439424e448f6a0182e1f",
+      "sha256_pubblicato": "3cd3f7bddd431729331dfc821bf58cad9aa58f1b5e1f7631ae096c1f0a41aa0f",
+      "normalizzazione_eol": false
+    },
+    {
+      "repository": "puzzalela416/home-assistant-yaml",
+      "path": "censimenti/2026-10-30/report-iniziale/schede-yaml/08-arm_alarm.yaml",
+      "git_sha1_pubblicato": "84530d9e5d53f6e7c873b96fb2864c2b7ac3b632",
+      "sha256_pubblicato": "1e4bd9aa2fb1024ce157ce459a0b7771335ac811748573943e86036091b39806",
+      "normalizzazione_eol": false
+    },
+    {
+      "repository": "puzzalela416/home-assistant-yaml",
+      "path": "censimenti/2026-10-30/report-iniziale/schede-yaml/09-arm_alarm_porta.yaml",
+      "git_sha1_pubblicato": "b76cb69094c7f6736f47e5b4f0eedd4abd188762",
+      "sha256_pubblicato": "e69b766c1d8c4be90187f1453cf9ff470cd2f08b01028093ef1b94d0ac14a982",
+      "normalizzazione_eol": false
+    },
+    {
+      "repository": "puzzalela416/home-assistant-yaml",
+      "path": "censimenti/2026-10-30/report-iniziale/schede-yaml/10-arma_allarme_double.yaml",
+      "git_sha1_pubblicato": "7189a030c1585510e5a57ff7eb78e21d7326ad16",
+      "sha256_pubblicato": "d72fd44e0f930f56a9f530368b111bc86d9212c4d6e5ae395213d58422ffe507",
+      "normalizzazione_eol": false
+    },
+    {
+      "repository": "puzzalela416/home-assistant-yaml",
+      "path": "censimenti/2026-10-30/report-iniziale/schede-yaml/11-betatest_sirena.yaml",
+      "git_sha1_pubblicato": "a53d7889557a232caffcd2456819ce7a7e851226",
+      "sha256_pubblicato": "71dcba3a350e2c0e5e8c8e09e355b34d3cbf9b81db7f12f4a6aa6eada4740f2f",
+      "normalizzazione_eol": false
+    },
+    {
+      "repository": "puzzalela416/home-assistant-yaml",
+      "path": "censimenti/2026-10-30/report-iniziale/schede-yaml/12-caldo_fuori_apre_velux.yaml",
+      "git_sha1_pubblicato": "a418af605af0e933c7b7bfc1856416220b1368f1",
+      "sha256_pubblicato": "23e5d5db0650339d84a7a7c3f9afc3d2ac310ee9b78784417083afbbd01861bf",
+      "normalizzazione_eol": false
+    },
+    {
+      "repository": "puzzalela416/home-assistant-yaml",
+      "path": "censimenti/2026-10-30/report-iniziale/schede-yaml/13-chiusura_velux.yaml",
+      "git_sha1_pubblicato": "55407ee6225aadb322d7802a9e041ee2600037a4",
+      "sha256_pubblicato": "7be75e80410d7e1b8dbf647aaaf5f2d2e2cff15792fd2503e31dbb7f2d763dfd",
+      "normalizzazione_eol": false
+    },
+    {
+      "repository": "puzzalela416/home-assistant-yaml",
+      "path": "censimenti/2026-10-30/report-iniziale/schede-yaml/14-cortesia_bagno_2.yaml",
+      "git_sha1_pubblicato": "40727af461c09e8ea0c32c58b7de65e6631e54c6",
+      "sha256_pubblicato": "d15a5ad4b28a2175a18d94ca29bd4080f4bd28e1ba1edbf7de0e6dbfab687bce",
+      "normalizzazione_eol": false
+    },
+    {
+      "repository": "puzzalela416/home-assistant-yaml",
+      "path": "censimenti/2026-10-30/report-iniziale/schede-yaml/15-cortesia_da_fumo.yaml",
+      "git_sha1_pubblicato": "f71c0d15bb30ce900973fa730b920285dc584319",
+      "sha256_pubblicato": "05cf53042c0da4dc2d3dcef079320ae8d3d3ba088919cb842a00d978e6045f44",
+      "normalizzazione_eol": false
+    },
+    {
+      "repository": "puzzalela416/home-assistant-yaml",
+      "path": "censimenti/2026-10-30/report-iniziale/schede-yaml/16-cortesia_letto.yaml",
+      "git_sha1_pubblicato": "5be79c0a7e1eda18a36703eb486b22dc0fc6f153",
+      "sha256_pubblicato": "5fdee89cb411f95b51cb812fb857e457d228e794db0d88021b31fb712a1d7f38",
+      "normalizzazione_eol": false
+    },
+    {
+      "repository": "puzzalela416/home-assistant-yaml",
+      "path": "censimenti/2026-10-30/report-iniziale/schede-yaml/17-cortesia_scale.yaml",
+      "git_sha1_pubblicato": "1769c475ff37296206a742dd42015366fd9a2f66",
+      "sha256_pubblicato": "6bbb9a2dc72600b3ffe1a21a0ab4ebe440050bed733d5bdb8510daf01a65e790",
+      "normalizzazione_eol": false
+    },
+    {
+      "repository": "puzzalela416/home-assistant-yaml",
+      "path": "censimenti/2026-10-30/report-iniziale/schede-yaml/18-disarm_alarm.yaml",
+      "git_sha1_pubblicato": "f65e71b2a7934524e9b7da897982ebf7a798b4d4",
+      "sha256_pubblicato": "8a8c29ae21b04fca0304732ebb63e5eb702bc996d0656f9548d64a218d69983a",
+      "normalizzazione_eol": false
+    },
+    {
+      "repository": "puzzalela416/home-assistant-yaml",
+      "path": "censimenti/2026-10-30/report-iniziale/schede-yaml/19-disarm_double_allarm.yaml",
+      "git_sha1_pubblicato": "790a38ed3789e3c73c3a9149d00ba14f5d9bc34c",
+      "sha256_pubblicato": "93e8dcb55bac22880e9998b8d6c0994aa94fc90d790107036b3dd4e350bb3be5",
+      "normalizzazione_eol": false
+    },
+    {
+      "repository": "puzzalela416/home-assistant-yaml",
+      "path": "censimenti/2026-10-30/report-iniziale/schede-yaml/20-faretto_telecamera_ingresso_accende_fari_torre_ingresso.yaml",
+      "git_sha1_pubblicato": "e5755c8f02d346361e92082059802022fc4981a8",
+      "sha256_pubblicato": "af1ebccee923708bc828f8adbc9047bc9f434cedb6744253677d2cd98a27a03a",
+      "normalizzazione_eol": false
+    },
+    {
+      "repository": "puzzalela416/home-assistant-yaml",
+      "path": "censimenti/2026-10-30/report-iniziale/schede-yaml/21-finestre_aperte.yaml",
+      "git_sha1_pubblicato": "a66285da05ebafc141bd85733e49c91619d64a92",
+      "sha256_pubblicato": "f368735c01f9ba76fdc955630f0816c0f0f386f4a34996ee7dcd8893084067b2",
+      "normalizzazione_eol": false
+    },
+    {
+      "repository": "puzzalela416/home-assistant-yaml",
+      "path": "censimenti/2026-10-30/report-iniziale/schede-yaml/22-growatt_allarmi_e_comunicazione_usb.yaml",
+      "git_sha1_pubblicato": "0d1a2decb9b0a6391e3366e5356ce44427be6131",
+      "sha256_pubblicato": "46506cc66edc6a19fac56a73341dbf67d727bb6494ca41149020e4a05e7b1733",
+      "normalizzazione_eol": false
+    },
+    {
+      "repository": "puzzalela416/home-assistant-yaml",
+      "path": "censimenti/2026-10-30/report-iniziale/schede-yaml/23-ingresso_apre_luce_accende.yaml",
+      "git_sha1_pubblicato": "da1ef8216d649b875df0911406489da24224a43f",
+      "sha256_pubblicato": "96c0d02a3b8b8ecc845b1a1bb6ba63f5faebb509514e80883b3d4888afd31a36",
+      "normalizzazione_eol": false
+    },
+    {
+      "repository": "puzzalela416/home-assistant-yaml",
+      "path": "censimenti/2026-10-30/report-iniziale/schede-yaml/24-accensione_luci.yaml",
+      "git_sha1_pubblicato": "1a3ce65f5006ccc7382da04d667baeb7f528b28c",
+      "sha256_pubblicato": "6a155cbe098faf82afa4c7a3a9e30750e2a9650be8bf79f48f1133287895d58c",
+      "normalizzazione_eol": false
+    },
+    {
+      "repository": "puzzalela416/home-assistant-yaml",
+      "path": "censimenti/2026-10-30/report-iniziale/schede-yaml/25-interruttore_sonoff.yaml",
+      "git_sha1_pubblicato": "8ae120d6a02e7d36202089c2aa7ec65dcea8634d",
+      "sha256_pubblicato": "60e4e0463d40050f2f1422358cee28d153ed0de451443ca7e9c5043152b75a07",
+      "normalizzazione_eol": false
+    },
+    {
+      "repository": "puzzalela416/home-assistant-yaml",
+      "path": "censimenti/2026-10-30/report-iniziale/schede-yaml/26-luci_parcheggio_al_tramonto.yaml",
+      "git_sha1_pubblicato": "988328da2647e3d537af9e8a63d2f6bd0b670677",
+      "sha256_pubblicato": "922babb5fcc80a16463467ccdd59215e7a1ec3f7be6afc221251fa8181677ff1",
+      "normalizzazione_eol": false
+    },
+    {
+      "repository": "puzzalela416/home-assistant-yaml",
+      "path": "censimenti/2026-10-30/report-iniziale/schede-yaml/27-movimento_cancello_accende_giardino.yaml",
+      "git_sha1_pubblicato": "1a3f150171d452511ec442cdebd77c5bc13e5476",
+      "sha256_pubblicato": "87d77a2de50e79ffb2c40721ba7c7ec65e33390077271a642fd869bc0c3b3131",
+      "normalizzazione_eol": false
+    },
+    {
+      "repository": "puzzalela416/home-assistant-yaml",
+      "path": "censimenti/2026-10-30/report-iniziale/schede-yaml/28-movimento_esterno_accende_torre_ingresso.yaml",
+      "git_sha1_pubblicato": "df3d57745486ff22e185276f4622564f9c852568",
+      "sha256_pubblicato": "0fe867fe37ce057ae46fc370b414716c9090c95756685f155e4ed0bda814ccd8",
+      "normalizzazione_eol": false
+    },
+    {
+      "repository": "puzzalela416/home-assistant-yaml",
+      "path": "censimenti/2026-10-30/report-iniziale/schede-yaml/29-movimento_interno_trigger_alarm.yaml",
+      "git_sha1_pubblicato": "74c2d3db5fe477f355bec160975feb18360ad6a5",
+      "sha256_pubblicato": "5d5ddaeb7c2537546a5e5eca8332b37047ffef3192c0c883cf515ab7ad9b7eff",
+      "normalizzazione_eol": false
+    },
+    {
+      "repository": "puzzalela416/home-assistant-yaml",
+      "path": "censimenti/2026-10-30/report-iniziale/schede-yaml/30-movimento_orto_accende_luci.yaml",
+      "git_sha1_pubblicato": "02b18a074c2537630136ac9cc7929384467058fa",
+      "sha256_pubblicato": "5b4d0423c9e3b011333c5357244323e2c9f36780fb6a26c37cc76c8f6a8f20b8",
+      "normalizzazione_eol": false
+    },
+    {
+      "repository": "puzzalela416/home-assistant-yaml",
+      "path": "censimenti/2026-10-30/report-iniziale/schede-yaml/31-piscine_riduci_sensibilita_per_continui_cambi_movimento_2.yaml",
+      "git_sha1_pubblicato": "487ef99aebf9da01e6840a9e61e3bd12bce215ce",
+      "sha256_pubblicato": "71b9fdfa99f5ab61d20e33c0d323c147ca67c10be57943fc99cb23707aec0f48",
+      "normalizzazione_eol": false
+    },
+    {
+      "repository": "puzzalela416/home-assistant-yaml",
+      "path": "censimenti/2026-10-30/report-iniziale/schede-yaml/32-pr205_diag_fine_finestra_controlavaggio.yaml",
+      "git_sha1_pubblicato": "c7df1cddc2d6ed51d133aeb2e1d451ae50b7a628",
+      "sha256_pubblicato": "4c193f3654de62f60426e695410afa17d7bc89cb700ccc2a317226d3a430dad9",
+      "normalizzazione_eol": false
+    },
+    {
+      "repository": "puzzalela416/home-assistant-yaml",
+      "path": "censimenti/2026-10-30/report-iniziale/schede-yaml/33-pr205_diag_inizio_controlavaggio_multi_stadio.yaml",
+      "git_sha1_pubblicato": "b9046e77f95edcb1d03608e5aa4a74acbec7b230",
+      "sha256_pubblicato": "d99d34ca8aaaaf64860822e94fb66c6ae56f5a630a2e6051d46d55a799e4378b",
+      "normalizzazione_eol": false
+    },
+    {
+      "repository": "puzzalela416/home-assistant-yaml",
+      "path": "censimenti/2026-10-30/report-iniziale/schede-yaml/34-pr205_diag_memoria_chiusura_q2_per_q3.yaml",
+      "git_sha1_pubblicato": "3578320947b5fdb7fcfd3a74ffd55c699a79debf",
+      "sha256_pubblicato": "a18f5964068679b94d1776297449cf27f293fa62a22e9b157065fed309c7ea78",
+      "normalizzazione_eol": false
+    },
+    {
+      "repository": "puzzalela416/home-assistant-yaml",
+      "path": "censimenti/2026-10-30/report-iniziale/schede-yaml/35-ptz_cancello.yaml",
+      "git_sha1_pubblicato": "c7fd601e8eadf6cc9974814ee3a0b5f668e874a0",
+      "sha256_pubblicato": "ebc0d483669f100f5abacf95defd2c7b7c0a34f3850f0ac6e0cc34190911a9bd",
+      "normalizzazione_eol": false
+    },
+    {
+      "repository": "puzzalela416/home-assistant-yaml",
+      "path": "censimenti/2026-10-30/report-iniziale/schede-yaml/36-ptz_loggiato.yaml",
+      "git_sha1_pubblicato": "18cf22c5c7edb2d770d8ce2f3a0fb20f07db1c9c",
+      "sha256_pubblicato": "b7f505b506edb71a6750338300dde5b9866c758d1d239df37135ee90dbb4f0d5",
+      "normalizzazione_eol": false
+    },
+    {
+      "repository": "puzzalela416/home-assistant-yaml",
+      "path": "censimenti/2026-10-30/report-iniziale/schede-yaml/37-ricircolo_cisterna_pozzo.yaml",
+      "git_sha1_pubblicato": "fa60d16c0675f6016aed57081a90751dc8efb306",
+      "sha256_pubblicato": "0a9eaec0d152d67d7cc1731319fdc1f10528f113ee4c002564b66c091ec936e5",
+      "normalizzazione_eol": false
+    },
+    {
+      "repository": "puzzalela416/home-assistant-yaml",
+      "path": "censimenti/2026-10-30/report-iniziale/schede-yaml/38-riempimento_cisterna_potabile.yaml",
+      "git_sha1_pubblicato": "471d944d31f78570cfbf19d880df1c9764b36e79",
+      "sha256_pubblicato": "20a1ad2641cf8745c6a1612b109432330d482f692463f7b9eb37b5358c62a9db",
+      "normalizzazione_eol": false
+    },
+    {
+      "repository": "puzzalela416/home-assistant-yaml",
+      "path": "censimenti/2026-10-30/report-iniziale/schede-yaml/39-riempimento_cisterna_pozzo.yaml",
+      "git_sha1_pubblicato": "bbad9a21f740d4d6219f2ed3791261b8c7552c50",
+      "sha256_pubblicato": "885264ca6d4631db74edd1569b500550b409d037670ba499a6631e635fd11456",
+      "normalizzazione_eol": false
+    },
+    {
+      "repository": "puzzalela416/home-assistant-yaml",
+      "path": "censimenti/2026-10-30/report-iniziale/schede-yaml/40-sensibilita_telecamera_ridotta.yaml",
+      "git_sha1_pubblicato": "8d7ec7fc7a20787cbf8138c9e41fd93df6153e2d",
+      "sha256_pubblicato": "fac8c113895b3a423a1cce4c51b4794e5833b2fc6bf89adf842a24f38bd6ac33",
+      "normalizzazione_eol": false
+    },
+    {
+      "repository": "puzzalela416/home-assistant-yaml",
+      "path": "censimenti/2026-10-30/report-iniziale/schede-yaml/41-spegni_esterno_all_alba.yaml",
+      "git_sha1_pubblicato": "cca87fa8f8a68d118225047f63b4c8c7e9804414",
+      "sha256_pubblicato": "ae1d80955d788633f7687d1dcf33647aee3d81de9721435d07b7a47a361cdb85",
+      "normalizzazione_eol": false
+    },
+    {
+      "repository": "puzzalela416/home-assistant-yaml",
+      "path": "censimenti/2026-10-30/report-iniziale/schede-yaml/42-spegni_riempimento_potabile.yaml",
+      "git_sha1_pubblicato": "3b05978500cec253bdccf2bf461b1a30e31151c2",
+      "sha256_pubblicato": "06ba083ae60681262ab4b69e60013a1493ef2f38d7952344a75a179d0bcc2ee7",
+      "normalizzazione_eol": false
+    },
+    {
+      "repository": "puzzalela416/home-assistant-yaml",
+      "path": "censimenti/2026-10-30/report-iniziale/schede-yaml/43-spegnimenti_riempimento_cisterna_pozzo.yaml",
+      "git_sha1_pubblicato": "43f9a3a9b5c5504f02e2de037da9f26fae91527b",
+      "sha256_pubblicato": "7e3353f38ca03b06d4d0486d62c7656b4a60910bd80bd00f65e21a3c545548c1",
+      "normalizzazione_eol": false
+    },
+    {
+      "repository": "puzzalela416/home-assistant-yaml",
+      "path": "censimenti/2026-10-30/report-iniziale/schede-yaml/44-spegnimento_automatico_cloratore.yaml",
+      "git_sha1_pubblicato": "8676ea644d721c7db891ac8a1f24ddd75be22a92",
+      "sha256_pubblicato": "89852a1bee6b80b78b0f5c2412b631f242e84e47def9889bbac5b852f92423d2",
+      "normalizzazione_eol": false
+    },
+    {
+      "repository": "puzzalela416/home-assistant-yaml",
+      "path": "censimenti/2026-10-30/report-iniziale/schede-yaml/45-spegnimento_torre_ingresso_spegne_faretto_telecamer_aingresso.yaml",
+      "git_sha1_pubblicato": "d224255bacac02c11b3c0196c356c9bd4bac36db",
+      "sha256_pubblicato": "d6ae637e77e71b9fafdbbf7d71099e41b8d07e494ad8938bb980373e215a2a0e",
+      "normalizzazione_eol": false
+    },
+    {
+      "repository": "puzzalela416/home-assistant-yaml",
+      "path": "censimenti/2026-10-30/report-iniziale/schede-yaml/46-spengibouci.yaml",
+      "git_sha1_pubblicato": "15240adaaead80640887dc0fe5e6bda7d1a0346e",
+      "sha256_pubblicato": "69c1af1daf0849ab3e4ed90826af3d98dc8edcbf7a02d48ad941a7b61a45c321",
+      "normalizzazione_eol": false
+    },
+    {
+      "repository": "puzzalela416/home-assistant-yaml",
+      "path": "censimenti/2026-10-30/report-iniziale/schede-yaml/47-spengi_sonoff.yaml",
+      "git_sha1_pubblicato": "5f5b6b10e8878f3ceb9e5426bf0684fc6acad6b9",
+      "sha256_pubblicato": "3526d0d56de7e626b07ecaf9759c593ea7bf49a5cd2117467a44dff2681f3318",
+      "normalizzazione_eol": false
+    },
+    {
+      "repository": "puzzalela416/home-assistant-yaml",
+      "path": "censimenti/2026-10-30/report-iniziale/schede-yaml/48-spia_allarme.yaml",
+      "git_sha1_pubblicato": "8e68d305f03630046f6c04702d483ddf70fae516",
+      "sha256_pubblicato": "b708e95f9da1b472db7a2203605e5d90ac9d2dc84f042f8669d46c00598ce4a8",
+      "normalizzazione_eol": false
+    },
+    {
+      "repository": "puzzalela416/home-assistant-yaml",
+      "path": "censimenti/2026-10-30/report-iniziale/schede-yaml/49-spia_allarme_disinserito.yaml",
+      "git_sha1_pubblicato": "9874bcdec43c7c25371c9aa24d08889f8ccc1b90",
+      "sha256_pubblicato": "c4bfd43083898f9aafdcc04019ad8ab95b0aa5c483d7f84cfa9b3e5682c423ed",
+      "normalizzazione_eol": false
+    },
+    {
+      "repository": "puzzalela416/home-assistant-yaml",
+      "path": "censimenti/2026-10-30/report-iniziale/schede-yaml/50-spia_allarme_scale.yaml",
+      "git_sha1_pubblicato": "71617e58d899a7512375c2aee19417328a694a6d",
+      "sha256_pubblicato": "7d0508a7573f95b6eda9f2a6b38ddc65bd9c46f88b6933a66a9c035c987def58",
+      "normalizzazione_eol": false
+    },
+    {
+      "repository": "puzzalela416/home-assistant-yaml",
+      "path": "censimenti/2026-10-30/report-iniziale/schede-yaml/51-spia_esterno.yaml",
+      "git_sha1_pubblicato": "4dc1de29efd6ce09a2b1728a572114dcb752c4b2",
+      "sha256_pubblicato": "d4cc92fce29a51e4e14b9edda2b29f4cf49b0b92b8e4be54592be5999a5b3411",
+      "normalizzazione_eol": false
+    },
+    {
+      "repository": "puzzalela416/home-assistant-yaml",
+      "path": "censimenti/2026-10-30/report-iniziale/schede-yaml/52-switch_andrea_accende_letto.yaml",
+      "git_sha1_pubblicato": "fd51b565f9f64e43b34be4643f49556101f76ffc",
+      "sha256_pubblicato": "327fba1dd01f34d73bd90670d7dc931c2d5846157768491c75f9d06d3809e7ac",
+      "normalizzazione_eol": false
+    },
+    {
+      "repository": "puzzalela416/home-assistant-yaml",
+      "path": "censimenti/2026-10-30/report-iniziale/schede-yaml/53-spegni_luci.yaml",
+      "git_sha1_pubblicato": "ec70bdd58044727f749618762ec496779c5755e0",
+      "sha256_pubblicato": "4b3006b26b21c7aa65877ce8991014395e5bd81dde475b568d73181c07b49fdc",
+      "normalizzazione_eol": false
+    },
+    {
+      "repository": "puzzalela416/home-assistant-yaml",
+      "path": "censimenti/2026-10-30/report-iniziale/schede-yaml/54-switch_lucia_accende_letto.yaml",
+      "git_sha1_pubblicato": "c7bac68fc1236f60cf5f2dba780f3de47bf57fd2",
+      "sha256_pubblicato": "8793cae7cf3ac60ab75cd44e686dcd2d091a06d1287a0ce506bda94a0d29ea7b",
+      "normalizzazione_eol": false
+    },
+    {
+      "repository": "puzzalela416/home-assistant-yaml",
+      "path": "censimenti/2026-10-30/report-iniziale/schede-yaml/55-sensibilita_telecamere_giorno_notte.yaml",
+      "git_sha1_pubblicato": "ea4ce9c11c3ea183f26ffa4f38fe697e5bd95186",
+      "sha256_pubblicato": "68dee19e8441f7bd7d2390b5c3024449cdbd3b30ae4c709e98ec749cafb48d8d",
+      "normalizzazione_eol": false
+    },
+    {
+      "repository": "puzzalela416/home-assistant-yaml",
+      "path": "censimenti/2026-10-30/report-iniziale/schede-yaml/56-telecamere_sensibilita_notte.yaml",
+      "git_sha1_pubblicato": "0622043f9aba050345f5055834293a1588f5941c",
+      "sha256_pubblicato": "cafc7397026641379a5d766691749e0a7e23d35b2bab7ec31ccf21e3347adc60",
+      "normalizzazione_eol": false
+    },
+    {
+      "repository": "puzzalela416/home-assistant-yaml",
+      "path": "censimenti/2026-10-30/report-iniziale/schede-yaml/57-test.yaml",
+      "git_sha1_pubblicato": "8d14a9f380a78a0d4895eee88794be2f6d12b747",
+      "sha256_pubblicato": "4748bdf642053e88e6b19ab989e284fe4a5151466e9133a90c3627dd237b8aa3",
+      "normalizzazione_eol": false
+    },
+    {
+      "repository": "puzzalela416/home-assistant-yaml",
+      "path": "censimenti/2026-10-30/snapshot-ha/README.md",
+      "git_sha1_pubblicato": "42edf4067a9e11e6d4fe7552617eba8ceb4cafd9",
+      "sha256_pubblicato": "63fe3f999b6a6ef9bcb0890d927d5f5d4188a01ddaa09f41a9a15c518de7c542",
+      "normalizzazione_eol": false
+    },
+    {
+      "repository": "puzzalela416/home-assistant-yaml",
+      "path": "censimenti/2026-10-30/snapshot-ha/automations.yaml",
+      "git_sha1_pubblicato": "44c02b28268d5a27fcf41434aea0dfe9ca3e5309",
+      "sha256_pubblicato": "06940e30ff4376dd8e5a50a62cf5a7120affc43c01f7098dc570a7514140c482",
+      "normalizzazione_eol": false
+    },
+    {
+      "repository": "puzzalela416/home-assistant-yaml",
+      "path": "censimenti/2026-10-30/snapshot-ha/packages/filtrazione_v2.yaml",
+      "git_sha1_pubblicato": "a4422173a936a0ee42d77f1e14333810b8958556",
+      "sha256_pubblicato": "9c17475425236c5a6a9020088d3e00a72d7aa3d04613537252efca32dd211efa",
+      "normalizzazione_eol": false
+    },
+    {
+      "repository": "puzzalela416/home-assistant-yaml",
+      "path": "censimenti/2026-10-30/snapshot-ha/packages/pr205_diagnostica.yaml",
+      "git_sha1_pubblicato": "b6cd2cdd92ec44389bf34cb9acecdd4fb7347468",
+      "sha256_pubblicato": "b703609b7bf7b518604f7ef244714b15626bc30f79ef598cac1fc7af775897bc",
+      "normalizzazione_eol": false
+    },
+    {
+      "repository": "puzzalela416/home-assistant-yaml",
+      "path": "censimenti/2026-10-30/snapshot-ha/packages/programma_luci_esterno_v1.yaml",
+      "git_sha1_pubblicato": "8d9ebbc5395cb7b79db93a59b6a95df2d3d9383c",
+      "sha256_pubblicato": "9b86aca30ac916f5c8cac5c65797d8ba4880dbaf9ef5fcf8c2e1a17fd466d0b2",
+      "normalizzazione_eol": false
+    },
+    {
+      "repository": "puzzalela416/home-assistant-yaml",
+      "path": "censimenti/2026-10-30/snapshot-ha/packages/telecamere_fotocellule_v1.yaml",
+      "git_sha1_pubblicato": "720156de8a247f3a9a2f8e4e9e63dd47ed543ad0",
+      "sha256_pubblicato": "8ad6d04b870b56331b279175328cf1ea47fd2310ea0d6d45c9be84e279010acf",
+      "normalizzazione_eol": false
+    },
+    {
+      "repository": "puzzalela416/home-assistant-yaml",
+      "path": "filtrazione-acque/censimenti/2026-10-30/README.md",
+      "git_sha1_pubblicato": "caed9219219752d38b0f31774f43245796c3fae2",
+      "sha256_pubblicato": "30180a20bd38ae8f77eafaf3703156fbca04e302a352775b98cd8b4cd2f692ac",
+      "normalizzazione_eol": false
+    },
+    {
+      "repository": "puzzalela416/home-assistant-yaml",
+      "path": "luci-esterno/censimenti/2026-10-30/README.md",
+      "git_sha1_pubblicato": "ef6cab93c898dabf810a27cb31ee6ee88a345b08",
+      "sha256_pubblicato": "0df2cf113e7950b80e6dc10794991bd5dcb558d320f855d732149072bedcd478",
+      "normalizzazione_eol": false
+    },
+    {
+      "repository": "puzzalela416/home-assistant-yaml",
+      "path": "telecamere-luci/censimenti/2026-10-30/README.md",
+      "git_sha1_pubblicato": "b32aaaa8e2a48493296ee1b299bcfe4c727831b5",
+      "sha256_pubblicato": "80101016dd2abd0b7367eebd10d2f3a62f23e43985b3896f40ede93de1b3cadd",
+      "normalizzazione_eol": false
+    },
+    {
+      "repository": "puzzalela416/test",
+      "path": "CENSIMENTO-PLC-2026-10-30.md",
+      "git_sha1_pubblicato": "2efa360ed4692b0f1a311c9d3da70646b6d0c65c",
+      "sha256_pubblicato": "bdeda73a8b3a5df4289f5389c2d3e8027dbe488329f8a5fedcb1082e1e8c7108",
+      "normalizzazione_eol": false
+    },
+    {
+      "repository": "puzzalela416/test",
+      "path": "plc/filtrazione-v2/censimenti/2026-10-30/MANIFEST.json",
+      "git_sha1_pubblicato": "c111349e01ad9afb12e96b9882a75bbbdd1e4b6e",
+      "sha256_pubblicato": "30bc7d29f8b1f64db8403863ffd3ddb173d728cbe4d37c2c914bbf6a53e8c6a5",
+      "normalizzazione_eol": false
+    },
+    {
+      "repository": "puzzalela416/test",
+      "path": "plc/filtrazione-v2/censimenti/2026-10-30/README.md",
+      "git_sha1_pubblicato": "eb44583f2d4c505498f0d422ebb206b3a7599f6f",
+      "sha256_pubblicato": "07140fd033f34fed5b15e6ce4b8f0c2b76734d60bc3792b2f9be00bbc8c24883",
+      "normalizzazione_eol": false
+    },
+    {
+      "repository": "puzzalela416/test",
+      "path": "plc/filtrazione-v2/censimenti/2026-10-30/VERIFICHE-GRAFO-ORIGINALI.json",
+      "git_sha1_pubblicato": "ee09ab366d2d4881594fb690eb60940c2439b1a7",
+      "sha256_pubblicato": "80ebf5c5a271ac19e6a6b1ce77b1e3b892c430872988949d86c2dc81c5310081",
+      "normalizzazione_eol": false
+    }
+  ]
+}
