@@ -1,0 +1,27 @@
+{
+  "versione": "2026-10-29_203022_telecamere-fotocellule-v1",
+  "politica": "solo aggiunte, nessuna sovrascrittura o eliminazione",
+  "sha256": {
+    "telecamere-luci/STORICO-VERSIONI-2026-10-29.md": "a37299b50a35983a8f6cf3ca09d5949b2a87d840880a558e518ed462dfc52423",
+    "telecamere-luci/versioni/2026-10-29_203022_telecamere-fotocellule-v1/CENSIMENTO.json": "2b8e2940bb1bcbb216735322825000cc28ff94555c360f0dc9ec2bb6b11f3852",
+    "telecamere-luci/versioni/2026-10-29_203022_telecamere-fotocellule-v1/CENSIMENTO.md": "ebf02d3c0809fdba2a93bff1194e2a4e27870e258271801dd54ea3433febae9d",
+    "telecamere-luci/versioni/2026-10-29_203022_telecamere-fotocellule-v1/MAPPA-FOTOCELLULE.json": "4e749881fd959d2467e5bac986c91983f0f040dffc4a4110203f2ca7d4952691",
+    "telecamere-luci/versioni/2026-10-29_203022_telecamere-fotocellule-v1/MAPPA-TELECAMERE.json": "ae9bd85f029c66fa33bedc360c32bf2bdcad85478088e38a92626f301c84c76e",
+    "telecamere-luci/versioni/2026-10-29_203022_telecamere-fotocellule-v1/MODIFICHE.json": "1fd28286e8f334c2619f2b0c8e3ca225dc132d4746e9e0977bb0c3cc82c4f3c3",
+    "telecamere-luci/versioni/2026-10-29_203022_telecamere-fotocellule-v1/README.md": "e7adddee647b1cfdd789a01cd1a66294e842d1235dd9fe26570b22eb79b110bd",
+    "telecamere-luci/versioni/2026-10-29_203022_telecamere-fotocellule-v1/automazioni-principali-aggiornate.yaml": "0d3a0a178a3d7b76cf6d3b68d9fa4380440c11322622d3cad4ec987b7a68c231",
+    "telecamere-luci/versioni/2026-10-29_203022_telecamere-fotocellule-v1/dashboard/plancia-sensibilita.json": "5b78c8265521b455595d914e285470e6f40a587d332ea621d6d43edc3cff4937",
+    "telecamere-luci/versioni/2026-10-29_203022_telecamere-fotocellule-v1/docs/AVANZAMENTO.md": "9be65180b48a2fcb777f2e6236dd5986b71596b08a90a87168d8a5f46eefc6aa",
+    "telecamere-luci/versioni/2026-10-29_203022_telecamere-fotocellule-v1/docs/INSTALLAZIONE.json": "2c7dc07b407e34459b68e19b211da01cc58cbccb517336dd839605b4639cd982",
+    "telecamere-luci/versioni/2026-10-29_203022_telecamere-fotocellule-v1/docs/TEST-ADATTIVA-SUL-SERVER.json": "0e2774905fa6e03a5cc2608897ef5d563de9eb81d91f33c293ca9ca9eb9d6a58",
+    "telecamere-luci/versioni/2026-10-29_203022_telecamere-fotocellule-v1/docs/TEST-AZIONI-FOTOCELLULE.json": "aeddf3ad03b446cfd31af78107c1bc96d1b8ffcaad6837f3578480c032686b2a",
+    "telecamere-luci/versioni/2026-10-29_203022_telecamere-fotocellule-v1/docs/TEST-FUNZIONALE-TELECAMERE.json": "d6cc5f2a76e270326c801f09289373e40aed25801157fd6baf2340d77148f171",
+    "telecamere-luci/versioni/2026-10-29_203022_telecamere-fotocellule-v1/docs/TEST-PRIMA-INSTALLAZIONE.json": "2847d98704d32228f06dffec726b458ec57215ecd7e593425ad99b193bf8f371",
+    "telecamere-luci/versioni/2026-10-29_203022_telecamere-fotocellule-v1/docs/TEST-TIMER-REALI.json": "6a99047537ea99be2c51a5667d40f3ba632a75481a716b4af4a3c07896f9593e",
+    "telecamere-luci/versioni/2026-10-29_203022_telecamere-fotocellule-v1/docs/VERIFICA-BROWSER.json": "3eb9ce42dbccc02bf44673904aa62e564c03f21983d66734fcba961db4b255b9",
+    "telecamere-luci/versioni/2026-10-29_203022_telecamere-fotocellule-v1/docs/plancia-sensibilita.png": "d9178d677daa38fb5f6fd14e69422fe167199bbc5bac3d47228a36fdde92995c",
+    "telecamere-luci/versioni/2026-10-29_203022_telecamere-fotocellule-v1/packages/telecamere_fotocellule_v1.yaml": "eae439be73bd82117a5048305c0344e6e4574efeec21997cd1b5729383db3ffa",
+    "telecamere-luci/versioni/2026-10-29_203022_telecamere-fotocellule-v1/prima/automazioni-originali-pertinenti.yaml": "4b6c3b33b07a0149b0a4927a246312838e7c4de510c126de7c0c30d3c6724d34",
+    "telecamere-luci/versioni/2026-10-29_203022_telecamere-fotocellule-v1/prima/plancia-sensibilita.json": "6b4584fa355aa7d9ca415006002a451333a7f24d6590ec751857302c90cd5aca"
+  }
+}

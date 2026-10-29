@@ -1,0 +1,289 @@
+{
+  "versione": "2026-10-29_203022_telecamere-fotocellule-v1",
+  "automazioni": [
+    {
+      "id": "1789839853555",
+      "nome": "Interruttore sonoff",
+      "entity_id": "automation.interruttore_sonoff",
+      "stato": "on",
+      "gruppo": "esistente"
+    },
+    {
+      "id": "1789848073695",
+      "nome": "Spengi sonoff con pulsante philips",
+      "entity_id": "automation.spengi_sonoff",
+      "stato": "on",
+      "gruppo": "esistente"
+    },
+    {
+      "id": "1790034489277",
+      "nome": "Allarme innescato= esterno acceso",
+      "entity_id": "automation.allarme_innescato_esterno_acceso",
+      "stato": "on",
+      "gruppo": "esistente"
+    },
+    {
+      "id": "1790199721494",
+      "nome": "Spegni esterno all' Alba",
+      "entity_id": "automation.spegni_esterno_all_alba",
+      "stato": "on",
+      "gruppo": "esistente"
+    },
+    {
+      "id": "1790704217806",
+      "nome": "Luci parcheggio al tramonto",
+      "entity_id": "automation.luci_parcheggio_al_tramonto",
+      "stato": "on",
+      "gruppo": "esistente"
+    },
+    {
+      "id": "1791935822844",
+      "nome": "Movimento esterno accende torre ingresso",
+      "entity_id": "automation.movimento_esterno_accende_torre_ingresso",
+      "stato": "off",
+      "gruppo": "esistente"
+    },
+    {
+      "id": "1792284488645",
+      "nome": "Movimento orto accende luci",
+      "entity_id": "automation.movimento_orto_accende_luci",
+      "stato": "off",
+      "gruppo": "esistente"
+    },
+    {
+      "id": "1792284834030",
+      "nome": "Movimento cancello accende giardino",
+      "entity_id": "automation.movimento_cancello_accende_giardino",
+      "stato": "off",
+      "gruppo": "esistente"
+    },
+    {
+      "id": "1792364358002",
+      "nome": "Telecamere - Sensibilità Giorno",
+      "entity_id": "automation.sensibilita_telecamere_giorno_notte",
+      "stato": "off",
+      "gruppo": "esistente"
+    },
+    {
+      "id": "1792364592742",
+      "nome": "Telecamere - Sensibilità Notte",
+      "entity_id": "automation.telecamere_sensibilita_notte",
+      "stato": "off",
+      "gruppo": "esistente"
+    },
+    {
+      "id": "1792950598614",
+      "nome": "faretto telecamera ingresso accende fari torre ingresso",
+      "entity_id": "automation.faretto_telecamera_ingresso_accende_fari_torre_ingresso",
+      "stato": "off",
+      "gruppo": "esistente"
+    },
+    {
+      "id": "1792950856621",
+      "nome": "spegnimento torre ingresso spegne faretto telecamer aingresso",
+      "entity_id": "automation.spegnimento_torre_ingresso_spegne_faretto_telecamer_aingresso",
+      "stato": "off",
+      "gruppo": "esistente"
+    },
+    {
+      "id": "1792973386743",
+      "nome": "Piscine - riduci sensibilità per continui cambi movimento",
+      "entity_id": "automation.piscine_riduci_sensibilita_per_continui_cambi_movimento_2",
+      "stato": "off",
+      "gruppo": "esistente"
+    },
+    {
+      "id": "1793146592865",
+      "nome": "Sensibilità telecamera ridotta",
+      "entity_id": "automation.sensibilita_telecamera_ridotta",
+      "stato": "off",
+      "gruppo": "esistente"
+    },
+    {
+      "id": "telecamere_sensibilita_adattiva_v1",
+      "nome": "Telecamere - Sensibilità adattiva e profili giorno notte",
+      "entity_id": "automation.telecamere_sensibilita_adattiva_e_profili_giorno_notte",
+      "stato": "on",
+      "gruppo": "nuova"
+    },
+    {
+      "id": "fotocellula_cancello_giardino_v1",
+      "nome": "Fotocellula - Cancello → Giardino - 2 minuti",
+      "entity_id": "automation.fotocellula_cancello_giardino_2_minuti",
+      "stato": "on",
+      "gruppo": "nuova"
+    },
+    {
+      "id": "fotocellula_ingresso_torre_v1",
+      "nome": "Fotocellula - Ingresso → Torre ingresso - 2 minuti",
+      "entity_id": "automation.fotocellula_ingresso_torre_ingresso_2_minuti",
+      "stato": "on",
+      "gruppo": "nuova"
+    },
+    {
+      "id": "fotocellula_piscine_capanno_v1",
+      "nome": "Fotocellula - Piscine → Capanno - 2 minuti",
+      "entity_id": "automation.fotocellula_piscine_capanno_2_minuti",
+      "stato": "on",
+      "gruppo": "nuova"
+    },
+    {
+      "id": "fotocellula_orto_torre_v1",
+      "nome": "Fotocellula - Orto → Torre Orto - 2 minuti",
+      "entity_id": "automation.fotocellula_orto_torre_orto_2_minuti",
+      "stato": "on",
+      "gruppo": "nuova"
+    }
+  ],
+  "nuove_automazioni": 5,
+  "telecamere": [
+    {
+      "chiave": "cancello",
+      "nome": "Cancello",
+      "movimento": "binary_sensor.cancello_movimento",
+      "sensibilita": "number.cancello_cancello_sensibilita_al_movimento",
+      "contatore": "input_number.camera_eventi_cancello",
+      "timer": "timer.camera_finestra_cancello",
+      "valore_sensibilita": "5"
+    },
+    {
+      "chiave": "ingresso",
+      "nome": "Ingresso",
+      "movimento": "binary_sensor.esterno_ingresso_movimento",
+      "sensibilita": "number.esterno_ingresso_sensibilita_al_movimento",
+      "contatore": "input_number.camera_eventi_ingresso",
+      "timer": "timer.camera_finestra_ingresso",
+      "ai_persona": "number.esterno_ingresso_ai_person_sensitivity",
+      "ai_animale": "number.esterno_ingresso_ai_animal_sensitivity",
+      "ai_veicolo": "number.esterno_ingresso_ai_vehicle_sensitivity",
+      "valore_sensibilita": "1"
+    },
+    {
+      "chiave": "piazzale",
+      "nome": "Piazzale",
+      "movimento": "binary_sensor.piazzale_movimento",
+      "sensibilita": "number.piazzale_sensibilita_al_movimento",
+      "contatore": "input_number.camera_eventi_piazzale",
+      "timer": "timer.camera_finestra_piazzale",
+      "ai_persona": "number.piazzale_ai_person_sensitivity",
+      "ai_animale": "number.piazzale_ai_animal_sensitivity",
+      "ai_veicolo": "number.piazzale_ai_vehicle_sensitivity",
+      "valore_sensibilita": "5"
+    },
+    {
+      "chiave": "tracking",
+      "nome": "Tracking / Giardino",
+      "movimento": "binary_sensor.tracking_movimento",
+      "sensibilita": "number.tracking_sensibilita_al_movimento",
+      "contatore": "input_number.camera_eventi_tracking",
+      "timer": "timer.camera_finestra_tracking",
+      "ai_persona": "number.tracking_ai_person_sensitivity",
+      "ai_animale": "number.tracking_ai_animal_sensitivity",
+      "ai_veicolo": "number.tracking_ai_vehicle_sensitivity",
+      "valore_sensibilita": "5"
+    },
+    {
+      "chiave": "loggiato",
+      "nome": "Loggiato",
+      "movimento": "binary_sensor.loggiato_movimento",
+      "sensibilita": "number.loggiato_sensibilita_al_movimento",
+      "contatore": "input_number.camera_eventi_loggiato",
+      "timer": "timer.camera_finestra_loggiato",
+      "valore_sensibilita": "5"
+    },
+    {
+      "chiave": "piscine",
+      "nome": "Piscine",
+      "movimento": "binary_sensor.piscine_movimento",
+      "sensibilita": "number.piscine_sensibilita_al_movimento",
+      "contatore": "input_number.camera_eventi_piscine",
+      "timer": "timer.camera_finestra_piscine",
+      "valore_sensibilita": "1"
+    },
+    {
+      "chiave": "orto",
+      "nome": "Orto",
+      "movimento": "binary_sensor.piscina_orto_movimento",
+      "sensibilita": "number.piscina_orto_sensibilita_al_movimento",
+      "contatore": "input_number.camera_eventi_orto",
+      "timer": "timer.camera_finestra_orto",
+      "valore_sensibilita": "5"
+    },
+    {
+      "chiave": "officina",
+      "nome": "Officina",
+      "movimento": "binary_sensor.parco_movimento",
+      "sensibilita": "number.parco_sensibilita_al_movimento",
+      "contatore": "input_number.camera_eventi_officina",
+      "timer": "timer.camera_finestra_officina",
+      "valore_sensibilita": "5"
+    },
+    {
+      "chiave": "auto",
+      "nome": "Auto",
+      "movimento": "binary_sensor.cucina_movimento_2",
+      "sensibilita": "number.cucina_sensibilita_al_movimento_2",
+      "contatore": "input_number.camera_eventi_auto",
+      "timer": "timer.camera_finestra_auto",
+      "valore_sensibilita": "5"
+    },
+    {
+      "chiave": "cucina",
+      "nome": "Cucina / posteriore",
+      "movimento": "binary_sensor.cucina_movimento",
+      "sensibilita": "number.cucina_sensibilita_al_movimento",
+      "contatore": "input_number.camera_eventi_cucina",
+      "timer": "timer.camera_finestra_cucina",
+      "valore_sensibilita": "5"
+    },
+    {
+      "chiave": "sala",
+      "nome": "Sala",
+      "movimento": "binary_sensor.sala_movimento",
+      "sensibilita": "number.sala_sensibilita_al_movimento",
+      "contatore": "input_number.camera_eventi_sala",
+      "timer": "timer.camera_finestra_sala",
+      "ai_persona": "number.sala_ai_person_sensitivity",
+      "ai_animale": "number.sala_ai_animal_sensitivity",
+      "valore_sensibilita": "5"
+    }
+  ],
+  "fotocellule": [
+    {
+      "chiave": "cancello_giardino",
+      "nome": "Cancello → Giardino",
+      "movimento": "binary_sensor.cancello_movimento",
+      "luce": "switch.1000111b06_power"
+    },
+    {
+      "chiave": "ingresso_torre",
+      "nome": "Ingresso → Torre ingresso",
+      "movimento": "binary_sensor.esterno_ingresso_movimento",
+      "luce": "switch.100184e599_power"
+    },
+    {
+      "chiave": "piscine_capanno",
+      "nome": "Piscine → Capanno",
+      "movimento": "binary_sensor.piscine_movimento",
+      "luce": "switch.100184e742_power"
+    },
+    {
+      "chiave": "orto_torre",
+      "nome": "Orto → Torre Orto",
+      "movimento": "binary_sensor.piscina_orto_movimento",
+      "luce": "switch.1002963641_power"
+    }
+  ],
+  "contatori_indipendenti": 11,
+  "timer_sensibilita_indipendenti": 11,
+  "timer_luci_indipendenti": 4,
+  "definizioni_eliminate": 0,
+  "vecchie_definizioni_disabilitate": 9,
+  "alba_generale": "invariata su richiesta esplicita",
+  "allarme": "invariato; proposta di restringere bersagli a uscite potenza in attesa di risposta",
+  "faretti": "nativi delle telecamere; nessun comando HA nuovo",
+  "parcheggio_e_ciabatta": "non comandati da movimento",
+  "riferimenti_controllati": 70,
+  "mancanti": [],
+  "senza_dati": []
+}

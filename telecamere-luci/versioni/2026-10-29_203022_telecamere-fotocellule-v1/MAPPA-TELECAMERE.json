@@ -1,0 +1,90 @@
+{
+  "cancello": {
+    "nome": "Cancello",
+    "movimento": "binary_sensor.cancello_movimento",
+    "sensibilita": "number.cancello_cancello_sensibilita_al_movimento",
+    "contatore": "input_number.camera_eventi_cancello",
+    "timer": "timer.camera_finestra_cancello"
+  },
+  "ingresso": {
+    "nome": "Ingresso",
+    "movimento": "binary_sensor.esterno_ingresso_movimento",
+    "sensibilita": "number.esterno_ingresso_sensibilita_al_movimento",
+    "contatore": "input_number.camera_eventi_ingresso",
+    "timer": "timer.camera_finestra_ingresso",
+    "ai_persona": "number.esterno_ingresso_ai_person_sensitivity",
+    "ai_animale": "number.esterno_ingresso_ai_animal_sensitivity",
+    "ai_veicolo": "number.esterno_ingresso_ai_vehicle_sensitivity"
+  },
+  "piazzale": {
+    "nome": "Piazzale",
+    "movimento": "binary_sensor.piazzale_movimento",
+    "sensibilita": "number.piazzale_sensibilita_al_movimento",
+    "contatore": "input_number.camera_eventi_piazzale",
+    "timer": "timer.camera_finestra_piazzale",
+    "ai_persona": "number.piazzale_ai_person_sensitivity",
+    "ai_animale": "number.piazzale_ai_animal_sensitivity",
+    "ai_veicolo": "number.piazzale_ai_vehicle_sensitivity"
+  },
+  "tracking": {
+    "nome": "Tracking / Giardino",
+    "movimento": "binary_sensor.tracking_movimento",
+    "sensibilita": "number.tracking_sensibilita_al_movimento",
+    "contatore": "input_number.camera_eventi_tracking",
+    "timer": "timer.camera_finestra_tracking",
+    "ai_persona": "number.tracking_ai_person_sensitivity",
+    "ai_animale": "number.tracking_ai_animal_sensitivity",
+    "ai_veicolo": "number.tracking_ai_vehicle_sensitivity"
+  },
+  "loggiato": {
+    "nome": "Loggiato",
+    "movimento": "binary_sensor.loggiato_movimento",
+    "sensibilita": "number.loggiato_sensibilita_al_movimento",
+    "contatore": "input_number.camera_eventi_loggiato",
+    "timer": "timer.camera_finestra_loggiato"
+  },
+  "piscine": {
+    "nome": "Piscine",
+    "movimento": "binary_sensor.piscine_movimento",
+    "sensibilita": "number.piscine_sensibilita_al_movimento",
+    "contatore": "input_number.camera_eventi_piscine",
+    "timer": "timer.camera_finestra_piscine"
+  },
+  "orto": {
+    "nome": "Orto",
+    "movimento": "binary_sensor.piscina_orto_movimento",
+    "sensibilita": "number.piscina_orto_sensibilita_al_movimento",
+    "contatore": "input_number.camera_eventi_orto",
+    "timer": "timer.camera_finestra_orto"
+  },
+  "officina": {
+    "nome": "Officina",
+    "movimento": "binary_sensor.parco_movimento",
+    "sensibilita": "number.parco_sensibilita_al_movimento",
+    "contatore": "input_number.camera_eventi_officina",
+    "timer": "timer.camera_finestra_officina"
+  },
+  "auto": {
+    "nome": "Auto",
+    "movimento": "binary_sensor.cucina_movimento_2",
+    "sensibilita": "number.cucina_sensibilita_al_movimento_2",
+    "contatore": "input_number.camera_eventi_auto",
+    "timer": "timer.camera_finestra_auto"
+  },
+  "cucina": {
+    "nome": "Cucina / posteriore",
+    "movimento": "binary_sensor.cucina_movimento",
+    "sensibilita": "number.cucina_sensibilita_al_movimento",
+    "contatore": "input_number.camera_eventi_cucina",
+    "timer": "timer.camera_finestra_cucina"
+  },
+  "sala": {
+    "nome": "Sala",
+    "movimento": "binary_sensor.sala_movimento",
+    "sensibilita": "number.sala_sensibilita_al_movimento",
+    "contatore": "input_number.camera_eventi_sala",
+    "timer": "timer.camera_finestra_sala",
+    "ai_persona": "number.sala_ai_person_sensitivity",
+    "ai_animale": "number.sala_ai_animal_sensitivity"
+  }
+}

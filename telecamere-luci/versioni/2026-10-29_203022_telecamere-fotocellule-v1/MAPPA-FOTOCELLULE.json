@@ -1,0 +1,26 @@
+[
+  {
+    "chiave": "cancello_giardino",
+    "nome": "Cancello → Giardino",
+    "movimento": "binary_sensor.cancello_movimento",
+    "luce": "switch.1000111b06_power"
+  },
+  {
+    "chiave": "ingresso_torre",
+    "nome": "Ingresso → Torre ingresso",
+    "movimento": "binary_sensor.esterno_ingresso_movimento",
+    "luce": "switch.100184e599_power"
+  },
+  {
+    "chiave": "piscine_capanno",
+    "nome": "Piscine → Capanno",
+    "movimento": "binary_sensor.piscine_movimento",
+    "luce": "switch.100184e742_power"
+  },
+  {
+    "chiave": "orto_torre",
+    "nome": "Orto → Torre Orto",
+    "movimento": "binary_sensor.piscina_orto_movimento",
+    "luce": "switch.1002963641_power"
+  }
+]

@@ -1,0 +1,14 @@
+{
+  "esito": "PASS",
+  "motore": "Home Assistant reale, template isolati senza modificare entità di produzione",
+  "mappatura_telecamere": 25,
+  "riduzioni_sensibilita": 24,
+  "combinazioni_fotocellule": 32,
+  "automazioni_nuove": 5,
+  "telecamere": 11,
+  "fotocellule": 4,
+  "originali_eliminate": 0,
+  "alba_generale_identica": true,
+  "faretti_nativi_intatti": true,
+  "limiti": "Combinazioni logiche e struttura verificate; nessuna simulazione prova il movimento meccanico o la reale qualità del rilevamento."
+}

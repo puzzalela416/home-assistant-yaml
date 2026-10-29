@@ -1,0 +1,210 @@
+{
+  "views": [
+    {
+      "title": "Sensibilità Telecamere",
+      "path": "sensibilita-telecamere",
+      "icon": "mdi:cctv",
+      "type": "masonry",
+      "cards": [
+        {
+          "type": "entities",
+          "title": "Cancello",
+          "icon": "mdi:gate",
+          "show_header_toggle": false,
+          "entities": [
+            {
+              "entity": "number.cancello_cancello_sensibilita_al_movimento",
+              "name": "Sensibilità movimento",
+              "icon": "mdi:motion-sensor"
+            }
+          ]
+        },
+        {
+          "type": "entities",
+          "title": "Piscina Orto",
+          "icon": "mdi:cctv",
+          "show_header_toggle": false,
+          "entities": [
+            {
+              "entity": "number.cucina_sensibilita_al_movimento",
+              "name": "Sensibilità movimento",
+              "icon": "mdi:motion-sensor"
+            }
+          ]
+        },
+        {
+          "type": "entities",
+          "title": "Loggiato",
+          "icon": "mdi:cctv",
+          "show_header_toggle": false,
+          "entities": [
+            {
+              "entity": "number.loggiato_sensibilita_al_movimento",
+              "name": "Sensibilità movimento",
+              "icon": "mdi:motion-sensor"
+            }
+          ]
+        },
+        {
+          "type": "entities",
+          "title": "Piscine",
+          "icon": "mdi:pool",
+          "show_header_toggle": false,
+          "entities": [
+            {
+              "entity": "number.piscine_sensibilita_al_movimento",
+              "name": "Sensibilità movimento",
+              "icon": "mdi:motion-sensor"
+            }
+          ]
+        },
+        {
+          "type": "entities",
+          "icon": "mdi:tree",
+          "show_header_toggle": false,
+          "entities": [
+            {
+              "entity": "number.parco_sensibilita_al_movimento",
+              "name": "Sensibilità movimento",
+              "icon": "mdi:motion-sensor"
+            }
+          ],
+          "title": "officina"
+        },
+        {
+          "type": "entities",
+          "title": "Cucina posteriore",
+          "icon": "mdi:cctv",
+          "show_header_toggle": false,
+          "entities": [
+            {
+              "entity": "number.cucina_sensibilita_al_movimento",
+              "name": "Sensibilità movimento",
+              "icon": "mdi:motion-sensor"
+            }
+          ]
+        },
+        {
+          "type": "entities",
+          "icon": "mdi:car",
+          "show_header_toggle": false,
+          "entities": [
+            {
+              "entity": "number.esterno_ingresso_sensibilita_al_movimento",
+              "name": "Movimento",
+              "icon": "mdi:motion-sensor"
+            },
+            {
+              "entity": "number.esterno_ingresso_ai_person_sensitivity",
+              "name": "AI Persona",
+              "icon": "mdi:account"
+            },
+            {
+              "entity": "number.esterno_ingresso_ai_vehicle_sensitivity",
+              "name": "AI Veicolo",
+              "icon": "mdi:car"
+            },
+            {
+              "entity": "number.esterno_ingresso_ai_animal_sensitivity",
+              "name": "AI Animale",
+              "icon": "mdi:paw"
+            }
+          ],
+          "title": "ingresso"
+        },
+        {
+          "type": "entities",
+          "icon": "mdi:cctv",
+          "show_header_toggle": false,
+          "entities": [
+            {
+              "entity": "number.cucina_sensibilita_al_movimento_2",
+              "name": "Sensibilità movimento",
+              "icon": "mdi:motion-sensor"
+            }
+          ],
+          "title": "auto"
+        },
+        {
+          "type": "entities",
+          "title": "Piazzale",
+          "icon": "mdi:cctv",
+          "show_header_toggle": false,
+          "entities": [
+            {
+              "entity": "number.piazzale_sensibilita_al_movimento",
+              "name": "Movimento",
+              "icon": "mdi:motion-sensor"
+            },
+            {
+              "entity": "number.piazzale_ai_person_sensitivity",
+              "name": "AI Persona",
+              "icon": "mdi:account"
+            },
+            {
+              "entity": "number.piazzale_ai_vehicle_sensitivity",
+              "name": "AI Veicolo",
+              "icon": "mdi:car"
+            },
+            {
+              "entity": "number.piazzale_ai_animal_sensitivity",
+              "name": "AI Animale",
+              "icon": "mdi:paw"
+            }
+          ]
+        },
+        {
+          "type": "entities",
+          "title": "Tracking",
+          "icon": "mdi:cctv",
+          "show_header_toggle": false,
+          "entities": [
+            {
+              "entity": "number.tracking_sensibilita_al_movimento",
+              "name": "Movimento",
+              "icon": "mdi:motion-sensor"
+            },
+            {
+              "entity": "number.tracking_ai_person_sensitivity",
+              "name": "AI Persona",
+              "icon": "mdi:account"
+            },
+            {
+              "entity": "number.tracking_ai_vehicle_sensitivity",
+              "name": "AI Veicolo",
+              "icon": "mdi:car"
+            },
+            {
+              "entity": "number.tracking_ai_animal_sensitivity",
+              "name": "AI Animale",
+              "icon": "mdi:paw"
+            }
+          ]
+        },
+        {
+          "type": "entities",
+          "title": "Sala",
+          "icon": "mdi:cctv",
+          "show_header_toggle": false,
+          "entities": [
+            {
+              "entity": "number.sala_sensibilita_al_movimento",
+              "name": "Movimento",
+              "icon": "mdi:motion-sensor"
+            },
+            {
+              "entity": "number.sala_ai_person_sensitivity",
+              "name": "AI Persona",
+              "icon": "mdi:account"
+            },
+            {
+              "entity": "number.sala_ai_animal_sensitivity",
+              "name": "AI Animale",
+              "icon": "mdi:paw"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

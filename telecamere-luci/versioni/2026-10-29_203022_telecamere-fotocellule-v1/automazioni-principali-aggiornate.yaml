@@ -1,0 +1,704 @@
+- id: '1789839853555'
+  alias: 'Interruttore sonoff '
+  description: 'Philips: breve accende, lunga spegne. Solo uscite potenza Torre Orto
+    e Ciabatta; rilascio timer Torre Orto per priorità manuale.'
+  triggers:
+  - trigger: event.received
+    target:
+      entity_id: event.soggiorno_switch_button_1
+    options:
+      event_type:
+      - short_release
+  conditions: []
+  actions:
+  - action: timer.cancel
+    target:
+      entity_id: timer.fotocellula_orto_torre
+  - action: input_boolean.turn_off
+    target:
+      entity_id: input_boolean.fotocellula_orto_torre_gestisce
+  - action: switch.turn_on
+    target:
+      entity_id:
+      - switch.1002963641_power
+      - switch.100185132f_power
+  mode: single
+- id: '1789848073695'
+  alias: Spengi sonoff con pulsante philips
+  description: 'Philips: breve accende, lunga spegne. Solo uscite potenza Torre Orto
+    e Ciabatta; rilascio timer Torre Orto per priorità manuale.'
+  triggers:
+  - trigger: event.received
+    target:
+      entity_id: event.soggiorno_switch_button_1
+    options:
+      event_type:
+      - long_press
+  conditions: []
+  actions:
+  - action: timer.cancel
+    target:
+      entity_id: timer.fotocellula_orto_torre
+  - action: input_boolean.turn_off
+    target:
+      entity_id: input_boolean.fotocellula_orto_torre_gestisce
+  - action: switch.turn_off
+    target:
+      entity_id:
+      - switch.1002963641_power
+      - switch.100185132f_power
+  mode: single
+- id: '1790034489277'
+  alias: 'Allarme innescato= esterno acceso '
+  description: ''
+  triggers:
+  - trigger: alarm_control_panel.triggered
+    target:
+      entity_id:
+      - alarm_control_panel.allarme_casa
+      - alarm_control_panel.aqara_hub_09ab_security_system_2
+    options:
+      for: 00:00:00
+      behavior: each
+  conditions:
+  - condition: sun.is_set
+    options: {}
+  actions:
+  - action: switch.turn_on
+    metadata: {}
+    target:
+      entity_id: switch.100184e742_power
+      device_id:
+      - 7e8c1ad256d7c295b1c51937e54b9697
+      - 98fb8f4bdfe2bd492a17a20f19d3a5e0
+      - fc64ed7ed8b3a8416c7d78db4aff608b
+      - dc43e36699f5d99eb3f367c5785a3d8f
+    data: {}
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 2
+      milliseconds: 0
+  - action: switch.turn_off
+    metadata: {}
+    target:
+      entity_id:
+      - switch.1002963641_power
+      - switch.100184e742_power
+      - switch.10001119b3_power
+      - switch.1000111b06_power
+      - switch.100185132f_power
+    data: {}
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 2
+      milliseconds: 0
+  - action: switch.turn_on
+    metadata: {}
+    target:
+      entity_id: switch.100184e742_power
+      device_id:
+      - 7e8c1ad256d7c295b1c51937e54b9697
+      - 98fb8f4bdfe2bd492a17a20f19d3a5e0
+      - fc64ed7ed8b3a8416c7d78db4aff608b
+      - dc43e36699f5d99eb3f367c5785a3d8f
+    data: {}
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 2
+      milliseconds: 0
+  - action: switch.turn_off
+    metadata: {}
+    target:
+      entity_id:
+      - switch.1002963641_power
+      - switch.100184e742_power
+      - switch.10001119b3_power
+      - switch.1000111b06_power
+      - switch.100185132f_power
+    data: {}
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 2
+      milliseconds: 0
+  - action: switch.turn_on
+    metadata: {}
+    target:
+      entity_id: switch.100184e742_power
+      device_id:
+      - 7e8c1ad256d7c295b1c51937e54b9697
+      - 98fb8f4bdfe2bd492a17a20f19d3a5e0
+      - fc64ed7ed8b3a8416c7d78db4aff608b
+      - dc43e36699f5d99eb3f367c5785a3d8f
+    data: {}
+  - delay:
+      hours: 0
+      minutes: 15
+      seconds: 0
+      milliseconds: 0
+  - action: switch.turn_off
+    metadata: {}
+    target:
+      entity_id:
+      - switch.1002963641_power
+      - switch.100184e742_power
+      - switch.10001119b3_power
+      - switch.1000111b06_power
+      - switch.100185132f_power
+    data: {}
+  - action: notify.send_message
+    metadata: {}
+    target:
+      entity_id:
+      - notify.display
+      - notify.xiaomi_12
+    data:
+      message: '!!!!ALLARME SCATTATO!!!'
+      title: ATTENZIONE RICHIESTA
+  mode: single
+- id: '1790199721494'
+  alias: 'Spegni esterno all'' Alba '
+  description: ''
+  triggers:
+  - trigger: sun.sunrise
+    options:
+      offset:
+        days: 0
+        hours: 0
+        minutes: 0
+        seconds: 0
+      offset_type: before
+  conditions: []
+  actions:
+  - action: switch.turn_off
+    metadata: {}
+    target:
+      area_id: capanno
+      device_id:
+      - 7e8c1ad256d7c295b1c51937e54b9697
+      - dc43e36699f5d99eb3f367c5785a3d8f
+      - c883c7ed92083675b0e5b12c6fc4ebe0
+      - fc64ed7ed8b3a8416c7d78db4aff608b
+      - 98fb8f4bdfe2bd492a17a20f19d3a5e0
+      - 876e64fa114c6ddba94b35fc603dcfba
+    data: {}
+  - action: light.turn_off
+    metadata: {}
+    target:
+      entity_id: light.lampada_scale
+    data: {}
+  mode: single
+- id: '1790704217806'
+  alias: 'Luci parcheggio al tramonto '
+  description: Parcheggio al tramonto +15 minuti. Torre ingresso gestita dalla propria
+    fotocellula.
+  triggers:
+  - trigger: sun.sunset
+    options:
+      offset:
+        hours: 0
+        minutes: 0
+        seconds: 0
+        days: 0
+      offset_type: before
+  conditions: []
+  actions:
+  - delay:
+      hours: 0
+      minutes: 15
+      seconds: 0
+      milliseconds: 0
+  - action: switch.turn_on
+    metadata: {}
+    target:
+      entity_id: switch.10001119b3_power
+    data: {}
+  mode: single
+- id: '1791935822844'
+  alias: 'Movimento esterno accende torre ingresso '
+  description: 'STORICO: sostituita dalla gestione telecamere/fotocellule v1; conservata,
+    non riattivare insieme alla nuova logica.'
+  triggers:
+  - trigger: motion.detected
+    target:
+      entity_id: binary_sensor.esterno_ingresso_movimento
+    options:
+      behavior: each
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 2
+  conditions:
+  - condition: sun.is_set
+    options: {}
+  actions:
+  - action: switch.turn_on
+    metadata: {}
+    target:
+      entity_id: switch.100184e599_power
+    data: {}
+  - delay:
+      hours: 0
+      minutes: 2
+      seconds: 0
+      milliseconds: 0
+  - action: switch.turn_off
+    metadata: {}
+    target:
+      entity_id: switch.100184e599_power
+    data: {}
+  mode: single
+  initial_state: false
+- id: '1792284488645'
+  alias: Movimento orto accende luci
+  description: 'STORICO: sostituita dalla gestione telecamere/fotocellule v1; conservata,
+    non riattivare insieme alla nuova logica.'
+  triggers:
+  - trigger: motion.detected
+    target:
+      entity_id: binary_sensor.piscina_orto_movimento
+    options:
+      behavior: each
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 3
+  conditions:
+  - condition: sun.is_set
+    options: {}
+  actions:
+  - action: switch.turn_on
+    metadata: {}
+    target:
+      entity_id:
+      - switch.1002963641_power
+      - switch.100184e742_power
+    data: {}
+  - delay:
+      hours: 0
+      minutes: 2
+      seconds: 0
+      milliseconds: 0
+  - action: switch.turn_off
+    metadata: {}
+    target:
+      entity_id:
+      - switch.1002963641_power
+      - switch.100184e742_power
+    data: {}
+  mode: single
+  initial_state: false
+- id: '1792284834030'
+  alias: 'Movimento cancello accende giardino '
+  description: 'STORICO: sostituita dalla gestione telecamere/fotocellule v1; conservata,
+    non riattivare insieme alla nuova logica.'
+  triggers:
+  - trigger: motion.detected
+    target:
+      entity_id: binary_sensor.cancello_movimento
+    options:
+      behavior: each
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 1
+  conditions:
+  - condition: sun.is_set
+    options: {}
+  - condition: switch.is_off
+    target:
+      entity_id: switch.1000111b06_power
+    options:
+      behavior: any
+      for: 00:00:00
+  actions:
+  - action: switch.turn_on
+    metadata: {}
+    target:
+      entity_id: switch.1000111b06_power
+    data: {}
+  - delay:
+      hours: 0
+      minutes: 2
+      seconds: 0
+      milliseconds: 0
+  - action: switch.turn_off
+    metadata: {}
+    target:
+      entity_id: switch.1000111b06_power
+    data: {}
+  mode: single
+  initial_state: false
+- id: '1792364358002'
+  alias: Telecamere - Sensibilità Giorno
+  description: 'Imposta sensibilità Reolink diurna
+
+    STORICO: sostituita dalla gestione telecamere/fotocellule v1; conservata, non
+    riattivare insieme alla nuova logica.'
+  triggers:
+  - trigger: sun
+    event: sunrise
+  conditions: []
+  actions:
+  - action: number.set_value
+    target:
+      entity_id:
+      - number.cancello_cancello_sensibilita_al_movimento
+      - number.loggiato_sensibilita_al_movimento
+      - number.piscina_orto_sensibilita_al_movimento
+      - number.piscine_sensibilita_al_movimento
+      - number.parco_sensibilita_al_movimento
+      - number.cucina_sensibilita_al_movimento
+      - number.cucina_sensibilita_al_movimento_2
+      - number.parking_sensibilita_al_movimento
+      - number.piazzale_sensibilita_al_movimento
+      - number.sala_sensibilita_al_movimento
+      - number.tracking_sensibilita_al_movimento
+    data:
+      value: 42
+  - action: number.set_value
+    target:
+      entity_id:
+      - number.parking_ai_person_sensitivity
+      - number.piazzale_ai_person_sensitivity
+      - number.sala_ai_person_sensitivity
+      - number.tracking_ai_person_sensitivity
+    data:
+      value: 100
+  - action: number.set_value
+    target:
+      entity_id:
+      - number.parking_ai_vehicle_sensitivity
+      - number.piazzale_ai_vehicle_sensitivity
+      - number.tracking_ai_vehicle_sensitivity
+    data:
+      value: 20
+  - action: number.set_value
+    target:
+      entity_id:
+      - number.parking_ai_animal_sensitivity
+      - number.piazzale_ai_animal_sensitivity
+      - number.sala_ai_animal_sensitivity
+      - number.tracking_ai_animal_sensitivity
+    data:
+      value: 10
+  mode: single
+  initial_state: false
+- id: '1792364592742'
+  alias: Telecamere - Sensibilità Notte
+  description: 'Imposta sensibilità Reolink notturna
+
+    STORICO: sostituita dalla gestione telecamere/fotocellule v1; conservata, non
+    riattivare insieme alla nuova logica.'
+  triggers:
+  - trigger: sun
+    event: sunset
+  conditions: []
+  actions:
+  - action: number.set_value
+    target:
+      entity_id:
+      - number.cancello_cancello_sensibilita_al_movimento
+      - number.loggiato_sensibilita_al_movimento
+      - number.piscina_orto_sensibilita_al_movimento
+      - number.piscine_sensibilita_al_movimento
+      - number.parco_sensibilita_al_movimento
+      - number.cucina_sensibilita_al_movimento
+      - number.cucina_sensibilita_al_movimento_2
+      - number.parking_sensibilita_al_movimento
+      - number.piazzale_sensibilita_al_movimento
+      - number.sala_sensibilita_al_movimento
+      - number.tracking_sensibilita_al_movimento
+    data:
+      value: 5
+  - action: number.set_value
+    target:
+      entity_id:
+      - number.parking_ai_person_sensitivity
+      - number.piazzale_ai_person_sensitivity
+      - number.sala_ai_person_sensitivity
+      - number.tracking_ai_person_sensitivity
+    data:
+      value: 100
+  - action: number.set_value
+    target:
+      entity_id:
+      - number.parking_ai_vehicle_sensitivity
+      - number.piazzale_ai_vehicle_sensitivity
+      - number.tracking_ai_vehicle_sensitivity
+    data:
+      value: 10
+  - action: number.set_value
+    target:
+      entity_id:
+      - number.parking_ai_animal_sensitivity
+      - number.piazzale_ai_animal_sensitivity
+      - number.sala_ai_animal_sensitivity
+      - number.tracking_ai_animal_sensitivity
+    data:
+      value: 10
+  mode: single
+  initial_state: false
+- id: '1792950598614'
+  alias: faretto telecamera ingresso accende fari torre ingresso
+  description: 'STORICO: sostituita dalla gestione telecamere/fotocellule v1; conservata,
+    non riattivare insieme alla nuova logica.'
+  triggers:
+  - trigger: state
+    entity_id:
+    - light.esterno_ingresso_faretto
+    from:
+    - 'off'
+    - 'on'
+  - trigger: state
+    entity_id:
+    - switch.100184e599_power
+    from:
+    - 'off'
+    - 'on'
+  conditions: []
+  actions:
+  - action: switch.turn_on
+    metadata: {}
+    target:
+      entity_id: switch.100184e599_power
+    data: {}
+  - action: light.turn_on
+    metadata: {}
+    target:
+      entity_id: light.esterno_ingresso_faretto
+    data: {}
+  mode: single
+  initial_state: false
+- id: '1792950856621'
+  alias: spegnimento torre ingresso spegne faretto telecamer aingresso
+  description: 'STORICO: sostituita dalla gestione telecamere/fotocellule v1; conservata,
+    non riattivare insieme alla nuova logica.'
+  triggers:
+  - trigger: state
+    entity_id:
+    - switch.100184e599_power
+    from:
+    - 'on'
+    to:
+    - 'off'
+  conditions: []
+  actions:
+  - action: light.turn_off
+    metadata: {}
+    target:
+      entity_id: light.esterno_ingresso_faretto
+    data: {}
+  mode: single
+  initial_state: false
+- id: '1792973386743'
+  alias: Piscine - riduci sensibilità per continui cambi movimento
+  description: 'Se il sensore movimento Piscine cambia stato almeno 10 volte in 5
+    minuti, riduce la sensibilità della telecamera di 2 punti. Rispetta il valore
+    minimo della telecamera.
+
+    STORICO: sostituita dalla gestione telecamere/fotocellule v1; conservata, non
+    riattivare insieme alla nuova logica.'
+  triggers:
+  - trigger: state
+    entity_id: binary_sensor.piscine_movimento
+    from: 'off'
+    to: 'on'
+    id: cambio_movimento
+  - trigger: state
+    entity_id: binary_sensor.piscine_movimento
+    from: 'on'
+    to: 'off'
+    id: cambio_movimento
+  - trigger: event
+    event_type: timer.finished
+    event_data:
+      entity_id: timer.timer_piscine_monitor_movimento
+    id: fine_finestra
+  conditions: []
+  actions:
+  - choose:
+    - conditions:
+      - condition: trigger
+        id: cambio_movimento
+      sequence:
+      - choose:
+        - conditions:
+          - condition: state
+            entity_id: timer.timer_piscine_monitor_movimento
+            state: idle
+          sequence:
+          - action: counter.reset
+            target:
+              entity_id: counter.counter_piscine_cambi_movimento
+          - action: timer.start
+            target:
+              entity_id: timer.timer_piscine_monitor_movimento
+            data:
+              duration: 00:05:00
+      - condition: state
+        entity_id: timer.timer_piscine_monitor_movimento
+        state: active
+      - action: counter.increment
+        target:
+          entity_id: counter.counter_piscine_cambi_movimento
+    - conditions:
+      - condition: trigger
+        id: fine_finestra
+      sequence:
+      - variables:
+          conteggio: "{{\n  states(\n    'counter.counter_piscine_cambi_movimento'\n\
+            \  ) | int(0)\n}}"
+      - if:
+        - condition: template
+          value_template: "{{\n  conteggio >= 10\n  and has_value(\n    'number.piscine_sensibilita_al_movimento'\n\
+            \  )\n}}"
+        then:
+        - variables:
+            sensibilita_attuale: "{{\n  states(\n    'number.piscine_sensibilita_al_movimento'\n\
+              \  ) | int(0)\n}}"
+            sensibilita_minima: "{{\n  state_attr(\n    'number.piscine_sensibilita_al_movimento',\n\
+              \    'min'\n  ) | int(0)\n}}"
+        - variables:
+            nuova_sensibilita: "{{\n  [\n    sensibilita_attuale - 2,\n    sensibilita_minima\n\
+              \  ] | max\n}}"
+        - if:
+          - condition: template
+            value_template: "{{\n  sensibilita_attuale >\n  sensibilita_minima\n}}"
+          then:
+          - action: number.set_value
+            target:
+              entity_id: number.piscine_sensibilita_al_movimento
+            data:
+              value: '{{ nuova_sensibilita }}'
+          - action: persistent_notification.create
+            data:
+              title: Telecamera Piscine
+              message: Rilevati {{ conteggio }} cambiamenti di movimento in 5 minuti.
+                Sensibilità ridotta da {{ sensibilita_attuale }} a {{ nuova_sensibilita
+                }}.
+      - action: counter.reset
+        target:
+          entity_id: counter.counter_piscine_cambi_movimento
+  mode: queued
+  max: 50
+  max_exceeded: warning
+  initial_state: false
+- id: '1793146592865'
+  alias: 'Sensibilità telecamera ridotta '
+  description: 'Se il sensore movimento Piscine cambia stato almeno 10 volte in 5
+    minuti, riduce la sensibilità della telecamera di 2 punti. Rispetta il valore
+    minimo della telecamera.
+
+    STORICO: sostituita dalla gestione telecamere/fotocellule v1; conservata, non
+    riattivare insieme alla nuova logica.'
+  triggers:
+  - trigger: state
+    entity_id:
+    - binary_sensor.piscine_movimento
+    - binary_sensor.cancello_movimento
+    - binary_sensor.loggiato_movimento
+    - binary_sensor.tracking_movimento
+    - binary_sensor.cucina_movimento_2
+    - binary_sensor.piscina_orto_movimento
+    - number.esterno_ingresso_sensibilita_al_movimento
+    - number.cucina_sensibilita_al_movimento
+    - binary_sensor.piazzale_movimento
+    from:
+    - 'off'
+    to:
+    - 'on'
+    id: cambio_movimento
+  - trigger: state
+    entity_id:
+    - binary_sensor.piscine_movimento
+    - binary_sensor.cancello_movimento
+    - binary_sensor.tracking_movimento
+    - binary_sensor.loggiato_movimento
+    - binary_sensor.piazzale_movimento
+    - binary_sensor.piscina_orto_movimento
+    - binary_sensor.cucina_movimento_2
+    - number.esterno_ingresso_sensibilita_al_movimento
+    - number.cucina_sensibilita_al_movimento
+    from:
+    - 'on'
+    to:
+    - 'off'
+    id: cambio_movimento
+  - trigger: event
+    event_type: timer.finished
+    event_data:
+      entity_id: timer.timer_piscine_monitor_movimento
+    id: fine_finestra
+  conditions: []
+  actions:
+  - choose:
+    - conditions:
+      - condition: trigger
+        id: cambio_movimento
+      sequence:
+      - choose:
+        - conditions:
+          - condition: state
+            entity_id: timer.timer_piscine_monitor_movimento
+            state: idle
+          sequence:
+          - action: counter.reset
+            target:
+              entity_id: counter.counter_piscine_cambi_movimento
+          - action: timer.start
+            target:
+              entity_id: timer.timer_piscine_monitor_movimento
+            data:
+              duration: 00:05:00
+      - condition: state
+        entity_id: timer.timer_piscine_monitor_movimento
+        state: active
+      - action: counter.increment
+        target:
+          entity_id: counter.counter_piscine_cambi_movimento
+    - conditions:
+      - condition: trigger
+        id: fine_finestra
+      sequence:
+      - variables:
+          conteggio: "{{\n  states(\n    'counter.counter_piscine_cambi_movimento'\n\
+            \  ) | int(0)\n}}"
+      - if:
+        - condition: template
+          value_template: "{{\n  conteggio >= 10\n  and has_value(\n    'number.piscine_sensibilita_al_movimento'\n\
+            \  )\n}}"
+        then:
+        - variables:
+            sensibilita_attuale: "{{\n  states(\n    'number.piscine_sensibilita_al_movimento'\n\
+              \  ) | int(0)\n}}"
+            sensibilita_minima: "{{\n  state_attr(\n    'number.piscine_sensibilita_al_movimento',\n\
+              \    'min'\n  ) | int(0)\n}}"
+        - variables:
+            nuova_sensibilita: "{{\n  [\n    sensibilita_attuale - 2,\n    sensibilita_minima\n\
+              \  ] | max\n}}"
+        - if:
+          - condition: template
+            value_template: "{{\n  sensibilita_attuale >\n  sensibilita_minima\n}}"
+          then:
+          - action: number.set_value
+            target:
+              entity_id: number.piscine_sensibilita_al_movimento
+            data:
+              value: '{{ nuova_sensibilita }}'
+          - action: persistent_notification.create
+            data:
+              title: Telecamera Piscine
+              message: Rilevati {{ conteggio }} cambiamenti di movimento in 5 minuti.
+                Sensibilità ridotta da {{ sensibilita_attuale }} a {{ nuova_sensibilita
+                }}.
+      - action: counter.reset
+        target:
+          entity_id: counter.counter_piscine_cambi_movimento
+  mode: queued
+  max: 50
+  max_exceeded: warning
+  initial_state: false

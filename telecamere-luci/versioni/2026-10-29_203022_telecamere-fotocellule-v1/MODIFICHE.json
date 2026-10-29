@@ -1,0 +1,31 @@
+{
+  "automazioni_originali_modificate": [
+    "1789839853555",
+    "1789848073695",
+    "1790704217806",
+    "1791935822844",
+    "1792284488645",
+    "1792284834030",
+    "1792364358002",
+    "1792364592742",
+    "1792950598614",
+    "1792950856621",
+    "1792973386743",
+    "1793146592865"
+  ],
+  "disabilitate_conservate": [
+    "1791935822844",
+    "1792284488645",
+    "1792284834030",
+    "1792364358002",
+    "1792364592742",
+    "1792950598614",
+    "1792950856621",
+    "1792973386743",
+    "1793146592865"
+  ],
+  "numero_automazioni_nuove": 5,
+  "alba_generale": "invariata su esplicita richiesta",
+  "philips": "breve ON, lungo OFF per Torre Orto e Ciabatta",
+  "faretti": "nessuna scrittura, gestione nativa camere"
+}

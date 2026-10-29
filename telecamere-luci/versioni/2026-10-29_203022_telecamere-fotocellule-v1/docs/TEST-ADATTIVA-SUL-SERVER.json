@@ -1,0 +1,94 @@
+{
+  "esito": "PASS",
+  "tipo": "Ciclo timer.start→timer.finish realmente eseguito su HA per verificare dispatch indipendente; contatori a zero, nessun falso movimento",
+  "risultati": [
+    {
+      "camera": "Cancello",
+      "esito": "PASS",
+      "timer": "timer.camera_finestra_cancello",
+      "chiave": "cancello",
+      "run_id": "79208ddf4650304ce5dc0229d3b4cda3",
+      "percorso": "fine finestra con conteggio zero, nessuna variazione sensibilità richiesta"
+    },
+    {
+      "camera": "Ingresso",
+      "esito": "PASS",
+      "timer": "timer.camera_finestra_ingresso",
+      "chiave": "ingresso",
+      "run_id": "e4609fa247ec6e1c24cdbf4e5d6f3616",
+      "percorso": "fine finestra con conteggio zero, nessuna variazione sensibilità richiesta"
+    },
+    {
+      "camera": "Piazzale",
+      "esito": "PASS",
+      "timer": "timer.camera_finestra_piazzale",
+      "chiave": "piazzale",
+      "run_id": "d3028885b16e27b49350f88c5eeb3772",
+      "percorso": "fine finestra con conteggio zero, nessuna variazione sensibilità richiesta"
+    },
+    {
+      "camera": "Tracking / Giardino",
+      "esito": "PASS",
+      "timer": "timer.camera_finestra_tracking",
+      "chiave": "tracking",
+      "run_id": "7b44871bc62c58a5d9a845f9099b1b41",
+      "percorso": "fine finestra con conteggio zero, nessuna variazione sensibilità richiesta"
+    },
+    {
+      "camera": "Loggiato",
+      "esito": "PASS",
+      "timer": "timer.camera_finestra_loggiato",
+      "chiave": "loggiato",
+      "run_id": "aebd9bc3b0e3df52d993587310bbae9c",
+      "percorso": "fine finestra con conteggio zero, nessuna variazione sensibilità richiesta"
+    },
+    {
+      "camera": "Piscine",
+      "esito": "PASS",
+      "timer": "timer.camera_finestra_piscine",
+      "chiave": "piscine",
+      "run_id": "70eeae5b5f8e476be20aaba86821f4c1",
+      "percorso": "fine finestra con conteggio zero, nessuna variazione sensibilità richiesta"
+    },
+    {
+      "camera": "Orto",
+      "esito": "PASS",
+      "timer": "timer.camera_finestra_orto",
+      "chiave": "orto",
+      "run_id": "350b5b21086a7887c7da19d2fa38eeb0",
+      "percorso": "fine finestra con conteggio zero, nessuna variazione sensibilità richiesta"
+    },
+    {
+      "camera": "Officina",
+      "esito": "PASS",
+      "timer": "timer.camera_finestra_officina",
+      "chiave": "officina",
+      "run_id": "9b1b1169b3d5219ab02463032963dc04",
+      "percorso": "fine finestra con conteggio zero, nessuna variazione sensibilità richiesta"
+    },
+    {
+      "camera": "Auto",
+      "esito": "PASS",
+      "timer": "timer.camera_finestra_auto",
+      "chiave": "auto",
+      "run_id": "5cd037b8c34467bc213510052e1da29d",
+      "percorso": "fine finestra con conteggio zero, nessuna variazione sensibilità richiesta"
+    },
+    {
+      "camera": "Cucina / posteriore",
+      "esito": "PASS",
+      "timer": "timer.camera_finestra_cucina",
+      "chiave": "cucina",
+      "run_id": "8f3cfc2e89125c281585266755e0ef63",
+      "percorso": "fine finestra con conteggio zero, nessuna variazione sensibilità richiesta"
+    },
+    {
+      "camera": "Sala",
+      "esito": "PASS",
+      "timer": "timer.camera_finestra_sala",
+      "chiave": "sala",
+      "run_id": "4930e41d2678027e0d8a75a4c84cba98",
+      "percorso": "fine finestra con conteggio zero, nessuna variazione sensibilità richiesta"
+    }
+  ]
+}

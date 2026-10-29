@@ -1,0 +1,81 @@
+{
+  "data_inizio": "2026-10-29T19:24:20.031364+00:00",
+  "durata_s": 120,
+  "risultati": [
+    {
+      "fotocellula": "Cancello → Giardino",
+      "esito": "PASS",
+      "run": {
+        "last_step": "action/0/choose/6/sequence/0/entity_id/0",
+        "run_id": "b62ad6bbc236f82d73edc6ecf86fc379",
+        "state": "stopped",
+        "script_execution": "finished",
+        "timestamp": {
+          "start": "2026-10-29T19:26:19.005287+00:00",
+          "finish": "2026-10-29T19:26:19.007103+00:00"
+        },
+        "domain": "automation",
+        "item_id": "fotocellula_cancello_giardino_v1",
+        "trigger": "event 'timer.finished'"
+      },
+      "limite": "Scadenza reale 120 secondi e percorso protetto senza proprietà luce; nessuna accensione artificiale"
+    },
+    {
+      "fotocellula": "Ingresso → Torre ingresso",
+      "esito": "PASS",
+      "run": {
+        "last_step": "action/0/choose/6/sequence/0/entity_id/0",
+        "run_id": "42a5136fe6921126f012e24176201db1",
+        "state": "stopped",
+        "script_execution": "finished",
+        "timestamp": {
+          "start": "2026-10-29T19:26:19.013833+00:00",
+          "finish": "2026-10-29T19:26:19.015703+00:00"
+        },
+        "domain": "automation",
+        "item_id": "fotocellula_ingresso_torre_v1",
+        "trigger": "event 'timer.finished'"
+      },
+      "limite": "Scadenza reale 120 secondi e percorso protetto senza proprietà luce; nessuna accensione artificiale"
+    },
+    {
+      "fotocellula": "Piscine → Capanno",
+      "esito": "PASS",
+      "run": {
+        "last_step": "action/0/choose/6/sequence/0/entity_id/0",
+        "run_id": "9106dde426d32ae78fccc93f9ea841c7",
+        "state": "stopped",
+        "script_execution": "finished",
+        "timestamp": {
+          "start": "2026-10-29T19:26:19.007185+00:00",
+          "finish": "2026-10-29T19:26:19.013728+00:00"
+        },
+        "domain": "automation",
+        "item_id": "fotocellula_piscine_capanno_v1",
+        "trigger": "event 'timer.finished'"
+      },
+      "limite": "Scadenza reale 120 secondi e percorso protetto senza proprietà luce; nessuna accensione artificiale"
+    },
+    {
+      "fotocellula": "Orto → Torre Orto",
+      "esito": "PASS",
+      "run": {
+        "last_step": "action/0/choose/6/sequence/0/entity_id/0",
+        "run_id": "fb19313b71db226647581132e84da748",
+        "state": "stopped",
+        "script_execution": "finished",
+        "timestamp": {
+          "start": "2026-10-29T19:26:19.003024+00:00",
+          "finish": "2026-10-29T19:26:19.005182+00:00"
+        },
+        "domain": "automation",
+        "item_id": "fotocellula_orto_torre_v1",
+        "trigger": "event 'timer.finished'"
+      },
+      "limite": "Scadenza reale 120 secondi e percorso protetto senza proprietà luce; nessuna accensione artificiale"
+    }
+  ],
+  "eventi_movimento_artificiali": false,
+  "scritture_luci_di_test": false,
+  "esito": "PASS"
+}

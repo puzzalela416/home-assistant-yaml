@@ -1,0 +1,15 @@
+{
+  "esito": "PASS",
+  "casi_azioni_reali_yaml": 512,
+  "modalita": "Interprete delle sequenze YAML candidate con condizioni template renderizzate sul vero HA; nessun comando inviato ai dispositivi",
+  "copertura": [
+    "quattro zone indipendenti",
+    "giorno e notte",
+    "priorità allarme",
+    "luce già manuale",
+    "proprietà del timer",
+    "timer dalla fine movimento",
+    "nessun faretto comandato"
+  ],
+  "limite": "Non sostituisce il collaudo fisico delle lampade"
+}

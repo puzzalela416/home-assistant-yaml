@@ -1,0 +1,13 @@
+{
+  "data": "2026-10-29T20:20:19.121807+01:00",
+  "esito": "installato",
+  "definizioni_eliminate": 0,
+  "automazioni_originali_conservate": true,
+  "configurazione_generale_invariata": true,
+  "registro_orto": {
+    "entity_id": "number.piscina_orto_sensibilita_al_movimento",
+    "disabled_by": null
+  },
+  "sensibilita_scritte_durante_installazione": false,
+  "test_luci_artificiali": false
+}

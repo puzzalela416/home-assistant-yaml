@@ -1,0 +1,110 @@
+{
+  "data": "2026-10-29T20:22:30.744850+01:00",
+  "tipo": "Servizi number.set_value eseguiti realmente su HA e valori riletti",
+  "modifica_voluta": "Solo Orto 37→5 per profilo notturno; altre camere riscritte allo stesso valore",
+  "telecamere": 11,
+  "risultati": [
+    {
+      "camera": "Cancello",
+      "entity_id": "number.cancello_cancello_sensibilita_al_movimento",
+      "prima": 5.0,
+      "richiesto": 5.0,
+      "servizio": "OK",
+      "riletto": "5",
+      "esito": "PASS"
+    },
+    {
+      "camera": "Ingresso",
+      "entity_id": "number.esterno_ingresso_sensibilita_al_movimento",
+      "prima": 1.0,
+      "richiesto": 1.0,
+      "servizio": "OK",
+      "riletto": "1",
+      "esito": "PASS"
+    },
+    {
+      "camera": "Piazzale",
+      "entity_id": "number.piazzale_sensibilita_al_movimento",
+      "prima": 5.0,
+      "richiesto": 5.0,
+      "servizio": "OK",
+      "riletto": "5",
+      "esito": "PASS"
+    },
+    {
+      "camera": "Tracking / Giardino",
+      "entity_id": "number.tracking_sensibilita_al_movimento",
+      "prima": 5.0,
+      "richiesto": 5.0,
+      "servizio": "OK",
+      "riletto": "5",
+      "esito": "PASS"
+    },
+    {
+      "camera": "Loggiato",
+      "entity_id": "number.loggiato_sensibilita_al_movimento",
+      "prima": 5.0,
+      "richiesto": 5.0,
+      "servizio": "OK",
+      "riletto": "5",
+      "esito": "PASS"
+    },
+    {
+      "camera": "Piscine",
+      "entity_id": "number.piscine_sensibilita_al_movimento",
+      "prima": 1.0,
+      "richiesto": 1.0,
+      "servizio": "OK",
+      "riletto": "1",
+      "esito": "PASS"
+    },
+    {
+      "camera": "Orto",
+      "entity_id": "number.piscina_orto_sensibilita_al_movimento",
+      "prima": 37.0,
+      "richiesto": 5.0,
+      "servizio": "OK",
+      "riletto": "5",
+      "esito": "PASS"
+    },
+    {
+      "camera": "Officina",
+      "entity_id": "number.parco_sensibilita_al_movimento",
+      "prima": 5.0,
+      "richiesto": 5.0,
+      "servizio": "OK",
+      "riletto": "5",
+      "esito": "PASS"
+    },
+    {
+      "camera": "Auto",
+      "entity_id": "number.cucina_sensibilita_al_movimento_2",
+      "prima": 5.0,
+      "richiesto": 5.0,
+      "servizio": "OK",
+      "riletto": "5",
+      "esito": "PASS"
+    },
+    {
+      "camera": "Cucina / posteriore",
+      "entity_id": "number.cucina_sensibilita_al_movimento",
+      "prima": 5.0,
+      "richiesto": 5.0,
+      "servizio": "OK",
+      "riletto": "5",
+      "esito": "PASS"
+    },
+    {
+      "camera": "Sala",
+      "entity_id": "number.sala_sensibilita_al_movimento",
+      "prima": 5.0,
+      "richiesto": 5.0,
+      "servizio": "OK",
+      "riletto": "5",
+      "esito": "PASS"
+    }
+  ],
+  "esito": "PASS",
+  "faretti_comandati": false,
+  "accensioni_luci_artificiali": false
+}
