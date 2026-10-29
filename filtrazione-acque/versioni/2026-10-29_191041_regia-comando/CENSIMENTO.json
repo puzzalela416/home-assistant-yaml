@@ -1,0 +1,200 @@
+{
+  "data": "2026-10-29T19:10:42.810240+01:00",
+  "versione": "2026-10-29_191041_regia-comando",
+  "fonti_yaml": [
+    "configuration.yaml",
+    "packages/filtrazione_v2.yaml",
+    "packages/pr205_diagnostica.yaml",
+    "automations.yaml",
+    "scripts.yaml"
+  ],
+  "dipendenza_letta_non_modificata": "packages/energia_bilancio_v7.yaml e template energia di configuration.yaml",
+  "automazioni": [
+    {
+      "id": "1791284997220",
+      "entity_id": "automation.ricircolo_cisterna_pozzo",
+      "nome": "Ricircolo cisterna pozzo",
+      "gruppo": "archivio_disabilitato",
+      "stato": "off"
+    },
+    {
+      "id": "1792713530771",
+      "entity_id": "automation.riempimento_cisterna_pozzo",
+      "nome": "riempimento cisterna pozzo",
+      "gruppo": "archivio_disabilitato",
+      "stato": "off"
+    },
+    {
+      "id": "1792713878572",
+      "entity_id": "automation.spegnimento_automatico_cloratore",
+      "nome": "spegnimento automatico cloratore",
+      "gruppo": "archivio_disabilitato",
+      "stato": "off"
+    },
+    {
+      "id": "1793232841766",
+      "entity_id": "automation.spegnimenti_riempimento_cisterna_pozzo",
+      "nome": "Spegnimenti riempimento cisterna pozzo",
+      "gruppo": "archivio_disabilitato",
+      "stato": "off"
+    },
+    {
+      "id": "1793233273343",
+      "entity_id": "automation.riempimento_cisterna_potabile",
+      "nome": "Riempimento cisterna potabile",
+      "gruppo": "archivio_disabilitato",
+      "stato": "off"
+    },
+    {
+      "id": "1793233466802",
+      "entity_id": "automation.spegni_riempimento_potabile",
+      "nome": "Spegni riempimento potabile",
+      "gruppo": "archivio_disabilitato",
+      "stato": "off"
+    },
+    {
+      "id": "filtrazione_v2_heartbeat",
+      "entity_id": "automation.filtrazione_v2_presenza_ha",
+      "nome": "Filtrazione v2 - Presenza HA",
+      "gruppo": "comando_ha",
+      "stato": "on"
+    },
+    {
+      "id": "filtrazione_v2_stop_supervisione",
+      "entity_id": "automation.filtrazione_v2_rilascio_supervisione",
+      "nome": "Filtrazione v2 - Rilascio supervisione",
+      "gruppo": "comando_ha",
+      "stato": "on"
+    },
+    {
+      "id": "filtrazione_v2_regia_automatica",
+      "entity_id": "automation.filtrazione_v2_regia_automatica_cisterne",
+      "nome": "Filtrazione v2 - Regia automatica cisterne",
+      "gruppo": "comando_ha",
+      "stato": "on"
+    },
+    {
+      "id": "pr205_diag_inizio_controlavaggio_20261025",
+      "entity_id": "automation.pr205_diag_inizio_controlavaggio_multi_stadio",
+      "nome": "PR205 DIAG - Inizio controlavaggio multi-stadio",
+      "gruppo": "diagnostica",
+      "stato": "on"
+    },
+    {
+      "id": "pr205_diag_fine_controlavaggio_20261025",
+      "entity_id": "automation.pr205_diag_fine_finestra_controlavaggio",
+      "nome": "PR205 DIAG - Fine finestra controlavaggio",
+      "gruppo": "diagnostica",
+      "stato": "on"
+    },
+    {
+      "id": "pr205_diag_memoria_chiusura_q2_20261025",
+      "entity_id": "automation.pr205_diag_memoria_chiusura_q2_per_q3",
+      "nome": "PR205 DIAG - Memoria chiusura Q2 per Q3",
+      "gruppo": "diagnostica",
+      "stato": "on"
+    }
+  ],
+  "script": [
+    {
+      "entity_id": "script.filtrazione_v2_avvia_potabile",
+      "alias": "Filtrazione v2 - Richiedi potabile"
+    },
+    {
+      "entity_id": "script.filtrazione_v2_rilascia_potabile",
+      "alias": "Filtrazione v2 - Rilascia potabile"
+    },
+    {
+      "entity_id": "script.filtrazione_v2_avvia_pozzo",
+      "alias": "Filtrazione v2 - Richiedi pozzo"
+    },
+    {
+      "entity_id": "script.filtrazione_v2_rilascia_pozzo",
+      "alias": "Filtrazione v2 - Rilascia pozzo"
+    }
+  ],
+  "diagnostiche": [
+    {
+      "nome": "PR205 DIAG Scarico oltre un ora",
+      "unique_id": "pr205_diag_scarico_oltre_ora_20261025"
+    },
+    {
+      "nome": "PR205 DIAG Filtro 2 non partito",
+      "unique_id": "pr205_diag_filtro2_non_partito_20261025"
+    },
+    {
+      "nome": "PR205 DIAG Filtro 3 non partito",
+      "unique_id": "pr205_diag_filtro3_non_partito_20261025"
+    },
+    {
+      "nome": "PR205 DIAG Q2 senza ricircolo Q3",
+      "unique_id": "pr205_diag_q2_senza_q3_20261025"
+    },
+    {
+      "nome": "PR205 DIAG Q2 senza cloratore Q4",
+      "unique_id": "pr205_diag_q2_senza_q4_20261025"
+    },
+    {
+      "nome": "PR205 DIAG Cloratore Q4 senza Q2",
+      "unique_id": "pr205_diag_q4_senza_q2_20261025"
+    },
+    {
+      "nome": "PR205 DIAG Ricircolo non mantenuto",
+      "unique_id": "pr205_diag_ricircolo_non_mantenuto_20261025"
+    },
+    {
+      "nome": "PR205 DIAG Pozzo non sale con Q2",
+      "unique_id": "pr205_diag_pozzo_non_sale_20261025"
+    },
+    {
+      "nome": "PR205 DIAG Potabile non sale con Q1",
+      "unique_id": "pr205_diag_potabile_non_sale_20261025"
+    },
+    {
+      "nome": "PR205 DIAG Calo pozzo ingiustificato",
+      "unique_id": "pr205_diag_calo_pozzo_20261025"
+    },
+    {
+      "nome": "PR205 DIAG Calo potabile ingiustificato",
+      "unique_id": "pr205_diag_calo_potabile_20261025"
+    },
+    {
+      "nome": "PR205 DIAG Dati PLC non disponibili",
+      "unique_id": "pr205_diag_plc_assente_20261025"
+    }
+  ],
+  "riferimenti_entita": 79,
+  "entita_mancanti": [],
+  "entita_senza_dati": [],
+  "automatismo": "on",
+  "supervisione": "on",
+  "plc_protocollo": "2",
+  "stato_regia": "Fuori fascia 10–16",
+  "collaudo_fisico": "non eseguito, come richiesto",
+  "regole": {
+    "potabile": {
+      "avvio_sotto_cm": 40,
+      "obiettivo_cm": 110
+    },
+    "pozzo": {
+      "avvio_sotto_cm": 70,
+      "obiettivo_cm": 159
+    },
+    "fascia": "10:00 inclusa–16:00 esclusa",
+    "energia_solo_avvio": true,
+    "soc_minimo_inclusivo": 35,
+    "soc_entita": "sensor.jk_banco_soc",
+    "rete_entita": [
+      "sensor.growatt_1_ingresso_rete_potenza",
+      "sensor.growatt_1_carica_da_rete_potenza",
+      "sensor.growatt_2_ingresso_rete_potenza",
+      "sensor.growatt_2_carica_da_rete_potenza"
+    ],
+    "rete_w_massimo": 0,
+    "dati_energia_massima_eta_s": 120,
+    "consenso_stabile_s": 60,
+    "scorta_bassa_stabile_s": 20,
+    "nessun_avvio_durante_test": true,
+    "alle_16": "Blocca nuovi avvii; lascia proseguire i cicli gia iniziati"
+  }
+}

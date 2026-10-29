@@ -1,0 +1,16 @@
+[
+  {
+    "script": "filtrazione_v2_rilascia_potabile",
+    "esito": "PASS",
+    "inizio": "2026-10-29T17:44:19.293082+00:00",
+    "ultimo_step": "sequence/2",
+    "limite": "Richiesta gia a zero: verificata esecuzione reale e scrittura di rilascio, non arresto di un riempimento in corso."
+  },
+  {
+    "script": "filtrazione_v2_rilascia_pozzo",
+    "esito": "PASS",
+    "inizio": "2026-10-29T17:44:19.485946+00:00",
+    "ultimo_step": "sequence/2",
+    "limite": "Richiesta gia a zero: verificata esecuzione reale e scrittura di rilascio, non arresto di un riempimento in corso."
+  }
+]

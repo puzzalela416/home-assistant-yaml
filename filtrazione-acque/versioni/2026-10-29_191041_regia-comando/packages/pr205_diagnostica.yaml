@@ -1,0 +1,361 @@
+# Timer dei filtri: UTC+02 fisso. Riconoscimento e allarmi usano lo stesso riferimento.
+input_boolean:
+  pr205_diag_ciclo_attivo:
+    name: PR205 DIAG Ciclo controlavaggio attivo
+input_datetime:
+  pr205_diag_inizio_lavaggio:
+    name: PR205 DIAG Inizio controlavaggio
+    has_date: true
+    has_time: true
+  pr205_diag_ultimo_filtro2:
+    name: PR205 DIAG Ultimo filtro 2
+    has_date: true
+    has_time: true
+  pr205_diag_ultimo_filtro3:
+    name: PR205 DIAG Ultimo filtro 3
+    has_date: true
+    has_time: true
+  pr205_diag_ultimo_filtro4:
+    name: PR205 DIAG Ultimo filtro 4 presunto
+    has_date: true
+    has_time: true
+  pr205_diag_ultima_chiusura_q2:
+    name: PR205 DIAG Ultima chiusura Q2 con Q3 attivo
+    has_date: true
+    has_time: true
+input_select:
+  pr205_diag_filtro_in_ciclo:
+    name: PR205 DIAG Filtro in controlavaggio
+    options:
+    - Nessuno
+    - Filtro 2 programmato
+    - Filtro 3 programmato
+    - Filtro 4 presunto
+input_number:
+  pr205_diag_durata_ultimo_lavaggio:
+    name: PR205 DIAG Durata ultimo controlavaggio
+    min: 0
+    max: 10000
+    step: 0.1
+    mode: box
+    unit_of_measurement: min
+template:
+- triggers:
+  - trigger: time_pattern
+    minutes: /1
+  sensor:
+  - name: PR205 DIAG Campione pozzo
+    unique_id: pr205_diag_campione_pozzo_20261025
+    unit_of_measurement: cm
+    availability: '{{ is_number(states(''sensor.livello_pozzo_plc'')) }}'
+    state: '{{ states(''sensor.livello_pozzo_plc'') | float(0) }}'
+    attributes:
+      campionato_il: '{{ now().strftime(''%Y-%m-%d %H:%M:%S'') }}'
+  - name: PR205 DIAG Campione potabile
+    unique_id: pr205_diag_campione_potabile_20261025
+    unit_of_measurement: cm
+    availability: '{{ is_number(states(''sensor.livello_potabile_plc'')) }}'
+    state: '{{ states(''sensor.livello_potabile_plc'') | float(0) }}'
+    attributes:
+      campionato_il: '{{ now().strftime(''%Y-%m-%d %H:%M:%S'') }}'
+- binary_sensor:
+  - name: PR205 DIAG Scarico oltre un ora
+    unique_id: pr205_diag_scarico_oltre_ora_20261025
+    availability: '{{ states(''sensor.pr205_blocco_filtri'') in [''0'', ''1''] }}'
+    state: "{% set inizio = as_timestamp(states('input_datetime.pr205_diag_inizio_lavaggio'), 0) %} {{\
+      \ is_state('input_boolean.pr205_diag_ciclo_attivo', 'on')\n   and is_state('sensor.pr205_blocco_filtri',\
+      \ '1')\n   and inizio > 0 and (as_timestamp(now()) - inizio) >= 3600 }}"
+  - name: PR205 DIAG Filtro 2 non partito
+    unique_id: pr205_diag_filtro2_non_partito_20261025
+    availability: '{{ states(''sensor.pr205_blocco_filtri'') in [''0'', ''1''] }}'
+    state: "{% set timer = utcnow() + timedelta(hours=2) %}\n{% set m = timer.hour * 60 + timer.minute\
+      \ %}\n{{ timer.weekday() in [0, 3]\n   and m >= 640\n   and as_timestamp(states('input_datetime.pr205_diag_ultimo_filtro2'),\
+      \ 0)\n       < as_timestamp(today_at('00:00')) }}"
+    attributes:
+      orologio_timer: UTC+02 fisso (nessun cambio automatico)
+      orario_previsto_locale: '{{ as_local(utcnow().replace(hour=8, minute=0, second=0, microsecond=0)).strftime(''%H:%M'')
+        }}'
+      termine_allarme_locale: '{{ as_local(utcnow().replace(hour=8, minute=40, second=0, microsecond=0)).strftime(''%H:%M'')
+        }}'
+  - name: PR205 DIAG Filtro 3 non partito
+    unique_id: pr205_diag_filtro3_non_partito_20261025
+    availability: '{{ states(''sensor.pr205_blocco_filtri'') in [''0'', ''1''] }}'
+    state: "{% set timer = utcnow() + timedelta(hours=2) %}\n{% set m = timer.hour * 60 + timer.minute\
+      \ %}\n{{ timer.weekday() in [1, 5]\n   and m >= 880\n   and as_timestamp(states('input_datetime.pr205_diag_ultimo_filtro3'),\
+      \ 0)\n       < as_timestamp(today_at('00:00')) }}"
+    attributes:
+      orologio_timer: UTC+02 fisso (nessun cambio automatico)
+      orario_previsto_locale: '{{ as_local(utcnow().replace(hour=12, minute=0, second=0, microsecond=0)).strftime(''%H:%M'')
+        }}'
+      termine_allarme_locale: '{{ as_local(utcnow().replace(hour=12, minute=40, second=0, microsecond=0)).strftime(''%H:%M'')
+        }}'
+  - name: PR205 DIAG Q2 senza ricircolo Q3
+    unique_id: pr205_diag_q2_senza_q3_20261025
+    availability: '{{ states(''binary_sensor.q2_pozzo'') in [''on'',''off''] and states(''binary_sensor.q3_ricircolo'')
+      in [''on'',''off''] }}'
+    state: '{{ is_state(''binary_sensor.q2_pozzo'',''on'') and is_state(''binary_sensor.q3_ricircolo'',''off'')
+      }}'
+    delay_on: 00:01:00
+  - name: PR205 DIAG Q2 senza cloratore Q4
+    unique_id: pr205_diag_q2_senza_q4_20261025
+    availability: '{{ states(''binary_sensor.q2_pozzo'') in [''on'',''off''] and states(''binary_sensor.q4_cloratore'')
+      in [''on'',''off''] }}'
+    state: '{{ is_state(''binary_sensor.q2_pozzo'',''on'') and is_state(''binary_sensor.q4_cloratore'',''off'')
+      }}'
+    delay_on: 00:01:00
+  - name: PR205 DIAG Cloratore Q4 senza Q2
+    unique_id: pr205_diag_q4_senza_q2_20261025
+    availability: '{{ states(''binary_sensor.q2_pozzo'') in [''on'',''off''] and states(''binary_sensor.q4_cloratore'')
+      in [''on'',''off''] }}'
+    state: '{{ is_state(''binary_sensor.q2_pozzo'',''off'') and is_state(''binary_sensor.q4_cloratore'',''on'')
+      }}'
+    delay_on: 00:01:00
+  - name: PR205 DIAG Ricircolo non mantenuto
+    unique_id: pr205_diag_ricircolo_non_mantenuto_20261025
+    availability: '{{ states(''binary_sensor.q2_pozzo'') in [''on'',''off''] and states(''binary_sensor.q3_ricircolo'')
+      in [''on'',''off''] }}'
+    state: '{{ states(''binary_sensor.q2_pozzo'') != states(''binary_sensor.q3_ricircolo'') }}'
+    delay_on: 00:01:00
+  - name: PR205 DIAG Pozzo non sale con Q2
+    unique_id: pr205_diag_pozzo_non_sale_20261025
+    availability: "{{ is_number(states('sensor.pr205_diag_variazione_pozzo_10min')) and\n   states('binary_sensor.q2_pozzo')\
+      \ in ['on','off'] and\n   states('binary_sensor.q1_potabile') in ['on','off'] and\n   states('sensor.pr205_blocco_filtri')\
+      \ in ['0','1'] }}"
+    state: "{{ is_state('binary_sensor.q2_pozzo','on')\n   and is_state('binary_sensor.q1_potabile','off')\n\
+      \   and is_state('input_boolean.pr205_diag_ciclo_attivo','off')\n   and is_state('sensor.pr205_blocco_filtri','0')\n\
+      \   and states('sensor.pr205_diag_variazione_pozzo_10min') | float(999) < 2 }}"
+    delay_on: 00:15:00
+  - name: PR205 DIAG Potabile non sale con Q1
+    unique_id: pr205_diag_potabile_non_sale_20261025
+    availability: "{{ is_number(states('sensor.pr205_diag_variazione_potabile_10min')) and\n   states('binary_sensor.q1_potabile')\
+      \ in ['on','off'] and\n   states('binary_sensor.dab_flusso_attivo') in ['on','off'] and\n   states('sensor.pr205_blocco_filtri')\
+      \ in ['0','1'] }}"
+    state: "{{ is_state('binary_sensor.q1_potabile','on')\n   and is_state('binary_sensor.dab_flusso_attivo','off')\n\
+      \   and is_state('input_boolean.pr205_diag_ciclo_attivo','off')\n   and is_state('sensor.pr205_blocco_filtri','0')\n\
+      \   and states('sensor.pr205_diag_variazione_potabile_10min') | float(999) < 2 }}"
+    delay_on: 00:15:00
+  - name: PR205 DIAG Calo pozzo ingiustificato
+    unique_id: pr205_diag_calo_pozzo_20261025
+    availability: "{{ is_number(states('sensor.pr205_diag_variazione_pozzo_10min')) and\n   states('binary_sensor.q1_potabile')\
+      \ in ['on','off'] and\n   states('binary_sensor.q2_pozzo') in ['on','off'] and\n   states('sensor.pr205_blocco_filtri')\
+      \ in ['0','1'] }}"
+    state: "{{ is_state('binary_sensor.q1_potabile','off')\n   and is_state('binary_sensor.q2_pozzo','off')\n\
+      \   and is_state('input_boolean.pr205_diag_ciclo_attivo','off')\n   and is_state('sensor.pr205_blocco_filtri','0')\n\
+      \   and states('sensor.pr205_diag_variazione_pozzo_10min') | float(0) < -3 }}"
+    delay_on: 00:03:00
+  - name: PR205 DIAG Calo potabile ingiustificato
+    unique_id: pr205_diag_calo_potabile_20261025
+    availability: "{{ is_number(states('sensor.pr205_diag_variazione_potabile_10min')) and\n   states('binary_sensor.q1_potabile')\
+      \ in ['on','off'] and\n   states('binary_sensor.dab_flusso_attivo') in ['on','off'] and\n   states('sensor.pr205_blocco_filtri')\
+      \ in ['0','1'] }}"
+    state: "{{ is_state('binary_sensor.q1_potabile','off')\n   and is_state('binary_sensor.dab_flusso_attivo','off')\n\
+      \   and is_state('input_boolean.pr205_diag_ciclo_attivo','off')\n   and is_state('sensor.pr205_blocco_filtri','0')\n\
+      \   and states('sensor.pr205_diag_variazione_potabile_10min') | float(0) < -3 }}"
+    delay_on: 00:03:00
+  - name: PR205 DIAG Dati PLC non disponibili
+    unique_id: pr205_diag_plc_assente_20261025
+    state: "{{ states('sensor.pr205_blocco_filtri') in ['unknown','unavailable']\n   or states('sensor.livello_pozzo_plc')\
+      \ in ['unknown','unavailable']\n   or states('sensor.livello_potabile_plc') in ['unknown','unavailable']\
+      \ }}"
+    delay_on: 00:02:00
+    delay_off: 00:00:10
+sensor:
+- platform: statistics
+  name: PR205 DIAG Variazione pozzo 10min
+  unique_id: pr205_diag_variazione_pozzo_10min_20261025
+  entity_id: sensor.pr205_diag_campione_pozzo
+  state_characteristic: change
+  max_age:
+    minutes: 10
+  sampling_size: 30
+  precision: 1
+- platform: statistics
+  name: PR205 DIAG Variazione potabile 10min
+  unique_id: pr205_diag_variazione_potabile_10min_20261025
+  entity_id: sensor.pr205_diag_campione_potabile
+  state_characteristic: change
+  max_age:
+    minutes: 10
+  sampling_size: 30
+  precision: 1
+automation:
+- id: pr205_diag_inizio_controlavaggio_20261025
+  alias: PR205 DIAG - Inizio controlavaggio multi-stadio
+  mode: single
+  triggers:
+  - trigger: state
+    entity_id: sensor.pr205_blocco_filtri
+    to: '1'
+  conditions:
+  - condition: state
+    entity_id: input_boolean.pr205_diag_ciclo_attivo
+    state: 'off'
+  actions:
+  - variables:
+      filtro: "{% set timer = utcnow() + timedelta(hours=2) %}\n{% set m = timer.hour * 60 + timer.minute\
+        \ %}\n{% if timer.weekday() in [0, 3] and 570 <= m <= 630 %}\n  Filtro 2 programmato\n{% elif\
+        \ timer.weekday() in [1, 5] and 810 <= m <= 870 %}\n  Filtro 3 programmato\n{% else %}\n  Filtro\
+        \ 4 presunto\n{% endif %}"
+  - action: input_datetime.set_datetime
+    target:
+      entity_id: input_datetime.pr205_diag_inizio_lavaggio
+    data:
+      datetime: '{{ now().strftime(''%Y-%m-%d %H:%M:%S'') }}'
+  - action: input_select.select_option
+    target:
+      entity_id: input_select.pr205_diag_filtro_in_ciclo
+    data:
+      option: '{{ filtro | trim }}'
+  - action: input_boolean.turn_on
+    target:
+      entity_id: input_boolean.pr205_diag_ciclo_attivo
+  - choose:
+    - conditions:
+      - condition: template
+        value_template: '{{ filtro | trim == ''Filtro 2 programmato'' }}'
+      sequence:
+      - action: input_datetime.set_datetime
+        target:
+          entity_id: input_datetime.pr205_diag_ultimo_filtro2
+        data:
+          datetime: '{{ now().strftime(''%Y-%m-%d %H:%M:%S'') }}'
+    - conditions:
+      - condition: template
+        value_template: '{{ filtro | trim == ''Filtro 3 programmato'' }}'
+      sequence:
+      - action: input_datetime.set_datetime
+        target:
+          entity_id: input_datetime.pr205_diag_ultimo_filtro3
+        data:
+          datetime: '{{ now().strftime(''%Y-%m-%d %H:%M:%S'') }}'
+    default:
+    - action: input_datetime.set_datetime
+      target:
+        entity_id: input_datetime.pr205_diag_ultimo_filtro4
+      data:
+        datetime: '{{ now().strftime(''%Y-%m-%d %H:%M:%S'') }}'
+  description: 'Classifica lo scarico sul calendario dei timer UTC+02 fisso: cambio ora compensato in
+    HA, senza cambiare gli orologi dei filtri.'
+- id: pr205_diag_fine_controlavaggio_20261025
+  alias: PR205 DIAG - Fine finestra controlavaggio
+  mode: single
+  triggers:
+  - trigger: time_pattern
+    minutes: /1
+  - trigger: state
+    entity_id: sensor.pr205_blocco_filtri
+    to: '0'
+  conditions:
+  - condition: state
+    entity_id: input_boolean.pr205_diag_ciclo_attivo
+    state: 'on'
+  - condition: state
+    entity_id: sensor.pr205_blocco_filtri
+    state: '0'
+  - condition: template
+    value_template: '{% set t = as_timestamp(states(''input_datetime.pr205_diag_inizio_lavaggio''), 0)
+      %} {{ t > 0 and (as_timestamp(now()) - t) >= 3600 }}'
+  - condition: template
+    value_template: '{{ (as_timestamp(now()) - as_timestamp(states.sensor.pr205_blocco_filtri.last_changed,
+      as_timestamp(now()))) >= 600 }}'
+  actions:
+  - action: input_number.set_value
+    target:
+      entity_id: input_number.pr205_diag_durata_ultimo_lavaggio
+    data:
+      value: '{% set a = as_timestamp(states(''input_datetime.pr205_diag_inizio_lavaggio''), as_timestamp(now()))
+        %} {% set b = as_timestamp(states.sensor.pr205_blocco_filtri.last_changed, as_timestamp(now()))
+        %} {{ [0, ((b - a)/60)] | max | round(1) }}'
+  - action: input_boolean.turn_off
+    target:
+      entity_id: input_boolean.pr205_diag_ciclo_attivo
+  - action: input_select.select_option
+    target:
+      entity_id: input_select.pr205_diag_filtro_in_ciclo
+    data:
+      option: Nessuno
+- id: pr205_diag_memoria_chiusura_q2_20261025
+  alias: PR205 DIAG - Memoria chiusura Q2 per Q3
+  mode: single
+  triggers:
+  - trigger: state
+    entity_id: binary_sensor.q2_pozzo
+    from: 'on'
+    to: 'off'
+  conditions: []
+  actions:
+  - action: input_datetime.set_datetime
+    target:
+      entity_id: input_datetime.pr205_diag_ultima_chiusura_q2
+    data:
+      datetime: '{{ now().strftime(''%Y-%m-%d %H:%M:%S'') }}'
+  description: 'Memorizza fine riempimento pozzo: Q3/Q4 seguono Q2, nessuna dipendenza dal vecchio Manuale
+    HA.'
+homeassistant:
+  customize:
+    binary_sensor.pr205_diag_scarico_oltre_un_ora:
+      descrizione: Scarico dei filtri per oltre 60 minuti dal primo stadio. Le pause tra gli stadi non
+        azzerano il conteggio.
+      quando_si_accende: Il sensore scarico vale 1 dopo 60 minuti dall'inizio del ciclo.
+      cosa_controllare: Controllare la valvola del filtro e il ritorno in posizione normale.
+    binary_sensor.pr205_diag_filtro_2_non_partito:
+      descrizione: 'Mancato controlavaggio del filtro 2, previsto lunedì e giovedì: 09:00 con ora solare,
+        10:00 con ora legale. Il timer mantiene UTC+02 fisso.'
+      quando_si_accende: Nessun ciclo riconosciuto nella giornata entro le 09:40 con ora solare, 10:40
+        con ora legale, nei giorni programmati.
+      cosa_controllare: Verificare scarico, programma e orologio del filtro. HA compensa automaticamente
+        il cambio stagionale; identificazione presunta da giorno e fascia di ±30 minuti.
+    binary_sensor.pr205_diag_filtro_3_non_partito:
+      descrizione: 'Mancato controlavaggio del filtro 3, previsto martedì e sabato: 13:00 con ora solare,
+        14:00 con ora legale. Il timer mantiene UTC+02 fisso.'
+      quando_si_accende: Nessun ciclo riconosciuto nella giornata entro le 13:40 con ora solare, 14:40
+        con ora legale, nei giorni programmati.
+      cosa_controllare: Verificare scarico, programma e orologio del filtro. HA compensa automaticamente
+        il cambio stagionale; identificazione presunta da giorno e fascia di ±30 minuti.
+    binary_sensor.pr205_diag_q2_senza_ricircolo_q3:
+      descrizione: Q2 è comandata attiva ma manca il comando Q3. Nel PLC v2 ricircolo e riempimento pozzo
+        devono essere concordi, anche fuori fascia.
+      quando_si_accende: Q2 ON e Q3 OFF per almeno 1 minuto. Non dipende dal vecchio Manuale HA.
+      cosa_controllare: Verificare programma, uscite e collegamenti Q2/Q3. Si osservano comandi PLC, non
+        un feedback di marcia della pompa.
+    binary_sensor.pr205_diag_ricircolo_non_mantenuto:
+      descrizione: Q3 e Q2 hanno stati discordanti. Il PLC v2 non prevede post-ricircolo di quattro ore.
+      quando_si_accende: Q2 e Q3 discordanti per almeno 1 minuto, in qualunque fascia.
+      cosa_controllare: Verificare logica e collegamenti Q2/Q3; non attivare ricircolo indipendente con
+        timer.
+    binary_sensor.pr205_diag_q2_senza_cloratore_q4:
+      descrizione: Q2 è comandata attiva ma il PLC non comanda il cloratore Q4.
+      quando_si_accende: Q2 ON e Q4 OFF per almeno 1 minuto, senza esclusione basata sul vecchio Manuale
+        HA.
+      cosa_controllare: Controllare logica, uscita Q4 e collegamenti. Lo stato del comando non certifica
+        il dosaggio effettivo.
+    binary_sensor.pr205_diag_cloratore_q4_senza_q2:
+      descrizione: Q4 è comandato attivo mentre Q2 risulta spenta. Nel PLC v2 Q4 deve seguire Q2.
+      quando_si_accende: Q4 ON e Q2 OFF per almeno 1 minuto, in qualunque fascia.
+      cosa_controllare: Verificare logica e collegamenti del cloratore; il consenso deve seguire il riempimento
+        pozzo.
+    binary_sensor.pr205_diag_pozzo_non_sale_con_q2:
+      descrizione: Il pozzo non mostra il riempimento previsto nonostante il comando di apertura Q2.
+      quando_si_accende: Q2 ON, Q1 OFF, nessun controlavaggio, aumento inferiore a 2 cm in 10 minuti,
+        condizione persistente per 15 minuti.
+      cosa_controllare: Controllare disponibilità acqua, Q2 e sonda. Soglia iniziale da calibrare.
+    binary_sensor.pr205_diag_potabile_non_sale_con_q1:
+      descrizione: La potabile non mostra il riempimento previsto nonostante il comando di apertura Q1.
+      quando_si_accende: Q1 ON, DAB senza flusso, nessun controlavaggio, aumento inferiore a 2 cm in 10
+        minuti, condizione persistente per 15 minuti.
+      cosa_controllare: Controllare Q1, tubazioni, disponibilità acqua nel pozzo e sonda.
+    binary_sensor.pr205_diag_calo_pozzo_ingiustificato:
+      descrizione: Il livello del pozzo diminuisce senza una causa normale riconosciuta.
+      quando_si_accende: Q1 e Q2 OFF, nessun controlavaggio, calo superiore a 3 cm in 10 minuti, persistente
+        per 3 minuti.
+      cosa_controllare: Verificare trafilamenti, scarichi non rilevati e precisione della sonda.
+    binary_sensor.pr205_diag_calo_potabile_ingiustificato:
+      descrizione: Il livello potabile diminuisce senza consumo DAB o scarico filtri riconosciuto.
+      quando_si_accende: Q1 OFF, DAB senza flusso, nessun controlavaggio, calo superiore a 3 cm in 10
+        minuti, persistente per 3 minuti.
+      cosa_controllare: Controllare perdite, prelievi non rilevati e sonda del livello.
+    binary_sensor.pr205_diag_dati_plc_non_disponibili:
+      descrizione: Il PLC non fornisce dati validi necessari alla diagnostica.
+      quando_si_accende: Il sensore scarico filtri oppure un livello è unknown/unavailable per più di
+        2 minuti.
+      cosa_controllare: Verificare alimentazione PR205, rete e comunicazione Modbus TCP.

@@ -1,0 +1,27 @@
+[
+  {
+    "id": "d3688044dba0406b8fe4db4bc1b284b1",
+    "url": "/local/button-card.js?v=701",
+    "type": "module"
+  },
+  {
+    "id": "9810398b1b7742ea9fafa3bc431661a2",
+    "url": "/hacsfiles/apexcharts-card/apexcharts-card.js?hacstag=331701152223",
+    "type": "module"
+  },
+  {
+    "id": "96f5f6653fa04c41b32c9a45e31962ed",
+    "url": "/local/liquid-level-element.js?v=1",
+    "type": "module"
+  },
+  {
+    "id": "14cf2c251b1647d49783316622f3a056",
+    "url": "/hacsfiles/lovelace-card-mod/card-mod.js?hacstag=190927524421",
+    "type": "module"
+  },
+  {
+    "id": "bc11af40062348928b51996b9e4f4b01",
+    "url": "/local/cisterna-card.js?v=20261029",
+    "type": "module"
+  }
+]

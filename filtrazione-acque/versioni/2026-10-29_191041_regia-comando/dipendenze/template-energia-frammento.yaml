@@ -1,0 +1,24 @@
+template:
+- sensor:
+  - name: JK Banco SOC
+    unique_id: jk_banco_soc
+    unit_of_measurement: '%'
+    state_class: measurement
+    state: "{% set nominale =\n  states('sensor.jk_batteria_sinistra_10_capacita_nominale')\
+      \ | float(0)\n  +\n  states('sensor.jk_batteria_centrale_8_capacita_nominale')\
+      \ | float(0)\n  +\n  states('sensor.jk_batteria_destra_0_master_capacita_nominale')\
+      \ | float(0)\n%}\n{% set residua =\n  states('sensor.jk_batteria_sinistra_10_capacita_residua')\
+      \ | float(0)\n  +\n  states('sensor.jk_batteria_centrale_8_capacita_residua')\
+      \ | float(0)\n  +\n  states('sensor.jk_batteria_destra_0_master_capacita_residua')\
+      \ | float(0)\n%}\n{{\n  (\n    (residua / nominale * 100)\n    if nominale >\
+      \ 0\n    else 0\n  ) | round(0)\n}}\n"
+- binary_sensor:
+  - name: Energia rete prelevando
+    unique_id: energia_rete_prelevando_v6
+    default_entity_id: binary_sensor.energia_rete_prelevando
+    availability: "{% set g1 = states('sensor.growatt_1_ingresso_rete_potenza') %}\
+      \ {% set g2 = states('sensor.growatt_2_ingresso_rete_potenza') %} {{ (is_number(g1)\
+      \ and g1 | float(0) > 20) or\n   (is_number(g2) and g2 | float(0) > 20) or\n\
+      \   (is_number(g1) and is_number(g2)) }}"
+    state: "{{ states('sensor.growatt_1_ingresso_rete_potenza') | float(0) > 20 or\n\
+      \   states('sensor.growatt_2_ingresso_rete_potenza') | float(0) > 20 }}"

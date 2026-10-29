@@ -1,0 +1,840 @@
+{
+  "views": [
+    {
+      "type": "sections",
+      "sections": [
+        {
+          "type": "grid",
+          "cards": [
+            {
+              "type": "heading",
+              "heading": "Nuova sezione"
+            },
+            {
+              "type": "picture-elements",
+              "elements": [
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "condition": "state",
+                      "entity": "binary_sensor.q2_pozzo",
+                      "state": "on"
+                    }
+                  ],
+                  "elements": [
+                    {
+                      "type": "image",
+                      "image": "/local/filtrazione/flow_q2_pozzo.gif",
+                      "tap_action": {
+                        "action": "none"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "style": {
+                        "left": "50%",
+                        "top": "50%",
+                        "width": "100%",
+                        "transform": "translate(-50%, -50%)",
+                        "pointer-events": "none"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "condition": "state",
+                      "entity": "binary_sensor.dab_flusso_attivo",
+                      "state": "on"
+                    }
+                  ],
+                  "elements": [
+                    {
+                      "type": "image",
+                      "image": "/local/filtrazione/flow_dab_utenze.gif",
+                      "tap_action": {
+                        "action": "none"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "style": {
+                        "left": "53%",
+                        "top": "50%",
+                        "width": "100%",
+                        "transform": "translate(-50%, -50%)",
+                        "pointer-events": "none"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "condition": "state",
+                      "entity": "binary_sensor.q3_ricircolo",
+                      "state": "on"
+                    }
+                  ],
+                  "elements": [
+                    {
+                      "type": "image",
+                      "image": "/local/filtrazione/flow_q3_ricircolo.gif",
+                      "tap_action": {
+                        "action": "none"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "style": {
+                        "left": "50%",
+                        "top": "50%",
+                        "width": "100%",
+                        "transform": "translate(-50%, -50%)",
+                        "pointer-events": "none"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "condition": "state",
+                      "entity": "binary_sensor.q1_potabile",
+                      "state": "on"
+                    }
+                  ],
+                  "elements": [
+                    {
+                      "type": "image",
+                      "image": "/local/filtrazione/flow_q1_potabile.gif",
+                      "tap_action": {
+                        "action": "none"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "style": {
+                        "left": "50%",
+                        "top": "50%",
+                        "width": "100%",
+                        "transform": "translate(-50%, -50%)",
+                        "pointer-events": "none"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "condition": "state",
+                      "entity": "binary_sensor.q4_cloratore",
+                      "state": "on"
+                    }
+                  ],
+                  "elements": [
+                    {
+                      "type": "image",
+                      "image": "/local/filtrazione/flow_q4_cloratore.gif",
+                      "tap_action": {
+                        "action": "none"
+                      },
+                      "hold_action": {
+                        "action": "none"
+                      },
+                      "style": {
+                        "left": "50%",
+                        "top": "50%",
+                        "width": "100%",
+                        "transform": "translate(-50%, -50%)",
+                        "pointer-events": "none"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "condition": "state",
+                      "entity": "binary_sensor.q2_pozzo",
+                      "state": "off"
+                    }
+                  ],
+                  "elements": [
+                    {
+                      "type": "icon",
+                      "icon": "mdi:circle",
+                      "entity": "binary_sensor.q2_pozzo",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "style": {
+                        "left": "16%",
+                        "top": "42%",
+                        "color": "#ff2020",
+                        "opacity": 0.55,
+                        "--mdc-icon-size": "24px",
+                        "filter": "drop-shadow(0 0 4px rgba(255,0,0,0.8))"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "condition": "state",
+                      "entity": "binary_sensor.q2_pozzo",
+                      "state": "on"
+                    }
+                  ],
+                  "elements": [
+                    {
+                      "type": "icon",
+                      "icon": "mdi:circle",
+                      "entity": "binary_sensor.q2_pozzo",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "style": {
+                        "left": "18%",
+                        "top": "42%",
+                        "color": "#39ff14",
+                        "opacity": 0.55,
+                        "--mdc-icon-size": "24px",
+                        "background": "rgba(255, 215, 0, 0.45)",
+                        "border": "3px solid rgba(255, 230, 0, 0.75)",
+                        "border-radius": "50%",
+                        "padding": "8px",
+                        "box-shadow": "0 0 12px 5px rgba(255, 230, 0, 0.65)"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "condition": "state",
+                      "entity": "binary_sensor.q1_potabile",
+                      "state": "off"
+                    }
+                  ],
+                  "elements": [
+                    {
+                      "type": "icon",
+                      "icon": "mdi:circle",
+                      "entity": "binary_sensor.q1_potabile",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "style": {
+                        "left": "76%",
+                        "top": "52%",
+                        "color": "#ff2020",
+                        "opacity": 0.5,
+                        "--mdc-icon-size": "24px",
+                        "filter": "drop-shadow(0 0 4px rgba(255,0,0,0.8))"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "condition": "state",
+                      "entity": "binary_sensor.q1_potabile",
+                      "state": "on"
+                    }
+                  ],
+                  "elements": [
+                    {
+                      "type": "icon",
+                      "icon": "mdi:circle-box",
+                      "entity": "binary_sensor.q1_potabile",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "style": {
+                        "left": "76%",
+                        "top": "52%",
+                        "color": "#39ff14",
+                        "opacity": 0.55,
+                        "--mdc-icon-size": "24px",
+                        "background": "rgba(255, 215, 0, 0.45)",
+                        "border": "3px solid rgba(255, 230, 0, 0.75)",
+                        "border-radius": "50%",
+                        "padding": "8px",
+                        "box-shadow": "0 0 12px 5px rgba(255, 230, 0, 0.65)"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "condition": "state",
+                      "entity": "binary_sensor.q3_ricircolo",
+                      "state": "off"
+                    }
+                  ],
+                  "elements": [
+                    {
+                      "type": "icon",
+                      "icon": "mdi:circle",
+                      "entity": "binary_sensor.q3_ricircolo",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "style": {
+                        "left": "23%",
+                        "top": "75%",
+                        "color": "#ff2020",
+                        "opacity": 0.55,
+                        "--mdc-icon-size": "24px",
+                        "filter": "drop-shadow(0 0 4px rgba(255,0,0,0.8))"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "condition": "state",
+                      "entity": "binary_sensor.q3_ricircolo",
+                      "state": "on"
+                    }
+                  ],
+                  "elements": [
+                    {
+                      "type": "icon",
+                      "icon": "mdi:circle",
+                      "entity": "binary_sensor.q3_ricircolo",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "style": {
+                        "left": "23%",
+                        "top": "75%",
+                        "color": "#39ff14",
+                        "opacity": 0.55,
+                        "--mdc-icon-size": "24px",
+                        "background": "rgba(255, 215, 0, 0.45)",
+                        "border": "3px solid rgba(255, 230, 0, 0.75)",
+                        "border-radius": "50%",
+                        "padding": "8px",
+                        "box-shadow": "0 0 12px 5px rgba(255, 230, 0, 0.65)"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "condition": "state",
+                      "entity": "binary_sensor.q4_cloratore",
+                      "state": "off"
+                    }
+                  ],
+                  "elements": [
+                    {
+                      "type": "icon",
+                      "icon": "mdi:circle",
+                      "entity": "binary_sensor.q4_cloratore",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "style": {
+                        "left": "42%",
+                        "top": "22%",
+                        "color": "#ff2020",
+                        "opacity": 0.55,
+                        "--mdc-icon-size": "24px",
+                        "filter": "drop-shadow(0 0 4px rgba(255,0,0,0.8))"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "conditional",
+                  "conditions": [
+                    {
+                      "condition": "state",
+                      "entity": "binary_sensor.q4_cloratore",
+                      "state": "on"
+                    }
+                  ],
+                  "elements": [
+                    {
+                      "type": "icon",
+                      "icon": "mdi:circle",
+                      "entity": "binary_sensor.q4_cloratore",
+                      "tap_action": {
+                        "action": "more-info"
+                      },
+                      "style": {
+                        "left": "42%",
+                        "top": "22%",
+                        "color": "#39ff14",
+                        "opacity": 0.55,
+                        "--mdc-icon-size": "24px",
+                        "background": "rgba(255, 215, 0, 0.45)",
+                        "border": "3px solid rgba(255, 230, 0, 0.75)",
+                        "border-radius": "50%",
+                        "padding": "8px",
+                        "box-shadow": "0 0 12px 5px rgba(255, 230, 0, 0.65)"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "state-label",
+                  "entity": "sensor.filtrazione_v2_pozzo_percentuale",
+                  "style": {
+                    "left": "28%",
+                    "top": "70%",
+                    "font-size": "30px",
+                    "font-weight": "bold",
+                    "color": "black",
+                    "opacity": 0.7,
+                    "text-shadow": "0px 0px 5px black"
+                  }
+                },
+                {
+                  "type": "state-label",
+                  "entity": "sensor.livello_pozzo_plc",
+                  "suffix": " ",
+                  "style": {
+                    "left": "28%",
+                    "top": "77%",
+                    "font-size": "30px",
+                    "font-weight": "bold",
+                    "color": "black",
+                    "opacity": 0.7,
+                    "text-shadow": "0px 0px 5px black"
+                  }
+                },
+                {
+                  "type": "state-label",
+                  "entity": "sensor.filtrazione_v2_potabile_percentuale",
+                  "style": {
+                    "left": "88%",
+                    "top": "70%",
+                    "font-size": "30px",
+                    "font-weight": "bold",
+                    "color": "black",
+                    "opacity": 0.7,
+                    "text-shadow": "0px 0px 5px black"
+                  }
+                },
+                {
+                  "type": "state-label",
+                  "entity": "sensor.livello_potabile_plc",
+                  "suffix": " cm",
+                  "style": {
+                    "left": "88%",
+                    "top": "77%",
+                    "font-size": "30px",
+                    "font-weight": "bold",
+                    "color": "black",
+                    "opacity": 0.7,
+                    "text-shadow": "0px 0px 5px black"
+                  }
+                },
+                {
+                  "type": "image",
+                  "style": {
+                    "left": "91%",
+                    "top": "31%"
+                  },
+                  "image": {
+                    "media_content_id": "media-source://image_upload/c0169e38d0651c2bb56be956d0a6f5c2",
+                    "media_content_type": "image/png",
+                    "metadata": {
+                      "title": "transparent_click_area.png",
+                      "thumbnail": "/api/image/serve/c0169e38d0651c2bb56be956d0a6f5c2/256x256",
+                      "media_class": "image",
+                      "children_media_class": null,
+                      "navigateIds": [
+                        {},
+                        {
+                          "media_content_type": "app",
+                          "media_content_id": "media-source://image_upload"
+                        }
+                      ]
+                    }
+                  },
+                  "tap_action": {
+                    "action": "more-info"
+                  },
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "entity": "sensor.autoclave_systemstatus"
+                }
+              ],
+              "grid_options": {
+                "columns": "full",
+                "rows": "auto"
+              },
+              "image": {
+                "media_content_id": "media-source://image_upload/1b97a7c05d31a717c77d7480f4833a96",
+                "media_content_type": "image/png",
+                "metadata": {
+                  "title": "Immagine ChatGPT 30 set 2026, 01_44_12.png",
+                  "thumbnail": "/api/image/serve/1b97a7c05d31a717c77d7480f4833a96/256x256",
+                  "media_class": "image",
+                  "navigateIds": [
+                    {},
+                    {
+                      "media_content_type": "app",
+                      "media_content_id": "media-source://image_upload"
+                    }
+                  ]
+                }
+              }
+            }
+          ],
+          "column_span": 4
+        },
+        {
+          "type": "grid",
+          "cards": [
+            {
+              "type": "tile",
+              "entity": "switch.filtrazione_v2_richiesta_potabile",
+              "icon": "mdi:power",
+              "color": "accent",
+              "state_content": "last_changed",
+              "vertical": false,
+              "features": [
+                {
+                  "type": "toggle"
+                }
+              ],
+              "features_position": "inline",
+              "visibility": [
+                {
+                  "condition": "screen",
+                  "media_query": "(min-width: 0px)"
+                }
+              ],
+              "name": "Richiesta HA · potabile"
+            },
+            {
+              "type": "tile",
+              "entity": "switch.filtrazione_v2_richiesta_pozzo",
+              "icon": "mdi:power",
+              "color": "accent",
+              "state_content": "last_changed",
+              "vertical": false,
+              "features": [
+                {
+                  "type": "toggle"
+                }
+              ],
+              "features_position": "inline",
+              "name": "Richiesta HA · pozzo"
+            },
+            {
+              "type": "tile",
+              "entity": "binary_sensor.q3_ricircolo",
+              "icon": "mdi:power",
+              "color": "accent",
+              "state_content": "last_changed",
+              "vertical": false,
+              "name": "Ricircolo · segue Q2",
+              "tap_action": {
+                "action": "more-info"
+              },
+              "icon_tap_action": {
+                "action": "more-info"
+              },
+              "grid_options": {
+                "columns": 12,
+                "rows": 1
+              }
+            },
+            {
+              "type": "tile",
+              "entity": "binary_sensor.q4_cloratore",
+              "icon": "mdi:power",
+              "vertical": false,
+              "name": "Cloratore · segue Q2",
+              "tap_action": {
+                "action": "more-info"
+              },
+              "icon_tap_action": {
+                "action": "more-info"
+              },
+              "grid_options": {
+                "columns": 12,
+                "rows": 1
+              }
+            },
+            {
+              "show_name": true,
+              "show_icon": true,
+              "type": "button",
+              "entity": "binary_sensor.q1_potabile",
+              "color": "yellow",
+              "show_state": true,
+              "tap_action": {
+                "action": "more-info"
+              },
+              "hold_action": {
+                "action": "none"
+              },
+              "grid_options": {
+                "columns": 3,
+                "rows": 2
+              }
+            },
+            {
+              "show_name": true,
+              "show_icon": true,
+              "type": "button",
+              "entity": "binary_sensor.q2_pozzo",
+              "color": "green",
+              "show_state": true,
+              "tap_action": {
+                "action": "more-info"
+              },
+              "hold_action": {
+                "action": "none"
+              },
+              "grid_options": {
+                "columns": 3,
+                "rows": 2
+              }
+            },
+            {
+              "show_name": true,
+              "show_icon": true,
+              "type": "button",
+              "entity": "binary_sensor.q3_ricircolo",
+              "show_state": true,
+              "tap_action": {
+                "action": "more-info"
+              },
+              "hold_action": {
+                "action": "none"
+              },
+              "color": "red",
+              "grid_options": {
+                "columns": 3,
+                "rows": 2
+              }
+            },
+            {
+              "show_name": true,
+              "show_icon": true,
+              "type": "button",
+              "entity": "binary_sensor.q4_cloratore",
+              "color": "white",
+              "tap_action": {
+                "action": "more-info"
+              },
+              "hold_action": {
+                "action": "none"
+              },
+              "show_state": true,
+              "grid_options": {
+                "columns": 3,
+                "rows": 2
+              }
+            },
+            {
+              "type": "tile",
+              "grid_options": {
+                "columns": 12,
+                "rows": 1
+              },
+              "entity": "input_boolean.filtrazione_v2_supervisione",
+              "vertical": false,
+              "features": [
+                {
+                  "type": "toggle"
+                }
+              ],
+              "features_position": "inline",
+              "name": "Supervisione HA"
+            }
+          ],
+          "column_span": 4,
+          "background": {
+            "color": "light-blue",
+            "opacity": 84
+          }
+        },
+        {
+          "type": "grid",
+          "cards": [
+            {
+              "type": "heading",
+              "heading_style": "title",
+              "heading": "                                    LIVELLI CISTERNE"
+            },
+            {
+              "type": "custom:cisterna-card",
+              "name": "Cisterna      Pozzo",
+              "entity_percentuale": "sensor.filtrazione_v2_pozzo_percentuale",
+              "entity_litri": "sensor.litri_cisterna_pozzo",
+              "entity_cm": "sensor.livello_pozzo_plc"
+            },
+            {
+              "type": "custom:cisterna-card",
+              "name": "Cister Potabile",
+              "entity_percentuale": "sensor.filtrazione_v2_potabile_percentuale",
+              "entity_litri": "sensor.litri_cisterna_potabile",
+              "entity_cm": "sensor.livello_potabile_plc"
+            }
+          ],
+          "column_span": 3,
+          "background": {
+            "opacity": 57
+          },
+          "visibility": [
+            {
+              "condition": "screen",
+              "media_query": "(min-width: 0px)"
+            }
+          ]
+        },
+        {
+          "type": "grid",
+          "cards": [
+            {
+              "type": "heading",
+              "heading": "Nuova sezione"
+            }
+          ]
+        }
+      ],
+      "header": {
+        "card": {
+          "type": "markdown",
+          "text_only": true,
+          "content": "Dashboard controllo locale acque"
+        },
+        "layout": "center",
+        "badges_position": "bottom",
+        "badges_wrap": "wrap"
+      },
+      "title": "Impianto",
+      "path": "impianto"
+    },
+    {
+      "type": "sections",
+      "title": "Diagnostica e HA",
+      "path": "diagnostica",
+      "sections": [
+        {
+          "type": "grid",
+          "cards": [
+            {
+              "type": "heading",
+              "heading": "Diagnostica e autoclave DAB"
+            },
+            {
+              "type": "markdown",
+              "title": "Collegamento impianto",
+              "content": "{% if not is_state('binary_sensor.filtrazione_v2_plc_disponibile','on') %}\n**Collegamento PLC v2 non disponibile.** Le richieste HA sono bloccate; verificare comunicazione e versione del PLC.\n{% elif not is_state('input_boolean.filtrazione_v2_supervisione','on') %}\n**PLC autonomo · supervisione HA spenta.** Attiva la supervisione per abilitare le richieste dalla plancia.\n{% elif not is_state('sensor.filtrazione_v2_ha_online','1') %}\n**PLC v2 presente · collegamento HA in avvio.** Attendere l'abilitazione dei comandi.\n{% else %}\n**PLC v2 collegato · supervisione HA attiva.** Il PLC mantiene limiti, filtri, priorità e funzionamento autonomo.\n{% endif %}\n\nLe richieste HA possono anticipare il riempimento fuori fascia. Il PLC può rifiutarle o dare priorità all'altra cisterna. **Rilascia richiesta** toglie la richiesta HA: non arresta un riempimento nativo o di emergenza."
+            },
+            {
+              "type": "entities",
+              "title": "PLC e protezioni",
+              "show_header_toggle": false,
+              "entities": [
+                {
+                  "entity": "binary_sensor.filtrazione_v2_plc_disponibile",
+                  "name": "Collegamento PLC v2"
+                },
+                {
+                  "entity": "sensor.filtrazione_v2_ha_online",
+                  "name": "HA riconosciuto dal PLC"
+                },
+                {
+                  "entity": "sensor.pr205_blocco_filtri",
+                  "name": "Blocco filtri (1 = attivo)"
+                },
+                {
+                  "entity": "sensor.pr205_emergenza_potabile",
+                  "name": "Emergenza potabile (1 = attiva)"
+                },
+                {
+                  "entity": "sensor.pr205_emergenza_pozzo",
+                  "name": "Emergenza pozzo (1 = attiva)"
+                },
+                {
+                  "entity": "sensor.filtrazione_v2_interdizione_potabile",
+                  "name": "Limite potabile (1 = interdetta)"
+                },
+                {
+                  "entity": "sensor.filtrazione_v2_interdizione_pozzo",
+                  "name": "Limite pozzo (1 = interdetta)"
+                },
+                {
+                  "entity": "binary_sensor.filtrazione_v2_uscite_coerenti",
+                  "name": "Q2, ricircolo e cloratore concordi"
+                }
+              ]
+            },
+            {
+              "type": "entities",
+              "title": "Autoclave DAB · monitoraggio",
+              "show_header_toggle": false,
+              "entities": [
+                {
+                  "entity": "sensor.autoclave_systemstatus",
+                  "name": "Stato sistema"
+                },
+                {
+                  "entity": "sensor.autoclave_pumpstatus",
+                  "name": "Stato pompa"
+                },
+                {
+                  "entity": "sensor.autoclave_vp_pressurebar",
+                  "name": "Pressione"
+                },
+                {
+                  "entity": "sensor.autoclave_vf_flowliter",
+                  "name": "Portata"
+                },
+                {
+                  "entity": "sensor.autoclave_po_outputpower",
+                  "name": "Potenza"
+                },
+                {
+                  "entity": "sensor.autoclave_latesterror",
+                  "name": "Ultimo errore registrato (storico)"
+                }
+              ]
+            },
+            {
+              "type": "markdown",
+              "title": "Regole del PLC",
+              "content": "**Gestione ordinaria autonoma:** 11:00–15:00.\n\n**Avvio ordinario:** potabile sotto 30 cm; pozzo sotto 60 cm, confermati per 50 secondi.\n\n**Emergenze:** potabile sotto 20 cm; pozzo sotto 50 cm.\n\n**Ricircolo e cloratore:** seguono Q2, senza post-ricircolo.\n\nL’ottimizzazione automatica su fotovoltaico sarà aggiunta dopo aver concordato i criteri energetici."
+            },
+            {
+              "type": "markdown",
+              "title": "Comandi della vista Impianto",
+              "content": "I primi due interruttori sono **richieste HA**, non lo stato fisico delle valvole. I quattro pulsanti colorati mostrano le uscite PLC.\n\nRicircolo e cloratore seguono Q2 e non hanno più un comando separato. Spegnere una richiesta HA non interrompe un eventuale ciclo autonomo o di emergenza del PLC.\n\nLe forme, le immagini, le animazioni e la disposizione della vista Impianto sono quelle della plancia originale."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

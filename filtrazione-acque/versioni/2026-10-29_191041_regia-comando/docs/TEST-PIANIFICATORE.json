@@ -1,0 +1,752 @@
+{
+  "motore": "Template del vero Home Assistant",
+  "pianificatore_scenari": 182,
+  "esito": "PASS",
+  "energia_solo_all_avvio_verificata": true,
+  "confini_cm": {
+    "potabile": [
+      40,
+      110
+    ],
+    "pozzo": [
+      70,
+      159
+    ]
+  },
+  "valori_attuali": {
+    "energy_valid": true,
+    "energy_raw": true,
+    "levels_valid": true,
+    "window": false
+  },
+  "scenari": [
+    {
+      "nome": "scorte normali",
+      "esito": "PASS"
+    },
+    {
+      "nome": "potabile sotto soglia",
+      "esito": "PASS"
+    },
+    {
+      "nome": "potabile soglia esatta",
+      "esito": "PASS"
+    },
+    {
+      "nome": "potabile attesa stabilità",
+      "esito": "PASS"
+    },
+    {
+      "nome": "potabile blocco auto",
+      "esito": "PASS"
+    },
+    {
+      "nome": "potabile blocco sup",
+      "esito": "PASS"
+    },
+    {
+      "nome": "potabile blocco ready",
+      "esito": "PASS"
+    },
+    {
+      "nome": "potabile blocco window",
+      "esito": "PASS"
+    },
+    {
+      "nome": "potabile blocco levels_valid",
+      "esito": "PASS"
+    },
+    {
+      "nome": "potabile blocco energy_valid",
+      "esito": "PASS"
+    },
+    {
+      "nome": "potabile blocco energy_raw",
+      "esito": "PASS"
+    },
+    {
+      "nome": "potabile blocco energy_stable",
+      "esito": "PASS"
+    },
+    {
+      "nome": "potabile rilascio manuale non riparte",
+      "esito": "PASS"
+    },
+    {
+      "nome": "potabile riarmo scorta",
+      "esito": "PASS"
+    },
+    {
+      "nome": "potabile riarmo su attivazione auto",
+      "esito": "PASS"
+    },
+    {
+      "nome": "potabile ciclo prosegue",
+      "esito": "PASS"
+    },
+    {
+      "nome": "potabile arresto inclusivo",
+      "esito": "PASS"
+    },
+    {
+      "nome": "potabile energia persa dopo avvio energy_valid",
+      "esito": "PASS"
+    },
+    {
+      "nome": "potabile energia persa dopo avvio energy_raw",
+      "esito": "PASS"
+    },
+    {
+      "nome": "potabile energia persa dopo avvio energy_stable",
+      "esito": "PASS"
+    },
+    {
+      "nome": "potabile rilascio auto",
+      "esito": "PASS"
+    },
+    {
+      "nome": "potabile rilascio sup",
+      "esito": "PASS"
+    },
+    {
+      "nome": "potabile rilascio ready",
+      "esito": "PASS"
+    },
+    {
+      "nome": "potabile rilascio levels_valid",
+      "esito": "PASS"
+    },
+    {
+      "nome": "potabile dopo le 16 il ciclo continua",
+      "esito": "PASS"
+    },
+    {
+      "nome": "potabile richiesta cancellata al rientro HA",
+      "esito": "PASS"
+    },
+    {
+      "nome": "potabile attesa aggiornamento Modbus",
+      "esito": "PASS"
+    },
+    {
+      "nome": "pozzo sotto soglia",
+      "esito": "PASS"
+    },
+    {
+      "nome": "pozzo soglia esatta",
+      "esito": "PASS"
+    },
+    {
+      "nome": "pozzo attesa stabilità",
+      "esito": "PASS"
+    },
+    {
+      "nome": "pozzo blocco auto",
+      "esito": "PASS"
+    },
+    {
+      "nome": "pozzo blocco sup",
+      "esito": "PASS"
+    },
+    {
+      "nome": "pozzo blocco ready",
+      "esito": "PASS"
+    },
+    {
+      "nome": "pozzo blocco window",
+      "esito": "PASS"
+    },
+    {
+      "nome": "pozzo blocco levels_valid",
+      "esito": "PASS"
+    },
+    {
+      "nome": "pozzo blocco energy_valid",
+      "esito": "PASS"
+    },
+    {
+      "nome": "pozzo blocco energy_raw",
+      "esito": "PASS"
+    },
+    {
+      "nome": "pozzo blocco energy_stable",
+      "esito": "PASS"
+    },
+    {
+      "nome": "pozzo rilascio manuale non riparte",
+      "esito": "PASS"
+    },
+    {
+      "nome": "pozzo riarmo scorta",
+      "esito": "PASS"
+    },
+    {
+      "nome": "pozzo riarmo su attivazione auto",
+      "esito": "PASS"
+    },
+    {
+      "nome": "pozzo ciclo prosegue",
+      "esito": "PASS"
+    },
+    {
+      "nome": "pozzo arresto inclusivo",
+      "esito": "PASS"
+    },
+    {
+      "nome": "pozzo energia persa dopo avvio energy_valid",
+      "esito": "PASS"
+    },
+    {
+      "nome": "pozzo energia persa dopo avvio energy_raw",
+      "esito": "PASS"
+    },
+    {
+      "nome": "pozzo energia persa dopo avvio energy_stable",
+      "esito": "PASS"
+    },
+    {
+      "nome": "pozzo rilascio auto",
+      "esito": "PASS"
+    },
+    {
+      "nome": "pozzo rilascio sup",
+      "esito": "PASS"
+    },
+    {
+      "nome": "pozzo rilascio ready",
+      "esito": "PASS"
+    },
+    {
+      "nome": "pozzo rilascio levels_valid",
+      "esito": "PASS"
+    },
+    {
+      "nome": "pozzo dopo le 16 il ciclo continua",
+      "esito": "PASS"
+    },
+    {
+      "nome": "pozzo richiesta cancellata al rientro HA",
+      "esito": "PASS"
+    },
+    {
+      "nome": "pozzo attesa aggiornamento Modbus",
+      "esito": "PASS"
+    },
+    {
+      "nome": "pozzo prioritario tra richieste contemporanee",
+      "esito": "PASS"
+    },
+    {
+      "nome": "filtri bloccano avvio potabile",
+      "esito": "PASS"
+    },
+    {
+      "nome": "filtri non bloccano pozzo",
+      "esito": "PASS"
+    },
+    {
+      "nome": "emergenza potabile blocca pozzo",
+      "esito": "PASS"
+    },
+    {
+      "nome": "interblocco avvio con Q1 attiva",
+      "esito": "PASS"
+    },
+    {
+      "nome": "interblocco avvio con Q2 attiva",
+      "esito": "PASS"
+    },
+    {
+      "nome": "combinazione permessi (False, False, False, False, False)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "combinazione permessi (False, False, False, False, True)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "combinazione permessi (False, False, False, True, False)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "combinazione permessi (False, False, False, True, True)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "combinazione permessi (False, False, True, False, False)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "combinazione permessi (False, False, True, False, True)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "combinazione permessi (False, False, True, True, False)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "combinazione permessi (False, False, True, True, True)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "combinazione permessi (False, True, False, False, False)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "combinazione permessi (False, True, False, False, True)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "combinazione permessi (False, True, False, True, False)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "combinazione permessi (False, True, False, True, True)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "combinazione permessi (False, True, True, False, False)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "combinazione permessi (False, True, True, False, True)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "combinazione permessi (False, True, True, True, False)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "combinazione permessi (False, True, True, True, True)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "combinazione permessi (True, False, False, False, False)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "combinazione permessi (True, False, False, False, True)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "combinazione permessi (True, False, False, True, False)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "combinazione permessi (True, False, False, True, True)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "combinazione permessi (True, False, True, False, False)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "combinazione permessi (True, False, True, False, True)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "combinazione permessi (True, False, True, True, False)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "combinazione permessi (True, False, True, True, True)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "combinazione permessi (True, True, False, False, False)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "combinazione permessi (True, True, False, False, True)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "combinazione permessi (True, True, False, True, False)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "combinazione permessi (True, True, False, True, True)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "combinazione permessi (True, True, True, False, False)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "combinazione permessi (True, True, True, False, True)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "combinazione permessi (True, True, True, True, False)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "combinazione permessi (True, True, True, True, True)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "scorte normali (tipi nativi HA)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "potabile sotto soglia (tipi nativi HA)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "potabile soglia esatta (tipi nativi HA)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "potabile attesa stabilità (tipi nativi HA)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "potabile blocco auto (tipi nativi HA)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "potabile blocco sup (tipi nativi HA)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "potabile blocco ready (tipi nativi HA)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "potabile blocco window (tipi nativi HA)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "potabile blocco levels_valid (tipi nativi HA)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "potabile blocco energy_valid (tipi nativi HA)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "potabile blocco energy_raw (tipi nativi HA)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "potabile blocco energy_stable (tipi nativi HA)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "potabile rilascio manuale non riparte (tipi nativi HA)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "potabile riarmo scorta (tipi nativi HA)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "potabile riarmo su attivazione auto (tipi nativi HA)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "potabile ciclo prosegue (tipi nativi HA)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "potabile arresto inclusivo (tipi nativi HA)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "potabile energia persa dopo avvio energy_valid (tipi nativi HA)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "potabile energia persa dopo avvio energy_raw (tipi nativi HA)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "potabile energia persa dopo avvio energy_stable (tipi nativi HA)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "potabile rilascio auto (tipi nativi HA)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "potabile rilascio sup (tipi nativi HA)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "potabile rilascio ready (tipi nativi HA)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "potabile rilascio levels_valid (tipi nativi HA)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "potabile dopo le 16 il ciclo continua (tipi nativi HA)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "potabile richiesta cancellata al rientro HA (tipi nativi HA)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "potabile attesa aggiornamento Modbus (tipi nativi HA)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "pozzo sotto soglia (tipi nativi HA)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "pozzo soglia esatta (tipi nativi HA)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "pozzo attesa stabilità (tipi nativi HA)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "pozzo blocco auto (tipi nativi HA)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "pozzo blocco sup (tipi nativi HA)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "pozzo blocco ready (tipi nativi HA)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "pozzo blocco window (tipi nativi HA)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "pozzo blocco levels_valid (tipi nativi HA)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "pozzo blocco energy_valid (tipi nativi HA)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "pozzo blocco energy_raw (tipi nativi HA)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "pozzo blocco energy_stable (tipi nativi HA)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "pozzo rilascio manuale non riparte (tipi nativi HA)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "pozzo riarmo scorta (tipi nativi HA)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "pozzo riarmo su attivazione auto (tipi nativi HA)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "pozzo ciclo prosegue (tipi nativi HA)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "pozzo arresto inclusivo (tipi nativi HA)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "pozzo energia persa dopo avvio energy_valid (tipi nativi HA)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "pozzo energia persa dopo avvio energy_raw (tipi nativi HA)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "pozzo energia persa dopo avvio energy_stable (tipi nativi HA)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "pozzo rilascio auto (tipi nativi HA)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "pozzo rilascio sup (tipi nativi HA)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "pozzo rilascio ready (tipi nativi HA)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "pozzo rilascio levels_valid (tipi nativi HA)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "pozzo dopo le 16 il ciclo continua (tipi nativi HA)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "pozzo richiesta cancellata al rientro HA (tipi nativi HA)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "pozzo attesa aggiornamento Modbus (tipi nativi HA)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "pozzo prioritario tra richieste contemporanee (tipi nativi HA)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "filtri bloccano avvio potabile (tipi nativi HA)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "filtri non bloccano pozzo (tipi nativi HA)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "emergenza potabile blocca pozzo (tipi nativi HA)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "interblocco avvio con Q1 attiva (tipi nativi HA)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "interblocco avvio con Q2 attiva (tipi nativi HA)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "combinazione permessi (False, False, False, False, False) (tipi nativi HA)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "combinazione permessi (False, False, False, False, True) (tipi nativi HA)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "combinazione permessi (False, False, False, True, False) (tipi nativi HA)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "combinazione permessi (False, False, False, True, True) (tipi nativi HA)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "combinazione permessi (False, False, True, False, False) (tipi nativi HA)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "combinazione permessi (False, False, True, False, True) (tipi nativi HA)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "combinazione permessi (False, False, True, True, False) (tipi nativi HA)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "combinazione permessi (False, False, True, True, True) (tipi nativi HA)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "combinazione permessi (False, True, False, False, False) (tipi nativi HA)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "combinazione permessi (False, True, False, False, True) (tipi nativi HA)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "combinazione permessi (False, True, False, True, False) (tipi nativi HA)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "combinazione permessi (False, True, False, True, True) (tipi nativi HA)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "combinazione permessi (False, True, True, False, False) (tipi nativi HA)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "combinazione permessi (False, True, True, False, True) (tipi nativi HA)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "combinazione permessi (False, True, True, True, False) (tipi nativi HA)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "combinazione permessi (False, True, True, True, True) (tipi nativi HA)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "combinazione permessi (True, False, False, False, False) (tipi nativi HA)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "combinazione permessi (True, False, False, False, True) (tipi nativi HA)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "combinazione permessi (True, False, False, True, False) (tipi nativi HA)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "combinazione permessi (True, False, False, True, True) (tipi nativi HA)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "combinazione permessi (True, False, True, False, False) (tipi nativi HA)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "combinazione permessi (True, False, True, False, True) (tipi nativi HA)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "combinazione permessi (True, False, True, True, False) (tipi nativi HA)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "combinazione permessi (True, False, True, True, True) (tipi nativi HA)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "combinazione permessi (True, True, False, False, False) (tipi nativi HA)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "combinazione permessi (True, True, False, False, True) (tipi nativi HA)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "combinazione permessi (True, True, False, True, False) (tipi nativi HA)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "combinazione permessi (True, True, False, True, True) (tipi nativi HA)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "combinazione permessi (True, True, True, False, False) (tipi nativi HA)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "combinazione permessi (True, True, True, False, True) (tipi nativi HA)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "combinazione permessi (True, True, True, True, False) (tipi nativi HA)",
+      "esito": "PASS"
+    },
+    {
+      "nome": "combinazione permessi (True, True, True, True, True) (tipi nativi HA)",
+      "esito": "PASS"
+    }
+  ]
+}

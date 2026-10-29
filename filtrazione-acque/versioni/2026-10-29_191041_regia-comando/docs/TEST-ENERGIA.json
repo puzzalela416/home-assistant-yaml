@@ -1,0 +1,199 @@
+{
+  "esito": "PASS",
+  "motore": "Home Assistant reale, dati di prova isolati senza mutare entità",
+  "scenari": 46,
+  "copertura": [
+    "35% incluso",
+    "34.9% escluso",
+    "qualsiasi prelievo positivo escluso",
+    "nessuna compensazione fra inverter",
+    "carica batterie da rete esclusa",
+    "dati mancanti e scaduti esclusi"
+  ],
+  "casi": [
+    {
+      "nome": "SOC 0",
+      "esito": "PASS"
+    },
+    {
+      "nome": "SOC 34.9",
+      "esito": "PASS"
+    },
+    {
+      "nome": "SOC 35",
+      "esito": "PASS"
+    },
+    {
+      "nome": "SOC 35.1",
+      "esito": "PASS"
+    },
+    {
+      "nome": "SOC 100",
+      "esito": "PASS"
+    },
+    {
+      "nome": "SOC 101",
+      "esito": "PASS"
+    },
+    {
+      "nome": "SOC unknown",
+      "esito": "PASS"
+    },
+    {
+      "nome": "SOC unavailable",
+      "esito": "PASS"
+    },
+    {
+      "nome": "sensor.growatt_1_ingresso_rete_potenza -10",
+      "esito": "PASS"
+    },
+    {
+      "nome": "sensor.growatt_1_ingresso_rete_potenza 0",
+      "esito": "PASS"
+    },
+    {
+      "nome": "sensor.growatt_1_ingresso_rete_potenza 0.1",
+      "esito": "PASS"
+    },
+    {
+      "nome": "sensor.growatt_1_ingresso_rete_potenza 20",
+      "esito": "PASS"
+    },
+    {
+      "nome": "sensor.growatt_1_ingresso_rete_potenza unknown",
+      "esito": "PASS"
+    },
+    {
+      "nome": "sensor.growatt_1_ingresso_rete_potenza unavailable",
+      "esito": "PASS"
+    },
+    {
+      "nome": "sensor.growatt_1_ingresso_rete_potenza dato scaduto",
+      "esito": "PASS"
+    },
+    {
+      "nome": "sensor.growatt_1_carica_da_rete_potenza -10",
+      "esito": "PASS"
+    },
+    {
+      "nome": "sensor.growatt_1_carica_da_rete_potenza 0",
+      "esito": "PASS"
+    },
+    {
+      "nome": "sensor.growatt_1_carica_da_rete_potenza 0.1",
+      "esito": "PASS"
+    },
+    {
+      "nome": "sensor.growatt_1_carica_da_rete_potenza 20",
+      "esito": "PASS"
+    },
+    {
+      "nome": "sensor.growatt_1_carica_da_rete_potenza unknown",
+      "esito": "PASS"
+    },
+    {
+      "nome": "sensor.growatt_1_carica_da_rete_potenza unavailable",
+      "esito": "PASS"
+    },
+    {
+      "nome": "sensor.growatt_1_carica_da_rete_potenza dato scaduto",
+      "esito": "PASS"
+    },
+    {
+      "nome": "sensor.growatt_2_ingresso_rete_potenza -10",
+      "esito": "PASS"
+    },
+    {
+      "nome": "sensor.growatt_2_ingresso_rete_potenza 0",
+      "esito": "PASS"
+    },
+    {
+      "nome": "sensor.growatt_2_ingresso_rete_potenza 0.1",
+      "esito": "PASS"
+    },
+    {
+      "nome": "sensor.growatt_2_ingresso_rete_potenza 20",
+      "esito": "PASS"
+    },
+    {
+      "nome": "sensor.growatt_2_ingresso_rete_potenza unknown",
+      "esito": "PASS"
+    },
+    {
+      "nome": "sensor.growatt_2_ingresso_rete_potenza unavailable",
+      "esito": "PASS"
+    },
+    {
+      "nome": "sensor.growatt_2_ingresso_rete_potenza dato scaduto",
+      "esito": "PASS"
+    },
+    {
+      "nome": "sensor.growatt_2_carica_da_rete_potenza -10",
+      "esito": "PASS"
+    },
+    {
+      "nome": "sensor.growatt_2_carica_da_rete_potenza 0",
+      "esito": "PASS"
+    },
+    {
+      "nome": "sensor.growatt_2_carica_da_rete_potenza 0.1",
+      "esito": "PASS"
+    },
+    {
+      "nome": "sensor.growatt_2_carica_da_rete_potenza 20",
+      "esito": "PASS"
+    },
+    {
+      "nome": "sensor.growatt_2_carica_da_rete_potenza unknown",
+      "esito": "PASS"
+    },
+    {
+      "nome": "sensor.growatt_2_carica_da_rete_potenza unavailable",
+      "esito": "PASS"
+    },
+    {
+      "nome": "sensor.growatt_2_carica_da_rete_potenza dato scaduto",
+      "esito": "PASS"
+    },
+    {
+      "nome": "sensor.jk_batteria_sinistra_10_capacita_residua mancante",
+      "esito": "PASS"
+    },
+    {
+      "nome": "sensor.jk_batteria_sinistra_10_capacita_residua scaduta",
+      "esito": "PASS"
+    },
+    {
+      "nome": "sensor.jk_batteria_destra_0_master_capacita_nominale mancante",
+      "esito": "PASS"
+    },
+    {
+      "nome": "sensor.jk_batteria_sinistra_10_capacita_nominale mancante",
+      "esito": "PASS"
+    },
+    {
+      "nome": "sensor.jk_batteria_destra_0_master_capacita_residua mancante",
+      "esito": "PASS"
+    },
+    {
+      "nome": "sensor.jk_batteria_destra_0_master_capacita_residua scaduta",
+      "esito": "PASS"
+    },
+    {
+      "nome": "sensor.jk_batteria_centrale_8_capacita_residua mancante",
+      "esito": "PASS"
+    },
+    {
+      "nome": "sensor.jk_batteria_centrale_8_capacita_residua scaduta",
+      "esito": "PASS"
+    },
+    {
+      "nome": "sensor.jk_batteria_centrale_8_capacita_nominale mancante",
+      "esito": "PASS"
+    },
+    {
+      "nome": "un inverter importa e l’altro esporta",
+      "esito": "PASS"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "data": "2026-10-29T19:04:19.611841+01:00",
+  "ricariche": [
+    "input_boolean.reload",
+    "template.reload",
+    "script.reload",
+    "automation.reload",
+    "modbus.reload"
+  ],
+  "automatico_durante_test": "off",
+  "plc_modificato": false,
+  "esito": "installato, verifica funzionale in corso"
+}

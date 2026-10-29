@@ -1,0 +1,209 @@
+{
+  "tipo": "Prove isolate del codice template letto dal server, eseguite sul motore del vero HA. Nessuna modifica agli stati reali e nessuna automazione di impianto avviata.",
+  "diagnostiche": 12,
+  "scenari": 40,
+  "esito": "PASS",
+  "limite": "Verifica condizioni e disponibilita; non forza gli ingressi fisici e non collauda i delay_on reali di 1/2/3/15 minuti.",
+  "risultati": [
+    {
+      "diagnostica": "PR205 DIAG Scarico oltre un ora",
+      "scenario": "condizione normale",
+      "esito": "PASS"
+    },
+    {
+      "diagnostica": "PR205 DIAG Filtro 2 non partito",
+      "scenario": "condizione normale",
+      "esito": "PASS"
+    },
+    {
+      "diagnostica": "PR205 DIAG Filtro 3 non partito",
+      "scenario": "condizione normale",
+      "esito": "PASS"
+    },
+    {
+      "diagnostica": "PR205 DIAG Q2 senza ricircolo Q3",
+      "scenario": "condizione normale",
+      "esito": "PASS"
+    },
+    {
+      "diagnostica": "PR205 DIAG Q2 senza cloratore Q4",
+      "scenario": "condizione normale",
+      "esito": "PASS"
+    },
+    {
+      "diagnostica": "PR205 DIAG Cloratore Q4 senza Q2",
+      "scenario": "condizione normale",
+      "esito": "PASS"
+    },
+    {
+      "diagnostica": "PR205 DIAG Ricircolo non mantenuto",
+      "scenario": "condizione normale",
+      "esito": "PASS"
+    },
+    {
+      "diagnostica": "PR205 DIAG Pozzo non sale con Q2",
+      "scenario": "condizione normale",
+      "esito": "PASS"
+    },
+    {
+      "diagnostica": "PR205 DIAG Potabile non sale con Q1",
+      "scenario": "condizione normale",
+      "esito": "PASS"
+    },
+    {
+      "diagnostica": "PR205 DIAG Calo pozzo ingiustificato",
+      "scenario": "condizione normale",
+      "esito": "PASS"
+    },
+    {
+      "diagnostica": "PR205 DIAG Calo potabile ingiustificato",
+      "scenario": "condizione normale",
+      "esito": "PASS"
+    },
+    {
+      "diagnostica": "PR205 DIAG Dati PLC non disponibili",
+      "scenario": "condizione normale",
+      "esito": "PASS"
+    },
+    {
+      "diagnostica": "PR205 DIAG Scarico oltre un ora",
+      "scenario": "scarico da due ore",
+      "esito": "PASS"
+    },
+    {
+      "diagnostica": "PR205 DIAG Scarico oltre un ora",
+      "scenario": "scarico da mezzora",
+      "esito": "PASS"
+    },
+    {
+      "diagnostica": "PR205 DIAG Filtro 2 non partito",
+      "scenario": "lavaggio assente nel giorno previsto",
+      "esito": "PASS"
+    },
+    {
+      "diagnostica": "PR205 DIAG Filtro 3 non partito",
+      "scenario": "lavaggio assente nel giorno previsto",
+      "esito": "PASS"
+    },
+    {
+      "diagnostica": "PR205 DIAG Q2 senza ricircolo Q3",
+      "scenario": "Q2 ON Q3 OFF",
+      "esito": "PASS"
+    },
+    {
+      "diagnostica": "PR205 DIAG Q2 senza ricircolo Q3",
+      "scenario": "Q2 ON Q3 ON",
+      "esito": "PASS"
+    },
+    {
+      "diagnostica": "PR205 DIAG Q2 senza cloratore Q4",
+      "scenario": "Q2 ON Q4 OFF",
+      "esito": "PASS"
+    },
+    {
+      "diagnostica": "PR205 DIAG Q2 senza cloratore Q4",
+      "scenario": "Q2 ON Q4 ON",
+      "esito": "PASS"
+    },
+    {
+      "diagnostica": "PR205 DIAG Cloratore Q4 senza Q2",
+      "scenario": "Q4 ON Q2 OFF",
+      "esito": "PASS"
+    },
+    {
+      "diagnostica": "PR205 DIAG Cloratore Q4 senza Q2",
+      "scenario": "Q4 ON Q2 ON",
+      "esito": "PASS"
+    },
+    {
+      "diagnostica": "PR205 DIAG Ricircolo non mantenuto",
+      "scenario": "Q2 ON Q3 OFF",
+      "esito": "PASS"
+    },
+    {
+      "diagnostica": "PR205 DIAG Ricircolo non mantenuto",
+      "scenario": "Q2 OFF Q3 ON",
+      "esito": "PASS"
+    },
+    {
+      "diagnostica": "PR205 DIAG Ricircolo non mantenuto",
+      "scenario": "Q2 e Q3 ON",
+      "esito": "PASS"
+    },
+    {
+      "diagnostica": "PR205 DIAG Pozzo non sale con Q2",
+      "scenario": "riempimento senza aumento",
+      "esito": "PASS"
+    },
+    {
+      "diagnostica": "PR205 DIAG Pozzo non sale con Q2",
+      "scenario": "aumento sufficiente",
+      "esito": "PASS"
+    },
+    {
+      "diagnostica": "PR205 DIAG Pozzo non sale con Q2",
+      "scenario": "esclusione durante controlavaggio",
+      "esito": "PASS"
+    },
+    {
+      "diagnostica": "PR205 DIAG Potabile non sale con Q1",
+      "scenario": "riempimento senza aumento",
+      "esito": "PASS"
+    },
+    {
+      "diagnostica": "PR205 DIAG Potabile non sale con Q1",
+      "scenario": "aumento sufficiente",
+      "esito": "PASS"
+    },
+    {
+      "diagnostica": "PR205 DIAG Potabile non sale con Q1",
+      "scenario": "esclusione consumo DAB",
+      "esito": "PASS"
+    },
+    {
+      "diagnostica": "PR205 DIAG Calo pozzo ingiustificato",
+      "scenario": "calo oltre soglia",
+      "esito": "PASS"
+    },
+    {
+      "diagnostica": "PR205 DIAG Calo pozzo ingiustificato",
+      "scenario": "calo a soglia esatta",
+      "esito": "PASS"
+    },
+    {
+      "diagnostica": "PR205 DIAG Calo pozzo ingiustificato",
+      "scenario": "esclusione prelievo Q1",
+      "esito": "PASS"
+    },
+    {
+      "diagnostica": "PR205 DIAG Calo potabile ingiustificato",
+      "scenario": "calo oltre soglia",
+      "esito": "PASS"
+    },
+    {
+      "diagnostica": "PR205 DIAG Calo potabile ingiustificato",
+      "scenario": "esclusione consumo DAB",
+      "esito": "PASS"
+    },
+    {
+      "diagnostica": "PR205 DIAG Dati PLC non disponibili",
+      "scenario": "perdita dati PLC",
+      "esito": "PASS"
+    },
+    {
+      "diagnostica": "PR205 DIAG Dati PLC non disponibili",
+      "scenario": "livello sconosciuto",
+      "esito": "PASS"
+    },
+    {
+      "diagnostica": "PR205 DIAG Pozzo non sale con Q2",
+      "scenario": "statistica non disponibile",
+      "esito": "PASS"
+    },
+    {
+      "diagnostica": "PR205 DIAG Q2 senza ricircolo Q3",
+      "scenario": "stato uscita non disponibile",
+      "esito": "PASS"
+    }
+  ]
+}

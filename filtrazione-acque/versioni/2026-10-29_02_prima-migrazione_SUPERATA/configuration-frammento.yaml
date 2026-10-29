@@ -1,0 +1,178 @@
+homeassistant:
+  packages: !include_dir_named packages
+modbus:
+- name: PR205
+  type: tcp
+  host: 192.168.0.129
+  port: 502
+  sensors:
+  - name: Livello potabile PLC
+    unique_id: livello_potabile_plc
+    slave: 1
+    address: 16384
+    input_type: holding
+    data_type: float32
+    swap: word
+    precision: 0
+    scan_interval: 30
+  - name: Percentuale potabile PLC
+    unique_id: percentuale_potabile_plc
+    slave: 1
+    address: 16386
+    input_type: holding
+    data_type: float32
+    swap: word
+    precision: 0
+    scan_interval: 30
+    unit_of_measurement: '%'
+  - name: Livello pozzo PLC
+    unique_id: livello_pozzo_plc
+    slave: 1
+    address: 16388
+    input_type: holding
+    data_type: float32
+    swap: word
+    precision: 0
+    scan_interval: 30
+    unit_of_measurement: cm
+  - name: Percentuale pozzo PLC
+    unique_id: percentuale_pozzo_plc
+    slave: 1
+    address: 16390
+    input_type: holding
+    data_type: float32
+    swap: word
+    precision: 0
+    scan_interval: 30
+    unit_of_measurement: '%'
+  - name: Q1 potabile PLC
+    unique_id: q1_potabile_plc
+    slave: 1
+    address: 16392
+    input_type: holding
+    data_type: int16
+    scan_interval: 5
+  - name: Q2 pozzo PLC
+    unique_id: q2_pozzo_plc
+    slave: 1
+    address: 16393
+    input_type: holding
+    data_type: int16
+    scan_interval: 5
+  - name: Q3 ricircolo PLC
+    unique_id: q3_ricircolo_plc
+    slave: 1
+    address: 16394
+    input_type: holding
+    data_type: int16
+    scan_interval: 5
+  - name: Q4 cloratore PLC
+    unique_id: q4_cloratore_plc
+    slave: 1
+    address: 16395
+    input_type: holding
+    data_type: int16
+    scan_interval: 5
+  - name: PR205 Blocco filtri
+    unique_id: pr205_blocco_filtri
+    slave: 1
+    address: 16401
+    input_type: holding
+    data_type: int16
+    scan_interval: 5
+  - name: PR205 Fascia oraria
+    unique_id: pr205_fascia_oraria
+    slave: 1
+    address: 16402
+    input_type: holding
+    data_type: int16
+    scan_interval: 5
+  - name: PR205 Attesa fascia
+    unique_id: pr205_attesa_fascia
+    slave: 1
+    address: 16403
+    input_type: holding
+    data_type: int16
+    scan_interval: 5
+  - name: PR205 Emergenza potabile
+    unique_id: pr205_emergenza_potabile
+    slave: 1
+    address: 16404
+    input_type: holding
+    data_type: int16
+    scan_interval: 5
+  - name: PR205 Emergenza pozzo
+    unique_id: pr205_emergenza_pozzo
+    slave: 1
+    address: 16405
+    input_type: holding
+    data_type: int16
+    scan_interval: 5
+  - name: Filtrazione v2 heartbeat
+    unique_id: filtrazione_v2_heartbeat
+    slave: 1
+    address: 16406
+    input_type: holding
+    data_type: int16
+    scan_interval: 5
+  - name: Filtrazione v2 richiesta potabile
+    unique_id: filtrazione_v2_richiesta_potabile
+    slave: 1
+    address: 16407
+    input_type: holding
+    data_type: int16
+    scan_interval: 5
+  - name: Filtrazione v2 richiesta pozzo
+    unique_id: filtrazione_v2_richiesta_pozzo
+    slave: 1
+    address: 16408
+    input_type: holding
+    data_type: int16
+    scan_interval: 5
+  - name: Filtrazione v2 ha online
+    unique_id: filtrazione_v2_ha_online
+    slave: 1
+    address: 16409
+    input_type: holding
+    data_type: int16
+    scan_interval: 5
+  - name: Filtrazione v2 potabile accettata
+    unique_id: filtrazione_v2_potabile_accettata
+    slave: 1
+    address: 16410
+    input_type: holding
+    data_type: int16
+    scan_interval: 5
+  - name: Filtrazione v2 pozzo accettata
+    unique_id: filtrazione_v2_pozzo_accettata
+    slave: 1
+    address: 16411
+    input_type: holding
+    data_type: int16
+    scan_interval: 5
+  - name: Filtrazione v2 interdizione potabile
+    unique_id: filtrazione_v2_interdizione_potabile
+    slave: 1
+    address: 16412
+    input_type: holding
+    data_type: int16
+    scan_interval: 5
+  - name: Filtrazione v2 interdizione pozzo
+    unique_id: filtrazione_v2_interdizione_pozzo
+    slave: 1
+    address: 16413
+    input_type: holding
+    data_type: int16
+    scan_interval: 5
+  - name: Filtrazione v2 versione protocollo
+    unique_id: filtrazione_v2_versione_protocollo
+    slave: 1
+    address: 16414
+    input_type: holding
+    data_type: int16
+    scan_interval: 5
+template:
+- binary_sensor:
+  - name: DAB flusso attivo
+    unique_id: dab_flusso_attivo
+    state: "{{\n  states('sensor.autoclave_vf_flowliter') | float(0) > 0\n}}\n"

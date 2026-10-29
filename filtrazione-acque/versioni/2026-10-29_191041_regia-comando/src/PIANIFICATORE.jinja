@@ -1,0 +1,17 @@
+{% set ns=namespace(actions=[]) %}
+{% for tank, threshold, target in [('potabile',40,110),('pozzo',70,159)] %}
+  {% set owned=ctx['owned_'~tank] %}{% set req=ctx['request_'~tank]|string %}{% set level=ctx['level_'~tank] %}
+  {% set unsafe=not ctx.levels_valid or level>=target or (tank=='potabile' and ctx.filters|string!='0') or (tank=='pozzo' and ctx.emergency_p|string!='0') %}
+  {% set end_auto=owned and (not ctx.auto or not ctx.sup or not ctx.ready) %}
+  {% set expired=owned and req=='0' and not ctx['starting_'~tank] and ctx['age_'~tank]>15 %}
+  {% if (req=='1' and unsafe) or end_auto or expired %}{% set ns.actions=ns.actions+['rilascia_'~tank] %}{% endif %}
+  {% if ctx['paused_'~tank] and (ctx.auto_on or (ctx.levels_valid and level>=threshold)) %}{% set ns.actions=ns.actions+['riarma_'~tank] %}{% endif %}
+{% endfor %}
+{% set eligible=ctx.auto and ctx.sup and ctx.ready and ctx.window and ctx.levels_valid and ctx.energy_valid and ctx.energy_raw and ctx.energy_stable %}
+{% set free=ctx.request_potabile|string=='0' and ctx.request_pozzo|string=='0' and not ctx.owned_potabile and not ctx.owned_pozzo and ctx.q1|string=='0' and ctx.q2|string=='0' and not ctx.starting_potabile and not ctx.starting_pozzo %}
+{% if eligible and free and not ns.actions %}
+ {% if ctx.demand_pozzo and ctx.level_pozzo<70 and not ctx.paused_pozzo and ctx.emergency_p|string=='0' %}{% set ns.actions=['avvia_pozzo'] %}
+ {% elif ctx.demand_potabile and ctx.level_potabile<40 and not ctx.paused_potabile and ctx.filters|string=='0' %}{% set ns.actions=['avvia_potabile'] %}
+ {% endif %}
+{% endif %}
+{{ ns.actions }}

@@ -1,0 +1,287 @@
+input_boolean:
+  filtrazione_v2_supervisione:
+    name: Filtrazione v2 supervisione HA
+    icon: mdi:home-assistant
+template:
+- triggers:
+  - trigger: time_pattern
+    seconds: /5
+  - trigger: state
+    entity_id:
+    - sensor.filtrazione_v2_versione_protocollo
+    - sensor.filtrazione_v2_ha_online
+    - sensor.filtrazione_v2_heartbeat
+    - sensor.livello_potabile_plc
+    - sensor.livello_pozzo_plc
+    - sensor.q1_potabile_plc
+    - sensor.q2_pozzo_plc
+    - sensor.q3_ricircolo_plc
+    - sensor.q4_cloratore_plc
+    - input_boolean.filtrazione_v2_supervisione
+  binary_sensor:
+  - name: Filtrazione v2 PLC disponibile
+    unique_id: filtrazione_v2_plc_disponibile
+    state: '{% set e = states.sensor.filtrazione_v2_versione_protocollo %} {{ e is
+      defined and e.state == ''2'' and (as_timestamp(now()) - as_timestamp(e.last_reported,
+      0)) < 25 }}'
+    icon: mdi:lan-connect
+  - name: Filtrazione v2 comandi disponibili
+    unique_id: filtrazione_v2_comandi_disponibili
+    state: '{{ is_state(''binary_sensor.filtrazione_v2_plc_disponibile'',''on'') and
+      is_state(''input_boolean.filtrazione_v2_supervisione'',''on'') and is_state(''sensor.filtrazione_v2_ha_online'',''1'')
+      }}'
+    icon: mdi:shield-check
+  - name: Filtrazione v2 uscite coerenti
+    unique_id: filtrazione_v2_uscite_coerenti
+    availability: '{{ states(''binary_sensor.q2_pozzo'') in [''on'',''off''] and states(''binary_sensor.q3_ricircolo'')
+      in [''on'',''off''] and states(''binary_sensor.q4_cloratore'') in [''on'',''off'']
+      }}'
+    state: '{{ states(''binary_sensor.q2_pozzo'') == states(''binary_sensor.q3_ricircolo'')
+      == states(''binary_sensor.q4_cloratore'') }}'
+  sensor:
+  - name: Filtrazione v2 potabile percentuale
+    unique_id: filtrazione_v2_potabile_percentuale
+    unit_of_measurement: '%'
+    availability: '{{ is_number(states(''sensor.livello_potabile_plc'')) }}'
+    state: '{{ [[states(''sensor.livello_potabile_plc'')|float(0) / 110 * 100, 0]|max,
+      100]|min|round(1) }}'
+  - name: Filtrazione v2 pozzo percentuale
+    unique_id: filtrazione_v2_pozzo_percentuale
+    unit_of_measurement: '%'
+    availability: '{{ is_number(states(''sensor.livello_pozzo_plc'')) }}'
+    state: '{{ [[states(''sensor.livello_pozzo_plc'')|float(0) / 160 * 100, 0]|max,
+      100]|min|round(1) }}'
+- switch:
+  - name: Filtrazione v2 richiesta potabile
+    unique_id: filtrazione_v2_switch_richiesta_potabile
+    icon: mdi:water-pump
+    state: '{{ is_state(''sensor.filtrazione_v2_richiesta_potabile'',''1'') }}'
+    availability: '{{ is_state(''binary_sensor.filtrazione_v2_comandi_disponibili'',''on'')
+      and states(''sensor.filtrazione_v2_richiesta_potabile'') in [''0'',''1''] }}'
+    turn_on:
+    - action: script.filtrazione_v2_avvia_potabile
+    turn_off:
+    - action: script.filtrazione_v2_rilascia_potabile
+  - name: Filtrazione v2 richiesta pozzo
+    unique_id: filtrazione_v2_switch_richiesta_pozzo
+    icon: mdi:water-pump
+    state: '{{ is_state(''sensor.filtrazione_v2_richiesta_pozzo'',''1'') }}'
+    availability: '{{ is_state(''binary_sensor.filtrazione_v2_comandi_disponibili'',''on'')
+      and states(''sensor.filtrazione_v2_richiesta_pozzo'') in [''0'',''1''] }}'
+    turn_on:
+    - action: script.filtrazione_v2_avvia_pozzo
+    turn_off:
+    - action: script.filtrazione_v2_rilascia_pozzo
+automation:
+- id: filtrazione_v2_heartbeat
+  alias: Filtrazione v2 - Presenza HA
+  mode: single
+  triggers:
+  - trigger: time_pattern
+    seconds: /10
+  - trigger: state
+    entity_id: input_boolean.filtrazione_v2_supervisione
+    to: 'on'
+  conditions:
+  - &id001
+    condition: state
+    entity_id: binary_sensor.filtrazione_v2_plc_disponibile
+    state: 'on'
+  - condition: state
+    entity_id: input_boolean.filtrazione_v2_supervisione
+    state: 'on'
+  - condition: template
+    value_template: '{{ states(''sensor.filtrazione_v2_heartbeat'') in [''0'',''1'']
+      }}'
+  actions:
+  - if:
+    - condition: template
+      value_template: '{{ not is_state(''sensor.filtrazione_v2_ha_online'',''1'')
+        }}'
+    then:
+    - action: modbus.write_register
+      data:
+        hub: PR205
+        slave: 1
+        address: 16407
+        value: 0
+    - action: modbus.write_register
+      data:
+        hub: PR205
+        slave: 1
+        address: 16408
+        value: 0
+  - action: modbus.write_register
+    data:
+      hub: PR205
+      slave: 1
+      address: 16406
+      value: '{{ 1 if is_state(''sensor.filtrazione_v2_heartbeat'',''0'') else 0 }}'
+- id: filtrazione_v2_stop_supervisione
+  alias: Filtrazione v2 - Rilascio supervisione
+  mode: single
+  triggers:
+  - trigger: state
+    entity_id: input_boolean.filtrazione_v2_supervisione
+    to: 'off'
+  conditions: []
+  actions:
+  - action: script.turn_off
+    target:
+      entity_id:
+      - script.filtrazione_v2_avvia_potabile
+      - script.filtrazione_v2_avvia_pozzo
+  - condition: state
+    entity_id: binary_sensor.filtrazione_v2_plc_disponibile
+    state: 'on'
+  - action: modbus.write_register
+    data:
+      hub: PR205
+      slave: 1
+      address: 16407
+      value: 0
+  - action: modbus.write_register
+    data:
+      hub: PR205
+      slave: 1
+      address: 16408
+      value: 0
+script:
+  filtrazione_v2_avvia_potabile:
+    alias: Filtrazione v2 - Richiedi potabile
+    mode: single
+    sequence:
+    - condition: and
+      conditions:
+      - &id002
+        condition: state
+        entity_id: binary_sensor.filtrazione_v2_comandi_disponibili
+        state: 'on'
+      - *id001
+      - &id003
+        condition: numeric_state
+        entity_id: sensor.livello_potabile_plc
+        above: -0.001
+        below: 115
+      - &id004
+        condition: state
+        entity_id: sensor.pr205_blocco_filtri
+        state: '0'
+      - &id005
+        condition: state
+        entity_id: input_boolean.filtrazione_v2_supervisione
+        state: 'on'
+      - &id006
+        condition: state
+        entity_id: sensor.filtrazione_v2_ha_online
+        state: '1'
+      - &id007
+        condition: state
+        entity_id: sensor.filtrazione_v2_versione_protocollo
+        state: '2'
+    - action: modbus.write_register
+      data:
+        hub: PR205
+        slave: 1
+        address: 16407
+        value: 0
+    - delay:
+        seconds: 1
+    - condition: and
+      conditions:
+      - *id002
+      - *id001
+      - *id003
+      - *id004
+      - *id005
+      - *id006
+      - *id007
+    - action: modbus.write_register
+      data:
+        hub: PR205
+        slave: 1
+        address: 16407
+        value: 1
+  filtrazione_v2_rilascia_potabile:
+    alias: Filtrazione v2 - Rilascia potabile
+    mode: single
+    sequence:
+    - action: script.turn_off
+      target:
+        entity_id: script.filtrazione_v2_avvia_potabile
+    - *id001
+    - action: modbus.write_register
+      data:
+        hub: PR205
+        slave: 1
+        address: 16407
+        value: 0
+  filtrazione_v2_avvia_pozzo:
+    alias: Filtrazione v2 - Richiedi pozzo
+    mode: single
+    sequence:
+    - condition: and
+      conditions:
+      - &id008
+        condition: state
+        entity_id: binary_sensor.filtrazione_v2_comandi_disponibili
+        state: 'on'
+      - *id001
+      - &id009
+        condition: numeric_state
+        entity_id: sensor.livello_pozzo_plc
+        above: -0.001
+        below: 160
+      - &id010
+        condition: state
+        entity_id: sensor.pr205_emergenza_potabile
+        state: '0'
+      - &id011
+        condition: state
+        entity_id: input_boolean.filtrazione_v2_supervisione
+        state: 'on'
+      - &id012
+        condition: state
+        entity_id: sensor.filtrazione_v2_ha_online
+        state: '1'
+      - &id013
+        condition: state
+        entity_id: sensor.filtrazione_v2_versione_protocollo
+        state: '2'
+    - action: modbus.write_register
+      data:
+        hub: PR205
+        slave: 1
+        address: 16408
+        value: 0
+    - delay:
+        seconds: 1
+    - condition: and
+      conditions:
+      - *id008
+      - *id001
+      - *id009
+      - *id010
+      - *id011
+      - *id012
+      - *id013
+    - action: modbus.write_register
+      data:
+        hub: PR205
+        slave: 1
+        address: 16408
+        value: 1
+  filtrazione_v2_rilascia_pozzo:
+    alias: Filtrazione v2 - Rilascia pozzo
+    mode: single
+    sequence:
+    - action: script.turn_off
+      target:
+        entity_id: script.filtrazione_v2_avvia_pozzo
+    - *id001
+    - action: modbus.write_register
+      data:
+        hub: PR205
+        slave: 1
+        address: 16408
+        value: 0

@@ -1,0 +1,1556 @@
+{
+  "inizio": "2026-10-29T18:41:33.360136+01:00",
+  "tipo": "Test funzionale sul vero HA e registri PLC, senza richieste di avvio abilitate",
+  "campioni": [
+    {
+      "t": 0.29,
+      "fase": "supervisione_on",
+      "ora": "2026-10-29T18:41:33.654809+01:00",
+      "plc": {
+        "heartbeat": 0,
+        "richiesta_potabile": 0,
+        "richiesta_pozzo": 0,
+        "ha_online": 1,
+        "potabile_accettata": 0,
+        "pozzo_accettata": 0,
+        "interdizione_potabile": 0,
+        "interdizione_pozzo": 0,
+        "protocollo": 2
+      },
+      "uscite_plc": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "ha": {
+        "input_boolean.filtrazione_v2_supervisione": "on",
+        "binary_sensor.filtrazione_v2_plc_disponibile": "on",
+        "binary_sensor.filtrazione_v2_comandi_disponibili": "on",
+        "sensor.filtrazione_v2_ha_online": "1",
+        "sensor.filtrazione_v2_richiesta_potabile": "0",
+        "sensor.filtrazione_v2_richiesta_pozzo": "0"
+      }
+    },
+    {
+      "t": 2.47,
+      "fase": "supervisione_on",
+      "ora": "2026-10-29T18:41:35.835052+01:00",
+      "plc": {
+        "heartbeat": 0,
+        "richiesta_potabile": 0,
+        "richiesta_pozzo": 0,
+        "ha_online": 1,
+        "potabile_accettata": 0,
+        "pozzo_accettata": 0,
+        "interdizione_potabile": 0,
+        "interdizione_pozzo": 0,
+        "protocollo": 2
+      },
+      "uscite_plc": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "ha": {
+        "input_boolean.filtrazione_v2_supervisione": "on",
+        "binary_sensor.filtrazione_v2_plc_disponibile": "on",
+        "binary_sensor.filtrazione_v2_comandi_disponibili": "on",
+        "sensor.filtrazione_v2_ha_online": "1",
+        "sensor.filtrazione_v2_richiesta_potabile": "0",
+        "sensor.filtrazione_v2_richiesta_pozzo": "0"
+      }
+    },
+    {
+      "t": 4.65,
+      "fase": "supervisione_on",
+      "ora": "2026-10-29T18:41:38.007788+01:00",
+      "plc": {
+        "heartbeat": 0,
+        "richiesta_potabile": 0,
+        "richiesta_pozzo": 0,
+        "ha_online": 1,
+        "potabile_accettata": 0,
+        "pozzo_accettata": 0,
+        "interdizione_potabile": 0,
+        "interdizione_pozzo": 0,
+        "protocollo": 2
+      },
+      "uscite_plc": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "ha": {
+        "input_boolean.filtrazione_v2_supervisione": "on",
+        "binary_sensor.filtrazione_v2_plc_disponibile": "on",
+        "binary_sensor.filtrazione_v2_comandi_disponibili": "on",
+        "sensor.filtrazione_v2_ha_online": "1",
+        "sensor.filtrazione_v2_richiesta_potabile": "0",
+        "sensor.filtrazione_v2_richiesta_pozzo": "0"
+      }
+    },
+    {
+      "t": 6.8,
+      "fase": "supervisione_on",
+      "ora": "2026-10-29T18:41:40.161898+01:00",
+      "plc": {
+        "heartbeat": 0,
+        "richiesta_potabile": 0,
+        "richiesta_pozzo": 0,
+        "ha_online": 1,
+        "potabile_accettata": 0,
+        "pozzo_accettata": 0,
+        "interdizione_potabile": 0,
+        "interdizione_pozzo": 0,
+        "protocollo": 2
+      },
+      "uscite_plc": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "ha": {
+        "input_boolean.filtrazione_v2_supervisione": "on",
+        "binary_sensor.filtrazione_v2_plc_disponibile": "on",
+        "binary_sensor.filtrazione_v2_comandi_disponibili": "on",
+        "sensor.filtrazione_v2_ha_online": "1",
+        "sensor.filtrazione_v2_richiesta_potabile": "0",
+        "sensor.filtrazione_v2_richiesta_pozzo": "0"
+      }
+    },
+    {
+      "t": 8.95,
+      "fase": "supervisione_on",
+      "ora": "2026-10-29T18:41:42.309887+01:00",
+      "plc": {
+        "heartbeat": 1,
+        "richiesta_potabile": 0,
+        "richiesta_pozzo": 0,
+        "ha_online": 1,
+        "potabile_accettata": 0,
+        "pozzo_accettata": 0,
+        "interdizione_potabile": 0,
+        "interdizione_pozzo": 0,
+        "protocollo": 2
+      },
+      "uscite_plc": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "ha": {
+        "input_boolean.filtrazione_v2_supervisione": "on",
+        "binary_sensor.filtrazione_v2_plc_disponibile": "on",
+        "binary_sensor.filtrazione_v2_comandi_disponibili": "on",
+        "sensor.filtrazione_v2_ha_online": "1",
+        "sensor.filtrazione_v2_richiesta_potabile": "0",
+        "sensor.filtrazione_v2_richiesta_pozzo": "0"
+      }
+    },
+    {
+      "t": 11.1,
+      "fase": "supervisione_on",
+      "ora": "2026-10-29T18:41:44.465174+01:00",
+      "plc": {
+        "heartbeat": 1,
+        "richiesta_potabile": 0,
+        "richiesta_pozzo": 0,
+        "ha_online": 1,
+        "potabile_accettata": 0,
+        "pozzo_accettata": 0,
+        "interdizione_potabile": 0,
+        "interdizione_pozzo": 0,
+        "protocollo": 2
+      },
+      "uscite_plc": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "ha": {
+        "input_boolean.filtrazione_v2_supervisione": "on",
+        "binary_sensor.filtrazione_v2_plc_disponibile": "on",
+        "binary_sensor.filtrazione_v2_comandi_disponibili": "on",
+        "sensor.filtrazione_v2_ha_online": "1",
+        "sensor.filtrazione_v2_richiesta_potabile": "0",
+        "sensor.filtrazione_v2_richiesta_pozzo": "0"
+      }
+    },
+    {
+      "t": 13.26,
+      "fase": "supervisione_on",
+      "ora": "2026-10-29T18:41:46.623872+01:00",
+      "plc": {
+        "heartbeat": 1,
+        "richiesta_potabile": 0,
+        "richiesta_pozzo": 0,
+        "ha_online": 1,
+        "potabile_accettata": 0,
+        "pozzo_accettata": 0,
+        "interdizione_potabile": 0,
+        "interdizione_pozzo": 0,
+        "protocollo": 2
+      },
+      "uscite_plc": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "ha": {
+        "input_boolean.filtrazione_v2_supervisione": "on",
+        "binary_sensor.filtrazione_v2_plc_disponibile": "on",
+        "binary_sensor.filtrazione_v2_comandi_disponibili": "on",
+        "sensor.filtrazione_v2_ha_online": "1",
+        "sensor.filtrazione_v2_richiesta_potabile": "0",
+        "sensor.filtrazione_v2_richiesta_pozzo": "0"
+      }
+    },
+    {
+      "t": 15.43,
+      "fase": "supervisione_on",
+      "ora": "2026-10-29T18:41:48.790527+01:00",
+      "plc": {
+        "heartbeat": 1,
+        "richiesta_potabile": 0,
+        "richiesta_pozzo": 0,
+        "ha_online": 1,
+        "potabile_accettata": 0,
+        "pozzo_accettata": 0,
+        "interdizione_potabile": 0,
+        "interdizione_pozzo": 0,
+        "protocollo": 2
+      },
+      "uscite_plc": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "ha": {
+        "input_boolean.filtrazione_v2_supervisione": "on",
+        "binary_sensor.filtrazione_v2_plc_disponibile": "on",
+        "binary_sensor.filtrazione_v2_comandi_disponibili": "on",
+        "sensor.filtrazione_v2_ha_online": "1",
+        "sensor.filtrazione_v2_richiesta_potabile": "0",
+        "sensor.filtrazione_v2_richiesta_pozzo": "0"
+      }
+    },
+    {
+      "t": 17.57,
+      "fase": "supervisione_on",
+      "ora": "2026-10-29T18:41:50.925746+01:00",
+      "plc": {
+        "heartbeat": 0,
+        "richiesta_potabile": 0,
+        "richiesta_pozzo": 0,
+        "ha_online": 1,
+        "potabile_accettata": 0,
+        "pozzo_accettata": 0,
+        "interdizione_potabile": 0,
+        "interdizione_pozzo": 0,
+        "protocollo": 2
+      },
+      "uscite_plc": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "ha": {
+        "input_boolean.filtrazione_v2_supervisione": "on",
+        "binary_sensor.filtrazione_v2_plc_disponibile": "on",
+        "binary_sensor.filtrazione_v2_comandi_disponibili": "on",
+        "sensor.filtrazione_v2_ha_online": "1",
+        "sensor.filtrazione_v2_richiesta_potabile": "0",
+        "sensor.filtrazione_v2_richiesta_pozzo": "0"
+      }
+    },
+    {
+      "t": 19.73,
+      "fase": "supervisione_on",
+      "ora": "2026-10-29T18:41:53.091699+01:00",
+      "plc": {
+        "heartbeat": 0,
+        "richiesta_potabile": 0,
+        "richiesta_pozzo": 0,
+        "ha_online": 1,
+        "potabile_accettata": 0,
+        "pozzo_accettata": 0,
+        "interdizione_potabile": 0,
+        "interdizione_pozzo": 0,
+        "protocollo": 2
+      },
+      "uscite_plc": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "ha": {
+        "input_boolean.filtrazione_v2_supervisione": "on",
+        "binary_sensor.filtrazione_v2_plc_disponibile": "on",
+        "binary_sensor.filtrazione_v2_comandi_disponibili": "on",
+        "sensor.filtrazione_v2_ha_online": "1",
+        "sensor.filtrazione_v2_richiesta_potabile": "0",
+        "sensor.filtrazione_v2_richiesta_pozzo": "0"
+      }
+    },
+    {
+      "t": 21.9,
+      "fase": "supervisione_on",
+      "ora": "2026-10-29T18:41:55.264710+01:00",
+      "plc": {
+        "heartbeat": 0,
+        "richiesta_potabile": 0,
+        "richiesta_pozzo": 0,
+        "ha_online": 1,
+        "potabile_accettata": 0,
+        "pozzo_accettata": 0,
+        "interdizione_potabile": 0,
+        "interdizione_pozzo": 0,
+        "protocollo": 2
+      },
+      "uscite_plc": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "ha": {
+        "input_boolean.filtrazione_v2_supervisione": "on",
+        "binary_sensor.filtrazione_v2_plc_disponibile": "on",
+        "binary_sensor.filtrazione_v2_comandi_disponibili": "on",
+        "sensor.filtrazione_v2_ha_online": "1",
+        "sensor.filtrazione_v2_richiesta_potabile": "0",
+        "sensor.filtrazione_v2_richiesta_pozzo": "0"
+      }
+    },
+    {
+      "t": 24.09,
+      "fase": "supervisione_on",
+      "ora": "2026-10-29T18:41:57.453166+01:00",
+      "plc": {
+        "heartbeat": 0,
+        "richiesta_potabile": 0,
+        "richiesta_pozzo": 0,
+        "ha_online": 1,
+        "potabile_accettata": 0,
+        "pozzo_accettata": 0,
+        "interdizione_potabile": 0,
+        "interdizione_pozzo": 0,
+        "protocollo": 2
+      },
+      "uscite_plc": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "ha": {
+        "input_boolean.filtrazione_v2_supervisione": "on",
+        "binary_sensor.filtrazione_v2_plc_disponibile": "on",
+        "binary_sensor.filtrazione_v2_comandi_disponibili": "on",
+        "sensor.filtrazione_v2_ha_online": "1",
+        "sensor.filtrazione_v2_richiesta_potabile": "0",
+        "sensor.filtrazione_v2_richiesta_pozzo": "0"
+      }
+    },
+    {
+      "t": 28.6,
+      "fase": "supervisione_off",
+      "ora": "2026-10-29T18:42:01.956927+01:00",
+      "plc": {
+        "heartbeat": 0,
+        "richiesta_potabile": 0,
+        "richiesta_pozzo": 0,
+        "ha_online": 1,
+        "potabile_accettata": 0,
+        "pozzo_accettata": 0,
+        "interdizione_potabile": 0,
+        "interdizione_pozzo": 0,
+        "protocollo": 2
+      },
+      "uscite_plc": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "ha": {
+        "input_boolean.filtrazione_v2_supervisione": "off",
+        "binary_sensor.filtrazione_v2_plc_disponibile": "on",
+        "binary_sensor.filtrazione_v2_comandi_disponibili": "off",
+        "sensor.filtrazione_v2_ha_online": "1",
+        "sensor.filtrazione_v2_richiesta_potabile": "0",
+        "sensor.filtrazione_v2_richiesta_pozzo": "0"
+      }
+    },
+    {
+      "t": 30.01,
+      "fase": "script_bloccato_filtrazione_v2_avvia_potabile",
+      "ora": "2026-10-29T18:42:03.365267+01:00",
+      "plc": {
+        "heartbeat": 0,
+        "richiesta_potabile": 0,
+        "richiesta_pozzo": 0,
+        "ha_online": 1,
+        "potabile_accettata": 0,
+        "pozzo_accettata": 0,
+        "interdizione_potabile": 0,
+        "interdizione_pozzo": 0,
+        "protocollo": 2
+      },
+      "uscite_plc": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "ha": {
+        "input_boolean.filtrazione_v2_supervisione": "off",
+        "binary_sensor.filtrazione_v2_plc_disponibile": "on",
+        "binary_sensor.filtrazione_v2_comandi_disponibili": "off",
+        "sensor.filtrazione_v2_ha_online": "1",
+        "sensor.filtrazione_v2_richiesta_potabile": "0",
+        "sensor.filtrazione_v2_richiesta_pozzo": "0"
+      }
+    },
+    {
+      "t": 31.26,
+      "fase": "script_bloccato_filtrazione_v2_avvia_pozzo",
+      "ora": "2026-10-29T18:42:04.620575+01:00",
+      "plc": {
+        "heartbeat": 0,
+        "richiesta_potabile": 0,
+        "richiesta_pozzo": 0,
+        "ha_online": 1,
+        "potabile_accettata": 0,
+        "pozzo_accettata": 0,
+        "interdizione_potabile": 0,
+        "interdizione_pozzo": 0,
+        "protocollo": 2
+      },
+      "uscite_plc": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "ha": {
+        "input_boolean.filtrazione_v2_supervisione": "off",
+        "binary_sensor.filtrazione_v2_plc_disponibile": "on",
+        "binary_sensor.filtrazione_v2_comandi_disponibili": "off",
+        "sensor.filtrazione_v2_ha_online": "1",
+        "sensor.filtrazione_v2_richiesta_potabile": "0",
+        "sensor.filtrazione_v2_richiesta_pozzo": "0"
+      }
+    },
+    {
+      "t": 31.46,
+      "fase": "attesa_watchdog",
+      "ora": "2026-10-29T18:42:04.823169+01:00",
+      "plc": {
+        "heartbeat": 0,
+        "richiesta_potabile": 0,
+        "richiesta_pozzo": 0,
+        "ha_online": 1,
+        "potabile_accettata": 0,
+        "pozzo_accettata": 0,
+        "interdizione_potabile": 0,
+        "interdizione_pozzo": 0,
+        "protocollo": 2
+      },
+      "uscite_plc": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "ha": {
+        "input_boolean.filtrazione_v2_supervisione": "off",
+        "binary_sensor.filtrazione_v2_plc_disponibile": "on",
+        "binary_sensor.filtrazione_v2_comandi_disponibili": "off",
+        "sensor.filtrazione_v2_ha_online": "1",
+        "sensor.filtrazione_v2_richiesta_potabile": "0",
+        "sensor.filtrazione_v2_richiesta_pozzo": "0"
+      }
+    },
+    {
+      "t": 33.61,
+      "fase": "attesa_watchdog",
+      "ora": "2026-10-29T18:42:06.968860+01:00",
+      "plc": {
+        "heartbeat": 0,
+        "richiesta_potabile": 0,
+        "richiesta_pozzo": 0,
+        "ha_online": 1,
+        "potabile_accettata": 0,
+        "pozzo_accettata": 0,
+        "interdizione_potabile": 0,
+        "interdizione_pozzo": 0,
+        "protocollo": 2
+      },
+      "uscite_plc": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "ha": {
+        "input_boolean.filtrazione_v2_supervisione": "off",
+        "binary_sensor.filtrazione_v2_plc_disponibile": "on",
+        "binary_sensor.filtrazione_v2_comandi_disponibili": "off",
+        "sensor.filtrazione_v2_ha_online": "1",
+        "sensor.filtrazione_v2_richiesta_potabile": "0",
+        "sensor.filtrazione_v2_richiesta_pozzo": "0"
+      }
+    },
+    {
+      "t": 35.75,
+      "fase": "attesa_watchdog",
+      "ora": "2026-10-29T18:42:09.115114+01:00",
+      "plc": {
+        "heartbeat": 0,
+        "richiesta_potabile": 0,
+        "richiesta_pozzo": 0,
+        "ha_online": 1,
+        "potabile_accettata": 0,
+        "pozzo_accettata": 0,
+        "interdizione_potabile": 0,
+        "interdizione_pozzo": 0,
+        "protocollo": 2
+      },
+      "uscite_plc": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "ha": {
+        "input_boolean.filtrazione_v2_supervisione": "off",
+        "binary_sensor.filtrazione_v2_plc_disponibile": "on",
+        "binary_sensor.filtrazione_v2_comandi_disponibili": "off",
+        "sensor.filtrazione_v2_ha_online": "1",
+        "sensor.filtrazione_v2_richiesta_potabile": "0",
+        "sensor.filtrazione_v2_richiesta_pozzo": "0"
+      }
+    },
+    {
+      "t": 37.94,
+      "fase": "attesa_watchdog",
+      "ora": "2026-10-29T18:42:11.302574+01:00",
+      "plc": {
+        "heartbeat": 0,
+        "richiesta_potabile": 0,
+        "richiesta_pozzo": 0,
+        "ha_online": 1,
+        "potabile_accettata": 0,
+        "pozzo_accettata": 0,
+        "interdizione_potabile": 0,
+        "interdizione_pozzo": 0,
+        "protocollo": 2
+      },
+      "uscite_plc": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "ha": {
+        "input_boolean.filtrazione_v2_supervisione": "off",
+        "binary_sensor.filtrazione_v2_plc_disponibile": "on",
+        "binary_sensor.filtrazione_v2_comandi_disponibili": "off",
+        "sensor.filtrazione_v2_ha_online": "1",
+        "sensor.filtrazione_v2_richiesta_potabile": "0",
+        "sensor.filtrazione_v2_richiesta_pozzo": "0"
+      }
+    },
+    {
+      "t": 40.14,
+      "fase": "attesa_watchdog",
+      "ora": "2026-10-29T18:42:13.504379+01:00",
+      "plc": {
+        "heartbeat": 0,
+        "richiesta_potabile": 0,
+        "richiesta_pozzo": 0,
+        "ha_online": 1,
+        "potabile_accettata": 0,
+        "pozzo_accettata": 0,
+        "interdizione_potabile": 0,
+        "interdizione_pozzo": 0,
+        "protocollo": 2
+      },
+      "uscite_plc": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "ha": {
+        "input_boolean.filtrazione_v2_supervisione": "off",
+        "binary_sensor.filtrazione_v2_plc_disponibile": "on",
+        "binary_sensor.filtrazione_v2_comandi_disponibili": "off",
+        "sensor.filtrazione_v2_ha_online": "1",
+        "sensor.filtrazione_v2_richiesta_potabile": "0",
+        "sensor.filtrazione_v2_richiesta_pozzo": "0"
+      }
+    },
+    {
+      "t": 42.33,
+      "fase": "attesa_watchdog",
+      "ora": "2026-10-29T18:42:15.688386+01:00",
+      "plc": {
+        "heartbeat": 0,
+        "richiesta_potabile": 0,
+        "richiesta_pozzo": 0,
+        "ha_online": 1,
+        "potabile_accettata": 0,
+        "pozzo_accettata": 0,
+        "interdizione_potabile": 0,
+        "interdizione_pozzo": 0,
+        "protocollo": 2
+      },
+      "uscite_plc": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "ha": {
+        "input_boolean.filtrazione_v2_supervisione": "off",
+        "binary_sensor.filtrazione_v2_plc_disponibile": "on",
+        "binary_sensor.filtrazione_v2_comandi_disponibili": "off",
+        "sensor.filtrazione_v2_ha_online": "1",
+        "sensor.filtrazione_v2_richiesta_potabile": "0",
+        "sensor.filtrazione_v2_richiesta_pozzo": "0"
+      }
+    },
+    {
+      "t": 44.46,
+      "fase": "attesa_watchdog",
+      "ora": "2026-10-29T18:42:17.819536+01:00",
+      "plc": {
+        "heartbeat": 0,
+        "richiesta_potabile": 0,
+        "richiesta_pozzo": 0,
+        "ha_online": 1,
+        "potabile_accettata": 0,
+        "pozzo_accettata": 0,
+        "interdizione_potabile": 0,
+        "interdizione_pozzo": 0,
+        "protocollo": 2
+      },
+      "uscite_plc": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "ha": {
+        "input_boolean.filtrazione_v2_supervisione": "off",
+        "binary_sensor.filtrazione_v2_plc_disponibile": "on",
+        "binary_sensor.filtrazione_v2_comandi_disponibili": "off",
+        "sensor.filtrazione_v2_ha_online": "1",
+        "sensor.filtrazione_v2_richiesta_potabile": "0",
+        "sensor.filtrazione_v2_richiesta_pozzo": "0"
+      }
+    },
+    {
+      "t": 46.63,
+      "fase": "attesa_watchdog",
+      "ora": "2026-10-29T18:42:19.992323+01:00",
+      "plc": {
+        "heartbeat": 0,
+        "richiesta_potabile": 0,
+        "richiesta_pozzo": 0,
+        "ha_online": 1,
+        "potabile_accettata": 0,
+        "pozzo_accettata": 0,
+        "interdizione_potabile": 0,
+        "interdizione_pozzo": 0,
+        "protocollo": 2
+      },
+      "uscite_plc": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "ha": {
+        "input_boolean.filtrazione_v2_supervisione": "off",
+        "binary_sensor.filtrazione_v2_plc_disponibile": "on",
+        "binary_sensor.filtrazione_v2_comandi_disponibili": "off",
+        "sensor.filtrazione_v2_ha_online": "1",
+        "sensor.filtrazione_v2_richiesta_potabile": "0",
+        "sensor.filtrazione_v2_richiesta_pozzo": "0"
+      }
+    },
+    {
+      "t": 48.83,
+      "fase": "attesa_watchdog",
+      "ora": "2026-10-29T18:42:22.195177+01:00",
+      "plc": {
+        "heartbeat": 0,
+        "richiesta_potabile": 0,
+        "richiesta_pozzo": 0,
+        "ha_online": 1,
+        "potabile_accettata": 0,
+        "pozzo_accettata": 0,
+        "interdizione_potabile": 0,
+        "interdizione_pozzo": 0,
+        "protocollo": 2
+      },
+      "uscite_plc": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "ha": {
+        "input_boolean.filtrazione_v2_supervisione": "off",
+        "binary_sensor.filtrazione_v2_plc_disponibile": "on",
+        "binary_sensor.filtrazione_v2_comandi_disponibili": "off",
+        "sensor.filtrazione_v2_ha_online": "1",
+        "sensor.filtrazione_v2_richiesta_potabile": "0",
+        "sensor.filtrazione_v2_richiesta_pozzo": "0"
+      }
+    },
+    {
+      "t": 50.99,
+      "fase": "attesa_watchdog",
+      "ora": "2026-10-29T18:42:24.349805+01:00",
+      "plc": {
+        "heartbeat": 0,
+        "richiesta_potabile": 0,
+        "richiesta_pozzo": 0,
+        "ha_online": 1,
+        "potabile_accettata": 0,
+        "pozzo_accettata": 0,
+        "interdizione_potabile": 0,
+        "interdizione_pozzo": 0,
+        "protocollo": 2
+      },
+      "uscite_plc": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "ha": {
+        "input_boolean.filtrazione_v2_supervisione": "off",
+        "binary_sensor.filtrazione_v2_plc_disponibile": "on",
+        "binary_sensor.filtrazione_v2_comandi_disponibili": "off",
+        "sensor.filtrazione_v2_ha_online": "1",
+        "sensor.filtrazione_v2_richiesta_potabile": "0",
+        "sensor.filtrazione_v2_richiesta_pozzo": "0"
+      }
+    },
+    {
+      "t": 53.29,
+      "fase": "attesa_watchdog",
+      "ora": "2026-10-29T18:42:26.650778+01:00",
+      "plc": {
+        "heartbeat": 0,
+        "richiesta_potabile": 0,
+        "richiesta_pozzo": 0,
+        "ha_online": 1,
+        "potabile_accettata": 0,
+        "pozzo_accettata": 0,
+        "interdizione_potabile": 0,
+        "interdizione_pozzo": 0,
+        "protocollo": 2
+      },
+      "uscite_plc": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "ha": {
+        "input_boolean.filtrazione_v2_supervisione": "off",
+        "binary_sensor.filtrazione_v2_plc_disponibile": "on",
+        "binary_sensor.filtrazione_v2_comandi_disponibili": "off",
+        "sensor.filtrazione_v2_ha_online": "1",
+        "sensor.filtrazione_v2_richiesta_potabile": "0",
+        "sensor.filtrazione_v2_richiesta_pozzo": "0"
+      }
+    },
+    {
+      "t": 55.45,
+      "fase": "attesa_watchdog",
+      "ora": "2026-10-29T18:42:28.811234+01:00",
+      "plc": {
+        "heartbeat": 0,
+        "richiesta_potabile": 0,
+        "richiesta_pozzo": 0,
+        "ha_online": 1,
+        "potabile_accettata": 0,
+        "pozzo_accettata": 0,
+        "interdizione_potabile": 0,
+        "interdizione_pozzo": 0,
+        "protocollo": 2
+      },
+      "uscite_plc": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "ha": {
+        "input_boolean.filtrazione_v2_supervisione": "off",
+        "binary_sensor.filtrazione_v2_plc_disponibile": "on",
+        "binary_sensor.filtrazione_v2_comandi_disponibili": "off",
+        "sensor.filtrazione_v2_ha_online": "1",
+        "sensor.filtrazione_v2_richiesta_potabile": "0",
+        "sensor.filtrazione_v2_richiesta_pozzo": "0"
+      }
+    },
+    {
+      "t": 57.59,
+      "fase": "attesa_watchdog",
+      "ora": "2026-10-29T18:42:30.946833+01:00",
+      "plc": {
+        "heartbeat": 0,
+        "richiesta_potabile": 0,
+        "richiesta_pozzo": 0,
+        "ha_online": 1,
+        "potabile_accettata": 0,
+        "pozzo_accettata": 0,
+        "interdizione_potabile": 0,
+        "interdizione_pozzo": 0,
+        "protocollo": 2
+      },
+      "uscite_plc": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "ha": {
+        "input_boolean.filtrazione_v2_supervisione": "off",
+        "binary_sensor.filtrazione_v2_plc_disponibile": "on",
+        "binary_sensor.filtrazione_v2_comandi_disponibili": "off",
+        "sensor.filtrazione_v2_ha_online": "1",
+        "sensor.filtrazione_v2_richiesta_potabile": "0",
+        "sensor.filtrazione_v2_richiesta_pozzo": "0"
+      }
+    },
+    {
+      "t": 59.74,
+      "fase": "attesa_watchdog",
+      "ora": "2026-10-29T18:42:33.102277+01:00",
+      "plc": {
+        "heartbeat": 0,
+        "richiesta_potabile": 0,
+        "richiesta_pozzo": 0,
+        "ha_online": 1,
+        "potabile_accettata": 0,
+        "pozzo_accettata": 0,
+        "interdizione_potabile": 0,
+        "interdizione_pozzo": 0,
+        "protocollo": 2
+      },
+      "uscite_plc": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "ha": {
+        "input_boolean.filtrazione_v2_supervisione": "off",
+        "binary_sensor.filtrazione_v2_plc_disponibile": "on",
+        "binary_sensor.filtrazione_v2_comandi_disponibili": "off",
+        "sensor.filtrazione_v2_ha_online": "1",
+        "sensor.filtrazione_v2_richiesta_potabile": "0",
+        "sensor.filtrazione_v2_richiesta_pozzo": "0"
+      }
+    },
+    {
+      "t": 61.89,
+      "fase": "attesa_watchdog",
+      "ora": "2026-10-29T18:42:35.249469+01:00",
+      "plc": {
+        "heartbeat": 0,
+        "richiesta_potabile": 0,
+        "richiesta_pozzo": 0,
+        "ha_online": 1,
+        "potabile_accettata": 0,
+        "pozzo_accettata": 0,
+        "interdizione_potabile": 0,
+        "interdizione_pozzo": 0,
+        "protocollo": 2
+      },
+      "uscite_plc": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "ha": {
+        "input_boolean.filtrazione_v2_supervisione": "off",
+        "binary_sensor.filtrazione_v2_plc_disponibile": "on",
+        "binary_sensor.filtrazione_v2_comandi_disponibili": "off",
+        "sensor.filtrazione_v2_ha_online": "1",
+        "sensor.filtrazione_v2_richiesta_potabile": "0",
+        "sensor.filtrazione_v2_richiesta_pozzo": "0"
+      }
+    },
+    {
+      "t": 64.05,
+      "fase": "attesa_watchdog",
+      "ora": "2026-10-29T18:42:37.414969+01:00",
+      "plc": {
+        "heartbeat": 0,
+        "richiesta_potabile": 0,
+        "richiesta_pozzo": 0,
+        "ha_online": 0,
+        "potabile_accettata": 0,
+        "pozzo_accettata": 0,
+        "interdizione_potabile": 0,
+        "interdizione_pozzo": 0,
+        "protocollo": 2
+      },
+      "uscite_plc": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "ha": {
+        "input_boolean.filtrazione_v2_supervisione": "off",
+        "binary_sensor.filtrazione_v2_plc_disponibile": "on",
+        "binary_sensor.filtrazione_v2_comandi_disponibili": "off",
+        "sensor.filtrazione_v2_ha_online": "1",
+        "sensor.filtrazione_v2_richiesta_potabile": "0",
+        "sensor.filtrazione_v2_richiesta_pozzo": "0"
+      }
+    },
+    {
+      "t": 66.19,
+      "fase": "attesa_watchdog",
+      "ora": "2026-10-29T18:42:39.550911+01:00",
+      "plc": {
+        "heartbeat": 0,
+        "richiesta_potabile": 0,
+        "richiesta_pozzo": 0,
+        "ha_online": 0,
+        "potabile_accettata": 0,
+        "pozzo_accettata": 0,
+        "interdizione_potabile": 0,
+        "interdizione_pozzo": 0,
+        "protocollo": 2
+      },
+      "uscite_plc": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "ha": {
+        "input_boolean.filtrazione_v2_supervisione": "off",
+        "binary_sensor.filtrazione_v2_plc_disponibile": "on",
+        "binary_sensor.filtrazione_v2_comandi_disponibili": "off",
+        "sensor.filtrazione_v2_ha_online": "1",
+        "sensor.filtrazione_v2_richiesta_potabile": "0",
+        "sensor.filtrazione_v2_richiesta_pozzo": "0"
+      }
+    },
+    {
+      "t": 68.35,
+      "fase": "attesa_watchdog",
+      "ora": "2026-10-29T18:42:41.706392+01:00",
+      "plc": {
+        "heartbeat": 0,
+        "richiesta_potabile": 0,
+        "richiesta_pozzo": 0,
+        "ha_online": 0,
+        "potabile_accettata": 0,
+        "pozzo_accettata": 0,
+        "interdizione_potabile": 0,
+        "interdizione_pozzo": 0,
+        "protocollo": 2
+      },
+      "uscite_plc": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "ha": {
+        "input_boolean.filtrazione_v2_supervisione": "off",
+        "binary_sensor.filtrazione_v2_plc_disponibile": "on",
+        "binary_sensor.filtrazione_v2_comandi_disponibili": "off",
+        "sensor.filtrazione_v2_ha_online": "0",
+        "sensor.filtrazione_v2_richiesta_potabile": "0",
+        "sensor.filtrazione_v2_richiesta_pozzo": "0"
+      }
+    },
+    {
+      "t": 70.56,
+      "fase": "attesa_watchdog",
+      "ora": "2026-10-29T18:42:43.919258+01:00",
+      "plc": {
+        "heartbeat": 0,
+        "richiesta_potabile": 0,
+        "richiesta_pozzo": 0,
+        "ha_online": 0,
+        "potabile_accettata": 0,
+        "pozzo_accettata": 0,
+        "interdizione_potabile": 0,
+        "interdizione_pozzo": 0,
+        "protocollo": 2
+      },
+      "uscite_plc": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "ha": {
+        "input_boolean.filtrazione_v2_supervisione": "off",
+        "binary_sensor.filtrazione_v2_plc_disponibile": "on",
+        "binary_sensor.filtrazione_v2_comandi_disponibili": "off",
+        "sensor.filtrazione_v2_ha_online": "0",
+        "sensor.filtrazione_v2_richiesta_potabile": "0",
+        "sensor.filtrazione_v2_richiesta_pozzo": "0"
+      }
+    },
+    {
+      "t": 72.77,
+      "fase": "attesa_watchdog",
+      "ora": "2026-10-29T18:42:46.134666+01:00",
+      "plc": {
+        "heartbeat": 0,
+        "richiesta_potabile": 0,
+        "richiesta_pozzo": 0,
+        "ha_online": 0,
+        "potabile_accettata": 0,
+        "pozzo_accettata": 0,
+        "interdizione_potabile": 0,
+        "interdizione_pozzo": 0,
+        "protocollo": 2
+      },
+      "uscite_plc": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "ha": {
+        "input_boolean.filtrazione_v2_supervisione": "off",
+        "binary_sensor.filtrazione_v2_plc_disponibile": "on",
+        "binary_sensor.filtrazione_v2_comandi_disponibili": "off",
+        "sensor.filtrazione_v2_ha_online": "0",
+        "sensor.filtrazione_v2_richiesta_potabile": "0",
+        "sensor.filtrazione_v2_richiesta_pozzo": "0"
+      }
+    },
+    {
+      "t": 74.98,
+      "fase": "attesa_watchdog",
+      "ora": "2026-10-29T18:42:48.339526+01:00",
+      "plc": {
+        "heartbeat": 0,
+        "richiesta_potabile": 0,
+        "richiesta_pozzo": 0,
+        "ha_online": 0,
+        "potabile_accettata": 0,
+        "pozzo_accettata": 0,
+        "interdizione_potabile": 0,
+        "interdizione_pozzo": 0,
+        "protocollo": 2
+      },
+      "uscite_plc": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "ha": {
+        "input_boolean.filtrazione_v2_supervisione": "off",
+        "binary_sensor.filtrazione_v2_plc_disponibile": "on",
+        "binary_sensor.filtrazione_v2_comandi_disponibili": "off",
+        "sensor.filtrazione_v2_ha_online": "0",
+        "sensor.filtrazione_v2_richiesta_potabile": "0",
+        "sensor.filtrazione_v2_richiesta_pozzo": "0"
+      }
+    },
+    {
+      "t": 77.16,
+      "fase": "attesa_watchdog",
+      "ora": "2026-10-29T18:42:50.519442+01:00",
+      "plc": {
+        "heartbeat": 0,
+        "richiesta_potabile": 0,
+        "richiesta_pozzo": 0,
+        "ha_online": 0,
+        "potabile_accettata": 0,
+        "pozzo_accettata": 0,
+        "interdizione_potabile": 0,
+        "interdizione_pozzo": 0,
+        "protocollo": 2
+      },
+      "uscite_plc": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "ha": {
+        "input_boolean.filtrazione_v2_supervisione": "off",
+        "binary_sensor.filtrazione_v2_plc_disponibile": "on",
+        "binary_sensor.filtrazione_v2_comandi_disponibili": "off",
+        "sensor.filtrazione_v2_ha_online": "0",
+        "sensor.filtrazione_v2_richiesta_potabile": "0",
+        "sensor.filtrazione_v2_richiesta_pozzo": "0"
+      }
+    },
+    {
+      "t": 79.3,
+      "fase": "attesa_watchdog",
+      "ora": "2026-10-29T18:42:52.661376+01:00",
+      "plc": {
+        "heartbeat": 0,
+        "richiesta_potabile": 0,
+        "richiesta_pozzo": 0,
+        "ha_online": 0,
+        "potabile_accettata": 0,
+        "pozzo_accettata": 0,
+        "interdizione_potabile": 0,
+        "interdizione_pozzo": 0,
+        "protocollo": 2
+      },
+      "uscite_plc": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "ha": {
+        "input_boolean.filtrazione_v2_supervisione": "off",
+        "binary_sensor.filtrazione_v2_plc_disponibile": "on",
+        "binary_sensor.filtrazione_v2_comandi_disponibili": "off",
+        "sensor.filtrazione_v2_ha_online": "0",
+        "sensor.filtrazione_v2_richiesta_potabile": "0",
+        "sensor.filtrazione_v2_richiesta_pozzo": "0"
+      }
+    },
+    {
+      "t": 81.5,
+      "fase": "attesa_watchdog",
+      "ora": "2026-10-29T18:42:54.859942+01:00",
+      "plc": {
+        "heartbeat": 0,
+        "richiesta_potabile": 0,
+        "richiesta_pozzo": 0,
+        "ha_online": 0,
+        "potabile_accettata": 0,
+        "pozzo_accettata": 0,
+        "interdizione_potabile": 0,
+        "interdizione_pozzo": 0,
+        "protocollo": 2
+      },
+      "uscite_plc": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "ha": {
+        "input_boolean.filtrazione_v2_supervisione": "off",
+        "binary_sensor.filtrazione_v2_plc_disponibile": "on",
+        "binary_sensor.filtrazione_v2_comandi_disponibili": "off",
+        "sensor.filtrazione_v2_ha_online": "0",
+        "sensor.filtrazione_v2_richiesta_potabile": "0",
+        "sensor.filtrazione_v2_richiesta_pozzo": "0"
+      }
+    },
+    {
+      "t": 83.69,
+      "fase": "attesa_watchdog",
+      "ora": "2026-10-29T18:42:57.045853+01:00",
+      "plc": {
+        "heartbeat": 0,
+        "richiesta_potabile": 0,
+        "richiesta_pozzo": 0,
+        "ha_online": 0,
+        "potabile_accettata": 0,
+        "pozzo_accettata": 0,
+        "interdizione_potabile": 0,
+        "interdizione_pozzo": 0,
+        "protocollo": 2
+      },
+      "uscite_plc": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "ha": {
+        "input_boolean.filtrazione_v2_supervisione": "off",
+        "binary_sensor.filtrazione_v2_plc_disponibile": "on",
+        "binary_sensor.filtrazione_v2_comandi_disponibili": "off",
+        "sensor.filtrazione_v2_ha_online": "0",
+        "sensor.filtrazione_v2_richiesta_potabile": "0",
+        "sensor.filtrazione_v2_richiesta_pozzo": "0"
+      }
+    },
+    {
+      "t": 85.91,
+      "fase": "attesa_watchdog",
+      "ora": "2026-10-29T18:42:59.266240+01:00",
+      "plc": {
+        "heartbeat": 0,
+        "richiesta_potabile": 0,
+        "richiesta_pozzo": 0,
+        "ha_online": 0,
+        "potabile_accettata": 0,
+        "pozzo_accettata": 0,
+        "interdizione_potabile": 0,
+        "interdizione_pozzo": 0,
+        "protocollo": 2
+      },
+      "uscite_plc": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "ha": {
+        "input_boolean.filtrazione_v2_supervisione": "off",
+        "binary_sensor.filtrazione_v2_plc_disponibile": "on",
+        "binary_sensor.filtrazione_v2_comandi_disponibili": "off",
+        "sensor.filtrazione_v2_ha_online": "0",
+        "sensor.filtrazione_v2_richiesta_potabile": "0",
+        "sensor.filtrazione_v2_richiesta_pozzo": "0"
+      }
+    },
+    {
+      "t": 88.09,
+      "fase": "attesa_watchdog",
+      "ora": "2026-10-29T18:43:01.448469+01:00",
+      "plc": {
+        "heartbeat": 0,
+        "richiesta_potabile": 0,
+        "richiesta_pozzo": 0,
+        "ha_online": 0,
+        "potabile_accettata": 0,
+        "pozzo_accettata": 0,
+        "interdizione_potabile": 0,
+        "interdizione_pozzo": 0,
+        "protocollo": 2
+      },
+      "uscite_plc": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "ha": {
+        "input_boolean.filtrazione_v2_supervisione": "off",
+        "binary_sensor.filtrazione_v2_plc_disponibile": "on",
+        "binary_sensor.filtrazione_v2_comandi_disponibili": "off",
+        "sensor.filtrazione_v2_ha_online": "0",
+        "sensor.filtrazione_v2_richiesta_potabile": "0",
+        "sensor.filtrazione_v2_richiesta_pozzo": "0"
+      }
+    },
+    {
+      "t": 90.27,
+      "fase": "attesa_watchdog",
+      "ora": "2026-10-29T18:43:03.630977+01:00",
+      "plc": {
+        "heartbeat": 0,
+        "richiesta_potabile": 0,
+        "richiesta_pozzo": 0,
+        "ha_online": 0,
+        "potabile_accettata": 0,
+        "pozzo_accettata": 0,
+        "interdizione_potabile": 0,
+        "interdizione_pozzo": 0,
+        "protocollo": 2
+      },
+      "uscite_plc": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "ha": {
+        "input_boolean.filtrazione_v2_supervisione": "off",
+        "binary_sensor.filtrazione_v2_plc_disponibile": "on",
+        "binary_sensor.filtrazione_v2_comandi_disponibili": "off",
+        "sensor.filtrazione_v2_ha_online": "0",
+        "sensor.filtrazione_v2_richiesta_potabile": "0",
+        "sensor.filtrazione_v2_richiesta_pozzo": "0"
+      }
+    },
+    {
+      "t": 92.41,
+      "fase": "attesa_watchdog",
+      "ora": "2026-10-29T18:43:05.765834+01:00",
+      "plc": {
+        "heartbeat": 0,
+        "richiesta_potabile": 0,
+        "richiesta_pozzo": 0,
+        "ha_online": 0,
+        "potabile_accettata": 0,
+        "pozzo_accettata": 0,
+        "interdizione_potabile": 0,
+        "interdizione_pozzo": 0,
+        "protocollo": 2
+      },
+      "uscite_plc": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "ha": {
+        "input_boolean.filtrazione_v2_supervisione": "off",
+        "binary_sensor.filtrazione_v2_plc_disponibile": "on",
+        "binary_sensor.filtrazione_v2_comandi_disponibili": "off",
+        "sensor.filtrazione_v2_ha_online": "0",
+        "sensor.filtrazione_v2_richiesta_potabile": "0",
+        "sensor.filtrazione_v2_richiesta_pozzo": "0"
+      }
+    },
+    {
+      "t": 94.61,
+      "fase": "riconnessione",
+      "ora": "2026-10-29T18:43:07.972618+01:00",
+      "plc": {
+        "heartbeat": 1,
+        "richiesta_potabile": 0,
+        "richiesta_pozzo": 0,
+        "ha_online": 0,
+        "potabile_accettata": 0,
+        "pozzo_accettata": 0,
+        "interdizione_potabile": 0,
+        "interdizione_pozzo": 0,
+        "protocollo": 2
+      },
+      "uscite_plc": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "ha": {
+        "input_boolean.filtrazione_v2_supervisione": "on",
+        "binary_sensor.filtrazione_v2_plc_disponibile": "on",
+        "binary_sensor.filtrazione_v2_comandi_disponibili": "off",
+        "sensor.filtrazione_v2_ha_online": "0",
+        "sensor.filtrazione_v2_richiesta_potabile": "0",
+        "sensor.filtrazione_v2_richiesta_pozzo": "0"
+      }
+    },
+    {
+      "t": 96.76,
+      "fase": "riconnessione",
+      "ora": "2026-10-29T18:43:10.116431+01:00",
+      "plc": {
+        "heartbeat": 1,
+        "richiesta_potabile": 0,
+        "richiesta_pozzo": 0,
+        "ha_online": 0,
+        "potabile_accettata": 0,
+        "pozzo_accettata": 0,
+        "interdizione_potabile": 0,
+        "interdizione_pozzo": 0,
+        "protocollo": 2
+      },
+      "uscite_plc": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "ha": {
+        "input_boolean.filtrazione_v2_supervisione": "on",
+        "binary_sensor.filtrazione_v2_plc_disponibile": "on",
+        "binary_sensor.filtrazione_v2_comandi_disponibili": "off",
+        "sensor.filtrazione_v2_ha_online": "0",
+        "sensor.filtrazione_v2_richiesta_potabile": "0",
+        "sensor.filtrazione_v2_richiesta_pozzo": "0"
+      }
+    },
+    {
+      "t": 98.93,
+      "fase": "riconnessione",
+      "ora": "2026-10-29T18:43:12.288116+01:00",
+      "plc": {
+        "heartbeat": 0,
+        "richiesta_potabile": 0,
+        "richiesta_pozzo": 0,
+        "ha_online": 1,
+        "potabile_accettata": 0,
+        "pozzo_accettata": 0,
+        "interdizione_potabile": 0,
+        "interdizione_pozzo": 0,
+        "protocollo": 2
+      },
+      "uscite_plc": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "ha": {
+        "input_boolean.filtrazione_v2_supervisione": "on",
+        "binary_sensor.filtrazione_v2_plc_disponibile": "on",
+        "binary_sensor.filtrazione_v2_comandi_disponibili": "off",
+        "sensor.filtrazione_v2_ha_online": "0",
+        "sensor.filtrazione_v2_richiesta_potabile": "0",
+        "sensor.filtrazione_v2_richiesta_pozzo": "0"
+      }
+    },
+    {
+      "t": 101.11,
+      "fase": "riconnessione",
+      "ora": "2026-10-29T18:43:14.465852+01:00",
+      "plc": {
+        "heartbeat": 0,
+        "richiesta_potabile": 0,
+        "richiesta_pozzo": 0,
+        "ha_online": 1,
+        "potabile_accettata": 0,
+        "pozzo_accettata": 0,
+        "interdizione_potabile": 0,
+        "interdizione_pozzo": 0,
+        "protocollo": 2
+      },
+      "uscite_plc": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "ha": {
+        "input_boolean.filtrazione_v2_supervisione": "on",
+        "binary_sensor.filtrazione_v2_plc_disponibile": "on",
+        "binary_sensor.filtrazione_v2_comandi_disponibili": "off",
+        "sensor.filtrazione_v2_ha_online": "0",
+        "sensor.filtrazione_v2_richiesta_potabile": "0",
+        "sensor.filtrazione_v2_richiesta_pozzo": "0"
+      }
+    },
+    {
+      "t": 103.29,
+      "fase": "riconnessione",
+      "ora": "2026-10-29T18:43:16.650412+01:00",
+      "plc": {
+        "heartbeat": 0,
+        "richiesta_potabile": 0,
+        "richiesta_pozzo": 0,
+        "ha_online": 1,
+        "potabile_accettata": 0,
+        "pozzo_accettata": 0,
+        "interdizione_potabile": 0,
+        "interdizione_pozzo": 0,
+        "protocollo": 2
+      },
+      "uscite_plc": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "ha": {
+        "input_boolean.filtrazione_v2_supervisione": "on",
+        "binary_sensor.filtrazione_v2_plc_disponibile": "on",
+        "binary_sensor.filtrazione_v2_comandi_disponibili": "on",
+        "sensor.filtrazione_v2_ha_online": "1",
+        "sensor.filtrazione_v2_richiesta_potabile": "0",
+        "sensor.filtrazione_v2_richiesta_pozzo": "0"
+      }
+    }
+  ],
+  "prove": [
+    {
+      "prova": "Heartbeat alternato letto direttamente dalla PLC con HA online",
+      "esito": "PASS"
+    },
+    {
+      "prova": "Supervisione OFF rilascia richieste e disabilita comandi",
+      "esito": "PASS"
+    },
+    {
+      "prova": "Script potabile e pozzo eseguiti realmente con supervisione OFF, nessuna richiesta/uscita attivata",
+      "esito": "PASS"
+    },
+    {
+      "prova": "Heartbeat fermo: PLC scade HA online dopo watchdog",
+      "esito": "PASS"
+    },
+    {
+      "prova": "Ripristino HA e comandi disponibili senza attivare richieste o uscite",
+      "esito": "PASS"
+    }
+  ],
+  "errori": [],
+  "tracce_script": {
+    "filtrazione_v2_avvia_potabile": [
+      {
+        "last_step": "sequence/4",
+        "run_id": "02215d217a08ea474dad65324290d5c6",
+        "state": "stopped",
+        "script_execution": "finished",
+        "timestamp": {
+          "start": "2026-10-29T11:51:12.094609+00:00",
+          "finish": "2026-10-29T11:51:13.132620+00:00"
+        },
+        "domain": "script",
+        "item_id": "filtrazione_v2_avvia_potabile"
+      },
+      {
+        "last_step": "sequence/0/conditions/0/entity_id/0",
+        "run_id": "d7c731777aef5b4bbe0308f9d3823211",
+        "state": "stopped",
+        "script_execution": "aborted",
+        "timestamp": {
+          "start": "2026-10-29T17:42:01.548114+00:00",
+          "finish": "2026-10-29T17:42:01.548966+00:00"
+        },
+        "domain": "script",
+        "item_id": "filtrazione_v2_avvia_potabile"
+      }
+    ],
+    "filtrazione_v2_avvia_pozzo": [
+      {
+        "last_step": "sequence/4",
+        "run_id": "0b12dd22db024b82fb2740f6dba9afd3",
+        "state": "stopped",
+        "script_execution": "finished",
+        "timestamp": {
+          "start": "2026-10-29T11:49:25.569707+00:00",
+          "finish": "2026-10-29T11:49:26.607215+00:00"
+        },
+        "domain": "script",
+        "item_id": "filtrazione_v2_avvia_pozzo"
+      },
+      {
+        "last_step": "sequence/4",
+        "run_id": "2f91d8522d833e3c5ac028827304af7a",
+        "state": "stopped",
+        "script_execution": "finished",
+        "timestamp": {
+          "start": "2026-10-29T11:49:27.766914+00:00",
+          "finish": "2026-10-29T11:49:28.812917+00:00"
+        },
+        "domain": "script",
+        "item_id": "filtrazione_v2_avvia_pozzo"
+      }
+    ]
+  },
+  "esito": "PASS",
+  "ripristino_supervisione": "on",
+  "fine": "2026-10-29T18:43:16.677976+01:00"
+}

@@ -1,0 +1,15 @@
+{
+  "data": "2026-10-29T12:26:03.236762+01:00",
+  "metadata": {
+    "id": "sistema_filtrazione_v2",
+    "url_path": "sistema-filtrazione-v2",
+    "title": "Sistema filtrazione v2",
+    "icon": "mdi:water-check",
+    "show_in_sidebar": true,
+    "require_admin": true,
+    "mode": "storage"
+  },
+  "url": "http://192.168.0.124/sistema-filtrazione-v2/impianto",
+  "readback_matches": true,
+  "old_dashboard_unchanged": true
+}

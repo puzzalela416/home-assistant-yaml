@@ -1,0 +1,144 @@
+{
+  "inizio": "2026-10-29T19:05:47.240508+01:00",
+  "campioni": [
+    {
+      "fase": "osservazione",
+      "ora": "2026-10-29T19:05:47.448749+01:00",
+      "uscite_plc": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "richieste_plc": [
+        0,
+        0
+      ],
+      "stati": {
+        "input_boolean.filtrazione_v2_automatica": "off",
+        "input_boolean.filtrazione_v2_supervisione": "on",
+        "binary_sensor.filtrazione_v2_fascia_ha": "off",
+        "binary_sensor.filtrazione_v2_consenso_energetico_avvio": "on",
+        "binary_sensor.filtrazione_v2_dati_energia_validi": "on",
+        "binary_sensor.filtrazione_v2_comandi_disponibili": "on",
+        "sensor.filtrazione_v2_stato_automatico": "Osservazione: automatismo spento"
+      }
+    },
+    {
+      "fase": "attesa_consenso_reale",
+      "ora": "2026-10-29T19:05:48.809848+01:00",
+      "uscite_plc": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "richieste_plc": [
+        0,
+        0
+      ],
+      "stati": {
+        "input_boolean.filtrazione_v2_automatica": "on",
+        "input_boolean.filtrazione_v2_supervisione": "on",
+        "binary_sensor.filtrazione_v2_fascia_ha": "off",
+        "binary_sensor.filtrazione_v2_consenso_energetico_avvio": "on",
+        "binary_sensor.filtrazione_v2_dati_energia_validi": "on",
+        "binary_sensor.filtrazione_v2_comandi_disponibili": "on",
+        "sensor.filtrazione_v2_stato_automatico": "Fuori fascia 10–16"
+      }
+    },
+    {
+      "fase": "avvio_automatico_bloccato_fuori_fascia_potabile",
+      "ora": "2026-10-29T19:05:49.080231+01:00",
+      "uscite_plc": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "richieste_plc": [
+        0,
+        0
+      ],
+      "stati": {
+        "input_boolean.filtrazione_v2_automatica": "on",
+        "input_boolean.filtrazione_v2_supervisione": "on",
+        "binary_sensor.filtrazione_v2_fascia_ha": "off",
+        "binary_sensor.filtrazione_v2_consenso_energetico_avvio": "on",
+        "binary_sensor.filtrazione_v2_dati_energia_validi": "on",
+        "binary_sensor.filtrazione_v2_comandi_disponibili": "on",
+        "sensor.filtrazione_v2_stato_automatico": "Fuori fascia 10–16"
+      }
+    },
+    {
+      "fase": "avvio_automatico_bloccato_fuori_fascia_pozzo",
+      "ora": "2026-10-29T19:05:49.307596+01:00",
+      "uscite_plc": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "richieste_plc": [
+        0,
+        0
+      ],
+      "stati": {
+        "input_boolean.filtrazione_v2_automatica": "on",
+        "input_boolean.filtrazione_v2_supervisione": "on",
+        "binary_sensor.filtrazione_v2_fascia_ha": "off",
+        "binary_sensor.filtrazione_v2_consenso_energetico_avvio": "on",
+        "binary_sensor.filtrazione_v2_dati_energia_validi": "on",
+        "binary_sensor.filtrazione_v2_comandi_disponibili": "on",
+        "sensor.filtrazione_v2_stato_automatico": "Fuori fascia 10–16"
+      }
+    },
+    {
+      "fase": "finale",
+      "ora": "2026-10-29T19:05:49.524198+01:00",
+      "uscite_plc": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "richieste_plc": [
+        0,
+        0
+      ],
+      "stati": {
+        "input_boolean.filtrazione_v2_automatica": "on",
+        "input_boolean.filtrazione_v2_supervisione": "on",
+        "binary_sensor.filtrazione_v2_fascia_ha": "off",
+        "binary_sensor.filtrazione_v2_consenso_energetico_avvio": "on",
+        "binary_sensor.filtrazione_v2_dati_energia_validi": "on",
+        "binary_sensor.filtrazione_v2_comandi_disponibili": "on",
+        "sensor.filtrazione_v2_stato_automatico": "Fuori fascia 10–16"
+      }
+    }
+  ],
+  "prove": [
+    {
+      "prova": "Esecuzione vera regia installata, automatico ON fuori fascia",
+      "esito": "PASS",
+      "piano": [],
+      "traccia": "1531d427b2d93c93ee795aadf9b8f797"
+    },
+    {
+      "prova": "Consenso energia da dati reali valido e stabile, collegamento PLC pronto",
+      "esito": "PASS"
+    },
+    {
+      "prova": "Script automatico potabile chiamato realmente e bloccato fuori fascia, senza richieste ON",
+      "esito": "PASS"
+    },
+    {
+      "prova": "Script automatico pozzo chiamato realmente e bloccato fuori fascia, senza richieste ON",
+      "esito": "PASS"
+    }
+  ],
+  "esito": "PASS",
+  "fine": "2026-10-29T19:05:49.525525+01:00",
+  "automazione": "automation.filtrazione_v2_regia_automatica_cisterne",
+  "limite": "Nessun avvio fisico; non collaudati valvole, pompe o arresti di cicli reali."
+}

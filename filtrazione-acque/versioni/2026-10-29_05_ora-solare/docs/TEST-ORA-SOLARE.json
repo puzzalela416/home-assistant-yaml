@@ -1,0 +1,16 @@
+{
+  "motore": "Template renderizzati dal vero Home Assistant, nessuna automazione eseguita",
+  "scenari": 441,
+  "controlli": 1323,
+  "esito": "PASS",
+  "inclusi": [
+    "ora solare",
+    "ora legale",
+    "giorni non programmati",
+    "confini riconoscimento ±30 min",
+    "allarme da +40 min",
+    "ciclo già riconosciuto",
+    "ritorno ora legale 2027",
+    "ritorno ora solare 2027"
+  ]
+}

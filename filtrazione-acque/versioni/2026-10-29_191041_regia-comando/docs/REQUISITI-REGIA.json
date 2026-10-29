@@ -1,0 +1,25 @@
+{
+  "potabile": {
+    "avvio_sotto_cm": 40,
+    "obiettivo_cm": 110
+  },
+  "pozzo": {
+    "avvio_sotto_cm": 70,
+    "obiettivo_cm": 159
+  },
+  "fascia": "10:00 inclusa–16:00 esclusa",
+  "energia_solo_avvio": true,
+  "soc_minimo_inclusivo": 35,
+  "soc_entita": "sensor.jk_banco_soc",
+  "rete_entita": [
+    "sensor.growatt_1_ingresso_rete_potenza",
+    "sensor.growatt_1_carica_da_rete_potenza",
+    "sensor.growatt_2_ingresso_rete_potenza",
+    "sensor.growatt_2_carica_da_rete_potenza"
+  ],
+  "rete_w_massimo": 0,
+  "dati_energia_massima_eta_s": 120,
+  "consenso_stabile_s": 60,
+  "scorta_bassa_stabile_s": 20,
+  "nessun_avvio_durante_test": true
+}

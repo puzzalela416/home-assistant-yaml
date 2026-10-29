@@ -1,0 +1,308 @@
+# ENERGIA V7 - BILANCIO ECONOMICO - 22/10/2026
+# Inserire SOLO in /config/packages/energia_bilancio_v7.yaml
+# Il package non sostituisce i template V6 gia' installati.
+# Usa la regola concordata: rete attiva -> casa dalla rete; in alternativa
+# casa da FV/batterie. Se lo stato rete manca, il banco JK in scarica
+# dimostra l'uso autonomo; gli altri casi restano NON ATTRIBUITI.
+# ATTENZIONE: i contatori riguardano le USCITE AC dei due Growatt, non tutti
+# i circuiti della proprieta'. I 100W stimati NON vengono conteggiati.
+# Risparmio a 0.30 EUR/kWh = STIMA lorda: eventuali ricariche da rete
+# richiedono il prelievo totale della rete per ricostruire il bilancio netto.
+# Potenze Growatt INGRESSO RETE da sensori reali _ingresso_rete_potenza.
+# Carica batteria da rete da sensori _carica_da_rete_potenza.
+
+template:
+  - sensor:
+      - name: "Energia V7 potenza AC totale"
+        unique_id: energia_v7_potenza_ac_totale
+        default_entity_id: sensor.energia_v7_potenza_ac_totale
+        unit_of_measurement: "W"
+        device_class: power
+        state_class: measurement
+        availability: >-
+          {{ is_number(states('sensor.growatt_1_uscita_potenza')) and
+             is_number(states('sensor.growatt_2_uscita_potenza')) }}
+        state: >-
+          {% set ac = states('sensor.growatt_1_uscita_potenza') | float(0) +
+                      states('sensor.growatt_2_uscita_potenza') | float(0) %}
+          {{ ([ac, 0] | max) | round(0) }}
+
+      - name: "Energia V7 sorgente carichi"
+        unique_id: energia_v7_sorgente_carichi
+        default_entity_id: sensor.energia_v7_sorgente_carichi
+        state: >-
+          {% if is_state('binary_sensor.energia_rete_prelevando', 'on') %}
+            rete
+          {% elif is_state('binary_sensor.energia_rete_prelevando', 'off') %}
+            autonoma
+          {% elif is_state('binary_sensor.jk_banco_in_scarica', 'on') %}
+            autonoma_da_jk
+          {% else %}
+            non_attribuita
+          {% endif %}
+
+      - name: "Energia V7 potenza autonoma"
+        unique_id: energia_v7_potenza_autonoma
+        default_entity_id: sensor.energia_v7_potenza_autonoma
+        unit_of_measurement: "W"
+        device_class: power
+        state_class: measurement
+        availability: >-
+          {{ is_number(states('sensor.energia_v7_potenza_ac_totale')) }}
+        state: >-
+          {% set src = states('sensor.energia_v7_sorgente_carichi') %}
+          {{ states('sensor.energia_v7_potenza_ac_totale') | float(0)
+             if src in ['autonoma','autonoma_da_jk'] else 0 }}
+
+      - name: "Energia V7 potenza rete casa"
+        unique_id: energia_v7_potenza_rete_casa
+        default_entity_id: sensor.energia_v7_potenza_rete_casa
+        unit_of_measurement: "W"
+        device_class: power
+        state_class: measurement
+        availability: >-
+          {{ is_number(states('sensor.energia_v7_potenza_ac_totale')) }}
+        state: >-
+          {{ states('sensor.energia_v7_potenza_ac_totale') | float(0)
+             if is_state('sensor.energia_v7_sorgente_carichi','rete') else 0 }}
+
+      - name: "Energia V7 potenza non attribuita"
+        unique_id: energia_v7_potenza_non_attribuita
+        default_entity_id: sensor.energia_v7_potenza_non_attribuita
+        unit_of_measurement: "W"
+        device_class: power
+        state_class: measurement
+        availability: >-
+          {{ is_number(states('sensor.energia_v7_potenza_ac_totale')) }}
+        state: >-
+          {{ states('sensor.energia_v7_potenza_ac_totale') | float(0)
+             if is_state('sensor.energia_v7_sorgente_carichi','non_attribuita') else 0 }}
+
+      - name: "Energia V7 potenza rete ingresso"
+        unique_id: energia_v7_potenza_rete_ingresso
+        default_entity_id: sensor.energia_v7_potenza_rete_ingresso
+        unit_of_measurement: "W"
+        device_class: power
+        state_class: measurement
+        # La misura vale solo se ENTRAMBI gli ingressi rete restituiscono W validi.
+        # Comprende anche eventuale energia assorbita per caricare le batterie.
+        availability: >-
+          {{ is_number(states('sensor.growatt_1_ingresso_rete_potenza')) and
+             is_number(states('sensor.growatt_2_ingresso_rete_potenza')) }}
+        state: >-
+          {% set r1 = states('sensor.growatt_1_ingresso_rete_potenza') | float(0) %}
+          {% set r2 = states('sensor.growatt_2_ingresso_rete_potenza') | float(0) %}
+          {{ (([r1, 0] | max) + ([r2, 0] | max)) | round(0) }}
+
+      - name: "Energia V7 risparmio lordo oggi"
+        unique_id: energia_v7_risparmio_lordo_oggi
+        default_entity_id: sensor.energia_v7_risparmio_lordo_oggi
+        unit_of_measurement: "EUR"
+        device_class: monetary
+        state_class: total
+        availability: >-
+          {{ is_number(states('sensor.energia_v7_autonoma_oggi')) }}
+        state: >-
+          {{ (states('sensor.energia_v7_autonoma_oggi') | float(0) * 0.30) | round(2) }}
+
+      - name: "Energia V7 risparmio lordo mese"
+        unique_id: energia_v7_risparmio_lordo_mese
+        default_entity_id: sensor.energia_v7_risparmio_lordo_mese
+        unit_of_measurement: "EUR"
+        device_class: monetary
+        state_class: total
+        availability: >-
+          {{ is_number(states('sensor.energia_v7_autonoma_mese')) }}
+        state: >-
+          {{ (states('sensor.energia_v7_autonoma_mese') | float(0) * 0.30) | round(2) }}
+
+      - name: "Energia V7 spesa rete oggi"
+        unique_id: energia_v7_spesa_rete_oggi
+        default_entity_id: sensor.energia_v7_spesa_rete_oggi
+        unit_of_measurement: "EUR"
+        device_class: monetary
+        state_class: total
+        availability: >-
+          {{ is_number(states('sensor.energia_v7_rete_ingresso_oggi')) and
+             is_number(states('sensor.energia_v7_potenza_rete_ingresso')) }}
+        state: >-
+          {{ (states('sensor.energia_v7_rete_ingresso_oggi') | float(0) * 0.30) | round(2) }}
+
+      - name: "Energia V7 spesa rete mese"
+        unique_id: energia_v7_spesa_rete_mese
+        default_entity_id: sensor.energia_v7_spesa_rete_mese
+        unit_of_measurement: "EUR"
+        device_class: monetary
+        state_class: total
+        availability: >-
+          {{ is_number(states('sensor.energia_v7_rete_ingresso_mese')) and
+             is_number(states('sensor.energia_v7_potenza_rete_ingresso')) }}
+        state: >-
+          {{ (states('sensor.energia_v7_rete_ingresso_mese') | float(0) * 0.30) | round(2) }}
+
+      - name: "Energia V7 saldo netto oggi"
+        unique_id: energia_v7_saldo_netto_oggi
+        default_entity_id: sensor.energia_v7_saldo_netto_oggi
+        unit_of_measurement: "EUR"
+        device_class: monetary
+        state_class: total
+        availability: >-
+          {{ is_number(states('sensor.energia_v7_ac_totale_oggi')) and
+             is_number(states('sensor.energia_v7_rete_ingresso_oggi')) and
+             is_number(states('sensor.energia_v7_potenza_rete_ingresso')) }}
+        state: >-
+          {{ ((states('sensor.energia_v7_ac_totale_oggi') | float(0) -
+                states('sensor.energia_v7_rete_ingresso_oggi') | float(0)) * 0.30) | round(2) }}
+
+      - name: "Energia V7 saldo netto mese"
+        unique_id: energia_v7_saldo_netto_mese
+        default_entity_id: sensor.energia_v7_saldo_netto_mese
+        unit_of_measurement: "EUR"
+        device_class: monetary
+        state_class: total
+        availability: >-
+          {{ is_number(states('sensor.energia_v7_ac_totale_mese')) and
+             is_number(states('sensor.energia_v7_rete_ingresso_mese')) and
+             is_number(states('sensor.energia_v7_potenza_rete_ingresso')) }}
+        state: >-
+          {{ ((states('sensor.energia_v7_ac_totale_mese') | float(0) -
+                states('sensor.energia_v7_rete_ingresso_mese') | float(0)) * 0.30) | round(2) }}
+
+      - name: "Energia V7 risparmio lordo cumulato"
+        unique_id: energia_v7_risparmio_lordo_cumulato
+        default_entity_id: sensor.energia_v7_risparmio_lordo_cumulato
+        unit_of_measurement: "EUR"
+        device_class: monetary
+        state_class: total
+        availability: >-
+          {{ is_number(states('sensor.energia_v7_autonoma_cumulata')) }}
+        state: >-
+          {{ (states('sensor.energia_v7_autonoma_cumulata') | float(0) * 0.30) | round(3) }}
+
+      - name: "Energia V7 spesa rete cumulata"
+        unique_id: energia_v7_spesa_rete_cumulata
+        default_entity_id: sensor.energia_v7_spesa_rete_cumulata
+        unit_of_measurement: "EUR"
+        device_class: monetary
+        state_class: total
+        availability: >-
+          {{ is_number(states('sensor.energia_v7_rete_ingresso_cumulata')) and
+             is_number(states('sensor.energia_v7_potenza_rete_ingresso')) }}
+        state: >-
+          {{ (states('sensor.energia_v7_rete_ingresso_cumulata') | float(0) * 0.30) | round(3) }}
+
+  - binary_sensor:
+      - name: "Energia V7 rete carica batterie"
+        unique_id: energia_v7_rete_carica_batterie
+        default_entity_id: binary_sensor.energia_v7_rete_carica_batterie
+        # Positivo SOLO quando un Growatt misura effettiva carica da rete.
+        # Se uno e' >20 W e l'altro non e' disponibile, segnale comunque ON.
+        # Per OFF servono entrambi i valori validi.
+        availability: >-
+          {% set c1 = states('sensor.growatt_1_carica_da_rete_potenza') %}
+          {% set c2 = states('sensor.growatt_2_carica_da_rete_potenza') %}
+          {{ (is_number(c1) and c1 | float(0) > 20) or
+             (is_number(c2) and c2 | float(0) > 20) or
+             (is_number(c1) and is_number(c2)) }}
+        state: >-
+          {{ states('sensor.growatt_1_carica_da_rete_potenza') | float(0) > 20 or
+             states('sensor.growatt_2_carica_da_rete_potenza') | float(0) > 20 }}
+
+# Integral converte la POTENZA (W) in ENERGIA (kWh): integration continua.
+# Metodo LEFT: appropriato ai carichi che restano stabili tra due campioni.
+# Questi contatori iniziano a registrare dal momento della prima installazione.
+sensor:
+  - platform: integration
+    source: sensor.energia_v7_potenza_ac_totale
+    name: "Energia V7 AC totale cumulata"
+    unique_id: energia_v7_ac_totale_cumulata
+    unit_prefix: k
+    unit_time: h
+    method: left
+    round: 4
+    max_sub_interval:
+      minutes: 1
+  - platform: integration
+    source: sensor.energia_v7_potenza_autonoma
+    name: "Energia V7 autonoma cumulata"
+    unique_id: energia_v7_autonoma_cumulata
+    unit_prefix: k
+    unit_time: h
+    method: left
+    round: 4
+    max_sub_interval:
+      minutes: 1
+  - platform: integration
+    source: sensor.energia_v7_potenza_rete_casa
+    name: "Energia V7 rete casa cumulata"
+    unique_id: energia_v7_rete_casa_cumulata
+    unit_prefix: k
+    unit_time: h
+    method: left
+    round: 4
+    max_sub_interval:
+      minutes: 1
+  - platform: integration
+    source: sensor.energia_v7_potenza_non_attribuita
+    name: "Energia V7 non attribuita cumulata"
+    unique_id: energia_v7_non_attribuita_cumulata
+    unit_prefix: k
+    unit_time: h
+    method: left
+    round: 4
+    max_sub_interval:
+      minutes: 1
+  - platform: integration
+    source: sensor.energia_v7_potenza_rete_ingresso
+    name: "Energia V7 rete ingresso cumulata"
+    unique_id: energia_v7_rete_ingresso_cumulata
+    unit_prefix: k
+    unit_time: h
+    method: left
+    round: 4
+    max_sub_interval:
+      minutes: 1
+
+# I contatori utility_meter sopravvivono ai riavvii.
+# Le letture del primo giorno/mese sono necessariamente parziali.
+utility_meter:
+  energia_v7_ac_totale_oggi:
+    source: sensor.energia_v7_ac_totale_cumulata
+    cycle: daily
+    periodically_resetting: false
+  energia_v7_autonoma_oggi:
+    source: sensor.energia_v7_autonoma_cumulata
+    cycle: daily
+    periodically_resetting: false
+  energia_v7_rete_casa_oggi:
+    source: sensor.energia_v7_rete_casa_cumulata
+    cycle: daily
+    periodically_resetting: false
+  energia_v7_non_attribuita_oggi:
+    source: sensor.energia_v7_non_attribuita_cumulata
+    cycle: daily
+    periodically_resetting: false
+  energia_v7_rete_ingresso_oggi:
+    source: sensor.energia_v7_rete_ingresso_cumulata
+    cycle: daily
+    periodically_resetting: false
+  energia_v7_ac_totale_mese:
+    source: sensor.energia_v7_ac_totale_cumulata
+    cycle: monthly
+    periodically_resetting: false
+  energia_v7_autonoma_mese:
+    source: sensor.energia_v7_autonoma_cumulata
+    cycle: monthly
+    periodically_resetting: false
+  energia_v7_rete_casa_mese:
+    source: sensor.energia_v7_rete_casa_cumulata
+    cycle: monthly
+    periodically_resetting: false
+  energia_v7_non_attribuita_mese:
+    source: sensor.energia_v7_non_attribuita_cumulata
+    cycle: monthly
+    periodically_resetting: false
+  energia_v7_rete_ingresso_mese:
+    source: sensor.energia_v7_rete_ingresso_cumulata
+    cycle: monthly
+    periodically_resetting: false
