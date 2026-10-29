@@ -1,0 +1,15 @@
+{
+  "data": "2026-10-30T00:27:55.454589+01:00",
+  "esito": "PASS",
+  "url_operativa": "http://192.168.0.124/dashboard-casa/filtrazione-acque",
+  "sottovista": true,
+  "ritorno": "/dashboard-casa/proprieta",
+  "collegamento_png": "corretto",
+  "plance_filtrazione_barra_laterale": 0,
+  "viste_identiche_prima": true,
+  "contenuto_plancia_invariato": true,
+  "altre_viste_invariate": true,
+  "archivi_conservati": true,
+  "automazioni_modificate": false,
+  "comandi_impianto_inviati": false
+}

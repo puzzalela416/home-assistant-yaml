@@ -1,0 +1,12 @@
+{
+  "versione": "2026-10-30_003025_navigazione-proprieta",
+  "politica": "solo aggiunte",
+  "sha256": {
+    "filtrazione-acque/versioni/2026-10-30_003025_navigazione-proprieta/PATCH-NAVIGAZIONE.json": "9577811c7f4737d8a66c525771e01bc105b0a5ef26082a7042961c9b43a47b5c",
+    "filtrazione-acque/versioni/2026-10-30_003025_navigazione-proprieta/README.md": "b6dec0499688e982643f82bfd8b9f6ff2a7cebe2ae591c24f30b7911f7448181",
+    "filtrazione-acque/versioni/2026-10-30_003025_navigazione-proprieta/VERIFICA-BROWSER.json": "c1fe9b57148b4352e5e087a81ab5b052e3a9c21f4c5f9259263971405d374f2a",
+    "filtrazione-acque/versioni/2026-10-30_003025_navigazione-proprieta/VERIFICA-HA.json": "a6353dfcb99fd6ae7cca8e30d3aea6dbdca2c5bf217e7a8dcc9977286c1ec90c",
+    "filtrazione-acque/versioni/2026-10-30_003025_navigazione-proprieta/VISTA-FILTRAZIONE.json": "2d20de8cc9dcddb180e991e4b92fca2ce819e08c1424e8b2de352cd78d6f5dd8",
+    "filtrazione-acque/versioni/2026-10-30_003025_navigazione-proprieta/filtrazione-sottovista.png": "7caa53122d15c935301fb3290eea3cdaf04c162246c4a50ed9bfe0b5742b0d34"
+  }
+}

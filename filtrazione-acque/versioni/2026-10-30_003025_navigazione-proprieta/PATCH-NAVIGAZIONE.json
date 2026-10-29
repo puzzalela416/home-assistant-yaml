@@ -1,0 +1,25 @@
+{
+  "vista": "proprieta",
+  "scheda": "sections[0].cards[0]",
+  "elemento_png": 9,
+  "image_media_content_id": "media-source://image_upload/c0169e38d0651c2bb56be956d0a6f5c2",
+  "prima": {
+    "action": "navigate",
+    "navigation_path": "/sistema-filtrazione-v2/filtrazione-acque"
+  },
+  "dopo": {
+    "action": "navigate",
+    "navigation_path": "/dashboard-casa/filtrazione-acque"
+  },
+  "stile_png": "invariato",
+  "sottovista_filtrazione": {
+    "path": "filtrazione-acque",
+    "subview": true,
+    "back_path": "/dashboard-casa/proprieta"
+  },
+  "dashboard_separata": {
+    "id": "sistema_filtrazione_v2",
+    "show_in_sidebar": false,
+    "title": "Sistema filtrazione — archivio v2"
+  }
+}

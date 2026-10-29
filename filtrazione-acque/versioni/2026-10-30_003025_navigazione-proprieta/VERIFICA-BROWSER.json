@@ -1,0 +1,14 @@
+{
+  "png_index": 1,
+  "png_dimensioni": {
+    "width": 100,
+    "height": 100
+  },
+  "destinazione": "/dashboard-casa/filtrazione-acque",
+  "errorCards": 0,
+  "liquids": 2,
+  "voci_laterali_filtrazione": 0,
+  "js_errors": [],
+  "ritorno": "/dashboard-casa/proprieta",
+  "ritorno_da_cronologia": true
+}
