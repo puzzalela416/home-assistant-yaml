@@ -1,0 +1,11 @@
+{
+  "versione": "2026-10-29_211150_allarme-esterno",
+  "politica": "solo aggiunte; nessun file precedente sovrascritto",
+  "sha256": {
+    "CENSIMENTO.json": "e876642a35a9c06d4d669e80b288765f18431e10d5c1789c9a885fb34dea0018",
+    "TEST.json": "b20c37d815f3d7ff85a10bf75b03b3ffad53717393199c53467c5860c42b4166",
+    "README.md": "e673e91caab7c5664705c3c4fe0eb343ba28c674d8ed9493a5eee08c85d8f31a",
+    "allarme-DOPO.yaml": "1ced4e7df08582fa7755504dc17c855899429c3044dad27abbcb15d7601b98a0",
+    "allarme-PRIMA.yaml": "9996c95249b4e6dcc8db8142b50a347c00157c345aae898226725d9162a7fa88"
+  }
+}

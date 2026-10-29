@@ -1,0 +1,50 @@
+{
+  "data": "2026-10-29T21:11:10.194871+01:00",
+  "esito": "PASS",
+  "id": "1790034489277",
+  "entity_id": "automation.allarme_innescato_esterno_acceso",
+  "uscite": [
+    "switch.1002963641_power",
+    "switch.100184e742_power",
+    "switch.10001119b3_power",
+    "switch.1000111b06_power",
+    "switch.100185132f_power"
+  ],
+  "bersagli_prima_espansi": [
+    "switch.10001119b3_inching_inchingenable",
+    "switch.10001119b3_network_led",
+    "switch.10001119b3_power",
+    "switch.1000111b06_inching_inchingenable",
+    "switch.1000111b06_network_led",
+    "switch.1000111b06_power",
+    "switch.100184e742_power",
+    "switch.100185132f_inching_inchingenable",
+    "switch.100185132f_network_led",
+    "switch.100185132f_power",
+    "switch.1002963641_inching_inchingenable",
+    "switch.1002963641_network_led",
+    "switch.1002963641_power"
+  ],
+  "parametri_esclusi": [
+    "switch.10001119b3_inching_inchingenable",
+    "switch.10001119b3_network_led",
+    "switch.1000111b06_inching_inchingenable",
+    "switch.1000111b06_network_led",
+    "switch.100185132f_inching_inchingenable",
+    "switch.100185132f_network_led",
+    "switch.1002963641_inching_inchingenable",
+    "switch.1002963641_network_led"
+  ],
+  "comandi_on_corretti": [
+    0,
+    4,
+    8
+  ],
+  "trigger_condizioni_modalita_invariati": true,
+  "sequenza_ritardi_spegnimenti_notifiche_invariati": true,
+  "altre_automazioni_identiche": true,
+  "allarme_non_eseguito": true,
+  "installato": true,
+  "automazione_abilitata": true,
+  "notifiche_non_inviate_durante_test": true
+}

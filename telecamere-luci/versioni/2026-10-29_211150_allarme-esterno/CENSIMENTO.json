@@ -1,0 +1,28 @@
+{
+  "versione": "2026-10-29_211150_allarme-esterno",
+  "nome": "Allarme innescato= esterno acceso",
+  "entity_id": "automation.allarme_innescato_esterno_acceso",
+  "id_yaml": "1790034489277",
+  "stato": "on",
+  "modifica": "solo bersagli dei 3 comandi ON e descrizione",
+  "luci": [
+    "switch.1002963641_power",
+    "switch.100184e742_power",
+    "switch.10001119b3_power",
+    "switch.1000111b06_power",
+    "switch.100185132f_power"
+  ],
+  "parametri_esclusi": [
+    "switch.10001119b3_inching_inchingenable",
+    "switch.10001119b3_network_led",
+    "switch.1000111b06_inching_inchingenable",
+    "switch.1000111b06_network_led",
+    "switch.100185132f_inching_inchingenable",
+    "switch.100185132f_network_led",
+    "switch.1002963641_inching_inchingenable",
+    "switch.1002963641_network_led"
+  ],
+  "altre_automazioni": "identiche",
+  "sequenza_allarme": "identica",
+  "eliminazioni": 0
+}
