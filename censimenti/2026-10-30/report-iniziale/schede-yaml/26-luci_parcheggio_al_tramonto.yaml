@@ -1,0 +1,35 @@
+id: '1790704217806'
+alias: 'Luci parcheggio al tramonto '
+description: ''
+triggers:
+- trigger: sun.sunset
+  options:
+    offset:
+      hours: 0
+      minutes: 0
+      seconds: 0
+      days: 0
+    offset_type: before
+conditions: []
+actions:
+- delay:
+    hours: 0
+    minutes: 15
+    seconds: 0
+    milliseconds: 0
+- action: switch.turn_on
+  metadata: {}
+  target:
+    entity_id: switch.10001119b3_power
+  data: {}
+- delay:
+    hours: 0
+    minutes: 15
+    seconds: 0
+    milliseconds: 0
+- action: switch.turn_on
+  metadata: {}
+  data: {}
+  target:
+    entity_id: switch.100184e599_power
+mode: single

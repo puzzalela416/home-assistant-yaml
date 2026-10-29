@@ -1,0 +1,20 @@
+id: '1789920055194'
+alias: Chiusura velux
+description: ''
+triggers:
+- trigger: sun.sunset
+  options:
+    offset:
+      days: 0
+      hours: 0
+      minutes: 0
+      seconds: 0
+    offset_type: before
+conditions: []
+actions:
+- action: cover.close_cover
+  metadata: {}
+  target:
+    entity_id: cover.velux_window_roof_window
+  data: {}
+mode: single

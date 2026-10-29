@@ -1,0 +1,19 @@
+id: '1792950856621'
+alias: spegnimento torre ingresso spegne faretto telecamer aingresso
+description: ''
+triggers:
+- trigger: state
+  entity_id:
+  - switch.100184e599_power
+  from:
+  - 'on'
+  to:
+  - 'off'
+conditions: []
+actions:
+- action: light.turn_off
+  metadata: {}
+  target:
+    entity_id: light.esterno_ingresso_faretto
+  data: {}
+mode: single

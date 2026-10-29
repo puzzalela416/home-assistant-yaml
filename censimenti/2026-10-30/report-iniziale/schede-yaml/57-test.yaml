@@ -1,0 +1,44 @@
+id: '1791267642209'
+alias: 'Test '
+description: ''
+triggers:
+- trigger: state
+  entity_id:
+  - device_tracker.xiaomi_13t_pro_2
+  to:
+  - not_home
+  for:
+    hours: 0
+    minutes: 15
+    seconds: 0
+- trigger: state
+  entity_id:
+  - device_tracker.xiaomi_12_pro
+  to:
+  - not_home
+  for:
+    hours: 0
+    minutes: 15
+    seconds: 0
+conditions:
+- condition: zone.not_in_zone
+  target:
+    entity_id: device_tracker.xiaomi_12_pro
+  options:
+    behavior: any
+    for: 00:00:00
+    zone: zone.proprieta_2
+- condition: zone.not_in_zone
+  target:
+    entity_id: device_tracker.xiaomi_13t_pro_2
+  options:
+    behavior: any
+    for: 00:00:00
+    zone: zone.proprieta
+actions:
+- action: alarm_control_panel.alarm_arm_away
+  metadata: {}
+  target:
+    entity_id: alarm_control_panel.aqara_hub_09ab_security_system_2
+  data: {}
+mode: single

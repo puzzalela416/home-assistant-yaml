@@ -1,0 +1,2581 @@
+- id: '1789839853555'
+  alias: 'Interruttore sonoff '
+  description: ''
+  triggers:
+  - trigger: event.received
+    target:
+      entity_id: event.soggiorno_switch_button_1
+    options:
+      event_type:
+      - short_release
+      - long_press
+  conditions: []
+  actions:
+  - action: switch.turn_on
+    metadata: {}
+    target:
+      device_id: dc43e36699f5d99eb3f367c5785a3d8f
+    data: {}
+  - action: switch.turn_on
+    metadata: {}
+    target:
+      device_id: 7e8c1ad256d7c295b1c51937e54b9697
+    data: {}
+  mode: single
+- id: '1789848073695'
+  alias: Spengi sonoff con pulsante philips
+  description: ''
+  triggers:
+  - trigger: event.received
+    target:
+      entity_id: event.soggiorno_switch_button_1
+    options:
+      event_type:
+      - long_press
+  conditions: []
+  actions:
+  - action: switch.turn_off
+    metadata: {}
+    target:
+      device_id:
+      - dc43e36699f5d99eb3f367c5785a3d8f
+      - 7e8c1ad256d7c295b1c51937e54b9697
+    data: {}
+  - action: switch.toggle
+    metadata: {}
+    target:
+      device_id: 7e8c1ad256d7c295b1c51937e54b9697
+    data: {}
+  mode: single
+- id: '1789849642221'
+  alias: switch hue Spegni luci sala
+  description: ''
+  triggers:
+  - trigger: event.received
+    target:
+      entity_id: event.soggiorno_switch_button_2
+    options:
+      event_type:
+      - short_release
+  conditions: []
+  actions:
+  - action: light.turn_off
+    metadata: {}
+    target:
+      entity_id:
+      - light.lightbulb_78da_2
+      - light.lightbulb_78d9_2
+    data: {}
+  mode: single
+- id: '1789849740291'
+  alias: 'Interruttore ingresso accende luci '
+  description: ''
+  triggers:
+  - trigger: event.received
+    target:
+      entity_id: event.soggiorno_switch_button_2
+    options:
+      event_type:
+      - long_release
+  conditions: []
+  actions:
+  - action: light.turn_on
+    metadata: {}
+    target:
+      device_id: fe79bef4cef2b3845eef22e2f4a82a15
+    data:
+      brightness_pct: 100
+  - action: light.turn_on
+    metadata: {}
+    target:
+      device_id: 9641975512b964f5d6c814390669daf5
+    data:
+      brightness_pct: 100
+  mode: single
+- id: '1789853464137'
+  alias: 'Arm alarm '
+  description: ''
+  triggers:
+  - trigger: motion.cleared
+    target:
+      entity_id: binary_sensor.motion_sensor_20ae_2
+    options:
+      behavior: each
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
+  conditions:
+  - condition: time
+    after: '21:30:00'
+    before: 05:00:00
+    weekday:
+    - mon
+    - tue
+    - wed
+    - thu
+    - fri
+    - sat
+    - sun
+  - condition: state
+    entity_id: binary_sensor.door_and_window_sensor_d1b1_contact_sensor_d1b1
+    state:
+    - 'off'
+    for:
+      hours: 0
+      minutes: 2
+      seconds: 0
+  actions:
+  - action: number.set_value
+    metadata: {}
+    target:
+      entity_id: number.aqara_hub_09ab_volume_2
+    data:
+      value: '1'
+  - action: alarm_control_panel.alarm_arm_away
+    metadata: {}
+    data: {}
+    target:
+      entity_id: alarm_control_panel.aqara_hub_09ab_security_system_2
+  - action: alarm_control_panel.alarm_arm_home
+    metadata: {}
+    target:
+      entity_id: alarm_control_panel.allarme_casa
+    data: {}
+  mode: single
+- id: '1789854301579'
+  alias: 'Disarm alarm '
+  description: ''
+  triggers:
+  - trigger: motion.detected
+    target:
+      entity_id: binary_sensor.motion_sensor_20ae_2
+    options:
+      behavior: each
+      for: 00:00:00
+  - trigger: state
+    entity_id:
+    - binary_sensor.door_and_window_sensor_d1b1_contact_sensor_d1b1
+    from:
+    - 'off'
+    to:
+    - 'on'
+  conditions:
+  - condition: time
+    after: 05:45:00
+    before: 08:30:00
+    weekday:
+    - mon
+    - tue
+    - wed
+    - thu
+    - fri
+    - sat
+    - sun
+  actions:
+  - action: alarm_control_panel.alarm_disarm
+    metadata: {}
+    data: {}
+    target:
+      entity_id:
+      - alarm_control_panel.allarme_casa
+      - alarm_control_panel.aqara_hub_09ab_security_system_2
+  mode: single
+- id: '1789880062475'
+  alias: Cortesia bagno
+  description: ''
+  triggers:
+  - trigger: motion.detected
+    target:
+      entity_id: binary_sensor.motion_sensor_9a83_2
+    options:
+      behavior: each
+      for: 00:00:00
+  conditions: []
+  actions:
+  - action: light.turn_on
+    metadata: {}
+    data:
+      brightness_pct: 100
+    target:
+      entity_id: light.lightbulb_78d9_2
+  - delay:
+      hours: 0
+      minutes: 2
+      seconds: 0
+      milliseconds: 0
+  - action: light.turn_off
+    metadata: {}
+    data: {}
+    target:
+      entity_id: light.lightbulb_78d9_2
+  mode: single
+- id: '1789884797776'
+  alias: 'Cortesia letto '
+  description: ''
+  triggers:
+  - trigger: motion.detected
+    target:
+      entity_id: binary_sensor.motion_sensor_20ae_2
+    options:
+      behavior: each
+      for: 00:00:00
+  conditions:
+  - condition: time
+    after: '20:00:00'
+    before: 08:30:00
+    weekday:
+    - mon
+    - tue
+    - wed
+    - thu
+    - fri
+    - sat
+    - sun
+  actions:
+  - action: light.turn_on
+    metadata: {}
+    target:
+      entity_id: light.1000ee1aa7_color_rgb
+    data:
+      rgb_color:
+      - 255
+      - 255
+      - 255
+      brightness_pct: 20
+  - delay:
+      hours: 0
+      minutes: 1
+      seconds: 0
+      milliseconds: 0
+  - action: light.turn_off
+    metadata: {}
+    target:
+      device_id: 3908d79d7c1041cbec34d72c6ce64a29
+    data: {}
+  mode: single
+- id: '1789886689473'
+  alias: 'Ptz cancello '
+  description: ''
+  triggers:
+  - trigger: motion.detected
+    target:
+      entity_id: binary_sensor.cancello_movimento_2
+    options:
+      behavior: each
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 5
+  conditions: []
+  actions:
+  - action: select.select_option
+    metadata: {}
+    target:
+      entity_id: select.piazzale_preimpostazione_ptz
+    data:
+      option: '1'
+  - action: select.select_option
+    metadata: {}
+    data:
+      option: '2'
+    target:
+      entity_id: select.tracking_preimpostazione_ptz_2
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 8
+      milliseconds: 0
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 1
+      milliseconds: 0
+  mode: single
+- id: '1789916414826'
+  alias: Arm alarm porta
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - binary_sensor.door_and_window_sensor_d1b1_contact_sensor_d1b1
+    from:
+    - 'on'
+    to:
+    - 'off'
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 0
+  conditions:
+  - condition: time
+    after: '21:30:00'
+    weekday:
+    - mon
+    - tue
+    - wed
+    - fri
+    - thu
+    - sat
+    - sun
+    before: 05:00:00
+  - condition: motion.is_detected
+    target:
+      entity_id: binary_sensor.motion_sensor_20ae_2
+    options:
+      behavior: any
+      for: 00:00:00
+  actions:
+  - delay:
+      hours: 0
+      minutes: 1
+      seconds: 0
+      milliseconds: 0
+  - action: number.set_value
+    metadata: {}
+    target:
+      entity_id: number.aqara_hub_09ab_volume_2
+    data:
+      value: '1'
+  - action: alarm_control_panel.alarm_arm_away
+    metadata: {}
+    target:
+      entity_id: alarm_control_panel.aqara_hub_09ab_security_system_2
+    data: {}
+  - action: alarm_control_panel.alarm_arm_home
+    metadata: {}
+    target:
+      entity_id: alarm_control_panel.allarme_casa
+    data: {}
+  mode: single
+- id: '1789920055194'
+  alias: Chiusura velux
+  description: ''
+  triggers:
+  - trigger: sun.sunset
+    options:
+      offset:
+        days: 0
+        hours: 0
+        minutes: 0
+        seconds: 0
+      offset_type: before
+  conditions: []
+  actions:
+  - action: cover.close_cover
+    metadata: {}
+    target:
+      entity_id: cover.velux_window_roof_window
+    data: {}
+  mode: single
+- id: '1789921346389'
+  alias: 'Switch lucia accende letto '
+  description: ''
+  triggers:
+  - trigger: event.received
+    target:
+      device_id: 2e500e05033676e1d6a83d6cf20b607e
+    options:
+      event_type:
+      - single_press
+  conditions: []
+  actions:
+  - action: light.toggle
+    metadata: {}
+    target:
+      device_id: 3908d79d7c1041cbec34d72c6ce64a29
+    data:
+      brightness_pct: 100
+      color_temp_kelvin: 6500
+  mode: single
+- id: '1789921638219'
+  alias: 'Switch andrea accende letto '
+  description: ''
+  triggers:
+  - trigger: event.received
+    target:
+      device_id: f335cac7c3edd336ebabc7bc563e6d44
+    options:
+      event_type:
+      - single_press
+  conditions: []
+  actions:
+  - action: light.toggle
+    metadata: {}
+    target:
+      device_id: 3908d79d7c1041cbec34d72c6ce64a29
+    data:
+      brightness_pct: 53
+      color_temp_kelvin: 6500
+  mode: single
+- id: '1790033373990'
+  alias: Spengi cortesia casa
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - binary_sensor.motion_sensor_20ae_2
+    from:
+    - 'on'
+    to:
+    - 'off'
+    for:
+      hours: 0
+      minutes: 5
+      seconds: 0
+  conditions:
+  - condition: state
+    entity_id: binary_sensor.motion_sensor_9a83_2
+    state:
+    - 'off'
+    for:
+      hours: 0
+      minutes: 30
+      seconds: 0
+  actions:
+  - action: light.turn_off
+    metadata: {}
+    target:
+      entity_id:
+      - light.aqara_hub_09ab_lightbulb_09ab_2
+      - light.lightbulb_78da_2
+      - light.lightbulb_78d9_2
+    data: {}
+  - delay:
+      hours: 0
+      minutes: 30
+      seconds: 0
+      milliseconds: 0
+  - action: light.turn_off
+    metadata: {}
+    target:
+      entity_id:
+      - light.aqara_hub_09ab_lightbulb_09ab_2
+      - light.lightbulb_78da_2
+      - light.lightbulb_78d9_2
+    data: {}
+  - delay:
+      hours: 0
+      minutes: 30
+      seconds: 0
+      milliseconds: 0
+  - action: light.turn_off
+    metadata: {}
+    target:
+      entity_id:
+      - light.aqara_hub_09ab_lightbulb_09ab_2
+      - light.lightbulb_78da_2
+      - light.lightbulb_78d9_2
+    data: {}
+  mode: single
+- id: '1790034091142'
+  alias: 'Allarme innescato spia letto '
+  description: ''
+  triggers:
+  - trigger: alarm_control_panel.triggered
+    target:
+      entity_id:
+      - alarm_control_panel.aqara_hub_09ab_security_system_2
+      - alarm_control_panel.allarme_casa
+    options:
+      behavior: each
+      for: 00:00:00
+  conditions: []
+  actions:
+  - action: light.turn_on
+    metadata: {}
+    target:
+      entity_id: light.1000ee1aa7_color_rgb
+    data:
+      brightness_pct: 100
+      rgb_color:
+      - 255
+      - 0
+      - 0
+      effect: DIY Breath
+  - delay:
+      hours: 0
+      minutes: 1
+      seconds: 0
+      milliseconds: 0
+  - action: light.turn_off
+    metadata: {}
+    target:
+      entity_id: light.1000ee1aa7_color_rgb
+    data: {}
+  mode: single
+- id: '1790034489277'
+  alias: 'Allarme innescato= esterno acceso '
+  description: ''
+  triggers:
+  - trigger: alarm_control_panel.triggered
+    target:
+      entity_id:
+      - alarm_control_panel.allarme_casa
+      - alarm_control_panel.aqara_hub_09ab_security_system_2
+    options:
+      for: 00:00:00
+      behavior: each
+  conditions:
+  - condition: sun.is_set
+    options: {}
+  actions:
+  - action: switch.turn_on
+    metadata: {}
+    target:
+      entity_id: switch.100184e742_power
+      device_id:
+      - 7e8c1ad256d7c295b1c51937e54b9697
+      - 98fb8f4bdfe2bd492a17a20f19d3a5e0
+      - fc64ed7ed8b3a8416c7d78db4aff608b
+      - dc43e36699f5d99eb3f367c5785a3d8f
+    data: {}
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 2
+      milliseconds: 0
+  - action: switch.turn_off
+    metadata: {}
+    target:
+      entity_id:
+      - switch.1002963641_power
+      - switch.100184e742_power
+      - switch.10001119b3_power
+      - switch.1000111b06_power
+      - switch.100185132f_power
+    data: {}
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 2
+      milliseconds: 0
+  - action: switch.turn_on
+    metadata: {}
+    target:
+      entity_id: switch.100184e742_power
+      device_id:
+      - 7e8c1ad256d7c295b1c51937e54b9697
+      - 98fb8f4bdfe2bd492a17a20f19d3a5e0
+      - fc64ed7ed8b3a8416c7d78db4aff608b
+      - dc43e36699f5d99eb3f367c5785a3d8f
+    data: {}
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 2
+      milliseconds: 0
+  - action: switch.turn_off
+    metadata: {}
+    target:
+      entity_id:
+      - switch.1002963641_power
+      - switch.100184e742_power
+      - switch.10001119b3_power
+      - switch.1000111b06_power
+      - switch.100185132f_power
+    data: {}
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 2
+      milliseconds: 0
+  - action: switch.turn_on
+    metadata: {}
+    target:
+      entity_id: switch.100184e742_power
+      device_id:
+      - 7e8c1ad256d7c295b1c51937e54b9697
+      - 98fb8f4bdfe2bd492a17a20f19d3a5e0
+      - fc64ed7ed8b3a8416c7d78db4aff608b
+      - dc43e36699f5d99eb3f367c5785a3d8f
+    data: {}
+  - delay:
+      hours: 0
+      minutes: 15
+      seconds: 0
+      milliseconds: 0
+  - action: switch.turn_off
+    metadata: {}
+    target:
+      entity_id:
+      - switch.1002963641_power
+      - switch.100184e742_power
+      - switch.10001119b3_power
+      - switch.1000111b06_power
+      - switch.100185132f_power
+    data: {}
+  - action: notify.send_message
+    metadata: {}
+    target:
+      entity_id:
+      - notify.display
+      - notify.xiaomi_12
+    data:
+      message: '!!!!ALLARME SCATTATO!!!'
+      title: ATTENZIONE RICHIESTA
+  mode: single
+- id: '1790199721494'
+  alias: 'Spegni esterno all'' Alba '
+  description: ''
+  triggers:
+  - trigger: sun.sunrise
+    options:
+      offset:
+        days: 0
+        hours: 0
+        minutes: 0
+        seconds: 0
+      offset_type: before
+  conditions: []
+  actions:
+  - action: switch.turn_off
+    metadata: {}
+    target:
+      area_id: capanno
+      device_id:
+      - 7e8c1ad256d7c295b1c51937e54b9697
+      - dc43e36699f5d99eb3f367c5785a3d8f
+      - c883c7ed92083675b0e5b12c6fc4ebe0
+      - fc64ed7ed8b3a8416c7d78db4aff608b
+      - 98fb8f4bdfe2bd492a17a20f19d3a5e0
+      - 876e64fa114c6ddba94b35fc603dcfba
+    data: {}
+  - action: light.turn_off
+    metadata: {}
+    target:
+      entity_id: light.lampada_scale
+    data: {}
+  mode: single
+- id: '1790200903746'
+  alias: Spia esterno - Settori
+  description: 'Lampeggia il gateway Aqara con un colore diverso in base al settore
+    in cui viene rilevato movimento continuativo per almeno 30 secondi.
+
+    '
+  triggers:
+  - trigger: state
+    entity_id: binary_sensor.parking_movimento
+    to: 'on'
+    for: 00:00:30
+    id: settore_1
+  - trigger: state
+    entity_id: binary_sensor.piazzale_movimento
+    to: 'on'
+    for: 00:00:30
+    id: settore_1
+  - trigger: state
+    entity_id: binary_sensor.cucina_movimento
+    to: 'on'
+    for: 00:00:30
+    id: settore_1
+  - trigger: state
+    entity_id: binary_sensor.cucina_movimento_2
+    to: 'on'
+    for: 00:00:30
+    id: settore_1
+  - trigger: state
+    entity_id:
+    - binary_sensor.cancello_movimento
+    to:
+    - 'on'
+    for: 00:00:30
+    id: settore_2
+  - trigger: state
+    entity_id: binary_sensor.tracking_movimento
+    to: 'on'
+    for: 00:00:30
+    id: settore_2
+  - trigger: state
+    entity_id: binary_sensor.loggiato_movimento
+    to: 'on'
+    for: 00:00:30
+    id: settore_3
+  - trigger: state
+    entity_id: binary_sensor.piscina_orto_movimento
+    to: 'on'
+    for: 00:00:30
+    id: settore_3
+  - trigger: state
+    entity_id: binary_sensor.piscine_movimento
+    to: 'on'
+    for: 00:00:30
+    id: settore_3
+  conditions:
+  - condition: time
+    after: '22:30:00'
+    before: 06:00:00
+  actions:
+  - choose:
+    - conditions:
+      - condition: trigger
+        id: settore_1
+      sequence:
+      - repeat:
+          count: 5
+          sequence:
+          - action: light.turn_on
+            target:
+              entity_id: light.aqara_hub_09ab_lightbulb_09ab_2
+            data:
+              rgb_color:
+              - 0
+              - 0
+              - 255
+              brightness: 255
+          - delay: 00:00:01
+          - action: light.turn_off
+            target:
+              entity_id: light.aqara_hub_09ab_lightbulb_09ab_2
+          - delay: 00:00:01
+    - conditions:
+      - condition: trigger
+        id: settore_2
+      sequence:
+      - repeat:
+          count: 5
+          sequence:
+          - action: light.turn_on
+            target:
+              entity_id: light.aqara_hub_09ab_lightbulb_09ab_2
+            data:
+              rgb_color:
+              - 255
+              - 0
+              - 0
+              brightness: 255
+          - delay: 00:00:01
+          - action: light.turn_off
+            target:
+              entity_id: light.aqara_hub_09ab_lightbulb_09ab_2
+          - delay: 00:00:01
+    - conditions:
+      - condition: trigger
+        id: settore_3
+      sequence:
+      - repeat:
+          count: 5
+          sequence:
+          - action: light.turn_on
+            target:
+              entity_id: light.aqara_hub_09ab_lightbulb_09ab_2
+            data:
+              rgb_color:
+              - 0
+              - 255
+              - 0
+              brightness: 255
+          - delay: 00:00:01
+          - action: light.turn_off
+            target:
+              entity_id: light.aqara_hub_09ab_lightbulb_09ab_2
+          - delay: 00:00:01
+  mode: restart
+- id: '1790445492572'
+  alias: 'Ingresso apre, luce  accende '
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - binary_sensor.door_and_window_sensor_8343_contact_sensor_8343
+    from:
+    - 'off'
+    to:
+    - 'on'
+  conditions:
+  - condition: sun.is_set
+    options: {}
+  actions:
+  - action: light.turn_on
+    metadata: {}
+    target:
+      entity_id:
+      - light.lightbulb_78da_2
+    data:
+      color_temp_kelvin: 2000
+      brightness_pct: 2
+  - action: light.turn_on
+    metadata: {}
+    data:
+      color_temp_kelvin: 3274
+      brightness_pct: 3
+    target:
+      entity_id: light.aqara_hub_09ab_lightbulb_09ab_2
+  - delay:
+      hours: 0
+      minutes: 2
+      seconds: 0
+      milliseconds: 0
+  - action: light.turn_off
+    metadata: {}
+    target:
+      entity_id:
+      - light.lightbulb_78da_2
+      - light.aqara_hub_09ab_lightbulb_09ab_2
+    data: {}
+  mode: single
+- id: '1790704217806'
+  alias: 'Luci parcheggio al tramonto '
+  description: ''
+  triggers:
+  - trigger: sun.sunset
+    options:
+      offset:
+        hours: 0
+        minutes: 0
+        seconds: 0
+        days: 0
+      offset_type: before
+  conditions: []
+  actions:
+  - delay:
+      hours: 0
+      minutes: 15
+      seconds: 0
+      milliseconds: 0
+  - action: switch.turn_on
+    metadata: {}
+    target:
+      entity_id: switch.10001119b3_power
+    data: {}
+  - delay:
+      hours: 0
+      minutes: 15
+      seconds: 0
+      milliseconds: 0
+  - action: switch.turn_on
+    metadata: {}
+    data: {}
+    target:
+      entity_id: switch.100184e599_power
+  mode: single
+- id: '1790791171721'
+  alias: Caldo fuori apre velux
+  description: ''
+  triggers:
+  - trigger: temperature.crossed_threshold
+    target:
+      entity_id: sensor.temperature_and_humidity_sensor_aa26_temperature_sensor_aa26
+    options:
+      behavior: each
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
+      threshold:
+        type: above
+        value:
+          active_choice: entity
+          entity: sensor.temperature_and_humidity_sensor_3831_temperature_sensor_3831
+  conditions:
+  - condition: alarm_control_panel.is_disarmed
+    target:
+      entity_id:
+      - alarm_control_panel.allarme_casa
+      - alarm_control_panel.aqara_hub_09ab_security_system_2
+    options:
+      for: 00:00:00
+      behavior: any
+  actions:
+  - action: cover.open_cover
+    metadata: {}
+    target:
+      entity_id: cover.velux_window_roof_window
+    data: {}
+  mode: single
+- id: '1791060890626'
+  alias: Allarme casa - Contatti perimetrali + notifica
+  description: Fa scattare l'allarme HA quando si apre un contatto perimetrale
+  triggers:
+  - entity_id:
+    - binary_sensor.door_and_window_sensor_146f_contact_sensor_146f_2
+    - binary_sensor.door_and_window_sensor_2602_contact_sensor_2602
+    - binary_sensor.door_and_window_sensor_8343_contact_sensor_8343
+    - binary_sensor.door_and_window_sensor_8371_contact_sensor_8371_2
+    - binary_sensor.door_and_window_sensor_b21b_contact_sensor_b21b
+    - binary_sensor.door_and_window_sensor_bd83_contact_sensor_bd83
+    - binary_sensor.door_and_window_sensor_e2ec_contact_sensor_e2ec_2
+    - binary_sensor.door_and_window_sensor_e37a_contact_sensor_e37a
+    - binary_sensor.door_and_window_sensor_f81b_contact_sensor_f81b
+    - binary_sensor.door_and_window_sensor_f92e_contact_sensor_f92e
+    to:
+    - 'on'
+    trigger: state
+  conditions:
+  - condition: state
+    entity_id: alarm_control_panel.allarme_casa
+    state:
+    - armed_home
+    - armed_away
+  actions:
+  - action: input_text.set_value
+    target:
+      entity_id: input_text.ultimo_allarme_casa
+    data:
+      value: '{{ trigger.to_state.name }}
+
+        '
+  - action: logbook.log
+    data:
+      name: "\U0001F6A8 ALLARME CASA"
+      message: 'Sensore responsabile: {{ trigger.to_state.name }}
+
+        '
+      entity_id: alarm_control_panel.allarme_casa
+      domain: alarm_control_panel
+  - action: persistent_notification.create
+    data:
+      title: "\U0001F6A8 ALLARME CASA"
+      message: '**Sensore responsabile:** {{ trigger.to_state.name }}
+
+        **Ora:** {{ now().strftime(''%d/%m/%Y %H:%M:%S'') }}
+
+        '
+  - action: alarm_control_panel.alarm_trigger
+    target:
+      entity_id: alarm_control_panel.allarme_casa
+  mode: single
+- id: '1791062177257'
+  alias: movimento interno trigger alarm
+  description: ''
+  triggers:
+  - trigger: motion.detected
+    target:
+      entity_id:
+      - binary_sensor.vibration_sensor_a8d5
+      - binary_sensor.vibration_sensor_c875
+      - binary_sensor.motion_sensor_9a83_2
+      - binary_sensor.motion_sensor_d8ca
+      - binary_sensor.motion_sensor_20ae_2
+      - binary_sensor.sala_movimento
+    options:
+      for: 00:00:00
+      behavior: each
+  conditions:
+  - condition: alarm_control_panel.is_armed_away
+    target:
+      entity_id: alarm_control_panel.allarme_casa
+    options:
+      behavior: any
+      for: 00:00:00
+  - condition: zone.not_in_zone
+    target:
+      entity_id: person.andrea
+    options:
+      behavior: any
+      for: 00:00:00
+      zone: zone.home
+  - condition: zone.not_in_zone
+    target:
+      entity_id: person.lucia
+    options:
+      behavior: any
+      for: 00:00:00
+      zone: zone.home
+  actions:
+  - action: alarm_control_panel.alarm_trigger
+    metadata: {}
+    data: {}
+    target:
+      entity_id: alarm_control_panel.allarme_casa
+  mode: single
+- id: '1791063091106'
+  alias: allarme suona sirena
+  description: ''
+  triggers:
+  - trigger: alarm_control_panel.triggered
+    target:
+      entity_id: alarm_control_panel.allarme_casa
+    options:
+      for: 00:00:00
+  conditions: []
+  actions:
+  - action: siren.turn_on
+    metadata: {}
+    target:
+      entity_id: siren.sala_sirena
+    data: {}
+  - action: light.turn_on
+    metadata: {}
+    target:
+      entity_id: light.aqara_hub_09ab_lightbulb_09ab_2
+    data:
+      rgb_color:
+      - 255
+      - 0
+      - 0
+      brightness_pct: 100
+  - delay:
+      hours: 0
+      minutes: 1
+      seconds: 0
+      milliseconds: 0
+  - action: siren.turn_off
+    metadata: {}
+    target:
+      entity_id: siren.sala_sirena
+    data: {}
+  - action: light.turn_off
+    metadata: {}
+    target:
+      entity_id: light.aqara_hub_09ab_lightbulb_09ab_2
+    data: {}
+  mode: single
+- id: '1791245855834'
+  alias: finestre aperte
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - binary_sensor.door_and_window_sensor_bd83_contact_sensor_bd83
+    - binary_sensor.door_and_window_sensor_e2ec_contact_sensor_e2ec_2
+    - binary_sensor.door_and_window_sensor_8371_contact_sensor_8371_2
+    - binary_sensor.door_and_window_sensor_f81b_contact_sensor_f81b
+    - binary_sensor.door_and_window_sensor_8343_contact_sensor_8343
+    - binary_sensor.door_and_window_sensor_146f_contact_sensor_146f_2
+    - binary_sensor.door_and_window_sensor_f92e_contact_sensor_f92e
+    - binary_sensor.door_and_window_sensor_b21b_contact_sensor_b21b
+    - binary_sensor.door_and_window_sensor_e37a_contact_sensor_e37a
+    - binary_sensor.door_and_window_sensor_2602_contact_sensor_2602
+    to:
+    - 'on'
+  conditions:
+  - condition: alarm_control_panel.is_armed
+    target:
+      entity_id:
+      - alarm_control_panel.allarme_casa
+      - alarm_control_panel.aqara_hub_09ab_security_system_2
+    options:
+      for: 00:00:00
+      behavior: any
+  actions:
+  - repeat:
+      count: 2
+      sequence:
+      - action: light.toggle
+        metadata: {}
+        target:
+          entity_id: light.1000ee1aa7_color_rgb
+        data:
+          rgb_color:
+          - 211
+          - 69
+          - 9
+          transition: 0
+          brightness_pct: 72
+      - delay:
+          hours: 0
+          minutes: 0
+          seconds: 1
+          milliseconds: 0
+      - action: light.turn_off
+        metadata: {}
+        target:
+          entity_id: light.1000ee1aa7_color_rgb
+        data: {}
+      - delay:
+          hours: 0
+          minutes: 0
+          seconds: 1
+          milliseconds: 0
+      - action: light.turn_on
+        metadata: {}
+        target:
+          entity_id: light.1000ee1aa7_color_rgb
+        data:
+          rgb_color:
+          - 17
+          - 14
+          - 175
+          brightness_pct: 51
+      - delay:
+          hours: 0
+          minutes: 0
+          seconds: 1
+          milliseconds: 0
+      - action: light.turn_off
+        metadata: {}
+        target:
+          entity_id: light.1000ee1aa7_color_rgb
+        data: {}
+      - delay:
+          hours: 0
+          minutes: 0
+          seconds: 1
+          milliseconds: 0
+  mode: single
+- id: '1791247502044'
+  alias: disarm double allarm
+  description: ''
+  triggers:
+  - trigger: alarm_control_panel.disarmed
+    target:
+      entity_id:
+      - alarm_control_panel.allarme_casa
+      - alarm_control_panel.aqara_hub_09ab_security_system_2
+    options:
+      for: 00:00:00
+      behavior: each
+  conditions: []
+  actions:
+  - action: alarm_control_panel.alarm_disarm
+    metadata: {}
+    target:
+      entity_id:
+      - alarm_control_panel.allarme_casa
+      - alarm_control_panel.aqara_hub_09ab_security_system_2
+    data: {}
+  mode: single
+- id: '1791248442045'
+  alias: 'Arma allarme double '
+  description: ''
+  triggers:
+  - trigger: alarm_control_panel.armed
+    target:
+      entity_id:
+      - alarm_control_panel.allarme_casa
+      - alarm_control_panel.aqara_hub_09ab_security_system_2
+    options:
+      for: 00:00:00
+      behavior: each
+  conditions: []
+  actions:
+  - action: alarm_control_panel.alarm_arm_home
+    metadata: {}
+    target:
+      entity_id: alarm_control_panel.allarme_casa
+    data: {}
+  - action: alarm_control_panel.alarm_arm_away
+    metadata: {}
+    target:
+      entity_id: alarm_control_panel.aqara_hub_09ab_security_system_2
+    data: {}
+  mode: single
+- id: '1791267642209'
+  alias: 'Test '
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - device_tracker.xiaomi_13t_pro_2
+    to:
+    - not_home
+    for:
+      hours: 0
+      minutes: 15
+      seconds: 0
+  - trigger: state
+    entity_id:
+    - device_tracker.xiaomi_12_pro
+    to:
+    - not_home
+    for:
+      hours: 0
+      minutes: 15
+      seconds: 0
+  conditions:
+  - condition: zone.not_in_zone
+    target:
+      entity_id: device_tracker.xiaomi_12_pro
+    options:
+      behavior: any
+      for: 00:00:00
+      zone: zone.proprieta_2
+  - condition: zone.not_in_zone
+    target:
+      entity_id: device_tracker.xiaomi_13t_pro_2
+    options:
+      behavior: any
+      for: 00:00:00
+      zone: zone.proprieta
+  actions:
+  - action: alarm_control_panel.alarm_arm_away
+    metadata: {}
+    target:
+      entity_id: alarm_control_panel.aqara_hub_09ab_security_system_2
+    data: {}
+  mode: single
+- id: '1791284997220'
+  alias: 'Ricircolo cisterna pozzo '
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - binary_sensor.q3_ricircolo
+    from:
+    - 'on'
+    to:
+    - 'off'
+  conditions:
+  - condition: time
+    after: '10:00:00'
+    before: '15:00:00'
+  - condition: numeric_state
+    entity_id: sensor.livello_pozzo_plc
+    above: 157
+  actions:
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 3
+      milliseconds: 0
+  - action: switch.turn_on
+    metadata: {}
+    data: {}
+    target:
+      entity_id: switch.plc_ha_manuale
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 1
+      milliseconds: 0
+  - action: switch.turn_on
+    metadata: {}
+    target:
+      entity_id: switch.plc_ha_q3_ricircolo
+    data: {}
+  - delay:
+      hours: 4
+      minutes: 0
+      seconds: 0
+      milliseconds: 0
+  - action: switch.turn_off
+    metadata: {}
+    target:
+      entity_id:
+      - switch.plc_ha_q3_ricircolo
+      - switch.plc_ha_manuale
+    data: {}
+  mode: single
+- id: '1791399700517'
+  alias: Allarme innescato scatta foto
+  description: ''
+  triggers:
+  - trigger: alarm_control_panel.triggered
+    target:
+      entity_id:
+      - alarm_control_panel.allarme_casa
+      - alarm_control_panel.aqara_hub_09ab_security_system_2
+    options:
+      for: 00:00:00
+      behavior: each
+  conditions: []
+  actions:
+  - action: camera.snapshot
+    metadata: {}
+    target:
+      entity_id: camera.sala
+    data:
+      filename: /media/Istantanee/intruso_{{ now().strftime('%Y-%m-%d_%H-%M-%S') }}.jpg
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 5
+      milliseconds: 0
+  - action: camera.snapshot
+    metadata: {}
+    target:
+      entity_id: camera.sala
+    data:
+      filename: /media/Istantanee/intruso_{{ now().strftime('%Y-%m-%d_%H-%M-%S') }}.jpg
+  mode: single
+- id: '1791567896934'
+  alias: Spia allarme
+  description: ''
+  triggers:
+  - trigger: motion.detected
+    target:
+      entity_id: binary_sensor.1
+    options:
+      behavior: each
+      for: 00:00:00
+  conditions:
+  - condition: alarm_control_panel.is_armed
+    target:
+      entity_id:
+      - alarm_control_panel.allarme_casa
+      - alarm_control_panel.aqara_hub_09ab_security_system_2
+    options:
+      for: 00:00:00
+      behavior: any
+  actions:
+  - repeat:
+      count: 10
+      sequence:
+      - action: light.turn_on
+        metadata: {}
+        target:
+          entity_id:
+          - light.lampada_scale
+          - light.wiby_lampadina_smart_a65_11w
+        data:
+          rgb_color:
+          - 255
+          - 0
+          - 0
+      - delay:
+          hours: 0
+          minutes: 0
+          seconds: 0
+          milliseconds: 500
+      - action: light.turn_off
+        metadata: {}
+        target:
+          entity_id:
+          - light.lampada_scale
+          - light.wiby_lampadina_smart_a65_11w
+        data: {}
+      - delay:
+          hours: 0
+          minutes: 0
+          seconds: 0
+          milliseconds: 500
+  - action: light.turn_on
+    metadata: {}
+    target:
+      entity_id:
+      - light.wiby_lampadina_smart_a65_11w
+    data:
+      rgb_color:
+      - 255
+      - 179
+      - 56
+      brightness_pct: 100
+      rgbw_color:
+        min_color_temp_kelvin: 2000
+        max_color_temp_kelvin: 6500
+        supported_color_modes:
+        - color_temp
+        - hs
+        color_mode: color_temp
+        brightness: 255
+        color_temp_kelvin: 2000
+        hs_color:
+        - 30.601
+        - 94.547
+        rgb_color:
+        - 255
+        - 137
+        - 14
+        xy_color:
+        - 0.598
+        - 0.383
+        friendly_name: Lampada scale
+        supported_features: 0
+  mode: single
+- id: '1791763756703'
+  alias: betatest sirena
+  description: ''
+  triggers:
+  - trigger: alarm_control_panel.triggered
+    target:
+      entity_id:
+      - alarm_control_panel.allarme_casa
+      - alarm_control_panel.aqara_hub_09ab_security_system_2
+    options:
+      for: 00:00:00
+      behavior: each
+  conditions:
+  - condition: not
+    conditions: []
+  actions: []
+  mode: single
+- id: '1791764334194'
+  alias: 'Cortesia da fumo '
+  description: ''
+  triggers:
+  - trigger: motion.detected
+    target:
+      entity_id: binary_sensor.sala_movimento
+    options:
+      behavior: each
+      for: 00:00:00
+  conditions:
+  - condition: time
+    after: '23:50:00'
+    before: 05:50:00
+  actions:
+  - action: light.turn_on
+    metadata: {}
+    target:
+      entity_id:
+      - light.aqara_hub_09ab_lightbulb_09ab_2
+      - light.lightbulb_78da_2
+    data:
+      rgb_color:
+      - 235
+      - 192
+      - 23
+  - delay:
+      hours: 0
+      minutes: 5
+      seconds: 0
+      milliseconds: 0
+  - action: light.turn_off
+    metadata: {}
+    target:
+      entity_id:
+      - light.aqara_hub_09ab_lightbulb_09ab_2
+      - light.lightbulb_78da_2
+    data: {}
+  mode: single
+- id: '1791917088493'
+  alias: 'Cortesia scale '
+  description: ''
+  triggers:
+  - trigger: motion.detected
+    target:
+      entity_id: binary_sensor.1
+    options:
+      behavior: each
+      for: 00:00:00
+  conditions: []
+  actions:
+  - action: light.turn_on
+    metadata: {}
+    target:
+      entity_id: light.lampada_scale
+    data:
+      rgb_color:
+      - 255
+      - 137
+      - 14
+      brightness: 255
+  - delay:
+      hours: 0
+      minutes: 2
+      seconds: 0
+      milliseconds: 0
+  - action: light.turn_off
+    metadata: {}
+    target:
+      entity_id: light.lampada_scale
+    data: {}
+  mode: single
+- id: '1791935822844'
+  alias: 'Movimento esterno accende torre ingresso '
+  description: ''
+  triggers:
+  - trigger: motion.detected
+    target:
+      entity_id: binary_sensor.esterno_ingresso_movimento
+    options:
+      behavior: each
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 2
+  conditions:
+  - condition: sun.is_set
+    options: {}
+  actions:
+  - action: switch.turn_on
+    metadata: {}
+    target:
+      entity_id: switch.100184e599_power
+    data: {}
+  - delay:
+      hours: 0
+      minutes: 2
+      seconds: 0
+      milliseconds: 0
+  - action: switch.turn_off
+    metadata: {}
+    target:
+      entity_id: switch.100184e599_power
+    data: {}
+  mode: single
+- id: '1792018444662'
+  alias: ptz loggiato
+  description: ''
+  triggers:
+  - trigger: motion.detected
+    target:
+      entity_id: binary_sensor.loggiato_movimento
+    options:
+      behavior: each
+      for:
+        hours: 0
+        minutes: 2
+        seconds: 0
+  conditions: []
+  actions:
+  - action: select.select_option
+    metadata: {}
+    target:
+      entity_id: select.tracking_preimpostazione_ptz_2
+    data:
+      option: '4'
+  mode: single
+- id: '1792105077986'
+  alias: 'Spia allarme disinserito '
+  description: ''
+  triggers:
+  - trigger: alarm_control_panel.armed
+    target:
+      entity_id:
+      - alarm_control_panel.allarme_casa
+      - alarm_control_panel.aqara_hub_09ab_security_system_2
+    options:
+      for: 00:00:00
+      behavior: each
+  conditions:
+  - condition: and
+    conditions:
+    - condition: alarm_control_panel.is_disarmed
+      target:
+        entity_id:
+        - alarm_control_panel.allarme_casa
+        - alarm_control_panel.aqara_hub_09ab_security_system_2
+      options:
+        for: 00:00:00
+        behavior: any
+  actions:
+  - action: light.turn_on
+    metadata: {}
+    target:
+      entity_id: light.wiby_lampadina_smart_a65_11w
+    data:
+      rgb_color:
+      - 0
+      - 255
+      - 0
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 3
+      milliseconds: 0
+  - action: light.turn_off
+    metadata: {}
+    target:
+      entity_id: light.wiby_lampadina_smart_a65_11w
+    data: {}
+  - condition: sun
+    before: sunrise
+  - action: light.turn_on
+    metadata: {}
+    target:
+      entity_id: light.wiby_lampadina_smart_a65_11w
+    data:
+      rgb_color:
+      - 255
+      - 199
+      - 15
+  mode: single
+- id: '1792284488645'
+  alias: Movimento orto accende luci
+  description: ''
+  triggers:
+  - trigger: motion.detected
+    target:
+      entity_id: binary_sensor.piscina_orto_movimento
+    options:
+      behavior: each
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 3
+  conditions:
+  - condition: sun.is_set
+    options: {}
+  actions:
+  - action: switch.turn_on
+    metadata: {}
+    target:
+      entity_id:
+      - switch.1002963641_power
+      - switch.100184e742_power
+    data: {}
+  - delay:
+      hours: 0
+      minutes: 2
+      seconds: 0
+      milliseconds: 0
+  - action: switch.turn_off
+    metadata: {}
+    target:
+      entity_id:
+      - switch.1002963641_power
+      - switch.100184e742_power
+    data: {}
+  mode: single
+- id: '1792284834030'
+  alias: 'Movimento cancello accende giardino '
+  description: ''
+  triggers:
+  - trigger: motion.detected
+    target:
+      entity_id: binary_sensor.cancello_movimento
+    options:
+      behavior: each
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 1
+  conditions:
+  - condition: sun.is_set
+    options: {}
+  - condition: switch.is_off
+    target:
+      entity_id: switch.1000111b06_power
+    options:
+      behavior: any
+      for: 00:00:00
+  actions:
+  - action: switch.turn_on
+    metadata: {}
+    target:
+      entity_id: switch.1000111b06_power
+    data: {}
+  - delay:
+      hours: 0
+      minutes: 2
+      seconds: 0
+      milliseconds: 0
+  - action: switch.turn_off
+    metadata: {}
+    target:
+      entity_id: switch.1000111b06_power
+    data: {}
+  mode: single
+- id: '1792364358002'
+  alias: Telecamere - Sensibilità Giorno
+  description: Imposta sensibilità Reolink diurna
+  triggers:
+  - trigger: sun
+    event: sunrise
+  conditions: []
+  actions:
+  - action: number.set_value
+    target:
+      entity_id:
+      - number.cancello_cancello_sensibilita_al_movimento
+      - number.loggiato_sensibilita_al_movimento
+      - number.piscina_orto_sensibilita_al_movimento
+      - number.piscine_sensibilita_al_movimento
+      - number.parco_sensibilita_al_movimento
+      - number.cucina_sensibilita_al_movimento
+      - number.cucina_sensibilita_al_movimento_2
+      - number.parking_sensibilita_al_movimento
+      - number.piazzale_sensibilita_al_movimento
+      - number.sala_sensibilita_al_movimento
+      - number.tracking_sensibilita_al_movimento
+    data:
+      value: 42
+  - action: number.set_value
+    target:
+      entity_id:
+      - number.parking_ai_person_sensitivity
+      - number.piazzale_ai_person_sensitivity
+      - number.sala_ai_person_sensitivity
+      - number.tracking_ai_person_sensitivity
+    data:
+      value: 100
+  - action: number.set_value
+    target:
+      entity_id:
+      - number.parking_ai_vehicle_sensitivity
+      - number.piazzale_ai_vehicle_sensitivity
+      - number.tracking_ai_vehicle_sensitivity
+    data:
+      value: 20
+  - action: number.set_value
+    target:
+      entity_id:
+      - number.parking_ai_animal_sensitivity
+      - number.piazzale_ai_animal_sensitivity
+      - number.sala_ai_animal_sensitivity
+      - number.tracking_ai_animal_sensitivity
+    data:
+      value: 10
+  mode: single
+- id: '1792364592742'
+  alias: Telecamere - Sensibilità Notte
+  description: Imposta sensibilità Reolink notturna
+  triggers:
+  - trigger: sun
+    event: sunset
+  conditions: []
+  actions:
+  - action: number.set_value
+    target:
+      entity_id:
+      - number.cancello_cancello_sensibilita_al_movimento
+      - number.loggiato_sensibilita_al_movimento
+      - number.piscina_orto_sensibilita_al_movimento
+      - number.piscine_sensibilita_al_movimento
+      - number.parco_sensibilita_al_movimento
+      - number.cucina_sensibilita_al_movimento
+      - number.cucina_sensibilita_al_movimento_2
+      - number.parking_sensibilita_al_movimento
+      - number.piazzale_sensibilita_al_movimento
+      - number.sala_sensibilita_al_movimento
+      - number.tracking_sensibilita_al_movimento
+    data:
+      value: 5
+  - action: number.set_value
+    target:
+      entity_id:
+      - number.parking_ai_person_sensitivity
+      - number.piazzale_ai_person_sensitivity
+      - number.sala_ai_person_sensitivity
+      - number.tracking_ai_person_sensitivity
+    data:
+      value: 100
+  - action: number.set_value
+    target:
+      entity_id:
+      - number.parking_ai_vehicle_sensitivity
+      - number.piazzale_ai_vehicle_sensitivity
+      - number.tracking_ai_vehicle_sensitivity
+    data:
+      value: 10
+  - action: number.set_value
+    target:
+      entity_id:
+      - number.parking_ai_animal_sensitivity
+      - number.piazzale_ai_animal_sensitivity
+      - number.sala_ai_animal_sensitivity
+      - number.tracking_ai_animal_sensitivity
+    data:
+      value: 10
+  mode: single
+- id: '1792367956091'
+  alias: Allarme notte - Inserimento automatico e controllo aperture
+  description: 'Unisce le due automazioni originali Arm alarm e Arm alarm porta mantenendone
+    trigger, condizioni, tempi e modalità di inserimento. Prima di armare controlla
+    tutte le aperture. Se trova un''apertura non arma e segnala con beep Aqara e lampeggio
+    rosso/blu delle due luci.
+
+    '
+  triggers:
+  - trigger: motion.cleared
+    target:
+      entity_id: binary_sensor.motion_sensor_20ae_2
+    options:
+      behavior: each
+      for:
+        hours: 0
+        minutes: 1
+        seconds: 0
+    id: arm_alarm
+  - trigger: state
+    entity_id:
+    - binary_sensor.door_and_window_sensor_d1b1_contact_sensor_d1b1
+    from:
+    - 'on'
+    to:
+    - 'off'
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 0
+    id: arm_alarm_porta
+  conditions:
+  - condition: time
+    after: '21:30:00'
+    before: 05:00:00
+    weekday:
+    - mon
+    - tue
+    - wed
+    - thu
+    - fri
+    - sat
+    - sun
+  actions:
+  - choose:
+    - conditions:
+      - condition: trigger
+        id: arm_alarm
+      - condition: state
+        entity_id: binary_sensor.door_and_window_sensor_d1b1_contact_sensor_d1b1
+        state:
+        - 'off'
+        for:
+          hours: 0
+          minutes: 1
+          seconds: 0
+      sequence: []
+    - conditions:
+      - condition: trigger
+        id: arm_alarm_porta
+      - condition: motion.is_detected
+        target:
+          entity_id: binary_sensor.motion_sensor_20ae_2
+        options:
+          behavior: any
+          for: 00:00:00
+      sequence:
+      - delay:
+          hours: 0
+          minutes: 1
+          seconds: 0
+          milliseconds: 0
+    default:
+    - stop: Condizioni originali di inserimento non soddisfatte
+  - choose:
+    - conditions:
+      - condition: template
+        value_template: "{{\n  is_state('binary_sensor.door_and_window_sensor_146f_contact_sensor_146f_2',
+          'on')\n  or is_state('binary_sensor.door_and_window_sensor_2602_contact_sensor_2602',
+          'on')\n  or is_state('binary_sensor.door_and_window_sensor_8343_contact_sensor_8343',
+          'on')\n  or is_state('binary_sensor.door_and_window_sensor_8371_contact_sensor_8371_2',
+          'on')\n  or is_state('binary_sensor.door_and_window_sensor_b21b_contact_sensor_b21b',
+          'on')\n  or is_state('binary_sensor.door_and_window_sensor_bd83_contact_sensor_bd83',
+          'on')\n  or is_state('binary_sensor.door_and_window_sensor_e2ec_contact_sensor_e2ec_2',
+          'on')\n  or is_state('binary_sensor.door_and_window_sensor_e37a_contact_sensor_e37a',
+          'on')\n  or is_state('binary_sensor.door_and_window_sensor_f81b_contact_sensor_f81b',
+          'on')\n  or is_state('binary_sensor.door_and_window_sensor_f1e9_contact_sensor_f1e9',
+          'on')\n  or is_state('binary_sensor.door_and_window_sensor_f92e_contact_sensor_f92e',
+          'on')\n  or is_state('binary_sensor.door_and_window_sensor_d1b1_contact_sensor_d1b1',
+          'on')\n}}\n"
+      sequence:
+      - repeat:
+          count: 3
+          sequence:
+          - action: number.set_value
+            target:
+              entity_id: number.aqara_hub_09ab_volume_2
+            data:
+              value: 15
+          - delay:
+              milliseconds: 300
+          - action: number.set_value
+            target:
+              entity_id: number.aqara_hub_09ab_volume_2
+            data:
+              value: 0
+          - delay:
+              milliseconds: 300
+      - repeat:
+          count: 5
+          sequence:
+          - action: light.turn_on
+            target:
+              entity_id:
+              - light.1000ee1aa7_color_rgb
+              - light.aqara_hub_09ab_lightbulb_09ab_2
+            data:
+              brightness_pct: 100
+              rgb_color:
+              - 255
+              - 0
+              - 0
+          - delay:
+              milliseconds: 400
+          - action: light.turn_on
+            target:
+              entity_id:
+              - light.1000ee1aa7_color_rgb
+              - light.aqara_hub_09ab_lightbulb_09ab_2
+            data:
+              brightness_pct: 100
+              rgb_color:
+              - 0
+              - 0
+              - 255
+          - delay:
+              milliseconds: 400
+      - action: light.turn_off
+        target:
+          entity_id:
+          - light.1000ee1aa7_color_rgb
+          - light.aqara_hub_09ab_lightbulb_09ab_2
+      - stop: 'Allarme NON inserito: porta o finestra aperta'
+  - action: number.set_value
+    metadata: {}
+    target:
+      entity_id: number.aqara_hub_09ab_volume_2
+    data:
+      value: '1'
+  - action: alarm_control_panel.alarm_arm_away
+    metadata: {}
+    data: {}
+    target:
+      entity_id: alarm_control_panel.aqara_hub_09ab_security_system_2
+  - action: alarm_control_panel.alarm_arm_home
+    metadata: {}
+    target:
+      entity_id: alarm_control_panel.allarme_casa
+    data: {}
+  - action: light.turn_on
+    metadata: {}
+    target:
+      entity_id: light.1000ee1aa7_color_rgb
+    data:
+      rgb_color:
+      - 255
+      - 0
+      - 0
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 1
+      milliseconds: 0
+  - action: light.turn_off
+    metadata: {}
+    target:
+      entity_id: light.1000ee1aa7_color_rgb
+    data: {}
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 1
+      milliseconds: 0
+  - action: light.turn_on
+    metadata: {}
+    target:
+      entity_id: light.1000ee1aa7_color_rgb
+    data:
+      rgb_color:
+      - 255
+      - 0
+      - 0
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 1
+      milliseconds: 0
+  - action: light.turn_off
+    metadata: {}
+    target:
+      entity_id: light.1000ee1aa7_color_rgb
+    data: {}
+  mode: single
+- id: '1792587906212'
+  alias: Growatt - Allarmi e comunicazione USB
+  description: Segnala guasti, warning e perdita di comunicazione
+  triggers:
+  - trigger: numeric_state
+    entity_id: sensor.growatt_1_fault_code
+    above: 0
+    id: guasto_1
+  - trigger: numeric_state
+    entity_id: sensor.growatt_2_fault_code
+    above: 0
+    id: guasto_2
+  - trigger: numeric_state
+    entity_id: sensor.growatt_1_warning_code
+    above: 0
+    id: warning_1
+  - trigger: numeric_state
+    entity_id: sensor.growatt_2_warning_code
+    above: 0
+    id: warning_2
+  - trigger: state
+    entity_id: sensor.growatt_1_stato
+    to: unavailable
+    for:
+      minutes: 2
+    id: usb_1
+  - trigger: state
+    entity_id: sensor.growatt_2_stato
+    to: unavailable
+    for:
+      minutes: 2
+    id: usb_2
+  - trigger: state
+    entity_id: sensor.growatt_1_stato
+    to: unknown
+    for:
+      minutes: 2
+    id: usb_1
+  - trigger: state
+    entity_id: sensor.growatt_2_stato
+    to: unknown
+    for:
+      minutes: 2
+    id: usb_2
+  actions:
+  - action: persistent_notification.create
+    data:
+      title: ATTENZIONE GROWATT - {{ trigger.id | default('TEST') if trigger is defined
+        else 'TEST' }}
+      message: "{% if trigger is not defined %}\n  Test manuale riuscito.\n  Il sistema
+        di notifiche Growatt funziona.\n  Nessun allarme reale è stato rilevato.\n\n{%
+        elif (trigger.id | default('') | string).startswith('usb') %}\n  Comunicazione
+        persa con il Growatt\n  {{ trigger.id[-1] }} da almeno 2 minuti.\n  Verificare
+        inverter e collegamento USB.\n\n{% elif trigger.entity_id is defined %}\n
+        \ {{ state_attr(trigger.entity_id, 'friendly_name')\n     or trigger.entity_id
+        }}\n  ha segnalato il codice\n  {{ states(trigger.entity_id) }}.\n  Controllare
+        il display dell'inverter.\n\n{% else %}\n  Evento Growatt rilevato.\n  Trigger:
+        {{ trigger.id | default('sconosciuto') }}.\n  Controllare l'inverter.\n{%
+        endif %}"
+      notification_id: growatt_{{ trigger.id | default('test') if trigger is defined
+        else 'test' }}
+  mode: queued
+  max: 10
+- id: '1792712912646'
+  alias: areazione con velux tutti i giorni
+  description: ''
+  triggers:
+  - trigger: time
+    at: 08:30:00
+  conditions:
+  - condition: alarm_control_panel.is_disarmed
+    target:
+      entity_id:
+      - alarm_control_panel.allarme_casa
+      - alarm_control_panel.aqara_hub_09ab_security_system_2
+    options:
+      for: 00:00:00
+      behavior: any
+  actions:
+  - action: cover.open_cover
+    metadata: {}
+    target:
+      entity_id: cover.velux_window_roof_window
+    data: {}
+  - delay:
+      hours: 4
+      minutes: 0
+      seconds: 0
+      milliseconds: 0
+  - action: cover.close_cover
+    metadata: {}
+    target:
+      entity_id: cover.velux_window_roof_window
+    data: {}
+  mode: single
+- id: '1792713530771'
+  alias: riempimento cisterna pozzo
+  description: ''
+  triggers:
+  - trigger: numeric_state
+    entity_id:
+    - sensor.livello_pozzo_plc
+    below: 72
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 20
+  conditions:
+  - condition: time
+    after: '10:00:00'
+    before: '16:00:00'
+  - condition: state
+    entity_id: binary_sensor.q1_potabile
+    state:
+    - 'off'
+  - condition: state
+    entity_id: binary_sensor.q2_pozzo
+    state:
+    - 'off'
+  actions:
+  - action: switch.turn_on
+    metadata: {}
+    target:
+      entity_id: switch.plc_ha_manuale
+    data: {}
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 1
+      milliseconds: 0
+  - action: switch.turn_on
+    metadata: {}
+    target:
+      entity_id:
+      - switch.plc_ha_q2_pozzo
+      - switch.plc_ha_q3_ricircolo
+      - switch.plc_ha_q4_cloratore
+    data: {}
+  mode: single
+- id: '1792713878572'
+  alias: spegnimento automatico cloratore
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - binary_sensor.q2_pozzo
+    from:
+    - 'on'
+    to:
+    - 'off'
+  conditions: []
+  actions:
+  - action: switch.turn_off
+    metadata: {}
+    target:
+      entity_id:
+      - switch.plc_ha_manuale
+      - switch.plc_ha_q4_cloratore
+    data: {}
+  mode: single
+- id: '1792799964529'
+  alias: Spia allarme scale
+  description: Segnalazione rossa per movimento con allarme inserito, lampeggio verde
+    di 5 secondi al disinserimento. Al termine ripristina la Wiby e gestisce la lampada
+    scale secondo il tramonto, con colore caldo fisso.
+  triggers:
+  - trigger: state
+    entity_id: binary_sensor.1
+    to: 'on'
+    id: movimento
+  - trigger: state
+    entity_id:
+    - alarm_control_panel.allarme_casa
+    - alarm_control_panel.aqara_hub_09ab_security_system_2
+    from:
+    - armed_home
+    - armed_away
+    - armed_night
+    - armed_vacation
+    - armed_custom_bypass
+    - arming
+    - pending
+    - triggered
+    - disarming
+    to: disarmed
+    id: disinserimento
+  conditions:
+  - condition: template
+    value_template: "{% set a = states('alarm_control_panel.allarme_casa') %} {% set
+      b = states('alarm_control_panel.aqara_hub_09ab_security_system_2') %} {% set
+      attivi = [\n  'armed_home', 'armed_away', 'armed_night',\n  'armed_vacation',
+      'armed_custom_bypass',\n  'arming', 'pending', 'triggered'\n] %} {{\n  (trigger.id
+      == 'movimento' and\n   (a in attivi or b in attivi))\n  or\n  (trigger.id ==
+      'disinserimento'\n   and a == 'disarmed' and b == 'disarmed')\n}}"
+  actions:
+  - action: scene.create
+    data:
+      scene_id: spia_allarme_wiby_precedente
+      snapshot_entities:
+      - light.wiby_lampadina_smart_a65_11w
+  - choose:
+    - conditions:
+      - condition: trigger
+        id: movimento
+      sequence:
+      - repeat:
+          while:
+          - condition: template
+            value_template: "{{\n  repeat.index <= 10\n  and not (\n    is_state(\n
+              \     'alarm_control_panel.allarme_casa',\n      'disarmed'\n    )\n
+              \   and\n    is_state(\n      'alarm_control_panel.aqara_hub_09ab_security_system_2',\n
+              \     'disarmed'\n    )\n  )\n}}"
+          sequence:
+          - action: light.turn_on
+            target:
+              entity_id:
+              - light.lampada_scale
+              - light.wiby_lampadina_smart_a65_11w
+            data:
+              rgb_color:
+              - 255
+              - 0
+              - 0
+              brightness_pct: 100
+              transition: 0
+          - delay:
+              milliseconds: 500
+          - action: light.turn_off
+            target:
+              entity_id:
+              - light.lampada_scale
+              - light.wiby_lampadina_smart_a65_11w
+            data:
+              transition: 0
+          - delay:
+              milliseconds: 500
+  - choose:
+    - conditions:
+      - condition: template
+        value_template: "{{\n  is_state(\n    'alarm_control_panel.allarme_casa',\n
+          \   'disarmed'\n  )\n  and\n  is_state(\n    'alarm_control_panel.aqara_hub_09ab_security_system_2',\n
+          \   'disarmed'\n  )\n}}"
+      sequence:
+      - repeat:
+          count: 5
+          sequence:
+          - action: light.turn_on
+            target:
+              entity_id:
+              - light.lampada_scale
+              - light.wiby_lampadina_smart_a65_11w
+            data:
+              rgb_color:
+              - 0
+              - 255
+              - 0
+              brightness_pct: 100
+              transition: 0
+          - delay:
+              milliseconds: 500
+          - action: light.turn_off
+            target:
+              entity_id:
+              - light.lampada_scale
+              - light.wiby_lampadina_smart_a65_11w
+            data:
+              transition: 0
+          - delay:
+              milliseconds: 500
+  - action: scene.turn_on
+    target:
+      entity_id: scene.spia_allarme_wiby_precedente
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: sun.sun
+        state: below_horizon
+      sequence:
+      - action: light.turn_on
+        target:
+          entity_id: light.lampada_scale
+        data:
+          rgb_color:
+          - 255
+          - 137
+          - 14
+          brightness: 255
+          transition: 0
+    default:
+    - action: light.turn_off
+      target:
+        entity_id: light.lampada_scale
+      data:
+        transition: 0
+  mode: single
+  max_exceeded: silent
+- id: '1792950598614'
+  alias: faretto telecamera ingresso accende fari torre ingresso
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - light.esterno_ingresso_faretto
+    from:
+    - 'off'
+    - 'on'
+  - trigger: state
+    entity_id:
+    - switch.100184e599_power
+    from:
+    - 'off'
+    - 'on'
+  conditions: []
+  actions:
+  - action: switch.turn_on
+    metadata: {}
+    target:
+      entity_id: switch.100184e599_power
+    data: {}
+  - action: light.turn_on
+    metadata: {}
+    target:
+      entity_id: light.esterno_ingresso_faretto
+    data: {}
+  mode: single
+- id: '1792950856621'
+  alias: spegnimento torre ingresso spegne faretto telecamer aingresso
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - switch.100184e599_power
+    from:
+    - 'on'
+    to:
+    - 'off'
+  conditions: []
+  actions:
+  - action: light.turn_off
+    metadata: {}
+    target:
+      entity_id: light.esterno_ingresso_faretto
+    data: {}
+  mode: single
+- id: '1792973386743'
+  alias: Piscine - riduci sensibilità per continui cambi movimento
+  description: Se il sensore movimento Piscine cambia stato almeno 10 volte in 5 minuti,
+    riduce la sensibilità della telecamera di 2 punti. Rispetta il valore minimo della
+    telecamera.
+  triggers:
+  - trigger: state
+    entity_id: binary_sensor.piscine_movimento
+    from: 'off'
+    to: 'on'
+    id: cambio_movimento
+  - trigger: state
+    entity_id: binary_sensor.piscine_movimento
+    from: 'on'
+    to: 'off'
+    id: cambio_movimento
+  - trigger: event
+    event_type: timer.finished
+    event_data:
+      entity_id: timer.timer_piscine_monitor_movimento
+    id: fine_finestra
+  conditions: []
+  actions:
+  - choose:
+    - conditions:
+      - condition: trigger
+        id: cambio_movimento
+      sequence:
+      - choose:
+        - conditions:
+          - condition: state
+            entity_id: timer.timer_piscine_monitor_movimento
+            state: idle
+          sequence:
+          - action: counter.reset
+            target:
+              entity_id: counter.counter_piscine_cambi_movimento
+          - action: timer.start
+            target:
+              entity_id: timer.timer_piscine_monitor_movimento
+            data:
+              duration: 00:05:00
+      - condition: state
+        entity_id: timer.timer_piscine_monitor_movimento
+        state: active
+      - action: counter.increment
+        target:
+          entity_id: counter.counter_piscine_cambi_movimento
+    - conditions:
+      - condition: trigger
+        id: fine_finestra
+      sequence:
+      - variables:
+          conteggio: "{{\n  states(\n    'counter.counter_piscine_cambi_movimento'\n
+            \ ) | int(0)\n}}"
+      - if:
+        - condition: template
+          value_template: "{{\n  conteggio >= 10\n  and has_value(\n    'number.piscine_sensibilita_al_movimento'\n
+            \ )\n}}"
+        then:
+        - variables:
+            sensibilita_attuale: "{{\n  states(\n    'number.piscine_sensibilita_al_movimento'\n
+              \ ) | int(0)\n}}"
+            sensibilita_minima: "{{\n  state_attr(\n    'number.piscine_sensibilita_al_movimento',\n
+              \   'min'\n  ) | int(0)\n}}"
+        - variables:
+            nuova_sensibilita: "{{\n  [\n    sensibilita_attuale - 2,\n    sensibilita_minima\n
+              \ ] | max\n}}"
+        - if:
+          - condition: template
+            value_template: "{{\n  sensibilita_attuale >\n  sensibilita_minima\n}}"
+          then:
+          - action: number.set_value
+            target:
+              entity_id: number.piscine_sensibilita_al_movimento
+            data:
+              value: '{{ nuova_sensibilita }}'
+          - action: persistent_notification.create
+            data:
+              title: Telecamera Piscine
+              message: Rilevati {{ conteggio }} cambiamenti di movimento in 5 minuti.
+                Sensibilità ridotta da {{ sensibilita_attuale }} a {{ nuova_sensibilita
+                }}.
+      - action: counter.reset
+        target:
+          entity_id: counter.counter_piscine_cambi_movimento
+  mode: queued
+  max: 50
+  max_exceeded: warning
+- id: '1793146592865'
+  alias: 'Sensibilità telecamera ridotta '
+  description: Se il sensore movimento Piscine cambia stato almeno 10 volte in 5 minuti,
+    riduce la sensibilità della telecamera di 2 punti. Rispetta il valore minimo della
+    telecamera.
+  triggers:
+  - trigger: state
+    entity_id:
+    - binary_sensor.piscine_movimento
+    - binary_sensor.cancello_movimento
+    - binary_sensor.loggiato_movimento
+    - binary_sensor.tracking_movimento
+    - binary_sensor.cucina_movimento_2
+    - binary_sensor.piscina_orto_movimento
+    - number.esterno_ingresso_sensibilita_al_movimento
+    - number.cucina_sensibilita_al_movimento
+    - binary_sensor.piazzale_movimento
+    from:
+    - 'off'
+    to:
+    - 'on'
+    id: cambio_movimento
+  - trigger: state
+    entity_id:
+    - binary_sensor.piscine_movimento
+    - binary_sensor.cancello_movimento
+    - binary_sensor.tracking_movimento
+    - binary_sensor.loggiato_movimento
+    - binary_sensor.piazzale_movimento
+    - binary_sensor.piscina_orto_movimento
+    - binary_sensor.cucina_movimento_2
+    - number.esterno_ingresso_sensibilita_al_movimento
+    - number.cucina_sensibilita_al_movimento
+    from:
+    - 'on'
+    to:
+    - 'off'
+    id: cambio_movimento
+  - trigger: event
+    event_type: timer.finished
+    event_data:
+      entity_id: timer.timer_piscine_monitor_movimento
+    id: fine_finestra
+  conditions: []
+  actions:
+  - choose:
+    - conditions:
+      - condition: trigger
+        id: cambio_movimento
+      sequence:
+      - choose:
+        - conditions:
+          - condition: state
+            entity_id: timer.timer_piscine_monitor_movimento
+            state: idle
+          sequence:
+          - action: counter.reset
+            target:
+              entity_id: counter.counter_piscine_cambi_movimento
+          - action: timer.start
+            target:
+              entity_id: timer.timer_piscine_monitor_movimento
+            data:
+              duration: 00:05:00
+      - condition: state
+        entity_id: timer.timer_piscine_monitor_movimento
+        state: active
+      - action: counter.increment
+        target:
+          entity_id: counter.counter_piscine_cambi_movimento
+    - conditions:
+      - condition: trigger
+        id: fine_finestra
+      sequence:
+      - variables:
+          conteggio: "{{\n  states(\n    'counter.counter_piscine_cambi_movimento'\n
+            \ ) | int(0)\n}}"
+      - if:
+        - condition: template
+          value_template: "{{\n  conteggio >= 10\n  and has_value(\n    'number.piscine_sensibilita_al_movimento'\n
+            \ )\n}}"
+        then:
+        - variables:
+            sensibilita_attuale: "{{\n  states(\n    'number.piscine_sensibilita_al_movimento'\n
+              \ ) | int(0)\n}}"
+            sensibilita_minima: "{{\n  state_attr(\n    'number.piscine_sensibilita_al_movimento',\n
+              \   'min'\n  ) | int(0)\n}}"
+        - variables:
+            nuova_sensibilita: "{{\n  [\n    sensibilita_attuale - 2,\n    sensibilita_minima\n
+              \ ] | max\n}}"
+        - if:
+          - condition: template
+            value_template: "{{\n  sensibilita_attuale >\n  sensibilita_minima\n}}"
+          then:
+          - action: number.set_value
+            target:
+              entity_id: number.piscine_sensibilita_al_movimento
+            data:
+              value: '{{ nuova_sensibilita }}'
+          - action: persistent_notification.create
+            data:
+              title: Telecamera Piscine
+              message: Rilevati {{ conteggio }} cambiamenti di movimento in 5 minuti.
+                Sensibilità ridotta da {{ sensibilita_attuale }} a {{ nuova_sensibilita
+                }}.
+      - action: counter.reset
+        target:
+          entity_id: counter.counter_piscine_cambi_movimento
+  mode: queued
+  max: 50
+  max_exceeded: warning
+- id: '1793232841766'
+  alias: 'Spegnimenti riempimento cisterna pozzo '
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - automation.riempimento_cisterna_pozzo
+    from:
+    - 'on'
+  conditions:
+  - condition: numeric_state
+    entity_id: sensor.livello_pozzo_plc
+    above: 158
+    below: 160
+  - condition: switch.is_on
+    target:
+      entity_id: switch.plc_ha_manuale
+    options:
+      behavior: any
+      for: 00:00:00
+  actions:
+  - action: switch.turn_off
+    metadata: {}
+    target:
+      entity_id:
+      - switch.plc_ha_q4_cloratore
+      - switch.plc_ha_q2_pozzo
+    data: {}
+  - delay:
+      hours: 4
+      minutes: 0
+      seconds: 0
+      milliseconds: 0
+  - action: switch.turn_off
+    metadata: {}
+    target:
+      entity_id:
+      - switch.plc_ha_q3_ricircolo
+      - switch.plc_ha_manuale
+    data: {}
+  mode: single
+- id: '1793233273343'
+  alias: 'Riempimento cisterna potabile '
+  description: ''
+  triggers:
+  - trigger: numeric_state
+    entity_id:
+    - sensor.livello_potabile_plc
+    below: 42
+  conditions:
+  - condition: state
+    entity_id: binary_sensor.q2_pozzo
+    state:
+    - 'off'
+  - condition: time
+    after: '10:00:00'
+    before: '16:00:00'
+  actions:
+  - action: switch.turn_on
+    metadata: {}
+    target:
+      entity_id: switch.plc_ha_manuale
+    data: {}
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 1
+      milliseconds: 0
+  - action: switch.turn_on
+    metadata: {}
+    target:
+      entity_id: switch.plc_ha_q1_potabile
+    data: {}
+  mode: single
+- id: '1793233466802'
+  alias: 'Spegni riempimento potabile '
+  description: ''
+  triggers:
+  - trigger: numeric_state
+    entity_id:
+    - sensor.livello_potabile_plc
+    above: 111
+  conditions: []
+  actions:
+  - action: switch.turn_off
+    metadata: {}
+    target:
+      entity_id:
+      - switch.plc_ha_q1_potabile
+      - switch.plc_ha_manuale
+    data: {}
+  mode: single

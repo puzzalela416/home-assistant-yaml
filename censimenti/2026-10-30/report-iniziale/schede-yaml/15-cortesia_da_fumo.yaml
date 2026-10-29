@@ -1,0 +1,39 @@
+id: '1791764334194'
+alias: 'Cortesia da fumo '
+description: ''
+triggers:
+- trigger: motion.detected
+  target:
+    entity_id: binary_sensor.sala_movimento
+  options:
+    behavior: each
+    for: 00:00:00
+conditions:
+- condition: time
+  after: '23:50:00'
+  before: 05:50:00
+actions:
+- action: light.turn_on
+  metadata: {}
+  target:
+    entity_id:
+    - light.aqara_hub_09ab_lightbulb_09ab_2
+    - light.lightbulb_78da_2
+  data:
+    rgb_color:
+    - 235
+    - 192
+    - 23
+- delay:
+    hours: 0
+    minutes: 5
+    seconds: 0
+    milliseconds: 0
+- action: light.turn_off
+  metadata: {}
+  target:
+    entity_id:
+    - light.aqara_hub_09ab_lightbulb_09ab_2
+    - light.lightbulb_78da_2
+  data: {}
+mode: single

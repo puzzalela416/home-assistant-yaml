@@ -1,0 +1,41 @@
+id: '1793232841766'
+alias: 'Spegnimenti riempimento cisterna pozzo '
+description: ''
+triggers:
+- trigger: state
+  entity_id:
+  - automation.riempimento_cisterna_pozzo
+  from:
+  - 'on'
+conditions:
+- condition: numeric_state
+  entity_id: sensor.livello_pozzo_plc
+  above: 158
+  below: 160
+- condition: switch.is_on
+  target:
+    entity_id: switch.plc_ha_manuale
+  options:
+    behavior: any
+    for: 00:00:00
+actions:
+- action: switch.turn_off
+  metadata: {}
+  target:
+    entity_id:
+    - switch.plc_ha_q4_cloratore
+    - switch.plc_ha_q2_pozzo
+  data: {}
+- delay:
+    hours: 4
+    minutes: 0
+    seconds: 0
+    milliseconds: 0
+- action: switch.turn_off
+  metadata: {}
+  target:
+    entity_id:
+    - switch.plc_ha_q3_ricircolo
+    - switch.plc_ha_manuale
+  data: {}
+mode: single

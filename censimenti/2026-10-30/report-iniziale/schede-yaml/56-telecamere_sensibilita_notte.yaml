@@ -1,0 +1,51 @@
+id: '1792364592742'
+alias: Telecamere - Sensibilità Notte
+description: Imposta sensibilità Reolink notturna
+triggers:
+- trigger: sun
+  event: sunset
+conditions: []
+actions:
+- action: number.set_value
+  target:
+    entity_id:
+    - number.cancello_cancello_sensibilita_al_movimento
+    - number.loggiato_sensibilita_al_movimento
+    - number.piscina_orto_sensibilita_al_movimento
+    - number.piscine_sensibilita_al_movimento
+    - number.parco_sensibilita_al_movimento
+    - number.cucina_sensibilita_al_movimento
+    - number.cucina_sensibilita_al_movimento_2
+    - number.parking_sensibilita_al_movimento
+    - number.piazzale_sensibilita_al_movimento
+    - number.sala_sensibilita_al_movimento
+    - number.tracking_sensibilita_al_movimento
+  data:
+    value: 5
+- action: number.set_value
+  target:
+    entity_id:
+    - number.parking_ai_person_sensitivity
+    - number.piazzale_ai_person_sensitivity
+    - number.sala_ai_person_sensitivity
+    - number.tracking_ai_person_sensitivity
+  data:
+    value: 100
+- action: number.set_value
+  target:
+    entity_id:
+    - number.parking_ai_vehicle_sensitivity
+    - number.piazzale_ai_vehicle_sensitivity
+    - number.tracking_ai_vehicle_sensitivity
+  data:
+    value: 10
+- action: number.set_value
+  target:
+    entity_id:
+    - number.parking_ai_animal_sensitivity
+    - number.piazzale_ai_animal_sensitivity
+    - number.sala_ai_animal_sensitivity
+    - number.tracking_ai_animal_sensitivity
+  data:
+    value: 10
+mode: single

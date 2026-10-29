@@ -1,0 +1,29 @@
+id: '1792950598614'
+alias: faretto telecamera ingresso accende fari torre ingresso
+description: ''
+triggers:
+- trigger: state
+  entity_id:
+  - light.esterno_ingresso_faretto
+  from:
+  - 'off'
+  - 'on'
+- trigger: state
+  entity_id:
+  - switch.100184e599_power
+  from:
+  - 'off'
+  - 'on'
+conditions: []
+actions:
+- action: switch.turn_on
+  metadata: {}
+  target:
+    entity_id: switch.100184e599_power
+  data: {}
+- action: light.turn_on
+  metadata: {}
+  target:
+    entity_id: light.esterno_ingresso_faretto
+  data: {}
+mode: single

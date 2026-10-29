@@ -1,0 +1,32 @@
+id: '1792712912646'
+alias: areazione con velux tutti i giorni
+description: ''
+triggers:
+- trigger: time
+  at: 08:30:00
+conditions:
+- condition: alarm_control_panel.is_disarmed
+  target:
+    entity_id:
+    - alarm_control_panel.allarme_casa
+    - alarm_control_panel.aqara_hub_09ab_security_system_2
+  options:
+    for: 00:00:00
+    behavior: any
+actions:
+- action: cover.open_cover
+  metadata: {}
+  target:
+    entity_id: cover.velux_window_roof_window
+  data: {}
+- delay:
+    hours: 4
+    minutes: 0
+    seconds: 0
+    milliseconds: 0
+- action: cover.close_cover
+  metadata: {}
+  target:
+    entity_id: cover.velux_window_roof_window
+  data: {}
+mode: single

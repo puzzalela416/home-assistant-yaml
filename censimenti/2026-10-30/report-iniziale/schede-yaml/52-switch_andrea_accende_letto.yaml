@@ -1,0 +1,20 @@
+id: '1789921638219'
+alias: 'Switch andrea accende letto '
+description: ''
+triggers:
+- trigger: event.received
+  target:
+    device_id: f335cac7c3edd336ebabc7bc563e6d44
+  options:
+    event_type:
+    - single_press
+conditions: []
+actions:
+- action: light.toggle
+  metadata: {}
+  target:
+    device_id: 3908d79d7c1041cbec34d72c6ce64a29
+  data:
+    brightness_pct: 53
+    color_temp_kelvin: 6500
+mode: single

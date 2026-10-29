@@ -1,0 +1,111 @@
+id: '1790034489277'
+alias: 'Allarme innescato= esterno acceso '
+description: ''
+triggers:
+- trigger: alarm_control_panel.triggered
+  target:
+    entity_id:
+    - alarm_control_panel.allarme_casa
+    - alarm_control_panel.aqara_hub_09ab_security_system_2
+  options:
+    for: 00:00:00
+    behavior: each
+conditions:
+- condition: sun.is_set
+  options: {}
+actions:
+- action: switch.turn_on
+  metadata: {}
+  target:
+    entity_id: switch.100184e742_power
+    device_id:
+    - 7e8c1ad256d7c295b1c51937e54b9697
+    - 98fb8f4bdfe2bd492a17a20f19d3a5e0
+    - fc64ed7ed8b3a8416c7d78db4aff608b
+    - dc43e36699f5d99eb3f367c5785a3d8f
+  data: {}
+- delay:
+    hours: 0
+    minutes: 0
+    seconds: 2
+    milliseconds: 0
+- action: switch.turn_off
+  metadata: {}
+  target:
+    entity_id:
+    - switch.1002963641_power
+    - switch.100184e742_power
+    - switch.10001119b3_power
+    - switch.1000111b06_power
+    - switch.100185132f_power
+  data: {}
+- delay:
+    hours: 0
+    minutes: 0
+    seconds: 2
+    milliseconds: 0
+- action: switch.turn_on
+  metadata: {}
+  target:
+    entity_id: switch.100184e742_power
+    device_id:
+    - 7e8c1ad256d7c295b1c51937e54b9697
+    - 98fb8f4bdfe2bd492a17a20f19d3a5e0
+    - fc64ed7ed8b3a8416c7d78db4aff608b
+    - dc43e36699f5d99eb3f367c5785a3d8f
+  data: {}
+- delay:
+    hours: 0
+    minutes: 0
+    seconds: 2
+    milliseconds: 0
+- action: switch.turn_off
+  metadata: {}
+  target:
+    entity_id:
+    - switch.1002963641_power
+    - switch.100184e742_power
+    - switch.10001119b3_power
+    - switch.1000111b06_power
+    - switch.100185132f_power
+  data: {}
+- delay:
+    hours: 0
+    minutes: 0
+    seconds: 2
+    milliseconds: 0
+- action: switch.turn_on
+  metadata: {}
+  target:
+    entity_id: switch.100184e742_power
+    device_id:
+    - 7e8c1ad256d7c295b1c51937e54b9697
+    - 98fb8f4bdfe2bd492a17a20f19d3a5e0
+    - fc64ed7ed8b3a8416c7d78db4aff608b
+    - dc43e36699f5d99eb3f367c5785a3d8f
+  data: {}
+- delay:
+    hours: 0
+    minutes: 15
+    seconds: 0
+    milliseconds: 0
+- action: switch.turn_off
+  metadata: {}
+  target:
+    entity_id:
+    - switch.1002963641_power
+    - switch.100184e742_power
+    - switch.10001119b3_power
+    - switch.1000111b06_power
+    - switch.100185132f_power
+  data: {}
+- action: notify.send_message
+  metadata: {}
+  target:
+    entity_id:
+    - notify.display
+    - notify.xiaomi_12
+  data:
+    message: '!!!!ALLARME SCATTATO!!!'
+    title: ATTENZIONE RICHIESTA
+mode: single

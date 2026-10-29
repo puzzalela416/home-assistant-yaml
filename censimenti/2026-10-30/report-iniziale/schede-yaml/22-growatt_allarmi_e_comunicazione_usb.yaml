@@ -1,0 +1,63 @@
+id: '1792587906212'
+alias: Growatt - Allarmi e comunicazione USB
+description: Segnala guasti, warning e perdita di comunicazione
+triggers:
+- trigger: numeric_state
+  entity_id: sensor.growatt_1_fault_code
+  above: 0
+  id: guasto_1
+- trigger: numeric_state
+  entity_id: sensor.growatt_2_fault_code
+  above: 0
+  id: guasto_2
+- trigger: numeric_state
+  entity_id: sensor.growatt_1_warning_code
+  above: 0
+  id: warning_1
+- trigger: numeric_state
+  entity_id: sensor.growatt_2_warning_code
+  above: 0
+  id: warning_2
+- trigger: state
+  entity_id: sensor.growatt_1_stato
+  to: unavailable
+  for:
+    minutes: 2
+  id: usb_1
+- trigger: state
+  entity_id: sensor.growatt_2_stato
+  to: unavailable
+  for:
+    minutes: 2
+  id: usb_2
+- trigger: state
+  entity_id: sensor.growatt_1_stato
+  to: unknown
+  for:
+    minutes: 2
+  id: usb_1
+- trigger: state
+  entity_id: sensor.growatt_2_stato
+  to: unknown
+  for:
+    minutes: 2
+  id: usb_2
+actions:
+- action: persistent_notification.create
+  data:
+    title: ATTENZIONE GROWATT - {{ trigger.id | default('TEST') if trigger is defined
+      else 'TEST' }}
+    message: "{% if trigger is not defined %}\n  Test manuale riuscito.\n  Il sistema\
+      \ di notifiche Growatt funziona.\n  Nessun allarme reale è stato rilevato.\n\
+      \n{% elif (trigger.id | default('') | string).startswith('usb') %}\n  Comunicazione\
+      \ persa con il Growatt\n  {{ trigger.id[-1] }} da almeno 2 minuti.\n  Verificare\
+      \ inverter e collegamento USB.\n\n{% elif trigger.entity_id is defined %}\n\
+      \  {{ state_attr(trigger.entity_id, 'friendly_name')\n     or trigger.entity_id\
+      \ }}\n  ha segnalato il codice\n  {{ states(trigger.entity_id) }}.\n  Controllare\
+      \ il display dell'inverter.\n\n{% else %}\n  Evento Growatt rilevato.\n  Trigger:\
+      \ {{ trigger.id | default('sconosciuto') }}.\n  Controllare l'inverter.\n{%\
+      \ endif %}"
+    notification_id: growatt_{{ trigger.id | default('test') if trigger is defined
+      else 'test' }}
+mode: queued
+max: 10

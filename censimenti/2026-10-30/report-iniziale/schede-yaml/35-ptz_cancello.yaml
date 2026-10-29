@@ -1,0 +1,38 @@
+id: '1789886689473'
+alias: 'Ptz cancello '
+description: ''
+triggers:
+- trigger: motion.detected
+  target:
+    entity_id: binary_sensor.cancello_movimento_2
+  options:
+    behavior: each
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 5
+conditions: []
+actions:
+- action: select.select_option
+  metadata: {}
+  target:
+    entity_id: select.piazzale_preimpostazione_ptz
+  data:
+    option: '1'
+- action: select.select_option
+  metadata: {}
+  data:
+    option: '2'
+  target:
+    entity_id: select.tracking_preimpostazione_ptz_2
+- delay:
+    hours: 0
+    minutes: 0
+    seconds: 8
+    milliseconds: 0
+- delay:
+    hours: 0
+    minutes: 0
+    seconds: 1
+    milliseconds: 0
+mode: single

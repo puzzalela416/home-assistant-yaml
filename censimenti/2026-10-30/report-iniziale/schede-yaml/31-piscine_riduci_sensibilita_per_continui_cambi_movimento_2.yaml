@@ -1,0 +1,89 @@
+id: '1792973386743'
+alias: Piscine - riduci sensibilità per continui cambi movimento
+description: Se il sensore movimento Piscine cambia stato almeno 10 volte in 5 minuti,
+  riduce la sensibilità della telecamera di 2 punti. Rispetta il valore minimo della
+  telecamera.
+triggers:
+- trigger: state
+  entity_id: binary_sensor.piscine_movimento
+  from: 'off'
+  to: 'on'
+  id: cambio_movimento
+- trigger: state
+  entity_id: binary_sensor.piscine_movimento
+  from: 'on'
+  to: 'off'
+  id: cambio_movimento
+- trigger: event
+  event_type: timer.finished
+  event_data:
+    entity_id: timer.timer_piscine_monitor_movimento
+  id: fine_finestra
+conditions: []
+actions:
+- choose:
+  - conditions:
+    - condition: trigger
+      id: cambio_movimento
+    sequence:
+    - choose:
+      - conditions:
+        - condition: state
+          entity_id: timer.timer_piscine_monitor_movimento
+          state: idle
+        sequence:
+        - action: counter.reset
+          target:
+            entity_id: counter.counter_piscine_cambi_movimento
+        - action: timer.start
+          target:
+            entity_id: timer.timer_piscine_monitor_movimento
+          data:
+            duration: 00:05:00
+    - condition: state
+      entity_id: timer.timer_piscine_monitor_movimento
+      state: active
+    - action: counter.increment
+      target:
+        entity_id: counter.counter_piscine_cambi_movimento
+  - conditions:
+    - condition: trigger
+      id: fine_finestra
+    sequence:
+    - variables:
+        conteggio: "{{\n  states(\n    'counter.counter_piscine_cambi_movimento'\n\
+          \  ) | int(0)\n}}"
+    - if:
+      - condition: template
+        value_template: "{{\n  conteggio >= 10\n  and has_value(\n    'number.piscine_sensibilita_al_movimento'\n\
+          \  )\n}}"
+      then:
+      - variables:
+          sensibilita_attuale: "{{\n  states(\n    'number.piscine_sensibilita_al_movimento'\n\
+            \  ) | int(0)\n}}"
+          sensibilita_minima: "{{\n  state_attr(\n    'number.piscine_sensibilita_al_movimento',\n\
+            \    'min'\n  ) | int(0)\n}}"
+      - variables:
+          nuova_sensibilita: "{{\n  [\n    sensibilita_attuale - 2,\n    sensibilita_minima\n\
+            \  ] | max\n}}"
+      - if:
+        - condition: template
+          value_template: "{{\n  sensibilita_attuale >\n  sensibilita_minima\n}}"
+        then:
+        - action: number.set_value
+          target:
+            entity_id: number.piscine_sensibilita_al_movimento
+          data:
+            value: '{{ nuova_sensibilita }}'
+        - action: persistent_notification.create
+          data:
+            title: Telecamera Piscine
+            message: Rilevati {{ conteggio }} cambiamenti di movimento in 5 minuti.
+              Sensibilità ridotta da {{ sensibilita_attuale }} a {{ nuova_sensibilita
+              }}.
+    - action: counter.reset
+      target:
+        entity_id: counter.counter_piscine_cambi_movimento
+mode: queued
+max: 50
+max_exceeded: warning

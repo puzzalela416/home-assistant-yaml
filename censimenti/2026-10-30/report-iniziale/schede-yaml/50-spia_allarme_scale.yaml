@@ -1,0 +1,136 @@
+id: '1792799964529'
+alias: Spia allarme scale
+description: Segnalazione rossa per movimento con allarme inserito, lampeggio verde
+  di 5 secondi al disinserimento. Al termine ripristina la Wiby e gestisce la lampada
+  scale secondo il tramonto, con colore caldo fisso.
+triggers:
+- trigger: state
+  entity_id: binary_sensor.1
+  to: 'on'
+  id: movimento
+- trigger: state
+  entity_id:
+  - alarm_control_panel.allarme_casa
+  - alarm_control_panel.aqara_hub_09ab_security_system_2
+  from:
+  - armed_home
+  - armed_away
+  - armed_night
+  - armed_vacation
+  - armed_custom_bypass
+  - arming
+  - pending
+  - triggered
+  - disarming
+  to: disarmed
+  id: disinserimento
+conditions:
+- condition: template
+  value_template: "{% set a = states('alarm_control_panel.allarme_casa') %} {% set\
+    \ b = states('alarm_control_panel.aqara_hub_09ab_security_system_2') %} {% set\
+    \ attivi = [\n  'armed_home', 'armed_away', 'armed_night',\n  'armed_vacation',\
+    \ 'armed_custom_bypass',\n  'arming', 'pending', 'triggered'\n] %} {{\n  (trigger.id\
+    \ == 'movimento' and\n   (a in attivi or b in attivi))\n  or\n  (trigger.id ==\
+    \ 'disinserimento'\n   and a == 'disarmed' and b == 'disarmed')\n}}"
+actions:
+- action: scene.create
+  data:
+    scene_id: spia_allarme_wiby_precedente
+    snapshot_entities:
+    - light.wiby_lampadina_smart_a65_11w
+- choose:
+  - conditions:
+    - condition: trigger
+      id: movimento
+    sequence:
+    - repeat:
+        while:
+        - condition: template
+          value_template: "{{\n  repeat.index <= 10\n  and not (\n    is_state(\n\
+            \      'alarm_control_panel.allarme_casa',\n      'disarmed'\n    )\n\
+            \    and\n    is_state(\n      'alarm_control_panel.aqara_hub_09ab_security_system_2',\n\
+            \      'disarmed'\n    )\n  )\n}}"
+        sequence:
+        - action: light.turn_on
+          target:
+            entity_id:
+            - light.lampada_scale
+            - light.wiby_lampadina_smart_a65_11w
+          data:
+            rgb_color:
+            - 255
+            - 0
+            - 0
+            brightness_pct: 100
+            transition: 0
+        - delay:
+            milliseconds: 500
+        - action: light.turn_off
+          target:
+            entity_id:
+            - light.lampada_scale
+            - light.wiby_lampadina_smart_a65_11w
+          data:
+            transition: 0
+        - delay:
+            milliseconds: 500
+- choose:
+  - conditions:
+    - condition: template
+      value_template: "{{\n  is_state(\n    'alarm_control_panel.allarme_casa',\n\
+        \    'disarmed'\n  )\n  and\n  is_state(\n    'alarm_control_panel.aqara_hub_09ab_security_system_2',\n\
+        \    'disarmed'\n  )\n}}"
+    sequence:
+    - repeat:
+        count: 5
+        sequence:
+        - action: light.turn_on
+          target:
+            entity_id:
+            - light.lampada_scale
+            - light.wiby_lampadina_smart_a65_11w
+          data:
+            rgb_color:
+            - 0
+            - 255
+            - 0
+            brightness_pct: 100
+            transition: 0
+        - delay:
+            milliseconds: 500
+        - action: light.turn_off
+          target:
+            entity_id:
+            - light.lampada_scale
+            - light.wiby_lampadina_smart_a65_11w
+          data:
+            transition: 0
+        - delay:
+            milliseconds: 500
+- action: scene.turn_on
+  target:
+    entity_id: scene.spia_allarme_wiby_precedente
+- choose:
+  - conditions:
+    - condition: state
+      entity_id: sun.sun
+      state: below_horizon
+    sequence:
+    - action: light.turn_on
+      target:
+        entity_id: light.lampada_scale
+      data:
+        rgb_color:
+        - 255
+        - 137
+        - 14
+        brightness: 255
+        transition: 0
+  default:
+  - action: light.turn_off
+    target:
+      entity_id: light.lampada_scale
+    data:
+      transition: 0
+mode: single
+max_exceeded: silent

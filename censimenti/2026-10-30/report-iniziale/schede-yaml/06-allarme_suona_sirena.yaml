@@ -1,0 +1,42 @@
+id: '1791063091106'
+alias: allarme suona sirena
+description: ''
+triggers:
+- trigger: alarm_control_panel.triggered
+  target:
+    entity_id: alarm_control_panel.allarme_casa
+  options:
+    for: 00:00:00
+conditions: []
+actions:
+- action: siren.turn_on
+  metadata: {}
+  target:
+    entity_id: siren.sala_sirena
+  data: {}
+- action: light.turn_on
+  metadata: {}
+  target:
+    entity_id: light.aqara_hub_09ab_lightbulb_09ab_2
+  data:
+    rgb_color:
+    - 255
+    - 0
+    - 0
+    brightness_pct: 100
+- delay:
+    hours: 0
+    minutes: 1
+    seconds: 0
+    milliseconds: 0
+- action: siren.turn_off
+  metadata: {}
+  target:
+    entity_id: siren.sala_sirena
+  data: {}
+- action: light.turn_off
+  metadata: {}
+  target:
+    entity_id: light.aqara_hub_09ab_lightbulb_09ab_2
+  data: {}
+mode: single

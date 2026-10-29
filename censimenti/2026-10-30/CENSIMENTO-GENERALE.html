@@ -1,0 +1,662 @@
+<!doctype html><html lang="it"><meta charset="utf-8"><title>Censimento HA 30 ottobre 2026</title><style>body{font:16px/1.55 system-ui;margin:32px auto;max-width:1250px;padding:0 24px;color:#182535}h1,h2,h3{color:#075a79}table{border-collapse:collapse;width:100%;font-size:14px;margin:20px 0}th,td{padding:9px;border:1px solid #cad8df;text-align:left;vertical-align:top}th{background:#e6f2f6}tr:nth-child(even){background:#f7fafb}code{background:#eef2f6;padding:2px 4px;overflow-wrap:anywhere}a{color:#006f9f}p,li{max-width:1150px}</style><body><h1 id="censimento-generale-del-lavoro-30-ottobre-2026">Censimento generale del lavoro — 30 ottobre 2026</h1>
+<p>Rilevazione sul vero Home Assistant, senza modificare automazioni o attuatori durante il censimento. Tutti gli aggiornamenti GitHub di questo censimento sono <strong>nuovi file datati</strong>: nessun file precedente viene sovrascritto o cancellato.</p>
+<h2 id="stato-del-server">Stato del server</h2>
+<table>
+<thead>
+<tr>
+<th>Misura</th>
+<th style="text-align: right;">Totale</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Automazioni nell’inventario iniziale del 29/10</td>
+<td style="text-align: right;">57</td>
+</tr>
+<tr>
+<td>Automazioni caricate oggi</td>
+<td style="text-align: right;">55</td>
+</tr>
+<tr>
+<td>Attive</td>
+<td style="text-align: right;">44</td>
+</tr>
+<tr>
+<td>Disattivate</td>
+<td style="text-align: right;">11</td>
+</tr>
+<tr>
+<td>Nuove automazioni create nel lavoro</td>
+<td style="text-align: right;">9</td>
+</tr>
+<tr>
+<td>Originali non presenti nel runtime odierno</td>
+<td style="text-align: right;">11</td>
+</tr>
+</tbody>
+</table>
+<p>Il conto è <strong>57 originali − 11 oggi non caricate + 9 nuove = 55 attuali</strong>. Non confondere “non caricata” con “disabilitata”. Le undici assenze sono rispetto all’inventario iniziale, <strong>non una nuova differenza dall’ultimo salvataggio</strong>: i file attuali corrispondono alle ultime revisioni conservate. Il censimento non attribuisce a una persona o a un intervento la rimozione di una definizione senza evidenza.</p>
+<h2 id="sezioni-e-versioni-operative">Sezioni e versioni operative</h2>
+<table>
+<thead>
+<tr>
+<th>Sezione</th>
+<th>Lavoro effettuato</th>
+<th>Versione/documenti</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Filtrazione e HA</td>
+<td>Regia 40–110 / 70–159 cm, energia solo all’avvio, supervisione e diagnostiche</td>
+<td><a href="https://github.com/puzzalela416/home-assistant-yaml/tree/main/filtrazione-acque/versioni/2026-10-29_191041_regia-comando">Regia e prove</a> · <a href="../../filtrazione-acque/censimenti/2026-10-30/README.md">Sezione aggiornata</a></td>
+</tr>
+<tr>
+<td>https://github.com/puzzalela416/test/tree/codex-cisterne-potabile40-20261022/plc/filtrazione-v2/versioni</td>
+<td>Progetto autonomo v2.0.1, massimi e watchdog, Q3/Q4 solidali a Q2</td>
+<td><a href="https://github.com/puzzalela416/test/tree/codex-cisterne-potabile40-20261022/plc/filtrazione-v2/versioni">Storico https://github.com/puzzalela416/test/tree/codex-cisterne-potabile40-20261022/plc/filtrazione-v2/versioni</a></td>
+</tr>
+<tr>
+<td>Telecamere e fotocellule</td>
+<td>Sensibilità indipendente su 11 camere, 4 fotocellule e Philips corretto</td>
+<td><a href="https://github.com/puzzalela416/home-assistant-yaml/tree/main/telecamere-luci/versioni/2026-10-29_203022_telecamere-fotocellule-v1">Versione iniziale</a> · <a href="../../telecamere-luci/censimenti/2026-10-30/README.md">Sezione aggiornata</a></td>
+</tr>
+<tr>
+<td>Allarme esterno</td>
+<td>Solo cinque uscite di potenza, esclusi i parametri Sonoff</td>
+<td><a href="https://github.com/puzzalela416/home-assistant-yaml/tree/main/telecamere-luci/versioni/2026-10-29_211150_allarme-esterno">Correzione</a></td>
+</tr>
+<tr>
+<td>Programma luci</td>
+<td>Coppie variabili ogni 30 minuti, due luci fisse e fotocellule coordinate</td>
+<td><a href="https://github.com/puzzalela416/home-assistant-yaml/tree/main/luci-esterno/versioni/2026-10-29_222520_programma-luci-casuale">Versione operativa</a> · <a href="../../luci-esterno/censimenti/2026-10-30/README.md">Sezione aggiornata</a></td>
+</tr>
+</tbody>
+</table>
+<p><strong>File telecamere corrente:</strong> dopo il coordinamento luci va usato il package nella versione del programma luci, non quello precedente della sola revisione telecamere. Le versioni vecchie restano documenti storici.</p>
+<h2 id="regole-correnti-riassunte">Regole correnti riassunte</h2>
+<ul>
+<li><strong>Filtrazione:</strong> HA anticipa sotto 40/70 cm e rilascia a 110/159 cm. Avvii 10–16 con SOC totale banco &gt;=35% e nessun prelievo dei due inverter, compresa carica da rete; consenso controllato soltanto all’avvio. Un ciclo già iniziato può finire dopo le 16 o se cambia l’energia. https://github.com/puzzalela416/test/tree/codex-cisterne-potabile40-20261022/plc/filtrazione-v2/versioni conserva autonomia, emergenze, filtri e massimi 115/160 cm.</li>
+<li><strong>Ricircolo/cloratore:</strong> Q3 e Q4 seguono Q2 nella https://github.com/puzzalela416/test/tree/codex-cisterne-potabile40-20261022/plc/filtrazione-v2/versioni, <strong>nessuno spegnimento ritardato</strong>.</li>
+<li><strong>Controlavaggi:</strong> calendario dei timer UTC+02 fisso, quindi filtro 2 alle 09 inverno/10 estate e filtro 3 alle 13/14; allarme dopo 40 minuti se il ciclo non è riconosciuto.</li>
+<li><strong>Sensibilità:</strong> una automazione con 11 conteggi/finestre indipendenti, &gt;=10 cambi in 5 minuti riducono di 2 fino al minimo; profili giorno 42/notte 5. Il minimo 1 non garantisce assenza di falsi.</li>
+<li><strong>Fotocellule:</strong> Cancello→Giardino, Ingresso→Torre ingresso, Piscine→Capanno, Orto→Torre Orto; due minuti dalla cessazione dell’ultimo movimento, di notte. Faretti nativi, Parcheggio/Ciabatta senza fotocellula. Pulsante Philips breve ON/lungo OFF per Torre Orto e Ciabatta.</li>
+<li><strong>Programma luci:</strong> Parcheggio/Ciabatta tramonto-alba; Giardino/Ingresso fino 21:30; coppia casuale di due fra quattro ogni 30 minuti fino 02:00, diversa dalla precedente e memorizzata. <strong>Alle 02 termina il programma delle quattro luci, ma restano abilitate le fotocellule fino all’alba.</strong> Nessun blocco delle fotocellule è stato installato: la bozza diversa è stata scartata dopo il chiarimento dell’utente.</li>
+<li><strong>Allarme:</strong> mantiene sequenza e notifiche originali, con bersagli corretti alle sole cinque uscite di potenza. Ha priorità sui programmi. “Spegni esterno all’alba” resta invariata su richiesta esplicita.</li>
+</ul>
+<h2 id="verifiche-eseguite-e-loro-limiti">Verifiche eseguite e loro limiti</h2>
+<table>
+<thead>
+<tr>
+<th>Ambito</th>
+<th>Evidenza</th>
+<th>Limite</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Progetto https://github.com/puzzalela416/test/tree/codex-cisterne-potabile40-20261022/plc/filtrazione-v2/versioni</td>
+<td>13 gruppi logici, 880 combinazioni ai limiti, 12.000 scansioni del modello FBD; protocollo 2 letto</td>
+<td>Non certifica il cablaggio o tutti i cicli idraulici reali</td>
+</tr>
+<tr>
+<td>HA filtrazione</td>
+<td>182 scenari regia +46 energetici; presenza/rilascio e watchdog provati realmente su HA e registri https://github.com/puzzalela416/test/tree/codex-cisterne-potabile40-20261022/plc/filtrazione-v2/versioni</td>
+<td>Nessun avvio forzato di pompe/riempimenti, collaudo fisico pendente</td>
+</tr>
+<tr>
+<td>Diagnostica</td>
+<td>12 spie in 40 scenari, calendario in 441 casi</td>
+<td>Non sono stati provocati guasti o falsificati ingressi fisici</td>
+</tr>
+<tr>
+<td>Telecamere</td>
+<td>11 scritture reali con rilettura; 11 dispatch reali delle finestre a conteggio zero</td>
+<td>Condizioni meteo/rilevamento da valutare sul campo</td>
+</tr>
+<tr>
+<td>Fotocellule</td>
+<td>Quattro scadenze native da 120 s; 1024 combinazioni con coordinamento del programma</td>
+<td>Non provate artificialmente tutte le accensioni da movimento</td>
+</tr>
+<tr>
+<td>Allarme esterno</td>
+<td>Differenza dei bersagli, sequenza e altri blocchi invariati, validazione HA</td>
+<td>Allarme e notifiche non forzati nei test</td>
+</tr>
+<tr>
+<td>Programma luci</td>
+<td>232 scenari, uscite verificate sul server, memoria stabile; cambi reali di più fasce osservati</td>
+<td>Non significa collaudo completo di ogni notte/stagione</td>
+</tr>
+</tbody>
+</table>
+<p>Non viene dichiarato un “100% funzionale” dell’impianto fisico. Le automazioni non toccate restano da ottimizzare; le quattro automazioni allarme assenti sotto vanno valutate prima di un eventuale ripristino.</p>
+<h2 id="documenti-consultabili">Documenti consultabili</h2>
+<ul>
+<li><a href="#le-57-automazioni-originali">57 automazioni originali con stato aggiornato</a>.</li>
+<li><a href="AUTOMAZIONI-ORIGINALI-57.csv">CSV</a> e <a href="CENSIMENTO.json">JSON completo</a>.</li>
+<li><a href="report-iniziale/INVENTARIO-AUTOMAZIONI.md">Analisi dettagliata iniziale del 29/10</a>: fotografia storica, non descrizione attuale.</li>
+<li><a href="snapshot-ha/README.md">File operativi fotografati oggi</a>.</li>
+<li><a href="CRONOLOGIA.md">Cronologia degli interventi</a>.</li>
+<li><a href="FILE-INSTALLATI.md">File e versione autorevole per ogni sezione</a>.</li>
+<li><code>CENSIMENTO-GENERALE.html</code>: copia autonoma da scaricare e aprire nel browser.</li>
+</ul>
+<h2 id="automazioni-originali-oggi-non-caricate">Automazioni originali oggi non caricate</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">N.</th>
+<th>Nome</th>
+<th>Nota</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">8</td>
+<td>Arm alarm</td>
+<td>Non riscritta nel lavoro; originale nel backup iniziale</td>
+</tr>
+<tr>
+<td style="text-align: right;">9</td>
+<td>Arm alarm porta</td>
+<td>Non riscritta nel lavoro; originale nel backup iniziale</td>
+</tr>
+<tr>
+<td style="text-align: right;">27</td>
+<td>Movimento cancello accende giardino</td>
+<td>Sostituita dai nuovi moduli</td>
+</tr>
+<tr>
+<td style="text-align: right;">28</td>
+<td>Movimento esterno accende torre ingresso</td>
+<td>Sostituita dai nuovi moduli</td>
+</tr>
+<tr>
+<td style="text-align: right;">30</td>
+<td>Movimento orto accende luci</td>
+<td>Sostituita dai nuovi moduli</td>
+</tr>
+<tr>
+<td style="text-align: right;">31</td>
+<td>Piscine - riduci sensibilità per continui cambi movimento</td>
+<td>Sostituita dai nuovi moduli</td>
+</tr>
+<tr>
+<td style="text-align: right;">45</td>
+<td>spegnimento torre ingresso spegne faretto telecamer aingresso</td>
+<td>Sostituita dai nuovi moduli</td>
+</tr>
+<tr>
+<td style="text-align: right;">48</td>
+<td>Spia allarme</td>
+<td>Non riscritta nel lavoro; originale nel backup iniziale</td>
+</tr>
+<tr>
+<td style="text-align: right;">49</td>
+<td>Spia allarme disinserito</td>
+<td>Non riscritta nel lavoro; originale nel backup iniziale</td>
+</tr>
+<tr>
+<td style="text-align: right;">55</td>
+<td>Telecamere - Sensibilità Giorno</td>
+<td>Sostituita dai nuovi moduli</td>
+</tr>
+<tr>
+<td style="text-align: right;">56</td>
+<td>Telecamere - Sensibilità Notte</td>
+<td>Sostituita dai nuovi moduli</td>
+</tr>
+</tbody>
+</table>
+<h2 id="le-57-automazioni-originali">Le 57 automazioni originali</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">N.</th>
+<th>Nome</th>
+<th>Stato HA oggi</th>
+<th>Lavoro/stato</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1</td>
+<td>Allarme casa - Contatti perimetrali + notifica</td>
+<td>on</td>
+<td>da ottimizzare</td>
+</tr>
+<tr>
+<td style="text-align: right;">2</td>
+<td>Allarme innescato scatta foto</td>
+<td>on</td>
+<td>da ottimizzare</td>
+</tr>
+<tr>
+<td style="text-align: right;">3</td>
+<td>Allarme innescato spia letto</td>
+<td>on</td>
+<td>da ottimizzare</td>
+</tr>
+<tr>
+<td style="text-align: right;">4</td>
+<td>Allarme innescato= esterno acceso</td>
+<td>on</td>
+<td>corretta: bersagli limitati a cinque uscite potenza; sequenza e notifiche invariate; verifica configurazione superata, nessun allarme forzato</td>
+</tr>
+<tr>
+<td style="text-align: right;">5</td>
+<td>Allarme notte - Inserimento automatico e controllo aperture</td>
+<td>on</td>
+<td>da ottimizzare</td>
+</tr>
+<tr>
+<td style="text-align: right;">6</td>
+<td>allarme suona sirena</td>
+<td>on</td>
+<td>da ottimizzare</td>
+</tr>
+<tr>
+<td style="text-align: right;">7</td>
+<td>areazione con velux tutti i giorni</td>
+<td>on</td>
+<td>da ottimizzare</td>
+</tr>
+<tr>
+<td style="text-align: right;">8</td>
+<td>Arm alarm</td>
+<td>non caricata</td>
+<td>non presente nella lettura attuale; non riscritta in questo lavoro, originale disponibile nel backup iniziale</td>
+</tr>
+<tr>
+<td style="text-align: right;">9</td>
+<td>Arm alarm porta</td>
+<td>non caricata</td>
+<td>non presente nella lettura attuale; non riscritta in questo lavoro, originale disponibile nel backup iniziale</td>
+</tr>
+<tr>
+<td style="text-align: right;">10</td>
+<td>Arma allarme double</td>
+<td>on</td>
+<td>da ottimizzare</td>
+</tr>
+<tr>
+<td style="text-align: right;">11</td>
+<td>betatest sirena</td>
+<td>on</td>
+<td>da ottimizzare</td>
+</tr>
+<tr>
+<td style="text-align: right;">12</td>
+<td>Caldo fuori apre velux</td>
+<td>on</td>
+<td>da ottimizzare</td>
+</tr>
+<tr>
+<td style="text-align: right;">13</td>
+<td>Chiusura velux</td>
+<td>on</td>
+<td>da ottimizzare</td>
+</tr>
+<tr>
+<td style="text-align: right;">14</td>
+<td>Cortesia bagno</td>
+<td>on</td>
+<td>da ottimizzare</td>
+</tr>
+<tr>
+<td style="text-align: right;">15</td>
+<td>Cortesia da fumo</td>
+<td>on</td>
+<td>da ottimizzare</td>
+</tr>
+<tr>
+<td style="text-align: right;">16</td>
+<td>Cortesia letto</td>
+<td>on</td>
+<td>da ottimizzare</td>
+</tr>
+<tr>
+<td style="text-align: right;">17</td>
+<td>Cortesia scale</td>
+<td>on</td>
+<td>da ottimizzare</td>
+</tr>
+<tr>
+<td style="text-align: right;">18</td>
+<td>Disarm alarm</td>
+<td>on</td>
+<td>da ottimizzare</td>
+</tr>
+<tr>
+<td style="text-align: right;">19</td>
+<td>disarm double allarm</td>
+<td>on</td>
+<td>da ottimizzare</td>
+</tr>
+<tr>
+<td style="text-align: right;">20</td>
+<td>faretto telecamera ingresso accende fari torre ingresso</td>
+<td>on</td>
+<td>conservata disabilitata: faretti gestiti nativamente dalle telecamere</td>
+</tr>
+<tr>
+<td style="text-align: right;">21</td>
+<td>finestre aperte</td>
+<td>on</td>
+<td>da ottimizzare</td>
+</tr>
+<tr>
+<td style="text-align: right;">22</td>
+<td>Growatt - Allarmi e comunicazione USB</td>
+<td>on</td>
+<td>da ottimizzare</td>
+</tr>
+<tr>
+<td style="text-align: right;">23</td>
+<td>Ingresso apre, luce  accende</td>
+<td>on</td>
+<td>da ottimizzare</td>
+</tr>
+<tr>
+<td style="text-align: right;">24</td>
+<td>Interruttore ingresso accende luci</td>
+<td>on</td>
+<td>da ottimizzare</td>
+</tr>
+<tr>
+<td style="text-align: right;">25</td>
+<td>Interruttore sonoff</td>
+<td>on</td>
+<td>corretta: Philips breve ON/lungo OFF, sole uscite potenza, priorità manuale Torre Orto</td>
+</tr>
+<tr>
+<td style="text-align: right;">26</td>
+<td>Luci parcheggio al tramonto</td>
+<td>off</td>
+<td>sostituita dal programma notturno casuale, conservata disabilitata</td>
+</tr>
+<tr>
+<td style="text-align: right;">27</td>
+<td>Movimento cancello accende giardino</td>
+<td>non caricata</td>
+<td>sostituita da nuovi moduli; definizione non caricata nel runtime attuale, originale archiviata</td>
+</tr>
+<tr>
+<td style="text-align: right;">28</td>
+<td>Movimento esterno accende torre ingresso</td>
+<td>non caricata</td>
+<td>sostituita da nuovi moduli; definizione non caricata nel runtime attuale, originale archiviata</td>
+</tr>
+<tr>
+<td style="text-align: right;">29</td>
+<td>movimento interno trigger alarm</td>
+<td>off</td>
+<td>da ottimizzare</td>
+</tr>
+<tr>
+<td style="text-align: right;">30</td>
+<td>Movimento orto accende luci</td>
+<td>non caricata</td>
+<td>sostituita da nuovi moduli; definizione non caricata nel runtime attuale, originale archiviata</td>
+</tr>
+<tr>
+<td style="text-align: right;">31</td>
+<td>Piscine - riduci sensibilità per continui cambi movimento</td>
+<td>non caricata</td>
+<td>sostituita da nuovi moduli; definizione non caricata nel runtime attuale, originale archiviata</td>
+</tr>
+<tr>
+<td style="text-align: right;">32</td>
+<td>PR205 DIAG - Fine finestra controlavaggio</td>
+<td>on</td>
+<td>diagnostica attiva e verificata nei percorsi disponibili; collaudo fisico dei cicli pendente</td>
+</tr>
+<tr>
+<td style="text-align: right;">33</td>
+<td>PR205 DIAG - Inizio controlavaggio multi-stadio</td>
+<td>on</td>
+<td>diagnostica attiva e verificata nei percorsi disponibili; collaudo fisico dei cicli pendente</td>
+</tr>
+<tr>
+<td style="text-align: right;">34</td>
+<td>PR205 DIAG - Memoria chiusura Q2 per Q3</td>
+<td>on</td>
+<td>diagnostica attiva e verificata nei percorsi disponibili; collaudo fisico dei cicli pendente</td>
+</tr>
+<tr>
+<td style="text-align: right;">35</td>
+<td>Ptz cancello</td>
+<td>on</td>
+<td>da ottimizzare</td>
+</tr>
+<tr>
+<td style="text-align: right;">36</td>
+<td>ptz loggiato</td>
+<td>on</td>
+<td>da ottimizzare</td>
+</tr>
+<tr>
+<td style="text-align: right;">37</td>
+<td>Ricircolo cisterna pozzo</td>
+<td>off</td>
+<td>sostituita dalla regia centrale HA 40–110 / 70–159, energia solo avvio; originale disabilitata e archiviata; collaudo fisico pendente</td>
+</tr>
+<tr>
+<td style="text-align: right;">38</td>
+<td>Riempimento cisterna potabile</td>
+<td>off</td>
+<td>sostituita dalla regia centrale HA 40–110 / 70–159, energia solo avvio; originale disabilitata e archiviata; collaudo fisico pendente</td>
+</tr>
+<tr>
+<td style="text-align: right;">39</td>
+<td>riempimento cisterna pozzo</td>
+<td>off</td>
+<td>sostituita dalla regia centrale HA 40–110 / 70–159, energia solo avvio; originale disabilitata e archiviata; collaudo fisico pendente</td>
+</tr>
+<tr>
+<td style="text-align: right;">40</td>
+<td>Sensibilità telecamera ridotta</td>
+<td>off</td>
+<td>sostituita dalla sensibilità adattiva unica per 11 camere; originale conservata disabilitata</td>
+</tr>
+<tr>
+<td style="text-align: right;">41</td>
+<td>Spegni esterno all' Alba</td>
+<td>on</td>
+<td>analizzata; invariata su richiesta esplicita dell’utente</td>
+</tr>
+<tr>
+<td style="text-align: right;">42</td>
+<td>Spegni riempimento potabile</td>
+<td>off</td>
+<td>sostituita dalla regia centrale HA 40–110 / 70–159, energia solo avvio; originale disabilitata e archiviata; collaudo fisico pendente</td>
+</tr>
+<tr>
+<td style="text-align: right;">43</td>
+<td>Spegnimenti riempimento cisterna pozzo</td>
+<td>off</td>
+<td>sostituita dalla regia centrale HA 40–110 / 70–159, energia solo avvio; originale disabilitata e archiviata; collaudo fisico pendente</td>
+</tr>
+<tr>
+<td style="text-align: right;">44</td>
+<td>spegnimento automatico cloratore</td>
+<td>off</td>
+<td>sostituita dalla regia centrale HA 40–110 / 70–159, energia solo avvio; originale disabilitata e archiviata; collaudo fisico pendente</td>
+</tr>
+<tr>
+<td style="text-align: right;">45</td>
+<td>spegnimento torre ingresso spegne faretto telecamer aingresso</td>
+<td>non caricata</td>
+<td>sostituita da nuovi moduli; definizione non caricata nel runtime attuale, originale archiviata</td>
+</tr>
+<tr>
+<td style="text-align: right;">46</td>
+<td>Spengi cortesia casa</td>
+<td>on</td>
+<td>da ottimizzare</td>
+</tr>
+<tr>
+<td style="text-align: right;">47</td>
+<td>Spengi sonoff con pulsante philips</td>
+<td>on</td>
+<td>corretta: Philips breve ON/lungo OFF, sole uscite potenza, priorità manuale Torre Orto</td>
+</tr>
+<tr>
+<td style="text-align: right;">48</td>
+<td>Spia allarme</td>
+<td>non caricata</td>
+<td>non presente nella lettura attuale; non riscritta in questo lavoro, originale disponibile nel backup iniziale</td>
+</tr>
+<tr>
+<td style="text-align: right;">49</td>
+<td>Spia allarme disinserito</td>
+<td>non caricata</td>
+<td>non presente nella lettura attuale; non riscritta in questo lavoro, originale disponibile nel backup iniziale</td>
+</tr>
+<tr>
+<td style="text-align: right;">50</td>
+<td>Spia allarme scale</td>
+<td>on</td>
+<td>da ottimizzare</td>
+</tr>
+<tr>
+<td style="text-align: right;">51</td>
+<td>Spia esterno - Settori</td>
+<td>on</td>
+<td>da ottimizzare</td>
+</tr>
+<tr>
+<td style="text-align: right;">52</td>
+<td>Switch andrea accende letto</td>
+<td>on</td>
+<td>da ottimizzare</td>
+</tr>
+<tr>
+<td style="text-align: right;">53</td>
+<td>switch hue Spegni luci sala</td>
+<td>on</td>
+<td>da ottimizzare</td>
+</tr>
+<tr>
+<td style="text-align: right;">54</td>
+<td>Switch lucia accende letto</td>
+<td>on</td>
+<td>da ottimizzare</td>
+</tr>
+<tr>
+<td style="text-align: right;">55</td>
+<td>Telecamere - Sensibilità Giorno</td>
+<td>non caricata</td>
+<td>sostituita da nuovi moduli; definizione non caricata nel runtime attuale, originale archiviata</td>
+</tr>
+<tr>
+<td style="text-align: right;">56</td>
+<td>Telecamere - Sensibilità Notte</td>
+<td>non caricata</td>
+<td>sostituita da nuovi moduli; definizione non caricata nel runtime attuale, originale archiviata</td>
+</tr>
+<tr>
+<td style="text-align: right;">57</td>
+<td>Test</td>
+<td>off</td>
+<td>da ottimizzare</td>
+</tr>
+</tbody>
+</table>
+<h2 id="le-nove-automazioni-aggiunte">Le nove automazioni aggiunte</h2>
+<table>
+<thead>
+<tr>
+<th>Nome</th>
+<th>Entità</th>
+<th>Stato</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Filtrazione v2 - Presenza HA</td>
+<td><code>automation.filtrazione_v2_presenza_ha</code></td>
+<td>on</td>
+</tr>
+<tr>
+<td>Filtrazione v2 - Rilascio supervisione</td>
+<td><code>automation.filtrazione_v2_rilascio_supervisione</code></td>
+<td>on</td>
+</tr>
+<tr>
+<td>Filtrazione v2 - Regia automatica cisterne</td>
+<td><code>automation.filtrazione_v2_regia_automatica_cisterne</code></td>
+<td>on</td>
+</tr>
+<tr>
+<td>Telecamere - Sensibilità adattiva e profili giorno notte</td>
+<td><code>automation.telecamere_sensibilita_adattiva_e_profili_giorno_notte</code></td>
+<td>on</td>
+</tr>
+<tr>
+<td>Fotocellula - Cancello → Giardino - 2 minuti</td>
+<td><code>automation.fotocellula_cancello_giardino_2_minuti</code></td>
+<td>on</td>
+</tr>
+<tr>
+<td>Fotocellula - Ingresso → Torre ingresso - 2 minuti</td>
+<td><code>automation.fotocellula_ingresso_torre_ingresso_2_minuti</code></td>
+<td>off</td>
+</tr>
+<tr>
+<td>Fotocellula - Piscine → Capanno - 2 minuti</td>
+<td><code>automation.fotocellula_piscine_capanno_2_minuti</code></td>
+<td>on</td>
+</tr>
+<tr>
+<td>Fotocellula - Orto → Torre Orto - 2 minuti</td>
+<td><code>automation.fotocellula_orto_torre_orto_2_minuti</code></td>
+<td>on</td>
+</tr>
+<tr>
+<td>Luci esterno - Programma notturno e coppie casuali</td>
+<td><code>automation.luci_esterno_programma_notturno_e_coppie_casuali</code></td>
+<td>on</td>
+</tr>
+</tbody>
+</table>
+<h2 id="cambi-luci-osservati-realmente">Cambi luci osservati realmente</h2>
+<table>
+<thead>
+<tr>
+<th>Ora locale</th>
+<th>Fascia della notte</th>
+<th>Coppia programmata</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>29/10/2026 22:22:40</td>
+<td><code>2026-10-29#1</code></td>
+<td>orto + giardino</td>
+</tr>
+<tr>
+<td>29/10/2026 22:30:00</td>
+<td><code>2026-10-29#2</code></td>
+<td>orto + capanno</td>
+</tr>
+<tr>
+<td>29/10/2026 23:00:00</td>
+<td><code>2026-10-29#3</code></td>
+<td>giardino + ingresso</td>
+</tr>
+<tr>
+<td>29/10/2026 23:30:00</td>
+<td><code>2026-10-29#4</code></td>
+<td>ingresso + capanno</td>
+</tr>
+<tr>
+<td>30/10/2026 00:00:00</td>
+<td><code>2026-10-29#5</code></td>
+<td>orto + capanno</td>
+</tr>
+</tbody>
+</table>
+<h2 id="backup-e-conservazione">Backup e conservazione</h2>
+<p>Backup completo iniziale e inventario originali conservati sul PC. La coppia locale PRIMA.zip/DOPO.zip segue l’ultimo intervento di configurazione; questo censimento è in sola lettura e non sostituisce la coppia con un finto intervento. Le fotografie private attuali restano sul PC. Su GitHub tutte le versioni precedenti sono mantenute; questo aggiornamento aggiunge solo nuovi documenti/copie datati. Nessuna automazione ripristinata o rimossa dal censimento.</p></body></html>

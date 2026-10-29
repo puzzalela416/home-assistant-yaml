@@ -1,0 +1,32 @@
+id: '1790199721494'
+alias: 'Spegni esterno all'' Alba '
+description: ''
+triggers:
+- trigger: sun.sunrise
+  options:
+    offset:
+      days: 0
+      hours: 0
+      minutes: 0
+      seconds: 0
+    offset_type: before
+conditions: []
+actions:
+- action: switch.turn_off
+  metadata: {}
+  target:
+    area_id: capanno
+    device_id:
+    - 7e8c1ad256d7c295b1c51937e54b9697
+    - dc43e36699f5d99eb3f367c5785a3d8f
+    - c883c7ed92083675b0e5b12c6fc4ebe0
+    - fc64ed7ed8b3a8416c7d78db4aff608b
+    - 98fb8f4bdfe2bd492a17a20f19d3a5e0
+    - 876e64fa114c6ddba94b35fc603dcfba
+  data: {}
+- action: light.turn_off
+  metadata: {}
+  target:
+    entity_id: light.lampada_scale
+  data: {}
+mode: single

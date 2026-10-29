@@ -1,0 +1,56 @@
+id: '1789916414826'
+alias: Arm alarm porta
+description: ''
+triggers:
+- trigger: state
+  entity_id:
+  - binary_sensor.door_and_window_sensor_d1b1_contact_sensor_d1b1
+  from:
+  - 'on'
+  to:
+  - 'off'
+  for:
+    hours: 0
+    minutes: 0
+    seconds: 0
+conditions:
+- condition: time
+  after: '21:30:00'
+  weekday:
+  - mon
+  - tue
+  - wed
+  - fri
+  - thu
+  - sat
+  - sun
+  before: 05:00:00
+- condition: motion.is_detected
+  target:
+    entity_id: binary_sensor.motion_sensor_20ae_2
+  options:
+    behavior: any
+    for: 00:00:00
+actions:
+- delay:
+    hours: 0
+    minutes: 1
+    seconds: 0
+    milliseconds: 0
+- action: number.set_value
+  metadata: {}
+  target:
+    entity_id: number.aqara_hub_09ab_volume_2
+  data:
+    value: '1'
+- action: alarm_control_panel.alarm_arm_away
+  metadata: {}
+  target:
+    entity_id: alarm_control_panel.aqara_hub_09ab_security_system_2
+  data: {}
+- action: alarm_control_panel.alarm_arm_home
+  metadata: {}
+  target:
+    entity_id: alarm_control_panel.allarme_casa
+  data: {}
+mode: single

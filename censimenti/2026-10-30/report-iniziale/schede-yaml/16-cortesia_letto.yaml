@@ -1,0 +1,44 @@
+id: '1789884797776'
+alias: 'Cortesia letto '
+description: ''
+triggers:
+- trigger: motion.detected
+  target:
+    entity_id: binary_sensor.motion_sensor_20ae_2
+  options:
+    behavior: each
+    for: 00:00:00
+conditions:
+- condition: time
+  after: '20:00:00'
+  before: 08:30:00
+  weekday:
+  - mon
+  - tue
+  - wed
+  - thu
+  - fri
+  - sat
+  - sun
+actions:
+- action: light.turn_on
+  metadata: {}
+  target:
+    entity_id: light.1000ee1aa7_color_rgb
+  data:
+    rgb_color:
+    - 255
+    - 255
+    - 255
+    brightness_pct: 20
+- delay:
+    hours: 0
+    minutes: 1
+    seconds: 0
+    milliseconds: 0
+- action: light.turn_off
+  metadata: {}
+  target:
+    device_id: 3908d79d7c1041cbec34d72c6ce64a29
+  data: {}
+mode: single

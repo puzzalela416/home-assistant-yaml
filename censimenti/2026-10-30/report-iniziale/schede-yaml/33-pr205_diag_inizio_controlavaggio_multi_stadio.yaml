@@ -1,0 +1,55 @@
+id: pr205_diag_inizio_controlavaggio_20261025
+alias: PR205 DIAG - Inizio controlavaggio multi-stadio
+mode: single
+triggers:
+- trigger: state
+  entity_id: sensor.pr205_blocco_filtri
+  to: '1'
+conditions:
+- condition: state
+  entity_id: input_boolean.pr205_diag_ciclo_attivo
+  state: 'off'
+actions:
+- variables:
+    filtro: "{% set m = now().hour * 60 + now().minute %} {% if now().weekday() in\
+      \ [0, 3] and 570 <= m <= 630 %}\n  Filtro 2 programmato\n{% elif now().weekday()\
+      \ in [1, 5] and 810 <= m <= 870 %}\n  Filtro 3 programmato\n{% else %}\n  Filtro\
+      \ 4 presunto\n{% endif %}"
+- action: input_datetime.set_datetime
+  target:
+    entity_id: input_datetime.pr205_diag_inizio_lavaggio
+  data:
+    datetime: '{{ now().strftime(''%Y-%m-%d %H:%M:%S'') }}'
+- action: input_select.select_option
+  target:
+    entity_id: input_select.pr205_diag_filtro_in_ciclo
+  data:
+    option: '{{ filtro | trim }}'
+- action: input_boolean.turn_on
+  target:
+    entity_id: input_boolean.pr205_diag_ciclo_attivo
+- choose:
+  - conditions:
+    - condition: template
+      value_template: '{{ filtro | trim == ''Filtro 2 programmato'' }}'
+    sequence:
+    - action: input_datetime.set_datetime
+      target:
+        entity_id: input_datetime.pr205_diag_ultimo_filtro2
+      data:
+        datetime: '{{ now().strftime(''%Y-%m-%d %H:%M:%S'') }}'
+  - conditions:
+    - condition: template
+      value_template: '{{ filtro | trim == ''Filtro 3 programmato'' }}'
+    sequence:
+    - action: input_datetime.set_datetime
+      target:
+        entity_id: input_datetime.pr205_diag_ultimo_filtro3
+      data:
+        datetime: '{{ now().strftime(''%Y-%m-%d %H:%M:%S'') }}'
+  default:
+  - action: input_datetime.set_datetime
+    target:
+      entity_id: input_datetime.pr205_diag_ultimo_filtro4
+    data:
+      datetime: '{{ now().strftime(''%Y-%m-%d %H:%M:%S'') }}'

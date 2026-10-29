@@ -1,0 +1,36 @@
+id: '1790034091142'
+alias: 'Allarme innescato spia letto '
+description: ''
+triggers:
+- trigger: alarm_control_panel.triggered
+  target:
+    entity_id:
+    - alarm_control_panel.aqara_hub_09ab_security_system_2
+    - alarm_control_panel.allarme_casa
+  options:
+    behavior: each
+    for: 00:00:00
+conditions: []
+actions:
+- action: light.turn_on
+  metadata: {}
+  target:
+    entity_id: light.1000ee1aa7_color_rgb
+  data:
+    brightness_pct: 100
+    rgb_color:
+    - 255
+    - 0
+    - 0
+    effect: DIY Breath
+- delay:
+    hours: 0
+    minutes: 1
+    seconds: 0
+    milliseconds: 0
+- action: light.turn_off
+  metadata: {}
+  target:
+    entity_id: light.1000ee1aa7_color_rgb
+  data: {}
+mode: single

@@ -1,0 +1,55 @@
+id: '1792105077986'
+alias: 'Spia allarme disinserito '
+description: ''
+triggers:
+- trigger: alarm_control_panel.armed
+  target:
+    entity_id:
+    - alarm_control_panel.allarme_casa
+    - alarm_control_panel.aqara_hub_09ab_security_system_2
+  options:
+    for: 00:00:00
+    behavior: each
+conditions:
+- condition: and
+  conditions:
+  - condition: alarm_control_panel.is_disarmed
+    target:
+      entity_id:
+      - alarm_control_panel.allarme_casa
+      - alarm_control_panel.aqara_hub_09ab_security_system_2
+    options:
+      for: 00:00:00
+      behavior: any
+actions:
+- action: light.turn_on
+  metadata: {}
+  target:
+    entity_id: light.wiby_lampadina_smart_a65_11w
+  data:
+    rgb_color:
+    - 0
+    - 255
+    - 0
+- delay:
+    hours: 0
+    minutes: 0
+    seconds: 3
+    milliseconds: 0
+- action: light.turn_off
+  metadata: {}
+  target:
+    entity_id: light.wiby_lampadina_smart_a65_11w
+  data: {}
+- condition: sun
+  before: sunrise
+- action: light.turn_on
+  metadata: {}
+  target:
+    entity_id: light.wiby_lampadina_smart_a65_11w
+  data:
+    rgb_color:
+    - 255
+    - 199
+    - 15
+mode: single

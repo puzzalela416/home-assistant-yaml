@@ -1,0 +1,203 @@
+id: '1792367956091'
+alias: Allarme notte - Inserimento automatico e controllo aperture
+description: 'Unisce le due automazioni originali Arm alarm e Arm alarm porta mantenendone
+  trigger, condizioni, tempi e modalità di inserimento. Prima di armare controlla
+  tutte le aperture. Se trova un''apertura non arma e segnala con beep Aqara e lampeggio
+  rosso/blu delle due luci.
+
+  '
+triggers:
+- trigger: motion.cleared
+  target:
+    entity_id: binary_sensor.motion_sensor_20ae_2
+  options:
+    behavior: each
+    for:
+      hours: 0
+      minutes: 1
+      seconds: 0
+  id: arm_alarm
+- trigger: state
+  entity_id:
+  - binary_sensor.door_and_window_sensor_d1b1_contact_sensor_d1b1
+  from:
+  - 'on'
+  to:
+  - 'off'
+  for:
+    hours: 0
+    minutes: 0
+    seconds: 0
+  id: arm_alarm_porta
+conditions:
+- condition: time
+  after: '21:30:00'
+  before: 05:00:00
+  weekday:
+  - mon
+  - tue
+  - wed
+  - thu
+  - fri
+  - sat
+  - sun
+actions:
+- choose:
+  - conditions:
+    - condition: trigger
+      id: arm_alarm
+    - condition: state
+      entity_id: binary_sensor.door_and_window_sensor_d1b1_contact_sensor_d1b1
+      state:
+      - 'off'
+      for:
+        hours: 0
+        minutes: 1
+        seconds: 0
+    sequence: []
+  - conditions:
+    - condition: trigger
+      id: arm_alarm_porta
+    - condition: motion.is_detected
+      target:
+        entity_id: binary_sensor.motion_sensor_20ae_2
+      options:
+        behavior: any
+        for: 00:00:00
+    sequence:
+    - delay:
+        hours: 0
+        minutes: 1
+        seconds: 0
+        milliseconds: 0
+  default:
+  - stop: Condizioni originali di inserimento non soddisfatte
+- choose:
+  - conditions:
+    - condition: template
+      value_template: "{{\n  is_state('binary_sensor.door_and_window_sensor_146f_contact_sensor_146f_2',\
+        \ 'on')\n  or is_state('binary_sensor.door_and_window_sensor_2602_contact_sensor_2602',\
+        \ 'on')\n  or is_state('binary_sensor.door_and_window_sensor_8343_contact_sensor_8343',\
+        \ 'on')\n  or is_state('binary_sensor.door_and_window_sensor_8371_contact_sensor_8371_2',\
+        \ 'on')\n  or is_state('binary_sensor.door_and_window_sensor_b21b_contact_sensor_b21b',\
+        \ 'on')\n  or is_state('binary_sensor.door_and_window_sensor_bd83_contact_sensor_bd83',\
+        \ 'on')\n  or is_state('binary_sensor.door_and_window_sensor_e2ec_contact_sensor_e2ec_2',\
+        \ 'on')\n  or is_state('binary_sensor.door_and_window_sensor_e37a_contact_sensor_e37a',\
+        \ 'on')\n  or is_state('binary_sensor.door_and_window_sensor_f81b_contact_sensor_f81b',\
+        \ 'on')\n  or is_state('binary_sensor.door_and_window_sensor_f1e9_contact_sensor_f1e9',\
+        \ 'on')\n  or is_state('binary_sensor.door_and_window_sensor_f92e_contact_sensor_f92e',\
+        \ 'on')\n  or is_state('binary_sensor.door_and_window_sensor_d1b1_contact_sensor_d1b1',\
+        \ 'on')\n}}\n"
+    sequence:
+    - repeat:
+        count: 3
+        sequence:
+        - action: number.set_value
+          target:
+            entity_id: number.aqara_hub_09ab_volume_2
+          data:
+            value: 15
+        - delay:
+            milliseconds: 300
+        - action: number.set_value
+          target:
+            entity_id: number.aqara_hub_09ab_volume_2
+          data:
+            value: 0
+        - delay:
+            milliseconds: 300
+    - repeat:
+        count: 5
+        sequence:
+        - action: light.turn_on
+          target:
+            entity_id:
+            - light.1000ee1aa7_color_rgb
+            - light.aqara_hub_09ab_lightbulb_09ab_2
+          data:
+            brightness_pct: 100
+            rgb_color:
+            - 255
+            - 0
+            - 0
+        - delay:
+            milliseconds: 400
+        - action: light.turn_on
+          target:
+            entity_id:
+            - light.1000ee1aa7_color_rgb
+            - light.aqara_hub_09ab_lightbulb_09ab_2
+          data:
+            brightness_pct: 100
+            rgb_color:
+            - 0
+            - 0
+            - 255
+        - delay:
+            milliseconds: 400
+    - action: light.turn_off
+      target:
+        entity_id:
+        - light.1000ee1aa7_color_rgb
+        - light.aqara_hub_09ab_lightbulb_09ab_2
+    - stop: 'Allarme NON inserito: porta o finestra aperta'
+- action: number.set_value
+  metadata: {}
+  target:
+    entity_id: number.aqara_hub_09ab_volume_2
+  data:
+    value: '1'
+- action: alarm_control_panel.alarm_arm_away
+  metadata: {}
+  data: {}
+  target:
+    entity_id: alarm_control_panel.aqara_hub_09ab_security_system_2
+- action: alarm_control_panel.alarm_arm_home
+  metadata: {}
+  target:
+    entity_id: alarm_control_panel.allarme_casa
+  data: {}
+- action: light.turn_on
+  metadata: {}
+  target:
+    entity_id: light.1000ee1aa7_color_rgb
+  data:
+    rgb_color:
+    - 255
+    - 0
+    - 0
+- delay:
+    hours: 0
+    minutes: 0
+    seconds: 1
+    milliseconds: 0
+- action: light.turn_off
+  metadata: {}
+  target:
+    entity_id: light.1000ee1aa7_color_rgb
+  data: {}
+- delay:
+    hours: 0
+    minutes: 0
+    seconds: 1
+    milliseconds: 0
+- action: light.turn_on
+  metadata: {}
+  target:
+    entity_id: light.1000ee1aa7_color_rgb
+  data:
+    rgb_color:
+    - 255
+    - 0
+    - 0
+- delay:
+    hours: 0
+    minutes: 0
+    seconds: 1
+    milliseconds: 0
+- action: light.turn_off
+  metadata: {}
+  target:
+    entity_id: light.1000ee1aa7_color_rgb
+  data: {}
+mode: single

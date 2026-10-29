@@ -1,0 +1,60 @@
+id: '1790033373990'
+alias: Spengi cortesia casa
+description: ''
+triggers:
+- trigger: state
+  entity_id:
+  - binary_sensor.motion_sensor_20ae_2
+  from:
+  - 'on'
+  to:
+  - 'off'
+  for:
+    hours: 0
+    minutes: 5
+    seconds: 0
+conditions:
+- condition: state
+  entity_id: binary_sensor.motion_sensor_9a83_2
+  state:
+  - 'off'
+  for:
+    hours: 0
+    minutes: 30
+    seconds: 0
+actions:
+- action: light.turn_off
+  metadata: {}
+  target:
+    entity_id:
+    - light.aqara_hub_09ab_lightbulb_09ab_2
+    - light.lightbulb_78da_2
+    - light.lightbulb_78d9_2
+  data: {}
+- delay:
+    hours: 0
+    minutes: 30
+    seconds: 0
+    milliseconds: 0
+- action: light.turn_off
+  metadata: {}
+  target:
+    entity_id:
+    - light.aqara_hub_09ab_lightbulb_09ab_2
+    - light.lightbulb_78da_2
+    - light.lightbulb_78d9_2
+  data: {}
+- delay:
+    hours: 0
+    minutes: 30
+    seconds: 0
+    milliseconds: 0
+- action: light.turn_off
+  metadata: {}
+  target:
+    entity_id:
+    - light.aqara_hub_09ab_lightbulb_09ab_2
+    - light.lightbulb_78da_2
+    - light.lightbulb_78d9_2
+  data: {}
+mode: single

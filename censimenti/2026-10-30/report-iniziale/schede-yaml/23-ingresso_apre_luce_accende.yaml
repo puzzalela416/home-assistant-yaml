@@ -1,0 +1,43 @@
+id: '1790445492572'
+alias: 'Ingresso apre, luce  accende '
+description: ''
+triggers:
+- trigger: state
+  entity_id:
+  - binary_sensor.door_and_window_sensor_8343_contact_sensor_8343
+  from:
+  - 'off'
+  to:
+  - 'on'
+conditions:
+- condition: sun.is_set
+  options: {}
+actions:
+- action: light.turn_on
+  metadata: {}
+  target:
+    entity_id:
+    - light.lightbulb_78da_2
+  data:
+    color_temp_kelvin: 2000
+    brightness_pct: 2
+- action: light.turn_on
+  metadata: {}
+  data:
+    color_temp_kelvin: 3274
+    brightness_pct: 3
+  target:
+    entity_id: light.aqara_hub_09ab_lightbulb_09ab_2
+- delay:
+    hours: 0
+    minutes: 2
+    seconds: 0
+    milliseconds: 0
+- action: light.turn_off
+  metadata: {}
+  target:
+    entity_id:
+    - light.lightbulb_78da_2
+    - light.aqara_hub_09ab_lightbulb_09ab_2
+  data: {}
+mode: single

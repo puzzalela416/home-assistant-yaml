@@ -1,0 +1,18 @@
+id: '1793233466802'
+alias: 'Spegni riempimento potabile '
+description: ''
+triggers:
+- trigger: numeric_state
+  entity_id:
+  - sensor.livello_potabile_plc
+  above: 111
+conditions: []
+actions:
+- action: switch.turn_off
+  metadata: {}
+  target:
+    entity_id:
+    - switch.plc_ha_q1_potabile
+    - switch.plc_ha_manuale
+  data: {}
+mode: single

@@ -1,0 +1,39 @@
+id: '1792284834030'
+alias: 'Movimento cancello accende giardino '
+description: ''
+triggers:
+- trigger: motion.detected
+  target:
+    entity_id: binary_sensor.cancello_movimento
+  options:
+    behavior: each
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 1
+conditions:
+- condition: sun.is_set
+  options: {}
+- condition: switch.is_off
+  target:
+    entity_id: switch.1000111b06_power
+  options:
+    behavior: any
+    for: 00:00:00
+actions:
+- action: switch.turn_on
+  metadata: {}
+  target:
+    entity_id: switch.1000111b06_power
+  data: {}
+- delay:
+    hours: 0
+    minutes: 2
+    seconds: 0
+    milliseconds: 0
+- action: switch.turn_off
+  metadata: {}
+  target:
+    entity_id: switch.1000111b06_power
+  data: {}
+mode: single

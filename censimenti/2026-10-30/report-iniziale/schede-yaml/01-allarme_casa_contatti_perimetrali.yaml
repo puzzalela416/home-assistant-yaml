@@ -1,0 +1,52 @@
+id: '1791060890626'
+alias: Allarme casa - Contatti perimetrali + notifica
+description: Fa scattare l'allarme HA quando si apre un contatto perimetrale
+triggers:
+- entity_id:
+  - binary_sensor.door_and_window_sensor_146f_contact_sensor_146f_2
+  - binary_sensor.door_and_window_sensor_2602_contact_sensor_2602
+  - binary_sensor.door_and_window_sensor_8343_contact_sensor_8343
+  - binary_sensor.door_and_window_sensor_8371_contact_sensor_8371_2
+  - binary_sensor.door_and_window_sensor_b21b_contact_sensor_b21b
+  - binary_sensor.door_and_window_sensor_bd83_contact_sensor_bd83
+  - binary_sensor.door_and_window_sensor_e2ec_contact_sensor_e2ec_2
+  - binary_sensor.door_and_window_sensor_e37a_contact_sensor_e37a
+  - binary_sensor.door_and_window_sensor_f81b_contact_sensor_f81b
+  - binary_sensor.door_and_window_sensor_f92e_contact_sensor_f92e
+  to:
+  - 'on'
+  trigger: state
+conditions:
+- condition: state
+  entity_id: alarm_control_panel.allarme_casa
+  state:
+  - armed_home
+  - armed_away
+actions:
+- action: input_text.set_value
+  target:
+    entity_id: input_text.ultimo_allarme_casa
+  data:
+    value: '{{ trigger.to_state.name }}
+
+      '
+- action: logbook.log
+  data:
+    name: 🚨 ALLARME CASA
+    message: 'Sensore responsabile: {{ trigger.to_state.name }}
+
+      '
+    entity_id: alarm_control_panel.allarme_casa
+    domain: alarm_control_panel
+- action: persistent_notification.create
+  data:
+    title: 🚨 ALLARME CASA
+    message: '**Sensore responsabile:** {{ trigger.to_state.name }}
+
+      **Ora:** {{ now().strftime(''%d/%m/%Y %H:%M:%S'') }}
+
+      '
+- action: alarm_control_panel.alarm_trigger
+  target:
+    entity_id: alarm_control_panel.allarme_casa
+mode: single

@@ -1,0 +1,32 @@
+id: '1791399700517'
+alias: Allarme innescato scatta foto
+description: ''
+triggers:
+- trigger: alarm_control_panel.triggered
+  target:
+    entity_id:
+    - alarm_control_panel.allarme_casa
+    - alarm_control_panel.aqara_hub_09ab_security_system_2
+  options:
+    for: 00:00:00
+    behavior: each
+conditions: []
+actions:
+- action: camera.snapshot
+  metadata: {}
+  target:
+    entity_id: camera.sala
+  data:
+    filename: /media/Istantanee/intruso_{{ now().strftime('%Y-%m-%d_%H-%M-%S') }}.jpg
+- delay:
+    hours: 0
+    minutes: 0
+    seconds: 5
+    milliseconds: 0
+- action: camera.snapshot
+  metadata: {}
+  target:
+    entity_id: camera.sala
+  data:
+    filename: /media/Istantanee/intruso_{{ now().strftime('%Y-%m-%d_%H-%M-%S') }}.jpg
+mode: single

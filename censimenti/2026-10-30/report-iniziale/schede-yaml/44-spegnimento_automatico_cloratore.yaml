@@ -1,0 +1,21 @@
+id: '1792713878572'
+alias: spegnimento automatico cloratore
+description: ''
+triggers:
+- trigger: state
+  entity_id:
+  - binary_sensor.q2_pozzo
+  from:
+  - 'on'
+  to:
+  - 'off'
+conditions: []
+actions:
+- action: switch.turn_off
+  metadata: {}
+  target:
+    entity_id:
+    - switch.plc_ha_manuale
+    - switch.plc_ha_q4_cloratore
+  data: {}
+mode: single

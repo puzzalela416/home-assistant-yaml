@@ -1,0 +1,124 @@
+id: '1790200903746'
+alias: Spia esterno - Settori
+description: 'Lampeggia il gateway Aqara con un colore diverso in base al settore
+  in cui viene rilevato movimento continuativo per almeno 30 secondi.
+
+  '
+triggers:
+- trigger: state
+  entity_id: binary_sensor.parking_movimento
+  to: 'on'
+  for: 00:00:30
+  id: settore_1
+- trigger: state
+  entity_id: binary_sensor.piazzale_movimento
+  to: 'on'
+  for: 00:00:30
+  id: settore_1
+- trigger: state
+  entity_id: binary_sensor.cucina_movimento
+  to: 'on'
+  for: 00:00:30
+  id: settore_1
+- trigger: state
+  entity_id: binary_sensor.cucina_movimento_2
+  to: 'on'
+  for: 00:00:30
+  id: settore_1
+- trigger: state
+  entity_id:
+  - binary_sensor.cancello_movimento
+  to:
+  - 'on'
+  for: 00:00:30
+  id: settore_2
+- trigger: state
+  entity_id: binary_sensor.tracking_movimento
+  to: 'on'
+  for: 00:00:30
+  id: settore_2
+- trigger: state
+  entity_id: binary_sensor.loggiato_movimento
+  to: 'on'
+  for: 00:00:30
+  id: settore_3
+- trigger: state
+  entity_id: binary_sensor.piscina_orto_movimento
+  to: 'on'
+  for: 00:00:30
+  id: settore_3
+- trigger: state
+  entity_id: binary_sensor.piscine_movimento
+  to: 'on'
+  for: 00:00:30
+  id: settore_3
+conditions:
+- condition: time
+  after: '22:30:00'
+  before: 06:00:00
+actions:
+- choose:
+  - conditions:
+    - condition: trigger
+      id: settore_1
+    sequence:
+    - repeat:
+        count: 5
+        sequence:
+        - action: light.turn_on
+          target:
+            entity_id: light.aqara_hub_09ab_lightbulb_09ab_2
+          data:
+            rgb_color:
+            - 0
+            - 0
+            - 255
+            brightness: 255
+        - delay: 00:00:01
+        - action: light.turn_off
+          target:
+            entity_id: light.aqara_hub_09ab_lightbulb_09ab_2
+        - delay: 00:00:01
+  - conditions:
+    - condition: trigger
+      id: settore_2
+    sequence:
+    - repeat:
+        count: 5
+        sequence:
+        - action: light.turn_on
+          target:
+            entity_id: light.aqara_hub_09ab_lightbulb_09ab_2
+          data:
+            rgb_color:
+            - 255
+            - 0
+            - 0
+            brightness: 255
+        - delay: 00:00:01
+        - action: light.turn_off
+          target:
+            entity_id: light.aqara_hub_09ab_lightbulb_09ab_2
+        - delay: 00:00:01
+  - conditions:
+    - condition: trigger
+      id: settore_3
+    sequence:
+    - repeat:
+        count: 5
+        sequence:
+        - action: light.turn_on
+          target:
+            entity_id: light.aqara_hub_09ab_lightbulb_09ab_2
+          data:
+            rgb_color:
+            - 0
+            - 255
+            - 0
+            brightness: 255
+        - delay: 00:00:01
+        - action: light.turn_off
+          target:
+            entity_id: light.aqara_hub_09ab_lightbulb_09ab_2
+        - delay: 00:00:01
+mode: restart

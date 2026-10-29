@@ -1,0 +1,38 @@
+id: pr205_diag_fine_controlavaggio_20261025
+alias: PR205 DIAG - Fine finestra controlavaggio
+mode: single
+triggers:
+- trigger: time_pattern
+  minutes: /1
+- trigger: state
+  entity_id: sensor.pr205_blocco_filtri
+  to: '0'
+conditions:
+- condition: state
+  entity_id: input_boolean.pr205_diag_ciclo_attivo
+  state: 'on'
+- condition: state
+  entity_id: sensor.pr205_blocco_filtri
+  state: '0'
+- condition: template
+  value_template: '{% set t = as_timestamp(states(''input_datetime.pr205_diag_inizio_lavaggio''),
+    0) %} {{ t > 0 and (as_timestamp(now()) - t) >= 3600 }}'
+- condition: template
+  value_template: '{{ (as_timestamp(now()) - as_timestamp(states.sensor.pr205_blocco_filtri.last_changed,
+    as_timestamp(now()))) >= 600 }}'
+actions:
+- action: input_number.set_value
+  target:
+    entity_id: input_number.pr205_diag_durata_ultimo_lavaggio
+  data:
+    value: '{% set a = as_timestamp(states(''input_datetime.pr205_diag_inizio_lavaggio''),
+      as_timestamp(now())) %} {% set b = as_timestamp(states.sensor.pr205_blocco_filtri.last_changed,
+      as_timestamp(now())) %} {{ [0, ((b - a)/60)] | max | round(1) }}'
+- action: input_boolean.turn_off
+  target:
+    entity_id: input_boolean.pr205_diag_ciclo_attivo
+- action: input_select.select_option
+  target:
+    entity_id: input_select.pr205_diag_filtro_in_ciclo
+  data:
+    option: Nessuno

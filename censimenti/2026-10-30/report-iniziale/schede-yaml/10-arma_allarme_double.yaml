@@ -1,0 +1,25 @@
+id: '1791248442045'
+alias: 'Arma allarme double '
+description: ''
+triggers:
+- trigger: alarm_control_panel.armed
+  target:
+    entity_id:
+    - alarm_control_panel.allarme_casa
+    - alarm_control_panel.aqara_hub_09ab_security_system_2
+  options:
+    for: 00:00:00
+    behavior: each
+conditions: []
+actions:
+- action: alarm_control_panel.alarm_arm_home
+  metadata: {}
+  target:
+    entity_id: alarm_control_panel.allarme_casa
+  data: {}
+- action: alarm_control_panel.alarm_arm_away
+  metadata: {}
+  target:
+    entity_id: alarm_control_panel.aqara_hub_09ab_security_system_2
+  data: {}
+mode: single

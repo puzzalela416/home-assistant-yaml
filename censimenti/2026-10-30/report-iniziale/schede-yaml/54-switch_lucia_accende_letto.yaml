@@ -1,0 +1,20 @@
+id: '1789921346389'
+alias: 'Switch lucia accende letto '
+description: ''
+triggers:
+- trigger: event.received
+  target:
+    device_id: 2e500e05033676e1d6a83d6cf20b607e
+  options:
+    event_type:
+    - single_press
+conditions: []
+actions:
+- action: light.toggle
+  metadata: {}
+  target:
+    device_id: 3908d79d7c1041cbec34d72c6ce64a29
+  data:
+    brightness_pct: 100
+    color_temp_kelvin: 6500
+mode: single

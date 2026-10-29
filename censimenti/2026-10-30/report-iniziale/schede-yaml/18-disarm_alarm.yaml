@@ -1,0 +1,38 @@
+id: '1789854301579'
+alias: 'Disarm alarm '
+description: ''
+triggers:
+- trigger: motion.detected
+  target:
+    entity_id: binary_sensor.motion_sensor_20ae_2
+  options:
+    behavior: each
+    for: 00:00:00
+- trigger: state
+  entity_id:
+  - binary_sensor.door_and_window_sensor_d1b1_contact_sensor_d1b1
+  from:
+  - 'off'
+  to:
+  - 'on'
+conditions:
+- condition: time
+  after: 05:45:00
+  before: 08:30:00
+  weekday:
+  - mon
+  - tue
+  - wed
+  - thu
+  - fri
+  - sat
+  - sun
+actions:
+- action: alarm_control_panel.alarm_disarm
+  metadata: {}
+  data: {}
+  target:
+    entity_id:
+    - alarm_control_panel.allarme_casa
+    - alarm_control_panel.aqara_hub_09ab_security_system_2
+mode: single

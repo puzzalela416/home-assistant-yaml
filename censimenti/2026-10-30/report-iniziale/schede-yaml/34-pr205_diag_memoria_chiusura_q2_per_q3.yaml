@@ -1,0 +1,21 @@
+id: pr205_diag_memoria_chiusura_q2_20261025
+alias: PR205 DIAG - Memoria chiusura Q2 per Q3
+mode: single
+triggers:
+- trigger: state
+  entity_id: binary_sensor.q2_pozzo
+  from: 'on'
+  to: 'off'
+conditions:
+- condition: state
+  entity_id: binary_sensor.q3_ricircolo
+  state: 'on'
+- condition: state
+  entity_id: switch.plc_ha_manuale
+  state: 'off'
+actions:
+- action: input_datetime.set_datetime
+  target:
+    entity_id: input_datetime.pr205_diag_ultima_chiusura_q2
+  data:
+    datetime: '{{ now().strftime(''%Y-%m-%d %H:%M:%S'') }}'

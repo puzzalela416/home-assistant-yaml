@@ -1,0 +1,22 @@
+id: '1792018444662'
+alias: ptz loggiato
+description: ''
+triggers:
+- trigger: motion.detected
+  target:
+    entity_id: binary_sensor.loggiato_movimento
+  options:
+    behavior: each
+    for:
+      hours: 0
+      minutes: 2
+      seconds: 0
+conditions: []
+actions:
+- action: select.select_option
+  metadata: {}
+  target:
+    entity_id: select.tracking_preimpostazione_ptz_2
+  data:
+    option: '4'
+mode: single

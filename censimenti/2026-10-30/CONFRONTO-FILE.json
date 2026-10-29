@@ -1,0 +1,22 @@
+{
+  "packages/filtrazione_v2.yaml": {
+    "coincide_ultimo_salvataggio": true,
+    "sha256": "9c17475425236c5a6a9020088d3e00a72d7aa3d04613537252efca32dd211efa"
+  },
+  "packages/pr205_diagnostica.yaml": {
+    "coincide_ultimo_salvataggio": true,
+    "sha256": "b703609b7bf7b518604f7ef244714b15626bc30f79ef598cac1fc7af775897bc"
+  },
+  "packages/telecamere_fotocellule_v1.yaml": {
+    "coincide_ultimo_salvataggio": true,
+    "sha256": "8ad6d04b870b56331b279175328cf1ea47fd2310ea0d6d45c9be84e279010acf"
+  },
+  "packages/programma_luci_esterno_v1.yaml": {
+    "coincide_ultimo_salvataggio": true,
+    "sha256": "9b86aca30ac916f5c8cac5c65797d8ba4880dbaf9ef5fcf8c2e1a17fd466d0b2"
+  },
+  "configuration.yaml": {
+    "coincide_ultimo_salvataggio": true,
+    "sha256": "0f6d22b78c37841f5f413708e682a84787165f78ce18562fb0746878a2694ff5"
+  }
+}

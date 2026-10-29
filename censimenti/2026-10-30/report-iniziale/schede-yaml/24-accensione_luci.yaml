@@ -1,0 +1,25 @@
+id: '1789849740291'
+alias: 'Interruttore ingresso accende luci '
+description: ''
+triggers:
+- trigger: event.received
+  target:
+    entity_id: event.soggiorno_switch_button_2
+  options:
+    event_type:
+    - long_release
+conditions: []
+actions:
+- action: light.turn_on
+  metadata: {}
+  target:
+    device_id: fe79bef4cef2b3845eef22e2f4a82a15
+  data:
+    brightness_pct: 100
+- action: light.turn_on
+  metadata: {}
+  target:
+    device_id: 9641975512b964f5d6c814390669daf5
+  data:
+    brightness_pct: 100
+mode: single

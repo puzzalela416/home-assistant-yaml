@@ -1,0 +1,52 @@
+id: '1791284997220'
+alias: 'Ricircolo cisterna pozzo '
+description: ''
+triggers:
+- trigger: state
+  entity_id:
+  - binary_sensor.q3_ricircolo
+  from:
+  - 'on'
+  to:
+  - 'off'
+conditions:
+- condition: time
+  after: '10:00:00'
+  before: '15:00:00'
+- condition: numeric_state
+  entity_id: sensor.livello_pozzo_plc
+  above: 157
+actions:
+- delay:
+    hours: 0
+    minutes: 0
+    seconds: 3
+    milliseconds: 0
+- action: switch.turn_on
+  metadata: {}
+  data: {}
+  target:
+    entity_id: switch.plc_ha_manuale
+- delay:
+    hours: 0
+    minutes: 0
+    seconds: 1
+    milliseconds: 0
+- action: switch.turn_on
+  metadata: {}
+  target:
+    entity_id: switch.plc_ha_q3_ricircolo
+  data: {}
+- delay:
+    hours: 4
+    minutes: 0
+    seconds: 0
+    milliseconds: 0
+- action: switch.turn_off
+  metadata: {}
+  target:
+    entity_id:
+    - switch.plc_ha_q3_ricircolo
+    - switch.plc_ha_manuale
+  data: {}
+mode: single

@@ -1,0 +1,44 @@
+id: '1791062177257'
+alias: movimento interno trigger alarm
+description: ''
+triggers:
+- trigger: motion.detected
+  target:
+    entity_id:
+    - binary_sensor.vibration_sensor_a8d5
+    - binary_sensor.vibration_sensor_c875
+    - binary_sensor.motion_sensor_9a83_2
+    - binary_sensor.motion_sensor_d8ca
+    - binary_sensor.motion_sensor_20ae_2
+    - binary_sensor.sala_movimento
+  options:
+    for: 00:00:00
+    behavior: each
+conditions:
+- condition: alarm_control_panel.is_armed_away
+  target:
+    entity_id: alarm_control_panel.allarme_casa
+  options:
+    behavior: any
+    for: 00:00:00
+- condition: zone.not_in_zone
+  target:
+    entity_id: person.andrea
+  options:
+    behavior: any
+    for: 00:00:00
+    zone: zone.home
+- condition: zone.not_in_zone
+  target:
+    entity_id: person.lucia
+  options:
+    behavior: any
+    for: 00:00:00
+    zone: zone.home
+actions:
+- action: alarm_control_panel.alarm_trigger
+  metadata: {}
+  data: {}
+  target:
+    entity_id: alarm_control_panel.allarme_casa
+mode: single

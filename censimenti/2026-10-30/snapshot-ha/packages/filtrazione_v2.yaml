@@ -1,0 +1,813 @@
+# Regia cisterne: soglie HA 40/110 e 70/159; consenso energetico solo all’avvio.
+input_boolean:
+  filtrazione_v2_supervisione:
+    name: Filtrazione v2 supervisione HA
+    icon: mdi:home-assistant
+  filtrazione_v2_automatica:
+    name: Filtrazione gestione automatica HA
+    icon: mdi:autorenew
+  filtrazione_v2_ciclo_auto_potabile:
+    name: Filtrazione Ciclo automatico potabile
+  filtrazione_v2_pausa_auto_potabile:
+    name: Filtrazione Pausa riavvio automatico potabile
+  filtrazione_v2_ciclo_auto_pozzo:
+    name: Filtrazione Ciclo automatico pozzo
+  filtrazione_v2_pausa_auto_pozzo:
+    name: Filtrazione Pausa riavvio automatico pozzo
+template:
+- triggers:
+  - trigger: time_pattern
+    seconds: /5
+  - trigger: state
+    entity_id:
+    - sensor.filtrazione_v2_versione_protocollo
+    - sensor.filtrazione_v2_ha_online
+    - sensor.filtrazione_v2_heartbeat
+    - sensor.livello_potabile_plc
+    - sensor.livello_pozzo_plc
+    - sensor.q1_potabile_plc
+    - sensor.q2_pozzo_plc
+    - sensor.q3_ricircolo_plc
+    - sensor.q4_cloratore_plc
+    - input_boolean.filtrazione_v2_supervisione
+  binary_sensor:
+  - name: Filtrazione v2 PLC disponibile
+    unique_id: filtrazione_v2_plc_disponibile
+    state: '{% set e = states.sensor.filtrazione_v2_versione_protocollo %} {{ e is defined and e.state
+      == ''2'' and (as_timestamp(now()) - as_timestamp(e.last_reported, 0)) < 25 }}'
+    icon: mdi:lan-connect
+  - name: Filtrazione v2 comandi disponibili
+    unique_id: filtrazione_v2_comandi_disponibili
+    state: '{{ is_state(''binary_sensor.filtrazione_v2_plc_disponibile'',''on'') and is_state(''input_boolean.filtrazione_v2_supervisione'',''on'')
+      and is_state(''sensor.filtrazione_v2_ha_online'',''1'') }}'
+    icon: mdi:shield-check
+  - name: Filtrazione v2 uscite coerenti
+    unique_id: filtrazione_v2_uscite_coerenti
+    availability: '{{ states(''binary_sensor.q2_pozzo'') in [''on'',''off''] and states(''binary_sensor.q3_ricircolo'')
+      in [''on'',''off''] and states(''binary_sensor.q4_cloratore'') in [''on'',''off''] }}'
+    state: '{{ states(''binary_sensor.q2_pozzo'') == states(''binary_sensor.q3_ricircolo'') == states(''binary_sensor.q4_cloratore'')
+      }}'
+  sensor:
+  - name: Filtrazione v2 potabile percentuale
+    unique_id: filtrazione_v2_potabile_percentuale
+    unit_of_measurement: '%'
+    availability: '{{ is_number(states(''sensor.livello_potabile_plc'')) }}'
+    state: '{{ [[states(''sensor.livello_potabile_plc'')|float(0) / 110 * 100, 0]|max, 100]|min|round(1)
+      }}'
+  - name: Filtrazione v2 pozzo percentuale
+    unique_id: filtrazione_v2_pozzo_percentuale
+    unit_of_measurement: '%'
+    availability: '{{ is_number(states(''sensor.livello_pozzo_plc'')) }}'
+    state: '{{ [[states(''sensor.livello_pozzo_plc'')|float(0) / 160 * 100, 0]|max, 100]|min|round(1)
+      }}'
+- switch:
+  - name: Filtrazione v2 richiesta potabile
+    unique_id: filtrazione_v2_switch_richiesta_potabile
+    icon: mdi:water-pump
+    state: '{{ is_state(''sensor.filtrazione_v2_richiesta_potabile'',''1'') }}'
+    availability: '{{ is_state(''binary_sensor.filtrazione_v2_comandi_disponibili'',''on'') and states(''sensor.filtrazione_v2_richiesta_potabile'')
+      in [''0'',''1''] }}'
+    turn_on:
+    - action: script.filtrazione_v2_avvia_potabile
+    turn_off:
+    - action: script.filtrazione_v2_rilascia_potabile
+  - name: Filtrazione v2 richiesta pozzo
+    unique_id: filtrazione_v2_switch_richiesta_pozzo
+    icon: mdi:water-pump
+    state: '{{ is_state(''sensor.filtrazione_v2_richiesta_pozzo'',''1'') }}'
+    availability: '{{ is_state(''binary_sensor.filtrazione_v2_comandi_disponibili'',''on'') and states(''sensor.filtrazione_v2_richiesta_pozzo'')
+      in [''0'',''1''] }}'
+    turn_on:
+    - action: script.filtrazione_v2_avvia_pozzo
+    turn_off:
+    - action: script.filtrazione_v2_rilascia_pozzo
+- binary_sensor:
+  - name: Filtrazione v2 dati energia validi
+    unique_id: filtrazione_v2_dati_energia_validi
+    state: '{% set ns = namespace(ok=true) %}
+
+      {% for e in [''sensor.jk_batteria_sinistra_10_capacita_nominale'', ''sensor.jk_batteria_centrale_8_capacita_nominale'',
+      ''sensor.jk_batteria_destra_0_master_capacita_nominale'', ''sensor.jk_batteria_sinistra_10_capacita_residua'',
+      ''sensor.jk_batteria_centrale_8_capacita_residua'', ''sensor.jk_batteria_destra_0_master_capacita_residua'',
+      ''sensor.growatt_1_ingresso_rete_potenza'', ''sensor.growatt_1_carica_da_rete_potenza'', ''sensor.growatt_2_ingresso_rete_potenza'',
+      ''sensor.growatt_2_carica_da_rete_potenza'', ''sensor.jk_banco_soc''] %}
+
+      {% if not is_number(states(e)) %}{% set ns.ok=false %}{% endif %}
+
+      {% endfor %}
+
+      {% for e in [''sensor.jk_batteria_sinistra_10_capacita_nominale'', ''sensor.jk_batteria_centrale_8_capacita_nominale'',
+      ''sensor.jk_batteria_destra_0_master_capacita_nominale''] %}{% if states(e)|float(0) <= 0 %}{% set
+      ns.ok=false %}{% endif %}{% endfor %}
+
+      {% for e in [''sensor.jk_batteria_sinistra_10_capacita_residua'', ''sensor.jk_batteria_centrale_8_capacita_residua'',
+      ''sensor.jk_batteria_destra_0_master_capacita_residua'', ''sensor.growatt_1_ingresso_rete_potenza'',
+      ''sensor.growatt_1_carica_da_rete_potenza'', ''sensor.growatt_2_ingresso_rete_potenza'', ''sensor.growatt_2_carica_da_rete_potenza'']
+      %}{% set s = states[e] %}{% if s is none or (as_timestamp(now())-as_timestamp(s.last_reported,0))
+      > 120 %}{% set ns.ok=false %}{% endif %}{% endfor %}
+
+      {{ ns.ok and 0 <= states(''sensor.jk_banco_soc'')|float(-1) <= 100 }}'
+  - name: Filtrazione v2 consenso energetico avvio
+    unique_id: filtrazione_v2_consenso_energetico_avvio
+    state: '{{ is_state(''binary_sensor.filtrazione_v2_dati_energia_validi'',''on'') and states(''sensor.jk_banco_soc'')|float(-1)
+      >= 35 and is_number(states(''sensor.growatt_1_ingresso_rete_potenza'')) and states(''sensor.growatt_1_ingresso_rete_potenza'')|float(99999)
+      <= 0 and is_number(states(''sensor.growatt_1_carica_da_rete_potenza'')) and states(''sensor.growatt_1_carica_da_rete_potenza'')|float(99999)
+      <= 0 and is_number(states(''sensor.growatt_2_ingresso_rete_potenza'')) and states(''sensor.growatt_2_ingresso_rete_potenza'')|float(99999)
+      <= 0 and is_number(states(''sensor.growatt_2_carica_da_rete_potenza'')) and states(''sensor.growatt_2_carica_da_rete_potenza'')|float(99999)
+      <= 0 }}'
+    delay_on: 00:01:00
+  - name: Filtrazione v2 fascia HA
+    unique_id: filtrazione_v2_fascia_ha
+    state: '{{ 600 <= now().hour * 60 + now().minute < 960 }}'
+  - name: Filtrazione v2 scorta bassa potabile
+    unique_id: filtrazione_v2_scorta_bassa_potabile
+    availability: '{{ is_number(states(''sensor.livello_potabile_plc'')) }}'
+    state: '{{ 0 <= states(''sensor.livello_potabile_plc'')|float(-1) < 40 }}'
+    delay_on: 00:00:20
+  - name: Filtrazione v2 scorta bassa pozzo
+    unique_id: filtrazione_v2_scorta_bassa_pozzo
+    availability: '{{ is_number(states(''sensor.livello_pozzo_plc'')) }}'
+    state: '{{ 0 <= states(''sensor.livello_pozzo_plc'')|float(-1) < 70 }}'
+    delay_on: 00:00:20
+- sensor:
+  - name: Filtrazione v2 stato automatico
+    unique_id: filtrazione_v2_stato_automatico
+    state: '{% if not is_state(''input_boolean.filtrazione_v2_automatica'',''on'') %}Osservazione: automatismo
+      spento{% elif not is_state(''input_boolean.filtrazione_v2_supervisione'',''on'') %}Supervisione
+      spenta{% elif not is_state(''binary_sensor.filtrazione_v2_comandi_disponibili'',''on'') %}Attesa
+      collegamento PLC{% elif is_state(''input_boolean.filtrazione_v2_ciclo_auto_pozzo'',''on'') %}Ciclo
+      pozzo: obiettivo 159 cm{% elif is_state(''input_boolean.filtrazione_v2_ciclo_auto_potabile'',''on'')
+      %}Ciclo potabile: obiettivo 110 cm{% elif not is_state(''binary_sensor.filtrazione_v2_fascia_ha'',''on'')
+      %}Fuori fascia 10–16{% elif not is_state(''binary_sensor.filtrazione_v2_dati_energia_validi'',''on'')
+      %}Dati energia mancanti o scaduti{% elif not is_state(''binary_sensor.filtrazione_v2_consenso_energetico_avvio'',''on'')
+      %}Attesa SOC ≥35% e zero rete per 60 s{% elif is_state(''input_boolean.filtrazione_v2_pausa_auto_potabile'',''on'')
+      or is_state(''input_boolean.filtrazione_v2_pausa_auto_pozzo'',''on'') %}Pausa dopo rilascio manuale{%
+      else %}Pronto: attesa scorta bassa{% endif %}'
+automation:
+- id: filtrazione_v2_heartbeat
+  alias: Filtrazione v2 - Presenza HA
+  mode: single
+  triggers:
+  - trigger: time_pattern
+    seconds: /10
+  - trigger: state
+    entity_id: input_boolean.filtrazione_v2_supervisione
+    to: 'on'
+  conditions:
+  - condition: state
+    entity_id: binary_sensor.filtrazione_v2_plc_disponibile
+    state: 'on'
+  - condition: state
+    entity_id: input_boolean.filtrazione_v2_supervisione
+    state: 'on'
+  - condition: template
+    value_template: '{{ states(''sensor.filtrazione_v2_heartbeat'') in [''0'',''1''] }}'
+  actions:
+  - if:
+    - condition: template
+      value_template: '{{ not is_state(''sensor.filtrazione_v2_ha_online'',''1'') }}'
+    then:
+    - action: modbus.write_register
+      data:
+        hub: PR205
+        slave: 1
+        address: 16407
+        value: 0
+    - action: modbus.write_register
+      data:
+        hub: PR205
+        slave: 1
+        address: 16408
+        value: 0
+  - action: modbus.write_register
+    data:
+      hub: PR205
+      slave: 1
+      address: 16406
+      value: '{{ 1 if is_state(''sensor.filtrazione_v2_heartbeat'',''0'') else 0 }}'
+- id: filtrazione_v2_stop_supervisione
+  alias: Filtrazione v2 - Rilascio supervisione
+  mode: single
+  triggers:
+  - trigger: state
+    entity_id: input_boolean.filtrazione_v2_supervisione
+    to: 'off'
+  conditions: []
+  actions:
+  - action: script.turn_off
+    target:
+      entity_id:
+      - script.filtrazione_v2_avvia_potabile
+      - script.filtrazione_v2_avvia_pozzo
+  - action: input_boolean.turn_off
+    target:
+      entity_id:
+      - input_boolean.filtrazione_v2_ciclo_auto_potabile
+      - input_boolean.filtrazione_v2_ciclo_auto_pozzo
+  - condition: state
+    entity_id: binary_sensor.filtrazione_v2_plc_disponibile
+    state: 'on'
+  - action: modbus.write_register
+    data:
+      hub: PR205
+      slave: 1
+      address: 16407
+      value: 0
+  - action: modbus.write_register
+    data:
+      hub: PR205
+      slave: 1
+      address: 16408
+      value: 0
+- id: filtrazione_v2_regia_automatica
+  alias: Filtrazione v2 - Regia automatica cisterne
+  description: HA 40–110 e 70–159 cm, avvii 10–16 con SOC>=35 e zero rete. Energia controllata solo all’avvio.
+    PLC autonomo.
+  mode: single
+  max_exceeded: silent
+  triggers:
+  - trigger: time_pattern
+    seconds: /15
+  - trigger: homeassistant
+    event: start
+  - trigger: state
+    entity_id: input_boolean.filtrazione_v2_automatica
+    to: 'on'
+    id: auto_on
+  - trigger: state
+    entity_id:
+    - input_boolean.filtrazione_v2_automatica
+    - input_boolean.filtrazione_v2_supervisione
+    - sensor.livello_potabile_plc
+    - sensor.livello_pozzo_plc
+    - sensor.filtrazione_v2_richiesta_potabile
+    - sensor.filtrazione_v2_richiesta_pozzo
+    - sensor.pr205_blocco_filtri
+    - sensor.pr205_emergenza_potabile
+    - binary_sensor.filtrazione_v2_scorta_bassa_potabile
+    - binary_sensor.filtrazione_v2_scorta_bassa_pozzo
+    - binary_sensor.filtrazione_v2_comandi_disponibili
+    - binary_sensor.filtrazione_v2_consenso_energetico_avvio
+  conditions: []
+  actions:
+  - variables:
+      ctx:
+        auto: '{{ is_state(''input_boolean.filtrazione_v2_automatica'',''on'') }}'
+        sup: '{{ is_state(''input_boolean.filtrazione_v2_supervisione'',''on'') }}'
+        ready: '{{ is_state(''binary_sensor.filtrazione_v2_comandi_disponibili'',''on'') and is_state(''sensor.filtrazione_v2_ha_online'',''1'')
+          }}'
+        window: '{{ 600 <= now().hour * 60 + now().minute < 960 }}'
+        levels_valid: '{% set ns=namespace(ok=true) %}{% for e in [''sensor.livello_potabile_plc'',''sensor.livello_pozzo_plc'']
+          %}{% set s=states[e] %}{% if not is_number(states(e)) or states(e)|float(-1)<0 or s is none
+          or (as_timestamp(now())-as_timestamp(s.last_reported,0))>90 %}{% set ns.ok=false %}{% endif
+          %}{% endfor %}{{ ns.ok }}'
+        energy_valid: '{% set ns = namespace(ok=true) %}
+
+          {% for e in [''sensor.jk_batteria_sinistra_10_capacita_nominale'', ''sensor.jk_batteria_centrale_8_capacita_nominale'',
+          ''sensor.jk_batteria_destra_0_master_capacita_nominale'', ''sensor.jk_batteria_sinistra_10_capacita_residua'',
+          ''sensor.jk_batteria_centrale_8_capacita_residua'', ''sensor.jk_batteria_destra_0_master_capacita_residua'',
+          ''sensor.growatt_1_ingresso_rete_potenza'', ''sensor.growatt_1_carica_da_rete_potenza'', ''sensor.growatt_2_ingresso_rete_potenza'',
+          ''sensor.growatt_2_carica_da_rete_potenza'', ''sensor.jk_banco_soc''] %}
+
+          {% if not is_number(states(e)) %}{% set ns.ok=false %}{% endif %}
+
+          {% endfor %}
+
+          {% for e in [''sensor.jk_batteria_sinistra_10_capacita_nominale'', ''sensor.jk_batteria_centrale_8_capacita_nominale'',
+          ''sensor.jk_batteria_destra_0_master_capacita_nominale''] %}{% if states(e)|float(0) <= 0 %}{%
+          set ns.ok=false %}{% endif %}{% endfor %}
+
+          {% for e in [''sensor.jk_batteria_sinistra_10_capacita_residua'', ''sensor.jk_batteria_centrale_8_capacita_residua'',
+          ''sensor.jk_batteria_destra_0_master_capacita_residua'', ''sensor.growatt_1_ingresso_rete_potenza'',
+          ''sensor.growatt_1_carica_da_rete_potenza'', ''sensor.growatt_2_ingresso_rete_potenza'', ''sensor.growatt_2_carica_da_rete_potenza'']
+          %}{% set s = states[e] %}{% if s is none or (as_timestamp(now())-as_timestamp(s.last_reported,0))
+          > 120 %}{% set ns.ok=false %}{% endif %}{% endfor %}
+
+          {{ ns.ok and 0 <= states(''sensor.jk_banco_soc'')|float(-1) <= 100 }}'
+        energy_raw: '{{ states(''sensor.jk_banco_soc'')|float(-1) >= 35 and is_number(states(''sensor.growatt_1_ingresso_rete_potenza''))
+          and states(''sensor.growatt_1_ingresso_rete_potenza'')|float(99999) <= 0 and is_number(states(''sensor.growatt_1_carica_da_rete_potenza''))
+          and states(''sensor.growatt_1_carica_da_rete_potenza'')|float(99999) <= 0 and is_number(states(''sensor.growatt_2_ingresso_rete_potenza''))
+          and states(''sensor.growatt_2_ingresso_rete_potenza'')|float(99999) <= 0 and is_number(states(''sensor.growatt_2_carica_da_rete_potenza''))
+          and states(''sensor.growatt_2_carica_da_rete_potenza'')|float(99999) <= 0 }}'
+        energy_stable: '{{ is_state(''binary_sensor.filtrazione_v2_consenso_energetico_avvio'',''on'')
+          }}'
+        filters: '{{ states(''sensor.pr205_blocco_filtri'') }}'
+        emergency_p: '{{ states(''sensor.pr205_emergenza_potabile'') }}'
+        q1: '{{ states(''sensor.q1_potabile_plc'') }}'
+        q2: '{{ states(''sensor.q2_pozzo_plc'') }}'
+        auto_on: '{{ trigger is defined and trigger is not none and trigger.id|default('''') == ''auto_on''
+          }}'
+        level_potabile: '{{ states(''sensor.livello_potabile_plc'')|float(-1) }}'
+        request_potabile: '{{ states(''sensor.filtrazione_v2_richiesta_potabile'') }}'
+        owned_potabile: '{{ is_state(''input_boolean.filtrazione_v2_ciclo_auto_potabile'',''on'') }}'
+        paused_potabile: '{{ is_state(''input_boolean.filtrazione_v2_pausa_auto_potabile'',''on'') }}'
+        demand_potabile: '{{ is_state(''binary_sensor.filtrazione_v2_scorta_bassa_potabile'',''on'') }}'
+        starting_potabile: '{{ is_state(''script.filtrazione_v2_avvia_potabile'',''on'') }}'
+        age_potabile: '{{ as_timestamp(now()) - as_timestamp(state_attr(''script.filtrazione_v2_avvia_potabile'',''last_triggered''),0)
+          }}'
+        level_pozzo: '{{ states(''sensor.livello_pozzo_plc'')|float(-1) }}'
+        request_pozzo: '{{ states(''sensor.filtrazione_v2_richiesta_pozzo'') }}'
+        owned_pozzo: '{{ is_state(''input_boolean.filtrazione_v2_ciclo_auto_pozzo'',''on'') }}'
+        paused_pozzo: '{{ is_state(''input_boolean.filtrazione_v2_pausa_auto_pozzo'',''on'') }}'
+        demand_pozzo: '{{ is_state(''binary_sensor.filtrazione_v2_scorta_bassa_pozzo'',''on'') }}'
+        starting_pozzo: '{{ is_state(''script.filtrazione_v2_avvia_pozzo'',''on'') }}'
+        age_pozzo: '{{ as_timestamp(now()) - as_timestamp(state_attr(''script.filtrazione_v2_avvia_pozzo'',''last_triggered''),0)
+          }}'
+  - variables:
+      piano: "{% set ns=namespace(actions=[]) %}\n{% for tank, threshold, target in [('potabile',40,110),('pozzo',70,159)]\
+        \ %}\n  {% set owned=ctx['owned_'~tank] %}{% set req=ctx['request_'~tank]|string %}{% set level=ctx['level_'~tank]\
+        \ %}\n  {% set unsafe=not ctx.levels_valid or level>=target or (tank=='potabile' and ctx.filters|string!='0')\
+        \ or (tank=='pozzo' and ctx.emergency_p|string!='0') %}\n  {% set end_auto=owned and (not ctx.auto\
+        \ or not ctx.sup or not ctx.ready) %}\n  {% set expired=owned and req=='0' and not ctx['starting_'~tank]\
+        \ and ctx['age_'~tank]>15 %}\n  {% if (req=='1' and unsafe) or end_auto or expired %}{% set ns.actions=ns.actions+['rilascia_'~tank]\
+        \ %}{% endif %}\n  {% if ctx['paused_'~tank] and (ctx.auto_on or (ctx.levels_valid and level>=threshold))\
+        \ %}{% set ns.actions=ns.actions+['riarma_'~tank] %}{% endif %}\n{% endfor %}\n{% set eligible=ctx.auto\
+        \ and ctx.sup and ctx.ready and ctx.window and ctx.levels_valid and ctx.energy_valid and ctx.energy_raw\
+        \ and ctx.energy_stable %}\n{% set free=ctx.request_potabile|string=='0' and ctx.request_pozzo|string=='0'\
+        \ and not ctx.owned_potabile and not ctx.owned_pozzo and ctx.q1|string=='0' and ctx.q2|string=='0'\
+        \ and not ctx.starting_potabile and not ctx.starting_pozzo %}\n{% if eligible and free and not\
+        \ ns.actions %}\n {% if ctx.demand_pozzo and ctx.level_pozzo<70 and not ctx.paused_pozzo and ctx.emergency_p|string=='0'\
+        \ %}{% set ns.actions=['avvia_pozzo'] %}\n {% elif ctx.demand_potabile and ctx.level_potabile<40\
+        \ and not ctx.paused_potabile and ctx.filters|string=='0' %}{% set ns.actions=['avvia_potabile']\
+        \ %}\n {% endif %}\n{% endif %}\n{{ ns.actions }}"
+  - repeat:
+      for_each: '{{ piano }}'
+      sequence:
+      - choose:
+        - conditions:
+          - condition: template
+            value_template: '{{ repeat.item == ''avvia_potabile'' }}'
+          sequence:
+          - action: script.filtrazione_v2_avvia_potabile
+            data:
+              origine: automatica
+        - conditions:
+          - condition: template
+            value_template: '{{ repeat.item == ''rilascia_potabile'' }}'
+          sequence:
+          - action: script.filtrazione_v2_rilascia_potabile
+            data:
+              origine: automatica
+        - conditions:
+          - condition: template
+            value_template: '{{ repeat.item == ''riarma_potabile'' }}'
+          sequence:
+          - action: input_boolean.turn_off
+            target:
+              entity_id: input_boolean.filtrazione_v2_pausa_auto_potabile
+        - conditions:
+          - condition: template
+            value_template: '{{ repeat.item == ''avvia_pozzo'' }}'
+          sequence:
+          - action: script.filtrazione_v2_avvia_pozzo
+            data:
+              origine: automatica
+        - conditions:
+          - condition: template
+            value_template: '{{ repeat.item == ''rilascia_pozzo'' }}'
+          sequence:
+          - action: script.filtrazione_v2_rilascia_pozzo
+            data:
+              origine: automatica
+        - conditions:
+          - condition: template
+            value_template: '{{ repeat.item == ''riarma_pozzo'' }}'
+          sequence:
+          - action: input_boolean.turn_off
+            target:
+              entity_id: input_boolean.filtrazione_v2_pausa_auto_pozzo
+script:
+  filtrazione_v2_avvia_potabile:
+    alias: Filtrazione v2 - Richiedi potabile
+    mode: single
+    sequence:
+    - variables:
+        origine: '{{ origine|default(''manuale'') }}'
+    - condition: and
+      conditions:
+      - condition: state
+        entity_id: binary_sensor.filtrazione_v2_comandi_disponibili
+        state: 'on'
+      - condition: state
+        entity_id: binary_sensor.filtrazione_v2_plc_disponibile
+        state: 'on'
+      - condition: numeric_state
+        entity_id: sensor.livello_potabile_plc
+        above: -0.001
+        below: 110
+      - condition: state
+        entity_id: sensor.pr205_blocco_filtri
+        state: '0'
+      - condition: state
+        entity_id: input_boolean.filtrazione_v2_supervisione
+        state: 'on'
+      - condition: state
+        entity_id: sensor.filtrazione_v2_ha_online
+        state: '1'
+      - condition: state
+        entity_id: sensor.filtrazione_v2_versione_protocollo
+        state: '2'
+      - condition: state
+        entity_id: binary_sensor.filtrazione_v2_consenso_energetico_avvio
+        state: 'on'
+      - condition: template
+        value_template: '{% set ns=namespace(ok=true) %}{% for e in [''sensor.livello_potabile_plc'',''sensor.livello_pozzo_plc'']
+          %}{% set s=states[e] %}{% if not is_number(states(e)) or states(e)|float(-1)<0 or s is none
+          or (as_timestamp(now())-as_timestamp(s.last_reported,0))>90 %}{% set ns.ok=false %}{% endif
+          %}{% endfor %}{{ ns.ok }}'
+      - condition: template
+        value_template: '{% set ns = namespace(ok=true) %}
+
+          {% for e in [''sensor.jk_batteria_sinistra_10_capacita_nominale'', ''sensor.jk_batteria_centrale_8_capacita_nominale'',
+          ''sensor.jk_batteria_destra_0_master_capacita_nominale'', ''sensor.jk_batteria_sinistra_10_capacita_residua'',
+          ''sensor.jk_batteria_centrale_8_capacita_residua'', ''sensor.jk_batteria_destra_0_master_capacita_residua'',
+          ''sensor.growatt_1_ingresso_rete_potenza'', ''sensor.growatt_1_carica_da_rete_potenza'', ''sensor.growatt_2_ingresso_rete_potenza'',
+          ''sensor.growatt_2_carica_da_rete_potenza'', ''sensor.jk_banco_soc''] %}
+
+          {% if not is_number(states(e)) %}{% set ns.ok=false %}{% endif %}
+
+          {% endfor %}
+
+          {% for e in [''sensor.jk_batteria_sinistra_10_capacita_nominale'', ''sensor.jk_batteria_centrale_8_capacita_nominale'',
+          ''sensor.jk_batteria_destra_0_master_capacita_nominale''] %}{% if states(e)|float(0) <= 0 %}{%
+          set ns.ok=false %}{% endif %}{% endfor %}
+
+          {% for e in [''sensor.jk_batteria_sinistra_10_capacita_residua'', ''sensor.jk_batteria_centrale_8_capacita_residua'',
+          ''sensor.jk_batteria_destra_0_master_capacita_residua'', ''sensor.growatt_1_ingresso_rete_potenza'',
+          ''sensor.growatt_1_carica_da_rete_potenza'', ''sensor.growatt_2_ingresso_rete_potenza'', ''sensor.growatt_2_carica_da_rete_potenza'']
+          %}{% set s = states[e] %}{% if s is none or (as_timestamp(now())-as_timestamp(s.last_reported,0))
+          > 120 %}{% set ns.ok=false %}{% endif %}{% endfor %}
+
+          {{ ns.ok and 0 <= states(''sensor.jk_banco_soc'')|float(-1) <= 100 }}'
+      - condition: template
+        value_template: '{{ states(''sensor.jk_banco_soc'')|float(-1) >= 35 and is_number(states(''sensor.growatt_1_ingresso_rete_potenza''))
+          and states(''sensor.growatt_1_ingresso_rete_potenza'')|float(99999) <= 0 and is_number(states(''sensor.growatt_1_carica_da_rete_potenza''))
+          and states(''sensor.growatt_1_carica_da_rete_potenza'')|float(99999) <= 0 and is_number(states(''sensor.growatt_2_ingresso_rete_potenza''))
+          and states(''sensor.growatt_2_ingresso_rete_potenza'')|float(99999) <= 0 and is_number(states(''sensor.growatt_2_carica_da_rete_potenza''))
+          and states(''sensor.growatt_2_carica_da_rete_potenza'')|float(99999) <= 0 }}'
+      - condition: template
+        value_template: '{{ origine != ''automatica'' or (is_state(''input_boolean.filtrazione_v2_automatica'',''on'')
+          and 600 <= now().hour*60+now().minute < 960 and is_state(''binary_sensor.filtrazione_v2_scorta_bassa_potabile'',''on'')
+          and not is_state(''input_boolean.filtrazione_v2_pausa_auto_potabile'',''on'') and states(''sensor.livello_potabile_plc'')|float(999)
+          < 40) }}'
+    - choose:
+      - conditions:
+        - condition: template
+          value_template: '{{ origine == ''automatica'' }}'
+        sequence:
+        - action: input_boolean.turn_on
+          target:
+            entity_id: input_boolean.filtrazione_v2_ciclo_auto_potabile
+      default:
+      - action: input_boolean.turn_off
+        target:
+          entity_id:
+          - input_boolean.filtrazione_v2_ciclo_auto_potabile
+          - input_boolean.filtrazione_v2_pausa_auto_potabile
+    - action: modbus.write_register
+      data:
+        hub: PR205
+        slave: 1
+        address: 16407
+        value: 0
+    - delay:
+        seconds: 1
+    - condition: and
+      conditions:
+      - condition: state
+        entity_id: binary_sensor.filtrazione_v2_comandi_disponibili
+        state: 'on'
+      - condition: state
+        entity_id: binary_sensor.filtrazione_v2_plc_disponibile
+        state: 'on'
+      - condition: numeric_state
+        entity_id: sensor.livello_potabile_plc
+        above: -0.001
+        below: 110
+      - condition: state
+        entity_id: sensor.pr205_blocco_filtri
+        state: '0'
+      - condition: state
+        entity_id: input_boolean.filtrazione_v2_supervisione
+        state: 'on'
+      - condition: state
+        entity_id: sensor.filtrazione_v2_ha_online
+        state: '1'
+      - condition: state
+        entity_id: sensor.filtrazione_v2_versione_protocollo
+        state: '2'
+      - condition: state
+        entity_id: binary_sensor.filtrazione_v2_consenso_energetico_avvio
+        state: 'on'
+      - condition: template
+        value_template: '{% set ns=namespace(ok=true) %}{% for e in [''sensor.livello_potabile_plc'',''sensor.livello_pozzo_plc'']
+          %}{% set s=states[e] %}{% if not is_number(states(e)) or states(e)|float(-1)<0 or s is none
+          or (as_timestamp(now())-as_timestamp(s.last_reported,0))>90 %}{% set ns.ok=false %}{% endif
+          %}{% endfor %}{{ ns.ok }}'
+      - condition: template
+        value_template: '{% set ns = namespace(ok=true) %}
+
+          {% for e in [''sensor.jk_batteria_sinistra_10_capacita_nominale'', ''sensor.jk_batteria_centrale_8_capacita_nominale'',
+          ''sensor.jk_batteria_destra_0_master_capacita_nominale'', ''sensor.jk_batteria_sinistra_10_capacita_residua'',
+          ''sensor.jk_batteria_centrale_8_capacita_residua'', ''sensor.jk_batteria_destra_0_master_capacita_residua'',
+          ''sensor.growatt_1_ingresso_rete_potenza'', ''sensor.growatt_1_carica_da_rete_potenza'', ''sensor.growatt_2_ingresso_rete_potenza'',
+          ''sensor.growatt_2_carica_da_rete_potenza'', ''sensor.jk_banco_soc''] %}
+
+          {% if not is_number(states(e)) %}{% set ns.ok=false %}{% endif %}
+
+          {% endfor %}
+
+          {% for e in [''sensor.jk_batteria_sinistra_10_capacita_nominale'', ''sensor.jk_batteria_centrale_8_capacita_nominale'',
+          ''sensor.jk_batteria_destra_0_master_capacita_nominale''] %}{% if states(e)|float(0) <= 0 %}{%
+          set ns.ok=false %}{% endif %}{% endfor %}
+
+          {% for e in [''sensor.jk_batteria_sinistra_10_capacita_residua'', ''sensor.jk_batteria_centrale_8_capacita_residua'',
+          ''sensor.jk_batteria_destra_0_master_capacita_residua'', ''sensor.growatt_1_ingresso_rete_potenza'',
+          ''sensor.growatt_1_carica_da_rete_potenza'', ''sensor.growatt_2_ingresso_rete_potenza'', ''sensor.growatt_2_carica_da_rete_potenza'']
+          %}{% set s = states[e] %}{% if s is none or (as_timestamp(now())-as_timestamp(s.last_reported,0))
+          > 120 %}{% set ns.ok=false %}{% endif %}{% endfor %}
+
+          {{ ns.ok and 0 <= states(''sensor.jk_banco_soc'')|float(-1) <= 100 }}'
+      - condition: template
+        value_template: '{{ states(''sensor.jk_banco_soc'')|float(-1) >= 35 and is_number(states(''sensor.growatt_1_ingresso_rete_potenza''))
+          and states(''sensor.growatt_1_ingresso_rete_potenza'')|float(99999) <= 0 and is_number(states(''sensor.growatt_1_carica_da_rete_potenza''))
+          and states(''sensor.growatt_1_carica_da_rete_potenza'')|float(99999) <= 0 and is_number(states(''sensor.growatt_2_ingresso_rete_potenza''))
+          and states(''sensor.growatt_2_ingresso_rete_potenza'')|float(99999) <= 0 and is_number(states(''sensor.growatt_2_carica_da_rete_potenza''))
+          and states(''sensor.growatt_2_carica_da_rete_potenza'')|float(99999) <= 0 }}'
+      - condition: template
+        value_template: '{{ origine != ''automatica'' or (is_state(''input_boolean.filtrazione_v2_automatica'',''on'')
+          and 600 <= now().hour*60+now().minute < 960 and is_state(''binary_sensor.filtrazione_v2_scorta_bassa_potabile'',''on'')
+          and not is_state(''input_boolean.filtrazione_v2_pausa_auto_potabile'',''on'') and states(''sensor.livello_potabile_plc'')|float(999)
+          < 40) }}'
+    - action: modbus.write_register
+      data:
+        hub: PR205
+        slave: 1
+        address: 16407
+        value: 1
+    fields:
+      origine:
+        name: Origine richiesta
+        default: manuale
+        selector:
+          select:
+            options:
+            - manuale
+            - automatica
+    description: Avvio protetto; consenso energia solo all’avvio. La PLC conserva limiti, filtri e priorità.
+  filtrazione_v2_rilascia_potabile:
+    alias: Filtrazione v2 - Rilascia potabile
+    mode: single
+    sequence:
+    - variables:
+        origine: '{{ origine|default(''manuale'') }}'
+    - action: script.turn_off
+      target:
+        entity_id: script.filtrazione_v2_avvia_potabile
+    - action: input_boolean.turn_off
+      target:
+        entity_id: input_boolean.filtrazione_v2_ciclo_auto_potabile
+    - if:
+      - condition: template
+        value_template: '{{ origine != ''automatica'' }}'
+      then:
+      - action: input_boolean.turn_on
+        target:
+          entity_id: input_boolean.filtrazione_v2_pausa_auto_potabile
+    - condition: state
+      entity_id: binary_sensor.filtrazione_v2_plc_disponibile
+      state: 'on'
+    - action: modbus.write_register
+      data:
+        hub: PR205
+        slave: 1
+        address: 16407
+        value: 0
+    fields:
+      origine:
+        name: Origine richiesta
+        default: manuale
+        selector:
+          select:
+            options:
+            - manuale
+            - automatica
+    description: 'Rilascia solo la richiesta HA. Rilascio manuale: evita il riavvio automatico immediato
+      fino al riarmo della scorta o della gestione automatica.'
+  filtrazione_v2_avvia_pozzo:
+    alias: Filtrazione v2 - Richiedi pozzo
+    mode: single
+    sequence:
+    - variables:
+        origine: '{{ origine|default(''manuale'') }}'
+    - condition: and
+      conditions:
+      - condition: state
+        entity_id: binary_sensor.filtrazione_v2_comandi_disponibili
+        state: 'on'
+      - condition: state
+        entity_id: binary_sensor.filtrazione_v2_plc_disponibile
+        state: 'on'
+      - condition: numeric_state
+        entity_id: sensor.livello_pozzo_plc
+        above: -0.001
+        below: 159
+      - condition: state
+        entity_id: sensor.pr205_emergenza_potabile
+        state: '0'
+      - condition: state
+        entity_id: input_boolean.filtrazione_v2_supervisione
+        state: 'on'
+      - condition: state
+        entity_id: sensor.filtrazione_v2_ha_online
+        state: '1'
+      - condition: state
+        entity_id: sensor.filtrazione_v2_versione_protocollo
+        state: '2'
+      - condition: state
+        entity_id: binary_sensor.filtrazione_v2_consenso_energetico_avvio
+        state: 'on'
+      - condition: template
+        value_template: '{% set ns=namespace(ok=true) %}{% for e in [''sensor.livello_potabile_plc'',''sensor.livello_pozzo_plc'']
+          %}{% set s=states[e] %}{% if not is_number(states(e)) or states(e)|float(-1)<0 or s is none
+          or (as_timestamp(now())-as_timestamp(s.last_reported,0))>90 %}{% set ns.ok=false %}{% endif
+          %}{% endfor %}{{ ns.ok }}'
+      - condition: template
+        value_template: '{% set ns = namespace(ok=true) %}
+
+          {% for e in [''sensor.jk_batteria_sinistra_10_capacita_nominale'', ''sensor.jk_batteria_centrale_8_capacita_nominale'',
+          ''sensor.jk_batteria_destra_0_master_capacita_nominale'', ''sensor.jk_batteria_sinistra_10_capacita_residua'',
+          ''sensor.jk_batteria_centrale_8_capacita_residua'', ''sensor.jk_batteria_destra_0_master_capacita_residua'',
+          ''sensor.growatt_1_ingresso_rete_potenza'', ''sensor.growatt_1_carica_da_rete_potenza'', ''sensor.growatt_2_ingresso_rete_potenza'',
+          ''sensor.growatt_2_carica_da_rete_potenza'', ''sensor.jk_banco_soc''] %}
+
+          {% if not is_number(states(e)) %}{% set ns.ok=false %}{% endif %}
+
+          {% endfor %}
+
+          {% for e in [''sensor.jk_batteria_sinistra_10_capacita_nominale'', ''sensor.jk_batteria_centrale_8_capacita_nominale'',
+          ''sensor.jk_batteria_destra_0_master_capacita_nominale''] %}{% if states(e)|float(0) <= 0 %}{%
+          set ns.ok=false %}{% endif %}{% endfor %}
+
+          {% for e in [''sensor.jk_batteria_sinistra_10_capacita_residua'', ''sensor.jk_batteria_centrale_8_capacita_residua'',
+          ''sensor.jk_batteria_destra_0_master_capacita_residua'', ''sensor.growatt_1_ingresso_rete_potenza'',
+          ''sensor.growatt_1_carica_da_rete_potenza'', ''sensor.growatt_2_ingresso_rete_potenza'', ''sensor.growatt_2_carica_da_rete_potenza'']
+          %}{% set s = states[e] %}{% if s is none or (as_timestamp(now())-as_timestamp(s.last_reported,0))
+          > 120 %}{% set ns.ok=false %}{% endif %}{% endfor %}
+
+          {{ ns.ok and 0 <= states(''sensor.jk_banco_soc'')|float(-1) <= 100 }}'
+      - condition: template
+        value_template: '{{ states(''sensor.jk_banco_soc'')|float(-1) >= 35 and is_number(states(''sensor.growatt_1_ingresso_rete_potenza''))
+          and states(''sensor.growatt_1_ingresso_rete_potenza'')|float(99999) <= 0 and is_number(states(''sensor.growatt_1_carica_da_rete_potenza''))
+          and states(''sensor.growatt_1_carica_da_rete_potenza'')|float(99999) <= 0 and is_number(states(''sensor.growatt_2_ingresso_rete_potenza''))
+          and states(''sensor.growatt_2_ingresso_rete_potenza'')|float(99999) <= 0 and is_number(states(''sensor.growatt_2_carica_da_rete_potenza''))
+          and states(''sensor.growatt_2_carica_da_rete_potenza'')|float(99999) <= 0 }}'
+      - condition: template
+        value_template: '{{ origine != ''automatica'' or (is_state(''input_boolean.filtrazione_v2_automatica'',''on'')
+          and 600 <= now().hour*60+now().minute < 960 and is_state(''binary_sensor.filtrazione_v2_scorta_bassa_pozzo'',''on'')
+          and not is_state(''input_boolean.filtrazione_v2_pausa_auto_pozzo'',''on'') and states(''sensor.livello_pozzo_plc'')|float(999)
+          < 70) }}'
+    - choose:
+      - conditions:
+        - condition: template
+          value_template: '{{ origine == ''automatica'' }}'
+        sequence:
+        - action: input_boolean.turn_on
+          target:
+            entity_id: input_boolean.filtrazione_v2_ciclo_auto_pozzo
+      default:
+      - action: input_boolean.turn_off
+        target:
+          entity_id:
+          - input_boolean.filtrazione_v2_ciclo_auto_pozzo
+          - input_boolean.filtrazione_v2_pausa_auto_pozzo
+    - action: modbus.write_register
+      data:
+        hub: PR205
+        slave: 1
+        address: 16408
+        value: 0
+    - delay:
+        seconds: 1
+    - condition: and
+      conditions:
+      - condition: state
+        entity_id: binary_sensor.filtrazione_v2_comandi_disponibili
+        state: 'on'
+      - condition: state
+        entity_id: binary_sensor.filtrazione_v2_plc_disponibile
+        state: 'on'
+      - condition: numeric_state
+        entity_id: sensor.livello_pozzo_plc
+        above: -0.001
+        below: 159
+      - condition: state
+        entity_id: sensor.pr205_emergenza_potabile
+        state: '0'
+      - condition: state
+        entity_id: input_boolean.filtrazione_v2_supervisione
+        state: 'on'
+      - condition: state
+        entity_id: sensor.filtrazione_v2_ha_online
+        state: '1'
+      - condition: state
+        entity_id: sensor.filtrazione_v2_versione_protocollo
+        state: '2'
+      - condition: state
+        entity_id: binary_sensor.filtrazione_v2_consenso_energetico_avvio
+        state: 'on'
+      - condition: template
+        value_template: '{% set ns=namespace(ok=true) %}{% for e in [''sensor.livello_potabile_plc'',''sensor.livello_pozzo_plc'']
+          %}{% set s=states[e] %}{% if not is_number(states(e)) or states(e)|float(-1)<0 or s is none
+          or (as_timestamp(now())-as_timestamp(s.last_reported,0))>90 %}{% set ns.ok=false %}{% endif
+          %}{% endfor %}{{ ns.ok }}'
+      - condition: template
+        value_template: '{% set ns = namespace(ok=true) %}
+
+          {% for e in [''sensor.jk_batteria_sinistra_10_capacita_nominale'', ''sensor.jk_batteria_centrale_8_capacita_nominale'',
+          ''sensor.jk_batteria_destra_0_master_capacita_nominale'', ''sensor.jk_batteria_sinistra_10_capacita_residua'',
+          ''sensor.jk_batteria_centrale_8_capacita_residua'', ''sensor.jk_batteria_destra_0_master_capacita_residua'',
+          ''sensor.growatt_1_ingresso_rete_potenza'', ''sensor.growatt_1_carica_da_rete_potenza'', ''sensor.growatt_2_ingresso_rete_potenza'',
+          ''sensor.growatt_2_carica_da_rete_potenza'', ''sensor.jk_banco_soc''] %}
+
+          {% if not is_number(states(e)) %}{% set ns.ok=false %}{% endif %}
+
+          {% endfor %}
+
+          {% for e in [''sensor.jk_batteria_sinistra_10_capacita_nominale'', ''sensor.jk_batteria_centrale_8_capacita_nominale'',
+          ''sensor.jk_batteria_destra_0_master_capacita_nominale''] %}{% if states(e)|float(0) <= 0 %}{%
+          set ns.ok=false %}{% endif %}{% endfor %}
+
+          {% for e in [''sensor.jk_batteria_sinistra_10_capacita_residua'', ''sensor.jk_batteria_centrale_8_capacita_residua'',
+          ''sensor.jk_batteria_destra_0_master_capacita_residua'', ''sensor.growatt_1_ingresso_rete_potenza'',
+          ''sensor.growatt_1_carica_da_rete_potenza'', ''sensor.growatt_2_ingresso_rete_potenza'', ''sensor.growatt_2_carica_da_rete_potenza'']
+          %}{% set s = states[e] %}{% if s is none or (as_timestamp(now())-as_timestamp(s.last_reported,0))
+          > 120 %}{% set ns.ok=false %}{% endif %}{% endfor %}
+
+          {{ ns.ok and 0 <= states(''sensor.jk_banco_soc'')|float(-1) <= 100 }}'
+      - condition: template
+        value_template: '{{ states(''sensor.jk_banco_soc'')|float(-1) >= 35 and is_number(states(''sensor.growatt_1_ingresso_rete_potenza''))
+          and states(''sensor.growatt_1_ingresso_rete_potenza'')|float(99999) <= 0 and is_number(states(''sensor.growatt_1_carica_da_rete_potenza''))
+          and states(''sensor.growatt_1_carica_da_rete_potenza'')|float(99999) <= 0 and is_number(states(''sensor.growatt_2_ingresso_rete_potenza''))
+          and states(''sensor.growatt_2_ingresso_rete_potenza'')|float(99999) <= 0 and is_number(states(''sensor.growatt_2_carica_da_rete_potenza''))
+          and states(''sensor.growatt_2_carica_da_rete_potenza'')|float(99999) <= 0 }}'
+      - condition: template
+        value_template: '{{ origine != ''automatica'' or (is_state(''input_boolean.filtrazione_v2_automatica'',''on'')
+          and 600 <= now().hour*60+now().minute < 960 and is_state(''binary_sensor.filtrazione_v2_scorta_bassa_pozzo'',''on'')
+          and not is_state(''input_boolean.filtrazione_v2_pausa_auto_pozzo'',''on'') and states(''sensor.livello_pozzo_plc'')|float(999)
+          < 70) }}'
+    - action: modbus.write_register
+      data:
+        hub: PR205
+        slave: 1
+        address: 16408
+        value: 1
+    fields:
+      origine:
+        name: Origine richiesta
+        default: manuale
+        selector:
+          select:
+            options:
+            - manuale
+            - automatica
+    description: Avvio protetto; consenso energia solo all’avvio. La PLC conserva limiti, filtri e priorità.
+  filtrazione_v2_rilascia_pozzo:
+    alias: Filtrazione v2 - Rilascia pozzo
+    mode: single
+    sequence:
+    - variables:
+        origine: '{{ origine|default(''manuale'') }}'
+    - action: script.turn_off
+      target:
+        entity_id: script.filtrazione_v2_avvia_pozzo
+    - action: input_boolean.turn_off
+      target:
+        entity_id: input_boolean.filtrazione_v2_ciclo_auto_pozzo
+    - if:
+      - condition: template
+        value_template: '{{ origine != ''automatica'' }}'
+      then:
+      - action: input_boolean.turn_on
+        target:
+          entity_id: input_boolean.filtrazione_v2_pausa_auto_pozzo
+    - condition: state
+      entity_id: binary_sensor.filtrazione_v2_plc_disponibile
+      state: 'on'
+    - action: modbus.write_register
+      data:
+        hub: PR205
+        slave: 1
+        address: 16408
+        value: 0
+    fields:
+      origine:
+        name: Origine richiesta
+        default: manuale
+        selector:
+          select:
+            options:
+            - manuale
+            - automatica
+    description: 'Rilascia solo la richiesta HA. Rilascio manuale: evita il riavvio automatico immediato
+      fino al riarmo della scorta o della gestione automatica.'

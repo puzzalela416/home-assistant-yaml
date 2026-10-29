@@ -1,0 +1,44 @@
+id: '1792713530771'
+alias: riempimento cisterna pozzo
+description: ''
+triggers:
+- trigger: numeric_state
+  entity_id:
+  - sensor.livello_pozzo_plc
+  below: 72
+  for:
+    hours: 0
+    minutes: 0
+    seconds: 20
+conditions:
+- condition: time
+  after: '10:00:00'
+  before: '16:00:00'
+- condition: state
+  entity_id: binary_sensor.q1_potabile
+  state:
+  - 'off'
+- condition: state
+  entity_id: binary_sensor.q2_pozzo
+  state:
+  - 'off'
+actions:
+- action: switch.turn_on
+  metadata: {}
+  target:
+    entity_id: switch.plc_ha_manuale
+  data: {}
+- delay:
+    hours: 0
+    minutes: 0
+    seconds: 1
+    milliseconds: 0
+- action: switch.turn_on
+  metadata: {}
+  target:
+    entity_id:
+    - switch.plc_ha_q2_pozzo
+    - switch.plc_ha_q3_ricircolo
+    - switch.plc_ha_q4_cloratore
+  data: {}
+mode: single

@@ -1,0 +1,84 @@
+id: '1791567896934'
+alias: Spia allarme
+description: ''
+triggers:
+- trigger: motion.detected
+  target:
+    entity_id: binary_sensor.1
+  options:
+    behavior: each
+    for: 00:00:00
+conditions:
+- condition: alarm_control_panel.is_armed
+  target:
+    entity_id:
+    - alarm_control_panel.allarme_casa
+    - alarm_control_panel.aqara_hub_09ab_security_system_2
+  options:
+    for: 00:00:00
+    behavior: any
+actions:
+- repeat:
+    count: 10
+    sequence:
+    - action: light.turn_on
+      metadata: {}
+      target:
+        entity_id:
+        - light.lampada_scale
+        - light.wiby_lampadina_smart_a65_11w
+      data:
+        rgb_color:
+        - 255
+        - 0
+        - 0
+    - delay:
+        hours: 0
+        minutes: 0
+        seconds: 0
+        milliseconds: 500
+    - action: light.turn_off
+      metadata: {}
+      target:
+        entity_id:
+        - light.lampada_scale
+        - light.wiby_lampadina_smart_a65_11w
+      data: {}
+    - delay:
+        hours: 0
+        minutes: 0
+        seconds: 0
+        milliseconds: 500
+- action: light.turn_on
+  metadata: {}
+  target:
+    entity_id:
+    - light.wiby_lampadina_smart_a65_11w
+  data:
+    rgb_color:
+    - 255
+    - 179
+    - 56
+    brightness_pct: 100
+    rgbw_color:
+      min_color_temp_kelvin: 2000
+      max_color_temp_kelvin: 6500
+      supported_color_modes:
+      - color_temp
+      - hs
+      color_mode: color_temp
+      brightness: 255
+      color_temp_kelvin: 2000
+      hs_color:
+      - 30.601
+      - 94.547
+      rgb_color:
+      - 255
+      - 137
+      - 14
+      xy_color:
+      - 0.598
+      - 0.383
+      friendly_name: Lampada scale
+      supported_features: 0
+mode: single

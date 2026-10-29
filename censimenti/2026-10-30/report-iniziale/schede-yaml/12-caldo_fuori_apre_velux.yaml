@@ -1,0 +1,34 @@
+id: '1790791171721'
+alias: Caldo fuori apre velux
+description: ''
+triggers:
+- trigger: temperature.crossed_threshold
+  target:
+    entity_id: sensor.temperature_and_humidity_sensor_aa26_temperature_sensor_aa26
+  options:
+    behavior: each
+    for:
+      hours: 0
+      minutes: 5
+      seconds: 0
+    threshold:
+      type: above
+      value:
+        active_choice: entity
+        entity: sensor.temperature_and_humidity_sensor_3831_temperature_sensor_3831
+conditions:
+- condition: alarm_control_panel.is_disarmed
+  target:
+    entity_id:
+    - alarm_control_panel.allarme_casa
+    - alarm_control_panel.aqara_hub_09ab_security_system_2
+  options:
+    for: 00:00:00
+    behavior: any
+actions:
+- action: cover.open_cover
+  metadata: {}
+  target:
+    entity_id: cover.velux_window_roof_window
+  data: {}
+mode: single

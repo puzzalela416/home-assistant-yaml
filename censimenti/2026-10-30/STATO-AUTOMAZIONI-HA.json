@@ -1,0 +1,442 @@
+[
+  {
+    "id_yaml": "1789839853555",
+    "entity_id": "automation.interruttore_sonoff",
+    "nome": "Interruttore sonoff ",
+    "stato": "on",
+    "ultimo_avvio": "2026-09-23T07:14:21.042201+00:00",
+    "modalita": "single"
+  },
+  {
+    "id_yaml": "1789848073695",
+    "entity_id": "automation.spengi_sonoff",
+    "nome": "Spengi sonoff con pulsante philips",
+    "stato": "on",
+    "ultimo_avvio": "2026-09-19T20:51:10.956398+00:00",
+    "modalita": "single"
+  },
+  {
+    "id_yaml": "1789849642221",
+    "entity_id": "automation.spegni_luci",
+    "nome": "switch hue Spegni luci sala",
+    "stato": "on",
+    "ultimo_avvio": "2026-09-23T11:11:32.457354+00:00",
+    "modalita": "single"
+  },
+  {
+    "id_yaml": "1789849740291",
+    "entity_id": "automation.accensione_luci",
+    "nome": "Interruttore ingresso accende luci ",
+    "stato": "on",
+    "ultimo_avvio": "2026-09-23T11:11:29.734067+00:00",
+    "modalita": "single"
+  },
+  {
+    "id_yaml": "1789854301579",
+    "entity_id": "automation.disarm_alarm",
+    "nome": "Disarm alarm ",
+    "stato": "on",
+    "ultimo_avvio": "2026-10-29T07:24:07.792133+00:00",
+    "modalita": "single"
+  },
+  {
+    "id_yaml": "1789880062475",
+    "entity_id": "automation.cortesia_bagno_2",
+    "nome": "Cortesia bagno",
+    "stato": "on",
+    "ultimo_avvio": "2026-10-29T21:13:29.678833+00:00",
+    "modalita": "single"
+  },
+  {
+    "id_yaml": "1789884797776",
+    "entity_id": "automation.cortesia_letto",
+    "nome": "Cortesia letto ",
+    "stato": "on",
+    "ultimo_avvio": "2026-10-29T22:21:56.009057+00:00",
+    "modalita": "single"
+  },
+  {
+    "id_yaml": "1789886689473",
+    "entity_id": "automation.ptz_cancello",
+    "nome": "Ptz cancello ",
+    "stato": "on",
+    "ultimo_avvio": "2026-10-26T07:55:59.978107+00:00",
+    "modalita": "single"
+  },
+  {
+    "id_yaml": "1789920055194",
+    "entity_id": "automation.chiusura_velux",
+    "nome": "Chiusura velux",
+    "stato": "on",
+    "ultimo_avvio": "2026-10-29T16:07:52.701082+00:00",
+    "modalita": "single"
+  },
+  {
+    "id_yaml": "1789921346389",
+    "entity_id": "automation.switch_lucia_accende_letto",
+    "nome": "Switch lucia accende letto ",
+    "stato": "on",
+    "ultimo_avvio": "2026-10-21T20:14:45.350465+00:00",
+    "modalita": "single"
+  },
+  {
+    "id_yaml": "1789921638219",
+    "entity_id": "automation.switch_andrea_accende_letto",
+    "nome": "Switch andrea accende letto ",
+    "stato": "on",
+    "ultimo_avvio": "2026-10-24T12:59:34.511313+00:00",
+    "modalita": "single"
+  },
+  {
+    "id_yaml": "1790033373990",
+    "entity_id": "automation.spengibouci",
+    "nome": "Spengi cortesia casa",
+    "stato": "on",
+    "ultimo_avvio": "2026-10-29T22:27:55.623895+00:00",
+    "modalita": "single"
+  },
+  {
+    "id_yaml": "1790034091142",
+    "entity_id": "automation.allarme_innescato_strobo_letto",
+    "nome": "Allarme innescato spia letto ",
+    "stato": "on",
+    "ultimo_avvio": "2026-10-23T15:31:33.418934+00:00",
+    "modalita": "single"
+  },
+  {
+    "id_yaml": "1790034489277",
+    "entity_id": "automation.allarme_innescato_esterno_acceso",
+    "nome": "Allarme innescato= esterno acceso ",
+    "stato": "on",
+    "ultimo_avvio": "2026-10-19T19:50:31.005528+00:00",
+    "modalita": "single"
+  },
+  {
+    "id_yaml": "1790199721494",
+    "entity_id": "automation.spegni_esterno_all_alba",
+    "nome": "Spegni esterno all' Alba ",
+    "stato": "on",
+    "ultimo_avvio": "2026-10-29T05:44:11.149129+00:00",
+    "modalita": "single"
+  },
+  {
+    "id_yaml": "1790200903746",
+    "entity_id": "automation.spia_esterno",
+    "nome": "Spia esterno - Settori",
+    "stato": "on",
+    "ultimo_avvio": "2026-10-29T03:22:49.368215+00:00",
+    "modalita": "restart"
+  },
+  {
+    "id_yaml": "1790445492572",
+    "entity_id": "automation.ingresso_apre_luce_accende",
+    "nome": "Ingresso apre, luce  accende ",
+    "stato": "on",
+    "ultimo_avvio": "2026-10-29T23:04:13.819160+00:00",
+    "modalita": "single"
+  },
+  {
+    "id_yaml": "1790704217806",
+    "entity_id": "automation.luci_parcheggio_al_tramonto",
+    "nome": "Luci parcheggio al tramonto ",
+    "stato": "off",
+    "ultimo_avvio": "2026-10-29T16:07:52.703964+00:00",
+    "modalita": "single"
+  },
+  {
+    "id_yaml": "1790791171721",
+    "entity_id": "automation.caldo_fuori_apre_velux",
+    "nome": "Caldo fuori apre velux",
+    "stato": "on",
+    "ultimo_avvio": "2026-10-16T13:06:14.894764+00:00",
+    "modalita": "single"
+  },
+  {
+    "id_yaml": "1791060890626",
+    "entity_id": "automation.allarme_casa_contatti_perimetrali",
+    "nome": "Allarme casa - Contatti perimetrali + notifica",
+    "stato": "on",
+    "ultimo_avvio": "2026-10-23T15:31:33.412401+00:00",
+    "modalita": "single"
+  },
+  {
+    "id_yaml": "1791062177257",
+    "entity_id": "automation.movimento_interno_trigger_alarm",
+    "nome": "movimento interno trigger alarm",
+    "stato": "off",
+    "ultimo_avvio": "2026-10-05T16:07:46.373418+00:00",
+    "modalita": "single"
+  },
+  {
+    "id_yaml": "1791063091106",
+    "entity_id": "automation.allarme_suona_sirena",
+    "nome": "allarme suona sirena",
+    "stato": "on",
+    "ultimo_avvio": "2026-10-23T15:31:33.420612+00:00",
+    "modalita": "single"
+  },
+  {
+    "id_yaml": "1791245855834",
+    "entity_id": "automation.finestre_aperte",
+    "nome": "finestre aperte",
+    "stato": "on",
+    "ultimo_avvio": "2026-10-23T15:31:33.417237+00:00",
+    "modalita": "single"
+  },
+  {
+    "id_yaml": "1791247502044",
+    "entity_id": "automation.disarm_double_allarm",
+    "nome": "disarm double allarm",
+    "stato": "on",
+    "ultimo_avvio": "2026-10-29T23:04:06.873889+00:00",
+    "modalita": "single"
+  },
+  {
+    "id_yaml": "1791248442045",
+    "entity_id": "automation.arma_allarme_double",
+    "nome": "Arma allarme double ",
+    "stato": "on",
+    "ultimo_avvio": "2026-10-29T21:16:24.501959+00:00",
+    "modalita": "single"
+  },
+  {
+    "id_yaml": "1791267642209",
+    "entity_id": "automation.test",
+    "nome": "Test ",
+    "stato": "off",
+    "ultimo_avvio": "2026-10-08T17:52:00.026405+00:00",
+    "modalita": "single"
+  },
+  {
+    "id_yaml": "1791284997220",
+    "entity_id": "automation.ricircolo_cisterna_pozzo",
+    "nome": "Ricircolo cisterna pozzo ",
+    "stato": "off",
+    "ultimo_avvio": "2026-10-28T09:56:48.384208+00:00",
+    "modalita": "single"
+  },
+  {
+    "id_yaml": "1791399700517",
+    "entity_id": "automation.allarme_innescato_scatta_foto",
+    "nome": "Allarme innescato scatta foto",
+    "stato": "on",
+    "ultimo_avvio": "2026-10-23T15:31:33.423287+00:00",
+    "modalita": "single"
+  },
+  {
+    "id_yaml": "1791763756703",
+    "entity_id": "automation.betatest_sirena",
+    "nome": "betatest sirena",
+    "stato": "on",
+    "ultimo_avvio": "2026-10-23T15:31:33.683611+00:00",
+    "modalita": "single"
+  },
+  {
+    "id_yaml": "1791764334194",
+    "entity_id": "automation.cortesia_da_fumo",
+    "nome": "Cortesia da fumo ",
+    "stato": "on",
+    "ultimo_avvio": "2026-10-29T00:49:45.237320+00:00",
+    "modalita": "single"
+  },
+  {
+    "id_yaml": "1791917088493",
+    "entity_id": "automation.cortesia_scale",
+    "nome": "Cortesia scale ",
+    "stato": "on",
+    "ultimo_avvio": "2026-10-29T23:02:46.303979+00:00",
+    "modalita": "single"
+  },
+  {
+    "id_yaml": "1792018444662",
+    "entity_id": "automation.ptz_loggiato",
+    "nome": "ptz loggiato",
+    "stato": "on",
+    "ultimo_avvio": "2026-10-23T21:44:48.722623+00:00",
+    "modalita": "single"
+  },
+  {
+    "id_yaml": "1792367956091",
+    "entity_id": "automation.allarme_notte_inserimento_automatico_e_controllo_aperture",
+    "nome": "Allarme notte - Inserimento automatico e controllo aperture",
+    "stato": "on",
+    "ultimo_avvio": "2026-10-29T22:23:55.623535+00:00",
+    "modalita": "single"
+  },
+  {
+    "id_yaml": "1792587906212",
+    "entity_id": "automation.growatt_allarmi_e_comunicazione_usb",
+    "nome": "Growatt - Allarmi e comunicazione USB",
+    "stato": "on",
+    "ultimo_avvio": "2026-10-25T14:37:22.899469+00:00",
+    "modalita": "queued"
+  },
+  {
+    "id_yaml": "1792712912646",
+    "entity_id": "automation.areazione_con_velux_tutti_i_giorni",
+    "nome": "areazione con velux tutti i giorni",
+    "stato": "on",
+    "ultimo_avvio": "2026-10-29T07:30:00.247597+00:00",
+    "modalita": "single"
+  },
+  {
+    "id_yaml": "1792713530771",
+    "entity_id": "automation.riempimento_cisterna_pozzo",
+    "nome": "riempimento cisterna pozzo",
+    "stato": "off",
+    "ultimo_avvio": null,
+    "modalita": "single"
+  },
+  {
+    "id_yaml": "1792713878572",
+    "entity_id": "automation.spegnimento_automatico_cloratore",
+    "nome": "spegnimento automatico cloratore",
+    "stato": "off",
+    "ultimo_avvio": "2026-10-28T11:36:12.746512+00:00",
+    "modalita": "single"
+  },
+  {
+    "id_yaml": "1792799964529",
+    "entity_id": "automation.spia_allarme_scale",
+    "nome": "Spia allarme scale",
+    "stato": "on",
+    "ultimo_avvio": "2026-10-29T23:04:06.877775+00:00",
+    "modalita": "single"
+  },
+  {
+    "id_yaml": "1792950598614",
+    "entity_id": "automation.faretto_telecamera_ingresso_accende_fari_torre_ingresso",
+    "nome": "faretto telecamera ingresso accende fari torre ingresso",
+    "stato": "on",
+    "ultimo_avvio": "2026-10-29T23:03:28.060091+00:00",
+    "modalita": "single"
+  },
+  {
+    "id_yaml": "1793146592865",
+    "entity_id": "automation.sensibilita_telecamera_ridotta",
+    "nome": "Sensibilità telecamera ridotta ",
+    "stato": "off",
+    "ultimo_avvio": "2026-10-29T19:19:07.007346+00:00",
+    "modalita": "queued"
+  },
+  {
+    "id_yaml": "1793232841766",
+    "entity_id": "automation.spegnimenti_riempimento_cisterna_pozzo",
+    "nome": "Spegnimenti riempimento cisterna pozzo ",
+    "stato": "off",
+    "ultimo_avvio": null,
+    "modalita": "single"
+  },
+  {
+    "id_yaml": "1793233273343",
+    "entity_id": "automation.riempimento_cisterna_potabile",
+    "nome": "Riempimento cisterna potabile ",
+    "stato": "off",
+    "ultimo_avvio": null,
+    "modalita": "single"
+  },
+  {
+    "id_yaml": "1793233466802",
+    "entity_id": "automation.spegni_riempimento_potabile",
+    "nome": "Spegni riempimento potabile ",
+    "stato": "off",
+    "ultimo_avvio": null,
+    "modalita": "single"
+  },
+  {
+    "id_yaml": "filtrazione_v2_heartbeat",
+    "entity_id": "automation.filtrazione_v2_presenza_ha",
+    "nome": "Filtrazione v2 - Presenza HA",
+    "stato": "on",
+    "ultimo_avvio": "2026-10-29T23:07:20.237110+00:00",
+    "modalita": "single"
+  },
+  {
+    "id_yaml": "filtrazione_v2_regia_automatica",
+    "entity_id": "automation.filtrazione_v2_regia_automatica_cisterne",
+    "nome": "Filtrazione v2 - Regia automatica cisterne",
+    "stato": "on",
+    "ultimo_avvio": "2026-10-29T23:07:15.880482+00:00",
+    "modalita": "single"
+  },
+  {
+    "id_yaml": "filtrazione_v2_stop_supervisione",
+    "entity_id": "automation.filtrazione_v2_rilascio_supervisione",
+    "nome": "Filtrazione v2 - Rilascio supervisione",
+    "stato": "on",
+    "ultimo_avvio": "2026-10-29T17:41:59.079467+00:00",
+    "modalita": "single"
+  },
+  {
+    "id_yaml": "fotocellula_cancello_giardino_v1",
+    "entity_id": "automation.fotocellula_cancello_giardino_2_minuti",
+    "nome": "Fotocellula - Cancello → Giardino - 2 minuti",
+    "stato": "on",
+    "ultimo_avvio": "2026-10-29T23:06:21.534332+00:00",
+    "modalita": "queued"
+  },
+  {
+    "id_yaml": "fotocellula_ingresso_torre_v1",
+    "entity_id": "automation.fotocellula_ingresso_torre_ingresso_2_minuti",
+    "nome": "Fotocellula - Ingresso → Torre ingresso - 2 minuti",
+    "stato": "off",
+    "ultimo_avvio": "2026-10-29T20:51:31.479881+00:00",
+    "modalita": "queued"
+  },
+  {
+    "id_yaml": "fotocellula_orto_torre_v1",
+    "entity_id": "automation.fotocellula_orto_torre_orto_2_minuti",
+    "nome": "Fotocellula - Orto → Torre Orto - 2 minuti",
+    "stato": "on",
+    "ultimo_avvio": "2026-10-29T23:04:06.907564+00:00",
+    "modalita": "queued"
+  },
+  {
+    "id_yaml": "fotocellula_piscine_capanno_v1",
+    "entity_id": "automation.fotocellula_piscine_capanno_2_minuti",
+    "nome": "Fotocellula - Piscine → Capanno - 2 minuti",
+    "stato": "on",
+    "ultimo_avvio": "2026-10-29T23:04:06.906863+00:00",
+    "modalita": "queued"
+  },
+  {
+    "id_yaml": "pr205_diag_fine_controlavaggio_20261025",
+    "entity_id": "automation.pr205_diag_fine_finestra_controlavaggio",
+    "nome": "PR205 DIAG - Fine finestra controlavaggio",
+    "stato": "on",
+    "ultimo_avvio": "2026-10-29T09:01:00.443625+00:00",
+    "modalita": "single"
+  },
+  {
+    "id_yaml": "pr205_diag_inizio_controlavaggio_20261025",
+    "entity_id": "automation.pr205_diag_inizio_controlavaggio_multi_stadio",
+    "nome": "PR205 DIAG - Inizio controlavaggio multi-stadio",
+    "stato": "on",
+    "ultimo_avvio": "2026-10-29T08:00:28.444598+00:00",
+    "modalita": "single"
+  },
+  {
+    "id_yaml": "pr205_diag_memoria_chiusura_q2_20261025",
+    "entity_id": "automation.pr205_diag_memoria_chiusura_q2_per_q3",
+    "nome": "PR205 DIAG - Memoria chiusura Q2 per Q3",
+    "stato": "on",
+    "ultimo_avvio": "2026-10-29T11:53:40.885866+00:00",
+    "modalita": "single"
+  },
+  {
+    "id_yaml": "programma_luci_esterno_casuale_v1",
+    "entity_id": "automation.luci_esterno_programma_notturno_e_coppie_casuali",
+    "nome": "Luci esterno - Programma notturno e coppie casuali",
+    "stato": "on",
+    "ultimo_avvio": "2026-10-29T23:07:00.081944+00:00",
+    "modalita": "single"
+  },
+  {
+    "id_yaml": "telecamere_sensibilita_adattiva_v1",
+    "entity_id": "automation.telecamere_sensibilita_adattiva_e_profili_giorno_notte",
+    "nome": "Telecamere - Sensibilità adattiva e profili giorno notte",
+    "stato": "on",
+    "ultimo_avvio": "2026-10-29T23:06:50.596063+00:00",
+    "modalita": "queued"
+  }
+]
