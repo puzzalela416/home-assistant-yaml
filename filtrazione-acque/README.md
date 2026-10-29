@@ -36,3 +36,7 @@ Richieste native: potabile <30 cm e pozzo <60 cm per 50 secondi. Emergenze 20/50
 Plancia verificata nel browser: due livelli animati, nessuna scheda in errore, nessun errore JavaScript. Nessun comando di avvio impianto inviato durante la pubblicazione. Il progetto è stato caricato dall’utente e il protocollo 2 è stato letto dalla PLC. Restano da completare il collaudo idraulico, la strategia fotovoltaico/consumi e il ruolo DAB: non sono già implementati dal tasto supervisione.
 
 I due backup completi dell’intervento `PRIMA.zip` e `DOPO.zip` restano sul dispositivo in `/home/dedroid/ottimizzazione-automazioni-ha/backup-corrente/`.
+
+## Cambio ora dei timer filtri
+
+[Correzione verificata e calendario stagionale](docs/CORREZIONE-ORA-SOLARE.md): filtro 2 alle 09:00 in inverno/10:00 in estate, filtro 3 alle 13:00/14:00. Riconoscimento e allarmi seguono il riferimento UTC+02 fisso dei timer; nessun aggiustamento manuale stagionale richiesto in HA.
