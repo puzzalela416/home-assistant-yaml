@@ -1,0 +1,215 @@
+- id: '1791284997220'
+  alias: 'Ricircolo cisterna pozzo '
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - binary_sensor.q3_ricircolo
+    from:
+    - 'on'
+    to:
+    - 'off'
+  conditions:
+  - condition: time
+    after: '10:00:00'
+    before: '15:00:00'
+  - condition: numeric_state
+    entity_id: sensor.livello_pozzo_plc
+    above: 157
+  actions:
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 3
+      milliseconds: 0
+  - action: switch.turn_on
+    metadata: {}
+    data: {}
+    target:
+      entity_id: switch.plc_ha_manuale
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 1
+      milliseconds: 0
+  - action: switch.turn_on
+    metadata: {}
+    target:
+      entity_id: switch.plc_ha_q3_ricircolo
+    data: {}
+  - delay:
+      hours: 4
+      minutes: 0
+      seconds: 0
+      milliseconds: 0
+  - action: switch.turn_off
+    metadata: {}
+    target:
+      entity_id:
+      - switch.plc_ha_q3_ricircolo
+      - switch.plc_ha_manuale
+    data: {}
+  mode: single
+  initial_state: false
+- id: '1792713530771'
+  alias: riempimento cisterna pozzo
+  description: ''
+  triggers:
+  - trigger: numeric_state
+    entity_id:
+    - sensor.livello_pozzo_plc
+    below: 72
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 20
+  conditions:
+  - condition: time
+    after: '10:00:00'
+    before: '16:00:00'
+  - condition: state
+    entity_id: binary_sensor.q1_potabile
+    state:
+    - 'off'
+  - condition: state
+    entity_id: binary_sensor.q2_pozzo
+    state:
+    - 'off'
+  actions:
+  - action: switch.turn_on
+    metadata: {}
+    target:
+      entity_id: switch.plc_ha_manuale
+    data: {}
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 1
+      milliseconds: 0
+  - action: switch.turn_on
+    metadata: {}
+    target:
+      entity_id:
+      - switch.plc_ha_q2_pozzo
+      - switch.plc_ha_q3_ricircolo
+      - switch.plc_ha_q4_cloratore
+    data: {}
+  mode: single
+  initial_state: false
+- id: '1792713878572'
+  alias: spegnimento automatico cloratore
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - binary_sensor.q2_pozzo
+    from:
+    - 'on'
+    to:
+    - 'off'
+  conditions: []
+  actions:
+  - action: switch.turn_off
+    metadata: {}
+    target:
+      entity_id:
+      - switch.plc_ha_manuale
+      - switch.plc_ha_q4_cloratore
+    data: {}
+  mode: single
+  initial_state: false
+- id: '1793232841766'
+  alias: 'Spegnimenti riempimento cisterna pozzo '
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - automation.riempimento_cisterna_pozzo
+    from:
+    - 'on'
+  conditions:
+  - condition: numeric_state
+    entity_id: sensor.livello_pozzo_plc
+    above: 158
+    below: 160
+  - condition: switch.is_on
+    target:
+      entity_id: switch.plc_ha_manuale
+    options:
+      behavior: any
+      for: 00:00:00
+  actions:
+  - action: switch.turn_off
+    metadata: {}
+    target:
+      entity_id:
+      - switch.plc_ha_q4_cloratore
+      - switch.plc_ha_q2_pozzo
+    data: {}
+  - delay:
+      hours: 4
+      minutes: 0
+      seconds: 0
+      milliseconds: 0
+  - action: switch.turn_off
+    metadata: {}
+    target:
+      entity_id:
+      - switch.plc_ha_q3_ricircolo
+      - switch.plc_ha_manuale
+    data: {}
+  mode: single
+  initial_state: false
+- id: '1793233273343'
+  alias: 'Riempimento cisterna potabile '
+  description: ''
+  triggers:
+  - trigger: numeric_state
+    entity_id:
+    - sensor.livello_potabile_plc
+    below: 42
+  conditions:
+  - condition: state
+    entity_id: binary_sensor.q2_pozzo
+    state:
+    - 'off'
+  - condition: time
+    after: '10:00:00'
+    before: '16:00:00'
+  actions:
+  - action: switch.turn_on
+    metadata: {}
+    target:
+      entity_id: switch.plc_ha_manuale
+    data: {}
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 1
+      milliseconds: 0
+  - action: switch.turn_on
+    metadata: {}
+    target:
+      entity_id: switch.plc_ha_q1_potabile
+    data: {}
+  mode: single
+  initial_state: false
+- id: '1793233466802'
+  alias: 'Spegni riempimento potabile '
+  description: ''
+  triggers:
+  - trigger: numeric_state
+    entity_id:
+    - sensor.livello_potabile_plc
+    above: 111
+  conditions: []
+  actions:
+  - action: switch.turn_off
+    metadata: {}
+    target:
+      entity_id:
+      - switch.plc_ha_q1_potabile
+      - switch.plc_ha_manuale
+    data: {}
+  mode: single
+  initial_state: false
