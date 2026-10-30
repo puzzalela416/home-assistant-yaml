@@ -1,0 +1,49 @@
+[
+  [
+    "Cancello",
+    "switch.100253f87b_power",
+    "mdi:gate"
+  ],
+  [
+    "Giardino",
+    "switch.1000111b06_power",
+    "mdi:outdoor-lamp"
+  ],
+  [
+    "Parcheggio",
+    "switch.10001119b3_power",
+    "mdi:parking"
+  ],
+  [
+    "Torre ingresso",
+    "switch.100184e599_power",
+    "mdi:light-flood-down"
+  ],
+  [
+    "Torre orto",
+    "switch.1002963641_power",
+    "mdi:light-flood-down"
+  ],
+  [
+    "Ciabatta volante",
+    "switch.100185132f_power",
+    "mdi:power-socket-eu"
+  ],
+  [
+    "Capanno",
+    "switch.100184e742_power",
+    "mdi:home-roof"
+  ],
+  [
+    "Faretto Tracking",
+    "light.tracking_faretto"
+  ],
+  [
+    "Faretto Ingresso",
+    "light.esterno_ingresso_faretto"
+  ],
+  [
+    "Faretto Piazzale",
+    "light.piazzale_faretto"
+  ]
+]

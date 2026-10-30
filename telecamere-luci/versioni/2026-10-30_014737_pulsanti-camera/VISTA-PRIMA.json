@@ -1,0 +1,1356 @@
+{
+  "title": "Controllo Telecamere",
+  "path": "controllo-telecamere",
+  "icon": "mdi:cctv",
+  "type": "sections",
+  "max_columns": 4,
+  "dense_section_placement": true,
+  "sections": [
+    {
+      "type": "grid",
+      "cards": [
+        {
+          "type": "picture-entity",
+          "entity": "camera.cancello_bilanciato",
+          "camera_view": "live",
+          "show_name": false,
+          "show_state": false,
+          "fit_mode": "cover",
+          "aspect_ratio": "16:9",
+          "tap_action": {
+            "action": "none"
+          },
+          "hold_action": {
+            "action": "none"
+          },
+          "grid_options": {
+            "columns": 12,
+            "rows": "auto"
+          }
+        }
+      ]
+    },
+    {
+      "type": "grid",
+      "cards": [
+        {
+          "type": "picture-entity",
+          "entity": "camera.tracking_scorrevole",
+          "camera_view": "live",
+          "show_name": false,
+          "show_state": false,
+          "fit_mode": "cover",
+          "aspect_ratio": "16:9",
+          "tap_action": {
+            "action": "none"
+          },
+          "hold_action": {
+            "action": "none"
+          },
+          "grid_options": {
+            "columns": 12,
+            "rows": "auto"
+          }
+        },
+        {
+          "type": "grid",
+          "columns": 3,
+          "square": false,
+          "cards": [
+            {
+              "type": "custom:button-card",
+              "color_type": "blank-card",
+              "styles": {
+                "card": [
+                  {
+                    "height": "38px"
+                  },
+                  {
+                    "padding": "0px"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "custom:button-card",
+              "entity": "button.tracking_ptz_su",
+              "name": "tracking su",
+              "icon": "mdi:chevron-up",
+              "show_name": false,
+              "show_state": false,
+              "styles": {
+                "card": [
+                  {
+                    "height": "38px"
+                  },
+                  {
+                    "padding": "4px"
+                  },
+                  {
+                    "border-radius": "10px"
+                  },
+                  {
+                    "touch-action": "none"
+                  },
+                  {
+                    "user-select": "none"
+                  }
+                ],
+                "icon": [
+                  {
+                    "width": "24px"
+                  }
+                ]
+              },
+              "tap_action": {
+                "action": "none"
+              },
+              "hold_action": {
+                "action": "none"
+              },
+              "double_tap_action": {
+                "action": "none"
+              },
+              "press_action": {
+                "action": "call-service",
+                "service": "script.turn_on",
+                "service_data": {
+                  "entity_id": "script.cc_ptz_tracking_movimento",
+                  "variables": {
+                    "direzione": "su"
+                  }
+                }
+              },
+              "release_action": {
+                "action": "call-service",
+                "service": "script.cc_ptz_tracking_stop"
+              }
+            },
+            {
+              "type": "custom:button-card",
+              "color_type": "blank-card",
+              "styles": {
+                "card": [
+                  {
+                    "height": "38px"
+                  },
+                  {
+                    "padding": "0px"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "custom:button-card",
+              "entity": "button.tracking_ptz_sinistra",
+              "name": "tracking sinistra",
+              "icon": "mdi:chevron-left",
+              "show_name": false,
+              "show_state": false,
+              "styles": {
+                "card": [
+                  {
+                    "height": "38px"
+                  },
+                  {
+                    "padding": "4px"
+                  },
+                  {
+                    "border-radius": "10px"
+                  },
+                  {
+                    "touch-action": "none"
+                  },
+                  {
+                    "user-select": "none"
+                  }
+                ],
+                "icon": [
+                  {
+                    "width": "24px"
+                  }
+                ]
+              },
+              "tap_action": {
+                "action": "none"
+              },
+              "hold_action": {
+                "action": "none"
+              },
+              "double_tap_action": {
+                "action": "none"
+              },
+              "press_action": {
+                "action": "call-service",
+                "service": "script.turn_on",
+                "service_data": {
+                  "entity_id": "script.cc_ptz_tracking_movimento",
+                  "variables": {
+                    "direzione": "sinistra"
+                  }
+                }
+              },
+              "release_action": {
+                "action": "call-service",
+                "service": "script.cc_ptz_tracking_stop"
+              }
+            },
+            {
+              "type": "custom:button-card",
+              "entity": "button.tracking_ptz_arresto",
+              "name": "tracking STOP",
+              "icon": "mdi:stop",
+              "show_name": false,
+              "show_state": false,
+              "styles": {
+                "card": [
+                  {
+                    "height": "38px"
+                  },
+                  {
+                    "padding": "4px"
+                  },
+                  {
+                    "border-radius": "10px"
+                  },
+                  {
+                    "touch-action": "none"
+                  },
+                  {
+                    "user-select": "none"
+                  }
+                ],
+                "icon": [
+                  {
+                    "width": "24px"
+                  }
+                ]
+              },
+              "tap_action": {
+                "action": "call-service",
+                "service": "script.cc_ptz_tracking_stop"
+              },
+              "hold_action": {
+                "action": "call-service",
+                "service": "script.cc_ptz_tracking_stop"
+              },
+              "double_tap_action": {
+                "action": "none"
+              }
+            },
+            {
+              "type": "custom:button-card",
+              "entity": "button.tracking_ptz_destra",
+              "name": "tracking destra",
+              "icon": "mdi:chevron-right",
+              "show_name": false,
+              "show_state": false,
+              "styles": {
+                "card": [
+                  {
+                    "height": "38px"
+                  },
+                  {
+                    "padding": "4px"
+                  },
+                  {
+                    "border-radius": "10px"
+                  },
+                  {
+                    "touch-action": "none"
+                  },
+                  {
+                    "user-select": "none"
+                  }
+                ],
+                "icon": [
+                  {
+                    "width": "24px"
+                  }
+                ]
+              },
+              "tap_action": {
+                "action": "none"
+              },
+              "hold_action": {
+                "action": "none"
+              },
+              "double_tap_action": {
+                "action": "none"
+              },
+              "press_action": {
+                "action": "call-service",
+                "service": "script.turn_on",
+                "service_data": {
+                  "entity_id": "script.cc_ptz_tracking_movimento",
+                  "variables": {
+                    "direzione": "destra"
+                  }
+                }
+              },
+              "release_action": {
+                "action": "call-service",
+                "service": "script.cc_ptz_tracking_stop"
+              }
+            },
+            {
+              "type": "custom:button-card",
+              "color_type": "blank-card",
+              "styles": {
+                "card": [
+                  {
+                    "height": "38px"
+                  },
+                  {
+                    "padding": "0px"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "custom:button-card",
+              "entity": "button.tracking_ptz_giu",
+              "name": "tracking giu",
+              "icon": "mdi:chevron-down",
+              "show_name": false,
+              "show_state": false,
+              "styles": {
+                "card": [
+                  {
+                    "height": "38px"
+                  },
+                  {
+                    "padding": "4px"
+                  },
+                  {
+                    "border-radius": "10px"
+                  },
+                  {
+                    "touch-action": "none"
+                  },
+                  {
+                    "user-select": "none"
+                  }
+                ],
+                "icon": [
+                  {
+                    "width": "24px"
+                  }
+                ]
+              },
+              "tap_action": {
+                "action": "none"
+              },
+              "hold_action": {
+                "action": "none"
+              },
+              "double_tap_action": {
+                "action": "none"
+              },
+              "press_action": {
+                "action": "call-service",
+                "service": "script.turn_on",
+                "service_data": {
+                  "entity_id": "script.cc_ptz_tracking_movimento",
+                  "variables": {
+                    "direzione": "giu"
+                  }
+                }
+              },
+              "release_action": {
+                "action": "call-service",
+                "service": "script.cc_ptz_tracking_stop"
+              }
+            },
+            {
+              "type": "custom:button-card",
+              "color_type": "blank-card",
+              "styles": {
+                "card": [
+                  {
+                    "height": "38px"
+                  },
+                  {
+                    "padding": "0px"
+                  }
+                ]
+              }
+            }
+          ],
+          "grid_options": {
+            "columns": 12,
+            "rows": "auto"
+          }
+        },
+        {
+          "type": "entities",
+          "show_header_toggle": false,
+          "entities": [
+            {
+              "entity": "select.tracking_preimpostazione_ptz",
+              "name": "Posizione"
+            }
+          ],
+          "grid_options": {
+            "columns": 12,
+            "rows": "auto"
+          }
+        }
+      ]
+    },
+    {
+      "type": "grid",
+      "cards": [
+        {
+          "type": "picture-entity",
+          "entity": "camera.piazzale_lente_scorrevole_0",
+          "camera_view": "live",
+          "show_name": false,
+          "show_state": false,
+          "fit_mode": "cover",
+          "aspect_ratio": "16:9",
+          "tap_action": {
+            "action": "none"
+          },
+          "hold_action": {
+            "action": "none"
+          },
+          "grid_options": {
+            "columns": 12,
+            "rows": "auto"
+          }
+        },
+        {
+          "type": "grid",
+          "columns": 3,
+          "square": false,
+          "cards": [
+            {
+              "type": "custom:button-card",
+              "color_type": "blank-card",
+              "styles": {
+                "card": [
+                  {
+                    "height": "38px"
+                  },
+                  {
+                    "padding": "0px"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "custom:button-card",
+              "entity": "button.piazzale_ptz_su",
+              "name": "piazzale su",
+              "icon": "mdi:chevron-up",
+              "show_name": false,
+              "show_state": false,
+              "styles": {
+                "card": [
+                  {
+                    "height": "38px"
+                  },
+                  {
+                    "padding": "4px"
+                  },
+                  {
+                    "border-radius": "10px"
+                  },
+                  {
+                    "touch-action": "none"
+                  },
+                  {
+                    "user-select": "none"
+                  }
+                ],
+                "icon": [
+                  {
+                    "width": "24px"
+                  }
+                ]
+              },
+              "tap_action": {
+                "action": "none"
+              },
+              "hold_action": {
+                "action": "none"
+              },
+              "double_tap_action": {
+                "action": "none"
+              },
+              "press_action": {
+                "action": "call-service",
+                "service": "script.turn_on",
+                "service_data": {
+                  "entity_id": "script.cc_ptz_piazzale_movimento",
+                  "variables": {
+                    "direzione": "su"
+                  }
+                }
+              },
+              "release_action": {
+                "action": "call-service",
+                "service": "script.cc_ptz_piazzale_stop"
+              }
+            },
+            {
+              "type": "custom:button-card",
+              "color_type": "blank-card",
+              "styles": {
+                "card": [
+                  {
+                    "height": "38px"
+                  },
+                  {
+                    "padding": "0px"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "custom:button-card",
+              "entity": "button.piazzale_ptz_sinistra",
+              "name": "piazzale sinistra",
+              "icon": "mdi:chevron-left",
+              "show_name": false,
+              "show_state": false,
+              "styles": {
+                "card": [
+                  {
+                    "height": "38px"
+                  },
+                  {
+                    "padding": "4px"
+                  },
+                  {
+                    "border-radius": "10px"
+                  },
+                  {
+                    "touch-action": "none"
+                  },
+                  {
+                    "user-select": "none"
+                  }
+                ],
+                "icon": [
+                  {
+                    "width": "24px"
+                  }
+                ]
+              },
+              "tap_action": {
+                "action": "none"
+              },
+              "hold_action": {
+                "action": "none"
+              },
+              "double_tap_action": {
+                "action": "none"
+              },
+              "press_action": {
+                "action": "call-service",
+                "service": "script.turn_on",
+                "service_data": {
+                  "entity_id": "script.cc_ptz_piazzale_movimento",
+                  "variables": {
+                    "direzione": "sinistra"
+                  }
+                }
+              },
+              "release_action": {
+                "action": "call-service",
+                "service": "script.cc_ptz_piazzale_stop"
+              }
+            },
+            {
+              "type": "custom:button-card",
+              "entity": "button.piazzale_ptz_arresto",
+              "name": "piazzale STOP",
+              "icon": "mdi:stop",
+              "show_name": false,
+              "show_state": false,
+              "styles": {
+                "card": [
+                  {
+                    "height": "38px"
+                  },
+                  {
+                    "padding": "4px"
+                  },
+                  {
+                    "border-radius": "10px"
+                  },
+                  {
+                    "touch-action": "none"
+                  },
+                  {
+                    "user-select": "none"
+                  }
+                ],
+                "icon": [
+                  {
+                    "width": "24px"
+                  }
+                ]
+              },
+              "tap_action": {
+                "action": "call-service",
+                "service": "script.cc_ptz_piazzale_stop"
+              },
+              "hold_action": {
+                "action": "call-service",
+                "service": "script.cc_ptz_piazzale_stop"
+              },
+              "double_tap_action": {
+                "action": "none"
+              }
+            },
+            {
+              "type": "custom:button-card",
+              "entity": "button.piazzale_ptz_destra",
+              "name": "piazzale destra",
+              "icon": "mdi:chevron-right",
+              "show_name": false,
+              "show_state": false,
+              "styles": {
+                "card": [
+                  {
+                    "height": "38px"
+                  },
+                  {
+                    "padding": "4px"
+                  },
+                  {
+                    "border-radius": "10px"
+                  },
+                  {
+                    "touch-action": "none"
+                  },
+                  {
+                    "user-select": "none"
+                  }
+                ],
+                "icon": [
+                  {
+                    "width": "24px"
+                  }
+                ]
+              },
+              "tap_action": {
+                "action": "none"
+              },
+              "hold_action": {
+                "action": "none"
+              },
+              "double_tap_action": {
+                "action": "none"
+              },
+              "press_action": {
+                "action": "call-service",
+                "service": "script.turn_on",
+                "service_data": {
+                  "entity_id": "script.cc_ptz_piazzale_movimento",
+                  "variables": {
+                    "direzione": "destra"
+                  }
+                }
+              },
+              "release_action": {
+                "action": "call-service",
+                "service": "script.cc_ptz_piazzale_stop"
+              }
+            },
+            {
+              "type": "custom:button-card",
+              "color_type": "blank-card",
+              "styles": {
+                "card": [
+                  {
+                    "height": "38px"
+                  },
+                  {
+                    "padding": "0px"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "custom:button-card",
+              "entity": "button.piazzale_ptz_giu",
+              "name": "piazzale giu",
+              "icon": "mdi:chevron-down",
+              "show_name": false,
+              "show_state": false,
+              "styles": {
+                "card": [
+                  {
+                    "height": "38px"
+                  },
+                  {
+                    "padding": "4px"
+                  },
+                  {
+                    "border-radius": "10px"
+                  },
+                  {
+                    "touch-action": "none"
+                  },
+                  {
+                    "user-select": "none"
+                  }
+                ],
+                "icon": [
+                  {
+                    "width": "24px"
+                  }
+                ]
+              },
+              "tap_action": {
+                "action": "none"
+              },
+              "hold_action": {
+                "action": "none"
+              },
+              "double_tap_action": {
+                "action": "none"
+              },
+              "press_action": {
+                "action": "call-service",
+                "service": "script.turn_on",
+                "service_data": {
+                  "entity_id": "script.cc_ptz_piazzale_movimento",
+                  "variables": {
+                    "direzione": "giu"
+                  }
+                }
+              },
+              "release_action": {
+                "action": "call-service",
+                "service": "script.cc_ptz_piazzale_stop"
+              }
+            },
+            {
+              "type": "custom:button-card",
+              "color_type": "blank-card",
+              "styles": {
+                "card": [
+                  {
+                    "height": "38px"
+                  },
+                  {
+                    "padding": "0px"
+                  }
+                ]
+              }
+            }
+          ],
+          "grid_options": {
+            "columns": 12,
+            "rows": "auto"
+          }
+        },
+        {
+          "type": "entities",
+          "show_header_toggle": false,
+          "entities": [
+            {
+              "entity": "select.piazzale_preimpostazione_ptz",
+              "name": "Posizione"
+            }
+          ],
+          "grid_options": {
+            "columns": 12,
+            "rows": "auto"
+          }
+        }
+      ]
+    },
+    {
+      "type": "grid",
+      "cards": [
+        {
+          "type": "picture-entity",
+          "entity": "camera.esterno_ingresso_scorrevole",
+          "camera_view": "live",
+          "show_name": false,
+          "show_state": false,
+          "fit_mode": "cover",
+          "aspect_ratio": "16:9",
+          "tap_action": {
+            "action": "none"
+          },
+          "hold_action": {
+            "action": "none"
+          },
+          "grid_options": {
+            "columns": 12,
+            "rows": "auto"
+          }
+        }
+      ]
+    },
+    {
+      "type": "grid",
+      "cards": [
+        {
+          "type": "picture-entity",
+          "entity": "camera.cucina_scorrevole",
+          "camera_view": "live",
+          "show_name": false,
+          "show_state": false,
+          "fit_mode": "cover",
+          "aspect_ratio": "16:9",
+          "tap_action": {
+            "action": "none"
+          },
+          "hold_action": {
+            "action": "none"
+          },
+          "grid_options": {
+            "columns": 12,
+            "rows": "auto"
+          }
+        }
+      ]
+    },
+    {
+      "type": "grid",
+      "cards": [
+        {
+          "type": "picture-entity",
+          "entity": "camera.loggiato_scorrevole",
+          "camera_view": "live",
+          "show_name": false,
+          "show_state": false,
+          "fit_mode": "cover",
+          "aspect_ratio": "16:9",
+          "tap_action": {
+            "action": "none"
+          },
+          "hold_action": {
+            "action": "none"
+          },
+          "grid_options": {
+            "columns": 12,
+            "rows": "auto"
+          }
+        }
+      ]
+    },
+    {
+      "type": "grid",
+      "cards": [
+        {
+          "type": "picture-entity",
+          "entity": "camera.auto",
+          "camera_view": "live",
+          "show_name": false,
+          "show_state": false,
+          "fit_mode": "cover",
+          "aspect_ratio": "16:9",
+          "tap_action": {
+            "action": "none"
+          },
+          "hold_action": {
+            "action": "none"
+          },
+          "grid_options": {
+            "columns": 12,
+            "rows": "auto"
+          }
+        }
+      ]
+    },
+    {
+      "type": "grid",
+      "cards": [
+        {
+          "type": "picture-entity",
+          "entity": "camera.piscine_scorrevole",
+          "camera_view": "live",
+          "show_name": false,
+          "show_state": false,
+          "fit_mode": "cover",
+          "aspect_ratio": "16:9",
+          "tap_action": {
+            "action": "none"
+          },
+          "hold_action": {
+            "action": "none"
+          },
+          "grid_options": {
+            "columns": 12,
+            "rows": "auto"
+          }
+        }
+      ]
+    },
+    {
+      "type": "grid",
+      "cards": [
+        {
+          "type": "picture-entity",
+          "entity": "camera.piscina_orto_scorrevole",
+          "camera_view": "live",
+          "show_name": false,
+          "show_state": false,
+          "fit_mode": "cover",
+          "aspect_ratio": "16:9",
+          "tap_action": {
+            "action": "none"
+          },
+          "hold_action": {
+            "action": "none"
+          },
+          "grid_options": {
+            "columns": 12,
+            "rows": "auto"
+          }
+        }
+      ]
+    },
+    {
+      "type": "grid",
+      "cards": [
+        {
+          "type": "picture-entity",
+          "entity": "camera.parco_scorrevole",
+          "camera_view": "live",
+          "show_name": false,
+          "show_state": false,
+          "fit_mode": "cover",
+          "aspect_ratio": "16:9",
+          "tap_action": {
+            "action": "none"
+          },
+          "hold_action": {
+            "action": "none"
+          },
+          "grid_options": {
+            "columns": 12,
+            "rows": "auto"
+          }
+        }
+      ]
+    },
+    {
+      "type": "grid",
+      "cards": [
+        {
+          "type": "picture-entity",
+          "entity": "camera.sala",
+          "camera_view": "live",
+          "show_name": false,
+          "show_state": false,
+          "fit_mode": "cover",
+          "aspect_ratio": "16:9",
+          "tap_action": {
+            "action": "none"
+          },
+          "hold_action": {
+            "action": "none"
+          },
+          "grid_options": {
+            "columns": 12,
+            "rows": "auto"
+          }
+        },
+        {
+          "type": "grid",
+          "columns": 3,
+          "square": false,
+          "cards": [
+            {
+              "type": "custom:button-card",
+              "color_type": "blank-card",
+              "styles": {
+                "card": [
+                  {
+                    "height": "38px"
+                  },
+                  {
+                    "padding": "0px"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "custom:button-card",
+              "entity": "button.sala_ptz_su",
+              "name": "sala su",
+              "icon": "mdi:chevron-up",
+              "show_name": false,
+              "show_state": false,
+              "styles": {
+                "card": [
+                  {
+                    "height": "38px"
+                  },
+                  {
+                    "padding": "4px"
+                  },
+                  {
+                    "border-radius": "10px"
+                  },
+                  {
+                    "touch-action": "none"
+                  },
+                  {
+                    "user-select": "none"
+                  }
+                ],
+                "icon": [
+                  {
+                    "width": "24px"
+                  }
+                ]
+              },
+              "tap_action": {
+                "action": "none"
+              },
+              "hold_action": {
+                "action": "none"
+              },
+              "double_tap_action": {
+                "action": "none"
+              },
+              "press_action": {
+                "action": "call-service",
+                "service": "script.turn_on",
+                "service_data": {
+                  "entity_id": "script.cc_ptz_sala_movimento",
+                  "variables": {
+                    "direzione": "su"
+                  }
+                }
+              },
+              "release_action": {
+                "action": "call-service",
+                "service": "script.cc_ptz_sala_stop"
+              }
+            },
+            {
+              "type": "custom:button-card",
+              "color_type": "blank-card",
+              "styles": {
+                "card": [
+                  {
+                    "height": "38px"
+                  },
+                  {
+                    "padding": "0px"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "custom:button-card",
+              "entity": "button.sala_ptz_sinistra",
+              "name": "sala sinistra",
+              "icon": "mdi:chevron-left",
+              "show_name": false,
+              "show_state": false,
+              "styles": {
+                "card": [
+                  {
+                    "height": "38px"
+                  },
+                  {
+                    "padding": "4px"
+                  },
+                  {
+                    "border-radius": "10px"
+                  },
+                  {
+                    "touch-action": "none"
+                  },
+                  {
+                    "user-select": "none"
+                  }
+                ],
+                "icon": [
+                  {
+                    "width": "24px"
+                  }
+                ]
+              },
+              "tap_action": {
+                "action": "none"
+              },
+              "hold_action": {
+                "action": "none"
+              },
+              "double_tap_action": {
+                "action": "none"
+              },
+              "press_action": {
+                "action": "call-service",
+                "service": "script.turn_on",
+                "service_data": {
+                  "entity_id": "script.cc_ptz_sala_movimento",
+                  "variables": {
+                    "direzione": "sinistra"
+                  }
+                }
+              },
+              "release_action": {
+                "action": "call-service",
+                "service": "script.cc_ptz_sala_stop"
+              }
+            },
+            {
+              "type": "custom:button-card",
+              "entity": "button.sala_ptz_arresto",
+              "name": "sala STOP",
+              "icon": "mdi:stop",
+              "show_name": false,
+              "show_state": false,
+              "styles": {
+                "card": [
+                  {
+                    "height": "38px"
+                  },
+                  {
+                    "padding": "4px"
+                  },
+                  {
+                    "border-radius": "10px"
+                  },
+                  {
+                    "touch-action": "none"
+                  },
+                  {
+                    "user-select": "none"
+                  }
+                ],
+                "icon": [
+                  {
+                    "width": "24px"
+                  }
+                ]
+              },
+              "tap_action": {
+                "action": "call-service",
+                "service": "script.cc_ptz_sala_stop"
+              },
+              "hold_action": {
+                "action": "call-service",
+                "service": "script.cc_ptz_sala_stop"
+              },
+              "double_tap_action": {
+                "action": "none"
+              }
+            },
+            {
+              "type": "custom:button-card",
+              "entity": "button.sala_ptz_destra",
+              "name": "sala destra",
+              "icon": "mdi:chevron-right",
+              "show_name": false,
+              "show_state": false,
+              "styles": {
+                "card": [
+                  {
+                    "height": "38px"
+                  },
+                  {
+                    "padding": "4px"
+                  },
+                  {
+                    "border-radius": "10px"
+                  },
+                  {
+                    "touch-action": "none"
+                  },
+                  {
+                    "user-select": "none"
+                  }
+                ],
+                "icon": [
+                  {
+                    "width": "24px"
+                  }
+                ]
+              },
+              "tap_action": {
+                "action": "none"
+              },
+              "hold_action": {
+                "action": "none"
+              },
+              "double_tap_action": {
+                "action": "none"
+              },
+              "press_action": {
+                "action": "call-service",
+                "service": "script.turn_on",
+                "service_data": {
+                  "entity_id": "script.cc_ptz_sala_movimento",
+                  "variables": {
+                    "direzione": "destra"
+                  }
+                }
+              },
+              "release_action": {
+                "action": "call-service",
+                "service": "script.cc_ptz_sala_stop"
+              }
+            },
+            {
+              "type": "custom:button-card",
+              "color_type": "blank-card",
+              "styles": {
+                "card": [
+                  {
+                    "height": "38px"
+                  },
+                  {
+                    "padding": "0px"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "custom:button-card",
+              "entity": "button.sala_ptz_giu",
+              "name": "sala giu",
+              "icon": "mdi:chevron-down",
+              "show_name": false,
+              "show_state": false,
+              "styles": {
+                "card": [
+                  {
+                    "height": "38px"
+                  },
+                  {
+                    "padding": "4px"
+                  },
+                  {
+                    "border-radius": "10px"
+                  },
+                  {
+                    "touch-action": "none"
+                  },
+                  {
+                    "user-select": "none"
+                  }
+                ],
+                "icon": [
+                  {
+                    "width": "24px"
+                  }
+                ]
+              },
+              "tap_action": {
+                "action": "none"
+              },
+              "hold_action": {
+                "action": "none"
+              },
+              "double_tap_action": {
+                "action": "none"
+              },
+              "press_action": {
+                "action": "call-service",
+                "service": "script.turn_on",
+                "service_data": {
+                  "entity_id": "script.cc_ptz_sala_movimento",
+                  "variables": {
+                    "direzione": "giu"
+                  }
+                }
+              },
+              "release_action": {
+                "action": "call-service",
+                "service": "script.cc_ptz_sala_stop"
+              }
+            },
+            {
+              "type": "custom:button-card",
+              "color_type": "blank-card",
+              "styles": {
+                "card": [
+                  {
+                    "height": "38px"
+                  },
+                  {
+                    "padding": "0px"
+                  }
+                ]
+              }
+            }
+          ],
+          "grid_options": {
+            "columns": 12,
+            "rows": "auto"
+          }
+        },
+        {
+          "type": "entities",
+          "show_header_toggle": false,
+          "entities": [
+            {
+              "entity": "select.salone_sala_preimpostazione_ptz",
+              "name": "Posizione"
+            }
+          ],
+          "grid_options": {
+            "columns": 12,
+            "rows": "auto"
+          }
+        }
+      ]
+    },
+    {
+      "type": "grid",
+      "cards": [
+        {
+          "type": "heading",
+          "heading": "Nuova sezione"
+        },
+        {
+          "show_name": true,
+          "show_icon": true,
+          "type": "button",
+          "entity": "switch.100184e599_power",
+          "grid_options": {
+            "columns": 3,
+            "rows": 2
+          }
+        },
+        {
+          "show_name": true,
+          "show_icon": true,
+          "type": "button",
+          "entity": "switch.1002963641_power",
+          "grid_options": {
+            "columns": 3,
+            "rows": 2
+          }
+        },
+        {
+          "show_name": true,
+          "show_icon": true,
+          "type": "button",
+          "entity": "switch.1000111b06_power",
+          "grid_options": {
+            "columns": 3,
+            "rows": 2
+          }
+        },
+        {
+          "show_name": true,
+          "show_icon": true,
+          "type": "button",
+          "entity": "switch.100184e742_power",
+          "grid_options": {
+            "columns": 3,
+            "rows": 2
+          }
+        }
+      ]
+    }
+  ],
+  "cards": []
+}

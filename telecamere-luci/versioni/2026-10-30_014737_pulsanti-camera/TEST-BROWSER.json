@@ -1,0 +1,151 @@
+{
+  "url": "http://192.168.0.124/dashboard-casa/controllo-telecamere",
+  "nuovi_pulsanti_testati": [
+    {
+      "name": "Cancello",
+      "entity": "switch.100253f87b_power",
+      "ok": true,
+      "calls": [
+        {
+          "domain": "switch",
+          "service": "turn_on",
+          "data": {
+            "entity_id": "switch.100253f87b_power"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Giardino",
+      "entity": "switch.1000111b06_power",
+      "ok": true,
+      "calls": [
+        {
+          "domain": "switch",
+          "service": "toggle",
+          "data": {
+            "entity_id": "switch.1000111b06_power"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Parcheggio",
+      "entity": "switch.10001119b3_power",
+      "ok": true,
+      "calls": [
+        {
+          "domain": "switch",
+          "service": "toggle",
+          "data": {
+            "entity_id": "switch.10001119b3_power"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Torre ingresso",
+      "entity": "switch.100184e599_power",
+      "ok": true,
+      "calls": [
+        {
+          "domain": "switch",
+          "service": "toggle",
+          "data": {
+            "entity_id": "switch.100184e599_power"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Torre orto",
+      "entity": "switch.1002963641_power",
+      "ok": true,
+      "calls": [
+        {
+          "domain": "switch",
+          "service": "toggle",
+          "data": {
+            "entity_id": "switch.1002963641_power"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Ciabatta volante",
+      "entity": "switch.100185132f_power",
+      "ok": true,
+      "calls": [
+        {
+          "domain": "switch",
+          "service": "toggle",
+          "data": {
+            "entity_id": "switch.100185132f_power"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Capanno",
+      "entity": "switch.100184e742_power",
+      "ok": true,
+      "calls": [
+        {
+          "domain": "switch",
+          "service": "toggle",
+          "data": {
+            "entity_id": "switch.100184e742_power"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Faretto",
+      "entity": "light.tracking_faretto",
+      "ok": true,
+      "calls": [
+        {
+          "domain": "light",
+          "service": "toggle",
+          "data": {
+            "entity_id": "light.tracking_faretto"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Ingresso",
+      "entity": "light.esterno_ingresso_faretto",
+      "ok": true,
+      "calls": [
+        {
+          "domain": "light",
+          "service": "toggle",
+          "data": {
+            "entity_id": "light.esterno_ingresso_faretto"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Faretto",
+      "entity": "light.piazzale_faretto",
+      "ok": true,
+      "calls": [
+        {
+          "domain": "light",
+          "service": "toggle",
+          "data": {
+            "entity_id": "light.piazzale_faretto"
+          }
+        }
+      ]
+    }
+  ],
+  "chiamate_intercettate": true,
+  "azionamenti_fisici": false,
+  "video_in_riproduzione_al_controllo": 11,
+  "errori_schede": 0,
+  "errori_js": [],
+  "nota_stream": "Il confronto di currentTime di due campioni ha rilevato avanzamento su 4 video: non utilizzato come prova di continuità di tutti i flussi; nessuna configurazione dei flussi modificata."
+}
