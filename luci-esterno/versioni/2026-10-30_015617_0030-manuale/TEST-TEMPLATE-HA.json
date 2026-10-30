@@ -1,0 +1,42 @@
+[
+  {
+    "minuti": 1289,
+    "notte": true,
+    "risultato": "sera"
+  },
+  {
+    "minuti": 1290,
+    "notte": true,
+    "risultato": "casuale"
+  },
+  {
+    "minuti": 1439,
+    "notte": true,
+    "risultato": "casuale"
+  },
+  {
+    "minuti": 0,
+    "notte": true,
+    "risultato": "casuale"
+  },
+  {
+    "minuti": 29,
+    "notte": true,
+    "risultato": "casuale"
+  },
+  {
+    "minuti": 30,
+    "notte": true,
+    "risultato": "notte_finale"
+  },
+  {
+    "minuti": 120,
+    "notte": true,
+    "risultato": "notte_finale"
+  },
+  {
+    "minuti": 450,
+    "notte": false,
+    "risultato": "giorno"
+  }
+]

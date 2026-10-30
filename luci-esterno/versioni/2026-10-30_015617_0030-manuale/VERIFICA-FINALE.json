@@ -1,0 +1,80 @@
+{
+  "data": "2026-10-30T01:59:59.239910+01:00",
+  "configurazione_ha_valida": true,
+  "file_online_identico": true,
+  "fotocellula_ingresso_riabilitata": true,
+  "gestione_temporale_ingresso_rilasciata": true,
+  "stati": {
+    "switch.100184e599_power": "on",
+    "binary_sensor.esterno_ingresso_movimento": "off",
+    "timer.fotocellula_ingresso_torre": "active",
+    "sensor.programma_luci_esterno_stato": "00:30–alba: parcheggio e ciabatta"
+  },
+  "prova_reale": "Torre ingresso spenta alle 01:59:32; riaccesa alle 01:59:36 per nuovo movimento della fotocellula. Nessuna riaccensione forzata dal programma temporale.",
+  "limite_prova": "Esclusione nella fascia casuale verificata sui template e sul codice, senza simulare un cambio di ora sul server.",
+  "tracce": {
+    "programma_luci_esterno_casuale_v1": [
+      {
+        "ora": "2026-10-30T00:58:00.476878+00:00",
+        "trigger": "time pattern",
+        "esito": "finished",
+        "comandi_switch": []
+      },
+      {
+        "ora": "2026-10-30T00:59:00.475909+00:00",
+        "trigger": "time pattern",
+        "esito": "finished",
+        "comandi_switch": []
+      },
+      {
+        "ora": "2026-10-30T00:59:31.944333+00:00",
+        "trigger": null,
+        "esito": "finished",
+        "comandi_switch": []
+      },
+      {
+        "ora": "2026-10-30T00:59:32.210654+00:00",
+        "trigger": "state of switch.100184e599_power",
+        "esito": "finished",
+        "comandi_switch": []
+      },
+      {
+        "ora": "2026-10-30T00:59:37.990367+00:00",
+        "trigger": "state of switch.1002963641_power",
+        "esito": "finished",
+        "comandi_switch": []
+      }
+    ],
+    "fotocellula_ingresso_torre_v1": [
+      {
+        "ora": "2026-10-30T00:59:32.235362+00:00",
+        "trigger": "state of switch.100184e599_power",
+        "esito": "finished",
+        "comandi_switch": []
+      },
+      {
+        "ora": "2026-10-30T00:59:36.476045+00:00",
+        "trigger": "state of binary_sensor.esterno_ingresso_movimento",
+        "esito": "finished",
+        "comandi_switch": [
+          {
+            "domain": "switch",
+            "service": "turn_on",
+            "service_data": {},
+            "target": {
+              "entity_id": [
+                "switch.100184e599_power"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "ora": "2026-10-30T00:59:41.185577+00:00",
+        "trigger": "state of binary_sensor.esterno_ingresso_movimento",
+        "esito": "finished",
+        "comandi_switch": []
+      }
+    ]
+  }
+}

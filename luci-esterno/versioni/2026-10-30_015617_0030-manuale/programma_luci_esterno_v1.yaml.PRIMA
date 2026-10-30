@@ -1,0 +1,311 @@
+input_boolean:
+  programma_luci_esterno:
+    name: Programma luci esterno
+    icon: mdi:home-lightbulb
+  programma_luci_inizializzato:
+    name: Programma luci inizializzato
+  programma_luci_parcheggio:
+    name: Programma gestisce Parcheggio
+  programma_luci_ciabatta:
+    name: Programma gestisce Ciabatta volante
+  programma_luci_orto:
+    name: Programma gestisce Torre Orto
+  programma_luci_giardino:
+    name: Programma gestisce Giardino
+  programma_luci_ingresso:
+    name: Programma gestisce Torre ingresso
+  programma_luci_capanno:
+    name: Programma gestisce Capanno
+input_text:
+  programma_luci_estrazione:
+    name: Programma luci ultima estrazione
+    max: 120
+automation:
+- id: programma_luci_esterno_casuale_v1
+  alias: Luci esterno - Programma notturno e coppie casuali
+  description: Parcheggio/Ciabatta tramonto-alba; Giardino/Ingresso fino 21:30; coppie variabili ogni 30 min fino
+    02, diverse dalla precedente. Memoria atomica persistente, priorità allarme e passaggio alle fotocellule.
+  mode: single
+  max_exceeded: silent
+  triggers:
+  - trigger: time_pattern
+    minutes: '*'
+  - trigger: time
+    at:
+    - '21:30:00'
+    - 02:00:00
+  - trigger: sun
+    event: sunset
+  - trigger: sun
+    event: sunrise
+  - trigger: homeassistant
+    event: start
+  - trigger: state
+    entity_id: input_boolean.programma_luci_esterno
+    to: 'on'
+    id: abilita
+  - trigger: state
+    entity_id: input_boolean.programma_luci_esterno
+    to: 'off'
+    id: disabilita
+  - trigger: state
+    entity_id:
+    - alarm_control_panel.allarme_casa
+    - alarm_control_panel.aqara_hub_09ab_security_system_2
+    - automation.allarme_innescato_esterno_acceso
+  - trigger: state
+    entity_id:
+    - switch.10001119b3_power
+    - switch.100185132f_power
+    - switch.1002963641_power
+    - switch.1000111b06_power
+    - switch.100184e599_power
+    - switch.100184e742_power
+    to: 'off'
+  conditions:
+  - condition: template
+    value_template: '{{ not (is_state(''alarm_control_panel.allarme_casa'',''triggered'') or is_state(''alarm_control_panel.aqara_hub_09ab_security_system_2'',''triggered'')
+      or state_attr(''automation.allarme_innescato_esterno_acceso'',''current'')|int(0)>0) }}'
+  actions:
+  - variables:
+      luci:
+      - chiave: parcheggio
+        nome: Parcheggio
+        entity_id: switch.10001119b3_power
+        programma: input_boolean.programma_luci_parcheggio
+        proprietario_fotocellula: ''
+        timer_fotocellula: ''
+        movimento: ''
+      - chiave: ciabatta
+        nome: Ciabatta volante
+        entity_id: switch.100185132f_power
+        programma: input_boolean.programma_luci_ciabatta
+        proprietario_fotocellula: ''
+        timer_fotocellula: ''
+        movimento: ''
+      - chiave: orto
+        nome: Torre Orto
+        entity_id: switch.1002963641_power
+        programma: input_boolean.programma_luci_orto
+        proprietario_fotocellula: input_boolean.fotocellula_orto_torre_gestisce
+        timer_fotocellula: timer.fotocellula_orto_torre
+        movimento: binary_sensor.piscina_orto_movimento
+      - chiave: giardino
+        nome: Giardino
+        entity_id: switch.1000111b06_power
+        programma: input_boolean.programma_luci_giardino
+        proprietario_fotocellula: input_boolean.fotocellula_cancello_giardino_gestisce
+        timer_fotocellula: timer.fotocellula_cancello_giardino
+        movimento: binary_sensor.cancello_movimento
+      - chiave: ingresso
+        nome: Torre ingresso
+        entity_id: switch.100184e599_power
+        programma: input_boolean.programma_luci_ingresso
+        proprietario_fotocellula: input_boolean.fotocellula_ingresso_torre_gestisce
+        timer_fotocellula: timer.fotocellula_ingresso_torre
+        movimento: binary_sensor.esterno_ingresso_movimento
+      - chiave: capanno
+        nome: Capanno
+        entity_id: switch.100184e742_power
+        programma: input_boolean.programma_luci_capanno
+        proprietario_fotocellula: input_boolean.fotocellula_piscine_capanno_gestisce
+        timer_fotocellula: timer.fotocellula_piscine_capanno
+        movimento: binary_sensor.piscine_movimento
+      variabili:
+      - orto
+      - giardino
+      - ingresso
+      - capanno
+      coppie:
+      - - orto
+        - giardino
+      - - orto
+        - ingresso
+      - - orto
+        - capanno
+      - - giardino
+        - ingresso
+      - - giardino
+        - capanno
+      - - ingresso
+        - capanno
+      abilitato: '{{ is_state(''input_boolean.programma_luci_esterno'',''on'') }}'
+      notte: '{{ is_state(''sun.sun'',''below_horizon'') }}'
+      minuti: '{{ now().hour*60+now().minute }}'
+      data_notte: '{{ (now()-timedelta(days=1)).strftime(''%Y-%m-%d'') if now().hour<12 else now().strftime(''%Y-%m-%d'')
+        }}'
+      memoria: '{{ states(''input_text.programma_luci_estrazione'') }}'
+      forza: '{{ abilitato and ((trigger is defined and trigger is not none and trigger.id|default('''') == ''abilita'')
+        or not is_state(''input_boolean.programma_luci_inizializzato'',''on'')) }}'
+  - variables:
+      fase: '{% if not abilitato %}spento{% elif not notte %}giorno{% elif minuti >= 1290 or minuti < 120 %}casuale{%
+        elif minuti < 720 %}notte_finale{% else %}sera{% endif %}'
+      parti_memoria: '{{ memoria.split(''|'') }}'
+      chiave_fascia: '{{ data_notte ~ ''#'' ~ (((minuti-1290)%1440)//30) }}'
+  - variables:
+      fascia_memoria: '{{ parti_memoria[0] if parti_memoria|length==2 else '''' }}'
+      precedente: '{{ parti_memoria[1].split('','') if parti_memoria|length==2 else [] }}'
+  - variables:
+      memoria_valida: '{{ precedente|length==2 and precedente[0] in variabili and precedente[1] in variabili and
+        precedente[0]!=precedente[1] }}'
+  - variables:
+      precedente_effettiva: '{{ precedente if memoria_valida and fascia_memoria.startswith(data_notte ~ ''#'') else
+        [''giardino'',''ingresso''] }}'
+  - variables:
+      coppia: '{% if fase != ''casuale'' %}{{ [] }}{% elif memoria_valida and fascia_memoria == chiave_fascia %}{{
+        precedente }}{% else %}{% set ns=namespace(scelte=[]) %}{% for p in coppie %}{% if p|sort != precedente_effettiva|sort
+        %}{% set ns.scelte=ns.scelte+[p] %}{% endif %}{% endfor %}{{ ns.scelte|random }}{% endif %}'
+  - variables:
+      desiderati: '{{ [] if fase in [''spento'',''giorno''] else [''parcheggio'',''ciabatta''] + ([''giardino'',''ingresso'']
+        if fase==''sera'' else coppia if fase==''casuale'' else []) }}'
+  - if:
+    - condition: template
+      value_template: '{{ fase==''casuale'' and memoria != chiave_fascia ~ ''|'' ~ (coppia|join('','')) }}'
+    then:
+    - action: input_text.set_value
+      target:
+        entity_id: input_text.programma_luci_estrazione
+      data:
+        value: '{{ chiave_fascia ~ ''|'' ~ (coppia|join('','')) }}'
+  - repeat:
+      for_each: '{{ luci }}'
+      sequence:
+      - choose:
+        - conditions:
+          - condition: template
+            value_template: '{{ repeat.item.chiave in desiderati }}'
+          sequence:
+          - action: input_boolean.turn_on
+            target:
+              entity_id: '{{ repeat.item.programma }}'
+          - if:
+            - condition: template
+              value_template: '{{ repeat.item.proprietario_fotocellula != '''' }}'
+            then:
+            - action: timer.cancel
+              target:
+                entity_id: '{{ repeat.item.timer_fotocellula }}'
+            - action: input_boolean.turn_off
+              target:
+                entity_id: '{{ repeat.item.proprietario_fotocellula }}'
+          - if:
+            - condition: template
+              value_template: '{{ not is_state(repeat.item.entity_id,''on'') }}'
+            then:
+            - condition: template
+              value_template: '{{ not (is_state(''alarm_control_panel.allarme_casa'',''triggered'') or is_state(''alarm_control_panel.aqara_hub_09ab_security_system_2'',''triggered'')
+                or state_attr(''automation.allarme_innescato_esterno_acceso'',''current'')|int(0)>0) }}'
+            - action: switch.turn_on
+              continue_on_error: true
+              target:
+                entity_id: '{{ repeat.item.entity_id }}'
+        - conditions:
+          - condition: template
+            value_template: '{{ is_state(repeat.item.programma,''on'') or forza }}'
+          sequence:
+          - action: input_boolean.turn_off
+            target:
+              entity_id: '{{ repeat.item.programma }}'
+          - choose:
+            - conditions:
+              - condition: template
+                value_template: '{{ repeat.item.proprietario_fotocellula != '''' }}'
+              sequence:
+              - choose:
+                - conditions:
+                  - condition: template
+                    value_template: '{{ notte and is_state(repeat.item.movimento,''on'') }}'
+                  sequence:
+                  - action: input_boolean.turn_on
+                    target:
+                      entity_id: '{{ repeat.item.proprietario_fotocellula }}'
+                  - action: timer.cancel
+                    target:
+                      entity_id: '{{ repeat.item.timer_fotocellula }}'
+                  - if:
+                    - condition: template
+                      value_template: '{{ not is_state(repeat.item.entity_id,''on'') }}'
+                    then:
+                    - condition: template
+                      value_template: '{{ not (is_state(''alarm_control_panel.allarme_casa'',''triggered'') or is_state(''alarm_control_panel.aqara_hub_09ab_security_system_2'',''triggered'')
+                        or state_attr(''automation.allarme_innescato_esterno_acceso'',''current'')|int(0)>0) }}'
+                    - action: switch.turn_on
+                      continue_on_error: true
+                      target:
+                        entity_id: '{{ repeat.item.entity_id }}'
+                - conditions:
+                  - condition: template
+                    value_template: '{% set e=states[repeat.item.movimento] %}{{ notte and is_state(repeat.item.movimento,''off'')
+                      and is_state(repeat.item.entity_id,''on'') and e is not none and 0 <= as_timestamp(now())-as_timestamp(e.last_changed,0)
+                      < 120 }}'
+                  sequence:
+                  - action: input_boolean.turn_on
+                    target:
+                      entity_id: '{{ repeat.item.proprietario_fotocellula }}'
+                  - action: timer.start
+                    target:
+                      entity_id: '{{ repeat.item.timer_fotocellula }}'
+                    data:
+                      duration: '{{ [1, (120-(as_timestamp(now())-as_timestamp(states[repeat.item.movimento].last_changed,0)))|int]|max
+                        }}'
+                default:
+                - action: timer.cancel
+                  target:
+                    entity_id: '{{ repeat.item.timer_fotocellula }}'
+                - action: input_boolean.turn_off
+                  target:
+                    entity_id: '{{ repeat.item.proprietario_fotocellula }}'
+                - if:
+                  - condition: template
+                    value_template: '{{ is_state(repeat.item.entity_id,''on'') }}'
+                  then:
+                  - condition: template
+                    value_template: '{{ not (is_state(''alarm_control_panel.allarme_casa'',''triggered'') or is_state(''alarm_control_panel.aqara_hub_09ab_security_system_2'',''triggered'')
+                      or state_attr(''automation.allarme_innescato_esterno_acceso'',''current'')|int(0)>0) }}'
+                  - action: switch.turn_off
+                    continue_on_error: true
+                    target:
+                      entity_id: '{{ repeat.item.entity_id }}'
+            default:
+            - if:
+              - condition: template
+                value_template: '{{ is_state(repeat.item.entity_id,''on'') }}'
+              then:
+              - condition: template
+                value_template: '{{ not (is_state(''alarm_control_panel.allarme_casa'',''triggered'') or is_state(''alarm_control_panel.aqara_hub_09ab_security_system_2'',''triggered'')
+                  or state_attr(''automation.allarme_innescato_esterno_acceso'',''current'')|int(0)>0) }}'
+              - action: switch.turn_off
+                continue_on_error: true
+                target:
+                  entity_id: '{{ repeat.item.entity_id }}'
+  - if:
+    - condition: template
+      value_template: '{{ not (is_state(''alarm_control_panel.allarme_casa'',''triggered'') or is_state(''alarm_control_panel.aqara_hub_09ab_security_system_2'',''triggered'')
+        or state_attr(''automation.allarme_innescato_esterno_acceso'',''current'')|int(0)>0) }}'
+    then:
+    - choose:
+      - conditions:
+        - condition: template
+          value_template: '{{ abilitato }}'
+        sequence:
+        - action: input_boolean.turn_on
+          target:
+            entity_id: input_boolean.programma_luci_inizializzato
+      default:
+      - action: input_boolean.turn_off
+        target:
+          entity_id: input_boolean.programma_luci_inizializzato
+template:
+- sensor:
+  - name: Programma luci esterno stato
+    unique_id: programma_luci_esterno_stato
+    state: '{% if not is_state(''input_boolean.programma_luci_esterno'',''on'') %}Disattivato{% elif is_state(''alarm_control_panel.allarme_casa'',''triggered'')
+      or is_state(''alarm_control_panel.aqara_hub_09ab_security_system_2'',''triggered'') or state_attr(''automation.allarme_innescato_esterno_acceso'',''current'')|int(0)>0
+      %}Priorità allarme{% elif is_state(''sun.sun'',''above_horizon'') %}Giorno{% elif now().hour*60+now().minute>=1290
+      or now().hour<2 %}{% set p=states(''input_text.programma_luci_estrazione'').split(''|'') %}Coppia casuale:
+      {{ p[1] if p|length==2 else ''in attesa'' }}{% elif now().hour<12 %}02–alba: parcheggio e ciabatta{% else
+      %}Tramonto–21:30: giardino e ingresso{% endif %}'
+    attributes:
+      memoria_estrazione: '{{ states(''input_text.programma_luci_estrazione'') }}'
+      regola: Coppie variabili di due luci, ogni 30 minuti, senza ripetizione consecutiva; fotocellule abilitate
+        sulle altre.

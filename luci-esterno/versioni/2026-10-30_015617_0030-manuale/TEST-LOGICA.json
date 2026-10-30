@@ -1,0 +1,89 @@
+{
+  "orari": [
+    {
+      "ora": "21:29",
+      "fase": "sera",
+      "desiderati": [
+        "parcheggio",
+        "ciabatta",
+        "giardino",
+        "ingresso"
+      ]
+    },
+    {
+      "ora": "21:30",
+      "fase": "casuale",
+      "desiderati": [
+        "parcheggio",
+        "ciabatta",
+        "orto",
+        "giardino"
+      ]
+    },
+    {
+      "ora": "23:59",
+      "fase": "casuale",
+      "desiderati": [
+        "parcheggio",
+        "ciabatta",
+        "orto",
+        "capanno"
+      ]
+    },
+    {
+      "ora": "00:00",
+      "fase": "casuale",
+      "desiderati": [
+        "parcheggio",
+        "ciabatta",
+        "orto",
+        "ingresso"
+      ]
+    },
+    {
+      "ora": "00:29",
+      "fase": "casuale",
+      "desiderati": [
+        "parcheggio",
+        "ciabatta",
+        "orto",
+        "giardino"
+      ]
+    },
+    {
+      "ora": "00:30",
+      "fase": "notte_finale",
+      "desiderati": [
+        "parcheggio",
+        "ciabatta"
+      ]
+    },
+    {
+      "ora": "01:59",
+      "fase": "notte_finale",
+      "desiderati": [
+        "parcheggio",
+        "ciabatta"
+      ]
+    },
+    {
+      "ora": "06:30",
+      "fase": "notte_finale",
+      "desiderati": [
+        "parcheggio",
+        "ciabatta"
+      ]
+    },
+    {
+      "ora": "07:00",
+      "fase": "giorno",
+      "desiderati": []
+    }
+  ],
+  "spegnimento_manuale_utente": true,
+  "spegnimento_fisico_senza_parent": true,
+  "spegnimento_automazione_non_esclude": true,
+  "persistenza_fascia": true,
+  "scadenza_fascia": true,
+  "accensione_esclusa_bloccata": true
+}
