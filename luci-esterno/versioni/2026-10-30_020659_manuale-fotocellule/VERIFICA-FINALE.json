@@ -1,0 +1,23 @@
+{
+  "data": "2026-10-30T02:07:57.518520+01:00",
+  "configurazione_valida": true,
+  "file_online_identici": true,
+  "torre_ingresso": "off",
+  "spenta_da": "2026-10-30T01:07:02.022621+00:00",
+  "esclusione_manuale": "2026-10-29#9|ingresso",
+  "automazioni_aggiunte": [],
+  "cambi_stato_automazioni": [
+    {
+      "entity_id": "automation.faretto_telecamera_ingresso_accende_fari_torre_ingresso",
+      "prima": "on",
+      "dopo": "off"
+    }
+  ],
+  "movimenti_reali_bloccati": [
+    {
+      "inizio": "2026-10-30T01:07:06.358127+00:00",
+      "risultato_guardia": false,
+      "esito": "finished"
+    }
+  ]
+}

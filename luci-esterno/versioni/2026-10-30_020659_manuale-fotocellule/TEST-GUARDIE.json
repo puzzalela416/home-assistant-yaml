@@ -1,0 +1,5 @@
+{
+  "casi": 16,
+  "esito": "superati",
+  "regola": "blocca movimento solo nella fascia dell’esclusione manuale; scade nella successiva"
+}
