@@ -1,0 +1,110 @@
+[
+  {
+    "nome": "tracking",
+    "camera": "camera.tracking_scorrevole",
+    "ptz": {
+      "key": "tracking",
+      "direzioni": {
+        "su": "button.tracking_ptz_su",
+        "giu": "button.tracking_ptz_giu",
+        "sinistra": "button.tracking_ptz_sinistra",
+        "destra": "button.tracking_ptz_destra"
+      },
+      "stop": "button.tracking_ptz_arresto",
+      "movimento_script": "script.cc_ptz_tracking_movimento",
+      "stop_script": "script.cc_ptz_tracking_stop",
+      "velocita_regolabile": true,
+      "preset": "select.tracking_preimpostazione_ptz",
+      "opzioni_preset": [
+        "2",
+        "3",
+        "4",
+        "0",
+        "5",
+        "9"
+      ]
+    }
+  },
+  {
+    "nome": "piazzale",
+    "camera": "camera.piazzale_lente_scorrevole_0",
+    "ptz": {
+      "key": "piazzale",
+      "direzioni": {
+        "su": "button.piazzale_ptz_su",
+        "giu": "button.piazzale_ptz_giu",
+        "sinistra": "button.piazzale_ptz_sinistra",
+        "destra": "button.piazzale_ptz_destra"
+      },
+      "stop": "button.piazzale_ptz_arresto",
+      "movimento_script": "script.cc_ptz_piazzale_movimento",
+      "stop_script": "script.cc_ptz_piazzale_stop",
+      "velocita_regolabile": true,
+      "preset": "select.piazzale_preimpostazione_ptz",
+      "opzioni_preset": [
+        "1"
+      ]
+    }
+  },
+  {
+    "nome": "sala",
+    "camera": "camera.sala",
+    "ptz": {
+      "key": "sala",
+      "direzioni": {
+        "su": "button.sala_ptz_su",
+        "giu": "button.sala_ptz_giu",
+        "sinistra": "button.sala_ptz_sinistra",
+        "destra": "button.sala_ptz_destra"
+      },
+      "stop": "button.sala_ptz_arresto",
+      "movimento_script": "script.cc_ptz_sala_movimento",
+      "stop_script": "script.cc_ptz_sala_stop",
+      "velocita_regolabile": false,
+      "preset": "select.salone_sala_preimpostazione_ptz",
+      "opzioni_preset": [
+        "0"
+      ]
+    }
+  },
+  {
+    "nome": "Ingresso",
+    "camera": "camera.esterno_ingresso_scorrevole",
+    "ptz": null
+  },
+  {
+    "nome": "cancello",
+    "camera": "camera.cancello_bilanciato",
+    "ptz": null
+  },
+  {
+    "nome": "piscine",
+    "camera": "camera.piscine_scorrevole",
+    "ptz": null
+  },
+  {
+    "nome": "Orto",
+    "camera": "camera.piscina_orto_scorrevole",
+    "ptz": null
+  },
+  {
+    "nome": "Auto",
+    "camera": "camera.auto",
+    "ptz": null
+  },
+  {
+    "nome": "loggiato",
+    "camera": "camera.loggiato_scorrevole",
+    "ptz": null
+  },
+  {
+    "nome": "Officina",
+    "camera": "camera.parco_scorrevole",
+    "ptz": null
+  },
+  {
+    "nome": "Cucina e posteriore",
+    "camera": "camera.cucina_scorrevole",
+    "ptz": null
+  }
+]

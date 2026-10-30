@@ -1,0 +1,24 @@
+{
+  "vista_salvata_verificata": true,
+  "altre_viste_invariate": true,
+  "scripts_yaml_invariato": true,
+  "package_letto_dal_server_identico": true,
+  "stop_nativi": [
+    {
+      "camera": "tracking",
+      "servizio_stop": "eseguito senza errori",
+      "movimento": "non avviato"
+    },
+    {
+      "camera": "piazzale",
+      "servizio_stop": "eseguito senza errori",
+      "movimento": "non avviato"
+    },
+    {
+      "camera": "sala",
+      "servizio_stop": "eseguito senza errori",
+      "movimento": "non avviato"
+    }
+  ],
+  "preset": "entità e opzioni verificate; posizioni non richiamate per non muovere le telecamere"
+}

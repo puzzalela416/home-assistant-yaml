@@ -1,0 +1,168 @@
+{
+  "title": "Controllo Telecamere",
+  "path": "controllo-telecamere",
+  "icon": "mdi:cctv",
+  "type": "masonry",
+  "cards": [
+    {
+      "show_state": false,
+      "show_name": true,
+      "camera_view": "live",
+      "fit_mode": "cover",
+      "type": "picture-entity",
+      "entity": "camera.tracking_scorrevole",
+      "name": "Tracking LIVE"
+    },
+    {
+      "type": "grid",
+      "columns": 3,
+      "square": false,
+      "cards": [
+        {
+          "type": "markdown",
+          "content": " "
+        },
+        {
+          "type": "button",
+          "name": "SU",
+          "icon": "mdi:arrow-up-bold-circle",
+          "tap_action": {
+            "action": "perform-action",
+            "perform_action": "script.turn_on",
+            "target": {
+              "entity_id": "script.tracking_ptz_passo"
+            },
+            "data": {
+              "variables": {
+                "direzione": "su"
+              }
+            }
+          }
+        },
+        {
+          "type": "markdown",
+          "content": " "
+        },
+        {
+          "type": "button",
+          "name": "SINISTRA",
+          "icon": "mdi:arrow-left-bold-circle",
+          "tap_action": {
+            "action": "perform-action",
+            "perform_action": "script.turn_on",
+            "target": {
+              "entity_id": "script.tracking_ptz_passo"
+            },
+            "data": {
+              "variables": {
+                "direzione": "sinistra"
+              }
+            }
+          }
+        },
+        {
+          "type": "button",
+          "name": "STOP",
+          "icon": "mdi:stop-circle",
+          "icon_height": "45px",
+          "tap_action": {
+            "action": "perform-action",
+            "perform_action": "button.press",
+            "target": {
+              "entity_id": "button.tracking_ptz_arresto"
+            }
+          }
+        },
+        {
+          "type": "button",
+          "name": "DESTRA",
+          "icon": "mdi:arrow-right-bold-circle",
+          "tap_action": {
+            "action": "perform-action",
+            "perform_action": "script.turn_on",
+            "target": {
+              "entity_id": "script.tracking_ptz_passo"
+            },
+            "data": {
+              "variables": {
+                "direzione": "destra"
+              }
+            }
+          }
+        },
+        {
+          "type": "markdown",
+          "content": " "
+        },
+        {
+          "type": "button",
+          "name": "GIU",
+          "icon": "mdi:arrow-down-bold-circle",
+          "tap_action": {
+            "action": "perform-action",
+            "perform_action": "script.turn_on",
+            "target": {
+              "entity_id": "script.tracking_ptz_passo"
+            },
+            "data": {
+              "variables": {
+                "direzione": "giu"
+              }
+            }
+          }
+        },
+        {
+          "type": "markdown",
+          "content": " "
+        }
+      ]
+    },
+    {
+      "type": "entities",
+      "title": "Posizioni preimpostate PTZ",
+      "show_header_toggle": false,
+      "entities": [
+        {
+          "entity": "select.tracking_preimpostazione_ptz",
+          "name": "Seleziona posizione"
+        }
+      ]
+    },
+    {
+      "type": "entities",
+      "title": "Sensibilita Tracking",
+      "show_header_toggle": false,
+      "entities": [
+        {
+          "entity": "number.tracking_sensibilita_al_movimento",
+          "name": "Movimento"
+        },
+        {
+          "entity": "number.tracking_ai_person_sensitivity",
+          "name": "Persone"
+        },
+        {
+          "entity": "number.tracking_ai_vehicle_sensitivity",
+          "name": "Veicoli"
+        },
+        {
+          "entity": "number.tracking_ai_animal_sensitivity",
+          "name": "Animali"
+        }
+      ]
+    },
+    {
+      "type": "markdown",
+      "content": "# REOLINK TRACKING\nControllo PTZ con arresto automatico.\nUn tocco = un movimento breve.\n"
+    },
+    {
+      "type": "vertical-stack",
+      "cards": [
+        {
+          "type": "markdown",
+          "content": "## JOYSTICK PTZ\nUsa le frecce per muovere la telecamera.\nIl tasto centrale arresta il movimento.\n"
+        }
+      ]
+    }
+  ]
+}

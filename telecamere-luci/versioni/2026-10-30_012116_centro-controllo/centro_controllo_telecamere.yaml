@@ -1,0 +1,131 @@
+script:
+  cc_ptz_tracking_movimento:
+    alias: Centro telecamere - tracking movimento
+    mode: restart
+    fields:
+      direzione:
+        required: true
+        selector:
+          select:
+            options:
+            - su
+            - giu
+            - sinistra
+            - destra
+    sequence:
+    - condition: template
+      value_template: '{{ direzione|default('''') in [''su'',''giu'',''sinistra'',''destra''] }}'
+    - variables:
+        pulsante_ptz: '{{ {''su'': ''button.tracking_ptz_su'', ''giu'': ''button.tracking_ptz_giu'', ''sinistra'':
+          ''button.tracking_ptz_sinistra'', ''destra'': ''button.tracking_ptz_destra''}[direzione] }}'
+    - condition: template
+      value_template: '{{ states[pulsante_ptz] is not none and states(pulsante_ptz) != ''unavailable'' and states(''camera.tracking_scorrevole'')
+        not in [''unknown'',''unavailable''] }}'
+    - action: reolink.ptz_move
+      target:
+        entity_id: '{{ pulsante_ptz }}'
+      data:
+        speed: 10
+    - delay:
+        seconds: 15
+    - action: button.press
+      target:
+        entity_id: button.tracking_ptz_arresto
+    description: Avvia al press, arrestato dal release. Arresto automatico massimo dopo 15 secondi se il client
+      non invia il rilascio.
+  cc_ptz_tracking_stop:
+    alias: Centro telecamere - tracking stop
+    mode: restart
+    sequence:
+    - action: button.press
+      target:
+        entity_id: button.tracking_ptz_arresto
+    - action: script.turn_off
+      target:
+        entity_id: script.cc_ptz_tracking_movimento
+  cc_ptz_piazzale_movimento:
+    alias: Centro telecamere - piazzale movimento
+    mode: restart
+    fields:
+      direzione:
+        required: true
+        selector:
+          select:
+            options:
+            - su
+            - giu
+            - sinistra
+            - destra
+    sequence:
+    - condition: template
+      value_template: '{{ direzione|default('''') in [''su'',''giu'',''sinistra'',''destra''] }}'
+    - variables:
+        pulsante_ptz: '{{ {''su'': ''button.piazzale_ptz_su'', ''giu'': ''button.piazzale_ptz_giu'', ''sinistra'':
+          ''button.piazzale_ptz_sinistra'', ''destra'': ''button.piazzale_ptz_destra''}[direzione] }}'
+    - condition: template
+      value_template: '{{ states[pulsante_ptz] is not none and states(pulsante_ptz) != ''unavailable'' and states(''camera.piazzale_lente_scorrevole_0'')
+        not in [''unknown'',''unavailable''] }}'
+    - action: reolink.ptz_move
+      target:
+        entity_id: '{{ pulsante_ptz }}'
+      data:
+        speed: 10
+    - delay:
+        seconds: 15
+    - action: button.press
+      target:
+        entity_id: button.piazzale_ptz_arresto
+    description: Avvia al press, arrestato dal release. Arresto automatico massimo dopo 15 secondi se il client
+      non invia il rilascio.
+  cc_ptz_piazzale_stop:
+    alias: Centro telecamere - piazzale stop
+    mode: restart
+    sequence:
+    - action: button.press
+      target:
+        entity_id: button.piazzale_ptz_arresto
+    - action: script.turn_off
+      target:
+        entity_id: script.cc_ptz_piazzale_movimento
+  cc_ptz_sala_movimento:
+    alias: Centro telecamere - sala movimento
+    mode: restart
+    fields:
+      direzione:
+        required: true
+        selector:
+          select:
+            options:
+            - su
+            - giu
+            - sinistra
+            - destra
+    sequence:
+    - condition: template
+      value_template: '{{ direzione|default('''') in [''su'',''giu'',''sinistra'',''destra''] }}'
+    - variables:
+        pulsante_ptz: '{{ {''su'': ''button.sala_ptz_su'', ''giu'': ''button.sala_ptz_giu'', ''sinistra'': ''button.sala_ptz_sinistra'',
+          ''destra'': ''button.sala_ptz_destra''}[direzione] }}'
+    - condition: template
+      value_template: '{{ states[pulsante_ptz] is not none and states(pulsante_ptz) != ''unavailable'' and states(''camera.sala'')
+        not in [''unknown'',''unavailable''] }}'
+    - action: button.press
+      target:
+        entity_id: '{{ pulsante_ptz }}'
+    - delay:
+        seconds: 15
+    - action: button.press
+      target:
+        entity_id: button.sala_ptz_arresto
+    description: Avvia al press, arrestato dal release. Arresto automatico massimo dopo 15 secondi se il client
+      non invia il rilascio.
+  cc_ptz_sala_stop:
+    alias: Centro telecamere - sala stop
+    mode: restart
+    sequence:
+    - action: button.press
+      target:
+        entity_id: button.sala_ptz_arresto
+    - action: script.turn_off
+      target:
+        entity_id: script.cc_ptz_sala_movimento

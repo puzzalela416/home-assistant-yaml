@@ -1,0 +1,287 @@
+{
+  "url": "http://192.168.0.124/dashboard-casa/controllo-telecamere",
+  "cards": 11,
+  "playing": 11,
+  "progressing": [
+    "camera.tracking_scorrevole",
+    "camera.piazzale_lente_scorrevole_0",
+    "camera.sala",
+    "camera.esterno_ingresso_scorrevole",
+    "camera.cancello_bilanciato",
+    "camera.piscine_scorrevole",
+    "camera.piscina_orto_scorrevole",
+    "camera.auto",
+    "camera.loggiato_scorrevole",
+    "camera.parco_scorrevole",
+    "camera.cucina_scorrevole"
+  ],
+  "ptz_test": [
+    {
+      "name": "tracking su",
+      "press": true,
+      "release": true,
+      "calls": [
+        {
+          "domain": "script",
+          "service": "turn_on",
+          "data": {
+            "entity_id": "script.cc_ptz_tracking_movimento",
+            "variables": {
+              "direzione": "su"
+            }
+          }
+        },
+        {
+          "domain": "script",
+          "service": "cc_ptz_tracking_stop",
+          "data": {}
+        }
+      ]
+    },
+    {
+      "name": "tracking sinistra",
+      "press": true,
+      "release": true,
+      "calls": [
+        {
+          "domain": "script",
+          "service": "turn_on",
+          "data": {
+            "entity_id": "script.cc_ptz_tracking_movimento",
+            "variables": {
+              "direzione": "sinistra"
+            }
+          }
+        },
+        {
+          "domain": "script",
+          "service": "cc_ptz_tracking_stop",
+          "data": {}
+        }
+      ]
+    },
+    {
+      "name": "tracking destra",
+      "press": true,
+      "release": true,
+      "calls": [
+        {
+          "domain": "script",
+          "service": "turn_on",
+          "data": {
+            "entity_id": "script.cc_ptz_tracking_movimento",
+            "variables": {
+              "direzione": "destra"
+            }
+          }
+        },
+        {
+          "domain": "script",
+          "service": "cc_ptz_tracking_stop",
+          "data": {}
+        }
+      ]
+    },
+    {
+      "name": "tracking giu",
+      "press": true,
+      "release": true,
+      "calls": [
+        {
+          "domain": "script",
+          "service": "turn_on",
+          "data": {
+            "entity_id": "script.cc_ptz_tracking_movimento",
+            "variables": {
+              "direzione": "giu"
+            }
+          }
+        },
+        {
+          "domain": "script",
+          "service": "cc_ptz_tracking_stop",
+          "data": {}
+        }
+      ]
+    },
+    {
+      "name": "piazzale su",
+      "press": true,
+      "release": true,
+      "calls": [
+        {
+          "domain": "script",
+          "service": "turn_on",
+          "data": {
+            "entity_id": "script.cc_ptz_piazzale_movimento",
+            "variables": {
+              "direzione": "su"
+            }
+          }
+        },
+        {
+          "domain": "script",
+          "service": "cc_ptz_piazzale_stop",
+          "data": {}
+        }
+      ]
+    },
+    {
+      "name": "piazzale sinistra",
+      "press": true,
+      "release": true,
+      "calls": [
+        {
+          "domain": "script",
+          "service": "turn_on",
+          "data": {
+            "entity_id": "script.cc_ptz_piazzale_movimento",
+            "variables": {
+              "direzione": "sinistra"
+            }
+          }
+        },
+        {
+          "domain": "script",
+          "service": "cc_ptz_piazzale_stop",
+          "data": {}
+        }
+      ]
+    },
+    {
+      "name": "piazzale destra",
+      "press": true,
+      "release": true,
+      "calls": [
+        {
+          "domain": "script",
+          "service": "turn_on",
+          "data": {
+            "entity_id": "script.cc_ptz_piazzale_movimento",
+            "variables": {
+              "direzione": "destra"
+            }
+          }
+        },
+        {
+          "domain": "script",
+          "service": "cc_ptz_piazzale_stop",
+          "data": {}
+        }
+      ]
+    },
+    {
+      "name": "piazzale giu",
+      "press": true,
+      "release": true,
+      "calls": [
+        {
+          "domain": "script",
+          "service": "turn_on",
+          "data": {
+            "entity_id": "script.cc_ptz_piazzale_movimento",
+            "variables": {
+              "direzione": "giu"
+            }
+          }
+        },
+        {
+          "domain": "script",
+          "service": "cc_ptz_piazzale_stop",
+          "data": {}
+        }
+      ]
+    },
+    {
+      "name": "sala su",
+      "press": true,
+      "release": true,
+      "calls": [
+        {
+          "domain": "script",
+          "service": "turn_on",
+          "data": {
+            "entity_id": "script.cc_ptz_sala_movimento",
+            "variables": {
+              "direzione": "su"
+            }
+          }
+        },
+        {
+          "domain": "script",
+          "service": "cc_ptz_sala_stop",
+          "data": {}
+        }
+      ]
+    },
+    {
+      "name": "sala sinistra",
+      "press": true,
+      "release": true,
+      "calls": [
+        {
+          "domain": "script",
+          "service": "turn_on",
+          "data": {
+            "entity_id": "script.cc_ptz_sala_movimento",
+            "variables": {
+              "direzione": "sinistra"
+            }
+          }
+        },
+        {
+          "domain": "script",
+          "service": "cc_ptz_sala_stop",
+          "data": {}
+        }
+      ]
+    },
+    {
+      "name": "sala destra",
+      "press": true,
+      "release": true,
+      "calls": [
+        {
+          "domain": "script",
+          "service": "turn_on",
+          "data": {
+            "entity_id": "script.cc_ptz_sala_movimento",
+            "variables": {
+              "direzione": "destra"
+            }
+          }
+        },
+        {
+          "domain": "script",
+          "service": "cc_ptz_sala_stop",
+          "data": {}
+        }
+      ]
+    },
+    {
+      "name": "sala giu",
+      "press": true,
+      "release": true,
+      "calls": [
+        {
+          "domain": "script",
+          "service": "turn_on",
+          "data": {
+            "entity_id": "script.cc_ptz_sala_movimento",
+            "variables": {
+              "direzione": "giu"
+            }
+          }
+        },
+        {
+          "domain": "script",
+          "service": "cc_ptz_sala_stop",
+          "data": {}
+        }
+      ]
+    }
+  ],
+  "ptz_calls_intercepted": true,
+  "errorCards": 0,
+  "js_errors": []
+}

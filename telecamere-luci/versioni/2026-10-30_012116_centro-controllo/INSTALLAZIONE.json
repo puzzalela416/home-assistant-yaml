@@ -1,0 +1,12 @@
+{
+  "data": "2026-10-30T01:21:16.492939+01:00",
+  "vista": "/dashboard-casa/controllo-telecamere",
+  "layout": "sections",
+  "sezioni": 11,
+  "ptz": 3,
+  "script": 6,
+  "altre_viste": "invariate",
+  "risorse": "invariate",
+  "scripts_yaml_precedente": "invariato",
+  "movimenti_ptz_forzati": false
+}
